@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "SchemaTypist.Cli": {
+      "commandName": "Project",
+      "commandLineArgs": "generate \"server=localhost;user id=sa;password= N3v3r!nPr0d;initial catalog=StackOverflow\""
+    }
+  }
+}

@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFrameworks>net5.0</TargetFrameworks>
+  </PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Spectre.Console" Version="0.41.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\SchemaTypist\SchemaTypist.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Remove="TestGen\" />
+	</ItemGroup>
+
+
+</Project>
