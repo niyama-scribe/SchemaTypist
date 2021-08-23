@@ -47,6 +47,11 @@ namespace SchemaTypist.Core.SqlKata
             return join.Where(column.QualifiedName__, op, value);
         }
 
+        public static Query Where(this BaseQuery<Query> query, ColumnDefinition column, String op, Object value)
+        {
+            return query.Where(column.QualifiedName__, op, value);
+        }
+
 
 
     }
