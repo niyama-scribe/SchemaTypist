@@ -4,7 +4,7 @@
     <OutputType>Exe</OutputType>
     <TargetFrameworks>net5.0</TargetFrameworks>
 	<PackAsTool>true</PackAsTool>
-	<ToolCommandName>botsay</ToolCommandName>
+	<ToolCommandName>schematypist</ToolCommandName>
 	<PackageOutputPath>./nupkg</PackageOutputPath>
   </PropertyGroup>
 

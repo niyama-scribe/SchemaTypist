@@ -8,7 +8,7 @@
 //------------------------------------------------------------------------------
 
 using Dapper;
-using {{ config.root_namespace }}.{{ config.model_namespace }}
+using {{ config.root_namespace }}.{{ config.model_namespace }};
 
 namespace {{ config.root_namespace }}.{{ config.mapping_namespace }}
 {
