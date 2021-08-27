@@ -136,11 +136,32 @@ namespace SchemaTypist.Cli
             
             public override ValidationResult Validate()
             {
+                //1.  Should be able to connect to the db.
+                //2.  Should be able to access the directories.
                 return SchemaTypistService.Validate(ConnectionString)
                     ? ValidationResult.Success()
                     : ValidationResult.Error(
                         "The database doesn't seem to be accessible.  Please ensure the database connection string is correct and the database is actually running.");
             }
+
+            /**
+             * TODO:
+             * 1.  Add integration tests.
+             * 2.  Do validation correctly.
+             * 3.  Test with Postgres and add unit tests.
+             * 4.  Add good readme and documentation.
+             * 5.  Add CI integration.
+             * 6.  Make project public.
+             * 7.  Add support for multiple C# LangVersions (effectively multiple .NET frameworks).
+             * 8.  Keyword conflict resolution in generated code.
+             * 9.  Enhance config:  Add regex expressions for include and excludes.
+             * 10. Enhance config:  Naming preference configurations, pluralisations and prefix handling.
+             * 11. Support multiple .net frameworks.
+             * 12. Add indexes, foreign keys, etc. and generate DAO objects.
+             * 13. Support stored procedures and UDTs.
+             * 14. Adding support for src generators
+             * 15. Computed columns support.
+             */
         }
     }
 

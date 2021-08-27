@@ -75,7 +75,8 @@ namespace SchemaTypist
 
         public static bool Validate(string connectionString)
         {
-            //TODO:  You should be able to connect to it and it should be a database we support.
+            //TODO:  You should be able to connect to the db.
+            //You should have access to the folders.
             return true;
         }
 
