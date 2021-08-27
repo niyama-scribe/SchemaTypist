@@ -11,12 +11,12 @@ namespace SchemaTypist.Core.SqlKata
     {
         public static Query Select(this Query q, params ColumnDefinition[] columns)
         {
-            return q.Select(columns?.Select(c => c.QualifiedName__).ToArray());
+            return q.Select(columns?.Select(c => c.Declaration__).ToArray());
         }
 
         public static Query Select(this Query q, IEnumerable<ColumnDefinition> columns)
         {
-            return q.Select(columns.Select(c => c.QualifiedName__).ToArray());
+            return q.Select(columns.Select(c => c.Declaration__).ToArray());
         }
     }
 }
