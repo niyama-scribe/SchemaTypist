@@ -148,10 +148,10 @@ namespace SchemaTypist.Cli
              * TODO:
              * 1.  Add integration tests.
              * 2.  Do validation correctly.
-             * 3.  Test with Postgres and add unit tests.
+             * 3.  Test with Postgres and add unit tests.  Upload to nuget.
              * 4.  Add good readme and documentation.
-             * 5.  Add CI integration.
-             * 6.  Make project public.
+             * 5.  Make project public.
+             * 6.  Add CI integration.
              * 7.  Add support for multiple C# LangVersions (effectively multiple .NET frameworks).
              * 8.  Keyword conflict resolution in generated code.
              * 9.  Enhance config:  Add regex expressions for include and excludes.
@@ -159,8 +159,9 @@ namespace SchemaTypist.Cli
              * 11. Support multiple .net frameworks.
              * 12. Add indexes, foreign keys, etc. and generate DAO objects.
              * 13. Support stored procedures and UDTs.
-             * 14. Adding support for src generators
+             * 14. Adding support for src generators.
              * 15. Computed columns support.
+             * 16. Better multi-mapping support.
              */
         }
     }
