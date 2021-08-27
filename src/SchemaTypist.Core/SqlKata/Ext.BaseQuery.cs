@@ -10,7 +10,7 @@ namespace SchemaTypist.Core.SqlKata
     {
         public static TQ From<TQ>(this BaseQuery<TQ> bq, TabularDefinition table) where TQ : BaseQuery<TQ>
         {
-            return bq.From(table.QualifiedName__);
+            return bq.From(table.Declaration__);
         }
     }
 }
