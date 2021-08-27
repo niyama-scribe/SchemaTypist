@@ -28,15 +28,15 @@ namespace SchemaTypist
         public static async Task Generate(TabularStructure tableStructure, CodeGenConfig config)
         {
             //Set up model generation
-            var modelTemplateFile = "Model.sbntxt";
+            var modelTemplateFile = "Entities.sbntxt";
             var modelTemplate = Template.Parse(EmbeddedResource.GetContent(modelTemplateFile), modelTemplateFile);
-            var modelTargetDir = Path.Combine(config.TargetRootDirectory, config.ModelNamespace);
+            var modelTargetDir = Path.Combine(config.OutputDirectory, config.EntitiesNamespace);
             if (!Directory.Exists(modelTargetDir)) Directory.CreateDirectory(modelTargetDir);
 
             //Set up mapping generation
             var mappingTemplateFile = "Mapping.sbntxt";
             var mappingTemplate = Template.Parse(EmbeddedResource.GetContent(mappingTemplateFile), mappingTemplateFile);
-            var mappingTargetDir = Path.Combine(config.TargetRootDirectory, config.MappingNamespace);
+            var mappingTargetDir = Path.Combine(config.OutputDirectory, config.PersistenceNamespace, config.MappingNamespace);
             if (!Directory.Exists(mappingTargetDir)) Directory.CreateDirectory(mappingTargetDir);
 
 
@@ -45,12 +45,12 @@ namespace SchemaTypist
             
             //Generate model and write to file
             var output = modelTemplate.Render(tab);
-            var modelFilePath = Path.Combine(modelTargetDir, $"{tab.Name}{config.ModelNameSuffix}.{config.TargetFileNameSuffix}.cs");
+            var modelFilePath = Path.Combine(modelTargetDir, $"{tab.Name}{config.EntityNameSuffix}.{config.OutputFileNameSuffix}.cs");
             File.WriteAllText(modelFilePath, output);
 
             //Generate mapping and write to file
             output = mappingTemplate.Render(tab);
-            var mappingFilePath = Path.Combine(mappingTargetDir, $"{tab.Schema}.{tab.Name}.{config.TargetFileNameSuffix}.cs");
+            var mappingFilePath = Path.Combine(mappingTargetDir, $"{tab.Schema}.{tab.Name}{config.MapperNameSuffix}.{config.OutputFileNameSuffix}.cs");
             File.WriteAllText(mappingFilePath, output);
 
         }
@@ -69,15 +69,16 @@ namespace SchemaTypist
             var mapperOutput = dapperTypeMappingTemplate.Render(dapperTypeMappingTemplateData);
 
             //Write to file
-            var dapperMapperFilePath = Path.Combine(config.TargetRootDirectory, config.MappingNamespace, $"DapperTypeMapping.{config.TargetFileNameSuffix}.cs");
+            var dapperMapperFilePath = Path.Combine(config.OutputDirectory, config.PersistenceNamespace, config.MappingNamespace, $"DapperTypeMapping.{config.OutputFileNameSuffix}.cs");
             File.WriteAllText(dapperMapperFilePath, mapperOutput);
         }
 
         public static bool Validate(string connectionString)
         {
-            //TODO:  Validate connection string
+            //TODO:  You should be able to connect to it and it should be a database we support.
             return true;
         }
+
     }
 
     class TemplateConstants

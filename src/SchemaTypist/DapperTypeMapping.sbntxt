@@ -10,7 +10,7 @@
 using Dapper;
 using {{ config.root_namespace }}.{{ config.model_namespace }};
 
-namespace {{ config.root_namespace }}.{{ config.mapping_namespace }}
+namespace {{ config.root_namespace }}.{{ config.persistence_namespace }}.{{ config.mapping_namespace }}
 {
 	static partial class DapperTypeMapping
 	{

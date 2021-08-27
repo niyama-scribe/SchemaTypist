@@ -24,10 +24,20 @@ namespace SchemaTypist.Cli
             var config = new CodeGenConfig()
             {
                 ConnectionString = settings.ConnectionString,
-                TargetRootDirectory = settings.OutputDir
+                OutputDirectory = settings.OutputDir,
+                GenerateEntitiesOnly = settings.EntitiesOnly,
+                EntitiesNamespace = settings.EntitiesNamespace,
+                EntityNameSuffix = settings.EntityNameSuffix,
+                GeneratePersistenceOnly = settings.PersistenceOnly,
+                PersistenceNamespace = settings.PersistenceNamespace,
+                MappingNamespace = settings.MappingNamespace,
+                MapperNameSuffix = settings.MappingNameSuffix
             };
 
-
+            if ((!string.IsNullOrWhiteSpace(settings.DatabaseVendor))
+                && Enum.TryParse<SqlVendorType>(settings.DatabaseVendor, out var vendor))
+                config.Vendor = vendor;
+            
             await AnsiConsole.Status()
                 .AutoRefresh(true)
                 .Spinner(Spinner.Known.Aesthetic)
@@ -88,13 +98,42 @@ namespace SchemaTypist.Cli
             [CommandArgument(0, "<CONNECTION_STRING>")]
             public string ConnectionString { get; set; }
 
-            [CommandArgument(1, "[OUTPUT_DIR]")]
+            [Description("MicrosoftSqlServer or PostgreSql")]
+            [CommandArgument(2, "[DATABASE_VENDOR]")]
+            [DefaultValue("MicrosoftSqlServer")]
+            public string DatabaseVendor { get; set; }
+
+            [CommandArgument(2, "[OUTPUT_DIR]")]
             [DefaultValue(".")]
             public string OutputDir { get; set; }
 
-            [CommandOption("-m|--model-only")]
-            public bool ModelOnly { get; set; } = false;
+            [Description("Use this option to generate domain model objects only.")]
+            [CommandOption("-e|--entities-only")]
+            public bool EntitiesOnly { get; set; } = false;
 
+            [CommandOption("--entities-namespace")]
+            public string EntitiesNamespace { get; set; }
+
+            [CommandOption("--entity-name-suffix")]
+            public string EntityNameSuffix{ get; set; }
+
+            [Description("Use this option to generate data access layer only.  Remember, persistence code references entities.")]
+            [CommandOption("-p|--persistence-only")]
+            public bool PersistenceOnly { get; set; } = false;
+
+            [CommandOption("--persistence-namespace")]
+            public string PersistenceNamespace { get; set; }
+
+            [Description("This is the namespace for database metadata mapping classes within the persistence layer.")]
+            [CommandOption("--mapping-namespace")]
+            public string MappingNamespace { get; set; }
+
+            [CommandOption("--mapping-name-suffix")]
+            public string MappingNameSuffix { get; set; }
+            
+            [CommandOption("--root-namespace")]
+            public string RootNamespace { get; set; }
+            
             public override ValidationResult Validate()
             {
                 return SchemaTypistService.Validate(ConnectionString)
