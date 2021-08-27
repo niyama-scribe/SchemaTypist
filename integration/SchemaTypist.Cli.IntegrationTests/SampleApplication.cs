@@ -11,7 +11,6 @@ using SqlKata;
 using SqlKata.Compilers;
 using SqlKata.Execution;
 using static SchemaTypist.Generated.Persistence.Dbo;
-using static SchemaTypist.Core.SqlKata.SqlKataExtensions;
 
 namespace SchemaTypist.Cli.IntegrationTests
 {
