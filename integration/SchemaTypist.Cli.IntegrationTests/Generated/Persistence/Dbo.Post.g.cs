@@ -8,11 +8,11 @@
 //------------------------------------------------------------------------------
 
 using Dapper;
-using SchemaTypist.Core;
-using SchemaTypist.Core.DatabaseMetadata;
+using SchemaTypist;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using SchemaTypist.DatabaseMetadata;
 using SchemaTypist.Generated.Domain;
 
 namespace SchemaTypist.Generated.Persistence

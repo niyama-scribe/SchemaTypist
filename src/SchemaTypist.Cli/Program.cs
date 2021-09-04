@@ -1,5 +1,4 @@
-﻿using SchemaTypist.Config;
-using Spectre.Console;
+﻿using Spectre.Console;
 using Spectre.Console.Cli;
 using System;
 using System.IO;

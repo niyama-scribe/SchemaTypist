@@ -13,11 +13,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\SchemaTypist\SchemaTypist.csproj" />
+		<None Remove="TestGen\" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<None Remove="TestGen\" />
+	  <ProjectReference Include="..\SchemaTypist.Core\SchemaTypist.Core.csproj" />
 	</ItemGroup>
 
 

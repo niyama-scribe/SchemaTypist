@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\SchemaTypist.Core\SchemaTypist.Core.csproj" />
+    <ProjectReference Include="..\..\src\SchemaTypist\SchemaTypist.csproj" />
   </ItemGroup>
 	<Target Name="Generate">
 		<Exec Command="dotnet schematypist generate %22server=localhost;user id=sa;password=N3v3r!nPr0d;initial catalog=StackOverflow%22 %22$(MSBuildProjectDirectory)\Generated%22" />

@@ -1,5 +1,4 @@
-﻿using SchemaTypist.Config;
-using Spectre.Console;
+﻿using Spectre.Console;
 using Spectre.Console.Cli;
 using System;
 using System.Collections.Generic;
@@ -11,8 +10,9 @@ using System.Runtime.InteropServices.ComTypes;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using SchemaTypist.Model;
-using SchemaTypist.Schemata.Dto;
+using SchemaTypist.Core;
+using SchemaTypist.Core.Config;
+using SchemaTypist.Core.Model;
 
 namespace SchemaTypist.Cli
 {

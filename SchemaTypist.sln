@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31205.134
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SchemaTypist", "src\SchemaTypist\SchemaTypist.csproj", "{36B7E40D-8808-497A-BFBA-2FF424D7CCA4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SchemaTypist.Core", "src\SchemaTypist.Core\SchemaTypist.Core.csproj", "{36B7E40D-8808-497A-BFBA-2FF424D7CCA4}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SchemaTypist.Cli", "src\SchemaTypist.Cli\SchemaTypist.Cli.csproj", "{D98E0EEE-092D-4B38-A53C-09779C79B837}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SchemaTypist.Core", "src\SchemaTypist.Core\SchemaTypist.Core.csproj", "{3241C0E3-6957-491F-86AA-BB292C363E77}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SchemaTypist", "src\SchemaTypist\SchemaTypist.csproj", "{3241C0E3-6957-491F-86AA-BB292C363E77}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchemaTypist.Cli.IntegrationTests", "integration\SchemaTypist.Cli.IntegrationTests\SchemaTypist.Cli.IntegrationTests.csproj", "{5A0B3C6B-572E-405D-B91C-5E0AFA238957}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SchemaTypist.Cli.IntegrationTests", "integration\SchemaTypist.Cli.IntegrationTests\SchemaTypist.Cli.IntegrationTests.csproj", "{5A0B3C6B-572E-405D-B91C-5E0AFA238957}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
