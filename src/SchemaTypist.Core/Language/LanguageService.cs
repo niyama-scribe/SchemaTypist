@@ -27,8 +27,10 @@ namespace SchemaTypist.Core.Language
             var proposedName = humanizerFunc(name);
             var sqlDialect = SqlVendor.GetSqlDialect(config.Vendor);
             var programmingLanguage = Languages.GetProgrammingLanguage(config.TargetLanguage);
+            var schemaTypistDsl = Languages.SchemaTypist;
             while (programmingLanguage.HasConflict(proposedName) || 
-                   sqlDialect.HasConflict(proposedName))
+                   sqlDialect.HasConflict(proposedName) ||
+                   schemaTypistDsl.HasConflict(proposedName))
                 proposedName += "0";
             return proposedName;
         }
