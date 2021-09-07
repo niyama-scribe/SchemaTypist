@@ -1,11 +1,10 @@
 ﻿using System.Collections.Generic;
+using SchemaTypist.Core.Language;
 
 namespace SchemaTypist.Core.SqlVendors
 {
-    interface ISqlDialect
+    internal interface ISqlDialect : ILanguage
     {
         string DetermineDotNetDataType(string sqlDataType, bool isNullable);
-        IEnumerable<string> Keywords { get; }
-        IEnumerable<string> DataTypes { get; }
     }
 }

@@ -1,13 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace SchemaTypist.Core.SqlVendors
 {
-    static partial class MicrosoftSqlServer
+    internal static partial class SqlVendor
     {
-        private static ISqlDialect _dialect = new DialectImpl();
-        public static ISqlDialect Dialect => _dialect;
+        public static ISqlDialect MicrosoftSqlServer { get; } = new MsSqlDialect();
 
-        private class DialectImpl:ISqlDialect
+        private class MsSqlDialect:ISqlDialect
         {
             private static List<string> _keywords = new List<string> {
                 "ADD",
@@ -232,8 +233,13 @@ namespace SchemaTypist.Core.SqlVendors
             };
 
             public IEnumerable<string> Keywords => _keywords;
-
             public IEnumerable<string> DataTypes => _dataTypes;
+
+            public bool HasConflict(string proposedName)
+            {
+                return Keywords.Contains(proposedName, StringComparer.InvariantCultureIgnoreCase)
+                       || DataTypes.Contains(proposedName, StringComparer.InvariantCultureIgnoreCase);
+            }
 
             public string DetermineDotNetDataType(string sqlDataType, bool isNullable)
             {

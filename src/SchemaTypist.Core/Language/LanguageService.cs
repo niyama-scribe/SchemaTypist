@@ -1,7 +1,7 @@
 ﻿using System;
-using System.Linq;
 using Humanizer;
 using SchemaTypist.Core.Config;
+using SchemaTypist.Core.SqlVendors;
 
 namespace SchemaTypist.Core.Language
 {
@@ -21,15 +21,15 @@ namespace SchemaTypist.Core.Language
 
         private static string ConvertName(string name, CodeGenConfig config, Func<string, string> humanizerFunc)
         {
-            //Ensure new name is not a CSharp keyword or a database dialect keyword or a SchemaTypist keyword.
-            //If so, then add an _ at the end of it. 
+            //Ensure new name is not a Languages keyword or a database dialect keyword or a SchemaTypist keyword.
+            //If so, then add an 0 at the end of it. 
 
             var proposedName = humanizerFunc(name);
-            var sqlDialect = SqlVendors.Vendors.GetSqlDialect(config.Vendor);
-            while (CSharp.Keywords.Contains(proposedName)
-                || sqlDialect.Keywords.Contains(proposedName)
-                || sqlDialect.DataTypes.Contains(proposedName))
-                proposedName += "_";
+            var sqlDialect = SqlVendor.GetSqlDialect(config.Vendor);
+            var programmingLanguage = Languages.GetProgrammingLanguage(config.TargetLanguage);
+            while (programmingLanguage.HasConflict(proposedName) || 
+                   sqlDialect.HasConflict(proposedName))
+                proposedName += "0";
             return proposedName;
         }
     }

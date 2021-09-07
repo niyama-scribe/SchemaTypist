@@ -46,7 +46,7 @@ namespace SchemaTypist.Core.Model
 
         private static string DetermineDotNetDataType(string sqlDataType, bool isNullable, CodeGenConfig config)
         {
-            return Vendors.GetSqlDialect(config.Vendor).DetermineDotNetDataType(sqlDataType, isNullable);
+            return SqlVendor.GetSqlDialect(config.Vendor).DetermineDotNetDataType(sqlDataType, isNullable);
         }
     }
 }
