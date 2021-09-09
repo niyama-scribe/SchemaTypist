@@ -9,47 +9,63 @@
 
 using Dapper;
 using SchemaTypist;
+using SchemaTypist.DatabaseMetadata;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
-using SchemaTypist.DatabaseMetadata;
 using SchemaTypist.Generated.Domain;
 
-namespace SchemaTypist.Generated.Persistence
+namespace SchemaTypist.Generated.Persistence.Mapping
 {
 	static partial class Dbo
 	{
-		public static partial class LinkType
+		public static partial class CommentMapper
 		{
 			static partial class Constants
 			{
+				public const string CreationDate = "CreationDate";
 				public const string Id = "Id";
-				public const string Type = "Type";
+				public const string PostId = "PostId";
+				public const string Score = "Score";
+				public const string Text0 = "Text";
+				public const string UserId = "UserId";
 			}
 
 			public static TableDefinition Table => new TableDefinition();
 
 			public partial class TableDefinition : TabularDefinition
 			{
-				public TableDefinition() : base("StackOverflow", "dbo", "LinkTypes")
+				public TableDefinition() : base("StackOverflow", "dbo", "Comments")
 				{
+					CreationDate = new ColumnDefinition(Constants.CreationDate, this);
 					Id = new ColumnDefinition(Constants.Id, this);
-					Type = new ColumnDefinition(Constants.Type, this);
+					PostId = new ColumnDefinition(Constants.PostId, this);
+					Score = new ColumnDefinition(Constants.Score, this);
+					Text0 = new ColumnDefinition(Constants.Text0, this);
+					UserId = new ColumnDefinition(Constants.UserId, this);
 				}
 
 				public TableDefinition As(string alias) => base.As<TableDefinition>(alias);
 
+				public ColumnDefinition CreationDate { get; private set; }
 				public ColumnDefinition Id { get; private set; }
-				public ColumnDefinition Type { get; private set; }
+				public ColumnDefinition PostId { get; private set; }
+				public ColumnDefinition Score { get; private set; }
+				public ColumnDefinition Text0 { get; private set; }
+				public ColumnDefinition UserId { get; private set; }
 
 			}
 		
-			public static partial class QueryResultsMapper
+			public static partial class QueryResults
 			{
 				private static Dictionary<string, string> columnMap = new Dictionary<string, string>()
 				{
-					{Constants.Id, nameof(LinkTypeEntity.Id) },
-					{Constants.Type, nameof(LinkTypeEntity.Type) },
+					{Constants.CreationDate, nameof(Comment.CreationDate) },
+					{Constants.Id, nameof(Comment.Id) },
+					{Constants.PostId, nameof(Comment.PostId) },
+					{Constants.Score, nameof(Comment.Score) },
+					{Constants.Text0, nameof(Comment.Text0) },
+					{Constants.UserId, nameof(Comment.UserId) },
 				};
 
 				static Func<Type, string, PropertyInfo> GetMapperFunc()
@@ -63,9 +79,9 @@ namespace SchemaTypist.Generated.Persistence
 					return mapper;
 				}
 
-				public static CustomPropertyTypeMap GetMapper()
+				public static CustomPropertyTypeMap GetTypeMap()
 				{
-					var typeMap = new CustomPropertyTypeMap(typeof(LinkTypeEntity), GetMapperFunc());
+					var typeMap = new CustomPropertyTypeMap(typeof(Comment), GetMapperFunc());
 					CustomizeTypeMap(typeMap);
 					return typeMap;
 				}

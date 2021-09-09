@@ -13,9 +13,13 @@ using System.Reflection;
 
 namespace SchemaTypist.Generated.Domain
 {
-	public partial class PostTypeEntity
+	public partial class Comment
 	{
+		public DateTime CreationDate { get; set; }
 		public int Id { get; set; }
-		public string Type { get; set; }
+		public int PostId { get; set; }
+		public int Score { get; set; }
+		public string Text0 { get; set; }
+		public int UserId { get; set; }
 	}
 }

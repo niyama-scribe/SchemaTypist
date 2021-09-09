@@ -9,17 +9,17 @@
 
 using Dapper;
 using SchemaTypist;
+using SchemaTypist.DatabaseMetadata;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
-using SchemaTypist.DatabaseMetadata;
 using SchemaTypist.Generated.Domain;
 
-namespace SchemaTypist.Generated.Persistence
+namespace SchemaTypist.Generated.Persistence.Mapping
 {
 	static partial class Dbo
 	{
-		public static partial class Post
+		public static partial class PostMapper
 		{
 			static partial class Constants
 			{
@@ -98,30 +98,30 @@ namespace SchemaTypist.Generated.Persistence
 
 			}
 		
-			public static partial class QueryResultsMapper
+			public static partial class QueryResults
 			{
 				private static Dictionary<string, string> columnMap = new Dictionary<string, string>()
 				{
-					{Constants.AcceptedAnswerId, nameof(PostEntity.AcceptedAnswerId) },
-					{Constants.AnswerCount, nameof(PostEntity.AnswerCount) },
-					{Constants.Body, nameof(PostEntity.Body) },
-					{Constants.ClosedDate, nameof(PostEntity.ClosedDate) },
-					{Constants.CommentCount, nameof(PostEntity.CommentCount) },
-					{Constants.CommunityOwnedDate, nameof(PostEntity.CommunityOwnedDate) },
-					{Constants.CreationDate, nameof(PostEntity.CreationDate) },
-					{Constants.FavoriteCount, nameof(PostEntity.FavoriteCount) },
-					{Constants.Id, nameof(PostEntity.Id) },
-					{Constants.LastActivityDate, nameof(PostEntity.LastActivityDate) },
-					{Constants.LastEditDate, nameof(PostEntity.LastEditDate) },
-					{Constants.LastEditorDisplayName, nameof(PostEntity.LastEditorDisplayName) },
-					{Constants.LastEditorUserId, nameof(PostEntity.LastEditorUserId) },
-					{Constants.OwnerUserId, nameof(PostEntity.OwnerUserId) },
-					{Constants.ParentId, nameof(PostEntity.ParentId) },
-					{Constants.PostTypeId, nameof(PostEntity.PostTypeId) },
-					{Constants.Score, nameof(PostEntity.Score) },
-					{Constants.Tag, nameof(PostEntity.Tag) },
-					{Constants.Title, nameof(PostEntity.Title) },
-					{Constants.ViewCount, nameof(PostEntity.ViewCount) },
+					{Constants.AcceptedAnswerId, nameof(Post.AcceptedAnswerId) },
+					{Constants.AnswerCount, nameof(Post.AnswerCount) },
+					{Constants.Body, nameof(Post.Body) },
+					{Constants.ClosedDate, nameof(Post.ClosedDate) },
+					{Constants.CommentCount, nameof(Post.CommentCount) },
+					{Constants.CommunityOwnedDate, nameof(Post.CommunityOwnedDate) },
+					{Constants.CreationDate, nameof(Post.CreationDate) },
+					{Constants.FavoriteCount, nameof(Post.FavoriteCount) },
+					{Constants.Id, nameof(Post.Id) },
+					{Constants.LastActivityDate, nameof(Post.LastActivityDate) },
+					{Constants.LastEditDate, nameof(Post.LastEditDate) },
+					{Constants.LastEditorDisplayName, nameof(Post.LastEditorDisplayName) },
+					{Constants.LastEditorUserId, nameof(Post.LastEditorUserId) },
+					{Constants.OwnerUserId, nameof(Post.OwnerUserId) },
+					{Constants.ParentId, nameof(Post.ParentId) },
+					{Constants.PostTypeId, nameof(Post.PostTypeId) },
+					{Constants.Score, nameof(Post.Score) },
+					{Constants.Tag, nameof(Post.Tag) },
+					{Constants.Title, nameof(Post.Title) },
+					{Constants.ViewCount, nameof(Post.ViewCount) },
 				};
 
 				static Func<Type, string, PropertyInfo> GetMapperFunc()
@@ -135,9 +135,9 @@ namespace SchemaTypist.Generated.Persistence
 					return mapper;
 				}
 
-				public static CustomPropertyTypeMap GetMapper()
+				public static CustomPropertyTypeMap GetTypeMap()
 				{
-					var typeMap = new CustomPropertyTypeMap(typeof(PostEntity), GetMapperFunc());
+					var typeMap = new CustomPropertyTypeMap(typeof(Post), GetMapperFunc());
 					CustomizeTypeMap(typeMap);
 					return typeMap;
 				}

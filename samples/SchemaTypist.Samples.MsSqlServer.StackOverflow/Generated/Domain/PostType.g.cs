@@ -13,7 +13,7 @@ using System.Reflection;
 
 namespace SchemaTypist.Generated.Domain
 {
-	public partial class LinkTypeEntity
+	public partial class PostType
 	{
 		public int Id { get; set; }
 		public string Type { get; set; }

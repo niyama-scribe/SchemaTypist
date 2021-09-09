@@ -13,13 +13,9 @@ using System.Reflection;
 
 namespace SchemaTypist.Generated.Domain
 {
-	public partial class VoteEntity
+	public partial class VoteType
 	{
-		public int BountyAmount { get; set; }
-		public DateTime CreationDate { get; set; }
 		public int Id { get; set; }
-		public int PostId { get; set; }
-		public int UserId { get; set; }
-		public int VoteTypeId { get; set; }
+		public string Name { get; set; }
 	}
 }

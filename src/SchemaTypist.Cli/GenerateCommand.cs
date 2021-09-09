@@ -6,6 +6,8 @@ using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
+using System.Linq.Expressions;
+using System.Reflection;
 using System.Runtime.InteropServices.ComTypes;
 using System.Text;
 using System.Threading;
@@ -21,18 +23,16 @@ namespace SchemaTypist.Cli
         public override async Task<int> ExecuteAsync(CommandContext context, GenerateCommand.Settings settings)
         {
             Dictionary<string, TabularStructure> tableStructureMap = new();
-            var config = new CodeGenConfig()
-            {
-                ConnectionString = settings.ConnectionString,
-                OutputDirectory = settings.OutputDir,
-                GenerateEntitiesOnly = settings.EntitiesOnly,
-                EntitiesNamespace = settings.EntitiesNamespace,
-                EntityNameSuffix = settings.EntityNameSuffix,
-                GeneratePersistenceOnly = settings.PersistenceOnly,
-                PersistenceNamespace = settings.PersistenceNamespace,
-                MappingNamespace = settings.MappingNamespace,
-                MapperNameSuffix = settings.MappingNameSuffix
-            };
+            var config = new CodeGenConfig();
+            config.ConnectionString = settings.ConnectionString;
+            config.OutputDirectory = settings.OutputDir;
+            config.GenerateEntitiesOnly = settings.EntitiesOnly;
+            config.EntitiesNamespace = settings.EntitiesNamespace ?? config.EntitiesNamespace;
+            config.EntityNameSuffix = settings.EntityNameSuffix ?? config.EntityNameSuffix;
+            config.GeneratePersistenceOnly = settings.PersistenceOnly;
+            config.PersistenceNamespace = settings.PersistenceNamespace ?? config.PersistenceNamespace;
+            config.MappingNamespace = settings.MappingNamespace ?? config.MappingNamespace;
+            config.MapperNameSuffix = settings.MappingNameSuffix ?? config.MapperNameSuffix;
 
             if ((!string.IsNullOrWhiteSpace(settings.DatabaseVendor))
                 && Enum.TryParse<SqlVendorType>(settings.DatabaseVendor, out var vendor))
@@ -98,14 +98,14 @@ namespace SchemaTypist.Cli
             [CommandArgument(0, "<CONNECTION_STRING>")]
             public string ConnectionString { get; set; }
 
+            [CommandArgument(1, "[OUTPUT_DIR]")]
+            [DefaultValue(".")]
+            public string OutputDir { get; set; }
+
             [Description("MicrosoftSqlServer or PostgreSql")]
             [CommandArgument(2, "[DATABASE_VENDOR]")]
             [DefaultValue("MicrosoftSqlServer")]
             public string DatabaseVendor { get; set; }
-
-            [CommandArgument(2, "[OUTPUT_DIR]")]
-            [DefaultValue(".")]
-            public string OutputDir { get; set; }
 
             [Description("Use this option to generate domain model objects only.")]
             [CommandOption("-e|--entities-only")]

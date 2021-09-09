@@ -9,47 +9,55 @@
 
 using Dapper;
 using SchemaTypist;
+using SchemaTypist.DatabaseMetadata;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
-using SchemaTypist.DatabaseMetadata;
 using SchemaTypist.Generated.Domain;
 
-namespace SchemaTypist.Generated.Persistence
+namespace SchemaTypist.Generated.Persistence.Mapping
 {
 	static partial class Dbo
 	{
-		public static partial class PostType
+		public static partial class BadgeMapper
 		{
 			static partial class Constants
 			{
+				public const string Date0 = "Date";
 				public const string Id = "Id";
-				public const string Type = "Type";
+				public const string Name = "Name";
+				public const string UserId = "UserId";
 			}
 
 			public static TableDefinition Table => new TableDefinition();
 
 			public partial class TableDefinition : TabularDefinition
 			{
-				public TableDefinition() : base("StackOverflow", "dbo", "PostTypes")
+				public TableDefinition() : base("StackOverflow", "dbo", "Badges")
 				{
+					Date0 = new ColumnDefinition(Constants.Date0, this);
 					Id = new ColumnDefinition(Constants.Id, this);
-					Type = new ColumnDefinition(Constants.Type, this);
+					Name = new ColumnDefinition(Constants.Name, this);
+					UserId = new ColumnDefinition(Constants.UserId, this);
 				}
 
 				public TableDefinition As(string alias) => base.As<TableDefinition>(alias);
 
+				public ColumnDefinition Date0 { get; private set; }
 				public ColumnDefinition Id { get; private set; }
-				public ColumnDefinition Type { get; private set; }
+				public ColumnDefinition Name { get; private set; }
+				public ColumnDefinition UserId { get; private set; }
 
 			}
 		
-			public static partial class QueryResultsMapper
+			public static partial class QueryResults
 			{
 				private static Dictionary<string, string> columnMap = new Dictionary<string, string>()
 				{
-					{Constants.Id, nameof(PostTypeEntity.Id) },
-					{Constants.Type, nameof(PostTypeEntity.Type) },
+					{Constants.Date0, nameof(Badge.Date0) },
+					{Constants.Id, nameof(Badge.Id) },
+					{Constants.Name, nameof(Badge.Name) },
+					{Constants.UserId, nameof(Badge.UserId) },
 				};
 
 				static Func<Type, string, PropertyInfo> GetMapperFunc()
@@ -63,9 +71,9 @@ namespace SchemaTypist.Generated.Persistence
 					return mapper;
 				}
 
-				public static CustomPropertyTypeMap GetMapper()
+				public static CustomPropertyTypeMap GetTypeMap()
 				{
-					var typeMap = new CustomPropertyTypeMap(typeof(PostTypeEntity), GetMapperFunc());
+					var typeMap = new CustomPropertyTypeMap(typeof(Badge), GetMapperFunc());
 					CustomizeTypeMap(typeMap);
 					return typeMap;
 				}

@@ -13,7 +13,7 @@ using System.Reflection;
 
 namespace SchemaTypist.Generated.Domain
 {
-	public partial class PostEntity
+	public partial class Post
 	{
 		public int AcceptedAnswerId { get; set; }
 		public int AnswerCount { get; set; }

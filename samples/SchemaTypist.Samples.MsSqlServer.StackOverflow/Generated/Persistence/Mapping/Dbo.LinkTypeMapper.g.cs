@@ -9,59 +9,47 @@
 
 using Dapper;
 using SchemaTypist;
+using SchemaTypist.DatabaseMetadata;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
-using SchemaTypist.DatabaseMetadata;
 using SchemaTypist.Generated.Domain;
 
-namespace SchemaTypist.Generated.Persistence
+namespace SchemaTypist.Generated.Persistence.Mapping
 {
 	static partial class Dbo
 	{
-		public static partial class PostLink
+		public static partial class LinkTypeMapper
 		{
 			static partial class Constants
 			{
-				public const string CreationDate = "CreationDate";
 				public const string Id = "Id";
-				public const string LinkTypeId = "LinkTypeId";
-				public const string PostId = "PostId";
-				public const string RelatedPostId = "RelatedPostId";
+				public const string Type = "Type";
 			}
 
 			public static TableDefinition Table => new TableDefinition();
 
 			public partial class TableDefinition : TabularDefinition
 			{
-				public TableDefinition() : base("StackOverflow", "dbo", "PostLinks")
+				public TableDefinition() : base("StackOverflow", "dbo", "LinkTypes")
 				{
-					CreationDate = new ColumnDefinition(Constants.CreationDate, this);
 					Id = new ColumnDefinition(Constants.Id, this);
-					LinkTypeId = new ColumnDefinition(Constants.LinkTypeId, this);
-					PostId = new ColumnDefinition(Constants.PostId, this);
-					RelatedPostId = new ColumnDefinition(Constants.RelatedPostId, this);
+					Type = new ColumnDefinition(Constants.Type, this);
 				}
 
 				public TableDefinition As(string alias) => base.As<TableDefinition>(alias);
 
-				public ColumnDefinition CreationDate { get; private set; }
 				public ColumnDefinition Id { get; private set; }
-				public ColumnDefinition LinkTypeId { get; private set; }
-				public ColumnDefinition PostId { get; private set; }
-				public ColumnDefinition RelatedPostId { get; private set; }
+				public ColumnDefinition Type { get; private set; }
 
 			}
 		
-			public static partial class QueryResultsMapper
+			public static partial class QueryResults
 			{
 				private static Dictionary<string, string> columnMap = new Dictionary<string, string>()
 				{
-					{Constants.CreationDate, nameof(PostLinkEntity.CreationDate) },
-					{Constants.Id, nameof(PostLinkEntity.Id) },
-					{Constants.LinkTypeId, nameof(PostLinkEntity.LinkTypeId) },
-					{Constants.PostId, nameof(PostLinkEntity.PostId) },
-					{Constants.RelatedPostId, nameof(PostLinkEntity.RelatedPostId) },
+					{Constants.Id, nameof(LinkType.Id) },
+					{Constants.Type, nameof(LinkType.Type) },
 				};
 
 				static Func<Type, string, PropertyInfo> GetMapperFunc()
@@ -75,9 +63,9 @@ namespace SchemaTypist.Generated.Persistence
 					return mapper;
 				}
 
-				public static CustomPropertyTypeMap GetMapper()
+				public static CustomPropertyTypeMap GetTypeMap()
 				{
-					var typeMap = new CustomPropertyTypeMap(typeof(PostLinkEntity), GetMapperFunc());
+					var typeMap = new CustomPropertyTypeMap(typeof(LinkType), GetMapperFunc());
 					CustomizeTypeMap(typeMap);
 					return typeMap;
 				}

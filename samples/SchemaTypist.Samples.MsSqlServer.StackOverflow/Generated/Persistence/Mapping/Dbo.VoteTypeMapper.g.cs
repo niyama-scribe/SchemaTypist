@@ -9,17 +9,17 @@
 
 using Dapper;
 using SchemaTypist;
+using SchemaTypist.DatabaseMetadata;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
-using SchemaTypist.DatabaseMetadata;
 using SchemaTypist.Generated.Domain;
 
-namespace SchemaTypist.Generated.Persistence
+namespace SchemaTypist.Generated.Persistence.Mapping
 {
 	static partial class Dbo
 	{
-		public static partial class VoteType
+		public static partial class VoteTypeMapper
 		{
 			static partial class Constants
 			{
@@ -44,12 +44,12 @@ namespace SchemaTypist.Generated.Persistence
 
 			}
 		
-			public static partial class QueryResultsMapper
+			public static partial class QueryResults
 			{
 				private static Dictionary<string, string> columnMap = new Dictionary<string, string>()
 				{
-					{Constants.Id, nameof(VoteTypeEntity.Id) },
-					{Constants.Name, nameof(VoteTypeEntity.Name) },
+					{Constants.Id, nameof(VoteType.Id) },
+					{Constants.Name, nameof(VoteType.Name) },
 				};
 
 				static Func<Type, string, PropertyInfo> GetMapperFunc()
@@ -63,9 +63,9 @@ namespace SchemaTypist.Generated.Persistence
 					return mapper;
 				}
 
-				public static CustomPropertyTypeMap GetMapper()
+				public static CustomPropertyTypeMap GetTypeMap()
 				{
-					var typeMap = new CustomPropertyTypeMap(typeof(VoteTypeEntity), GetMapperFunc());
+					var typeMap = new CustomPropertyTypeMap(typeof(VoteType), GetMapperFunc());
 					CustomizeTypeMap(typeMap);
 					return typeMap;
 				}

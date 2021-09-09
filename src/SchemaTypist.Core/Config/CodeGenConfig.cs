@@ -1,4 +1,7 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
+using System.Linq.Expressions;
+using System.Reflection;
 
 namespace SchemaTypist.Core.Config
 {

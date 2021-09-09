@@ -9,17 +9,17 @@
 
 using Dapper;
 using SchemaTypist;
+using SchemaTypist.DatabaseMetadata;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
-using SchemaTypist.DatabaseMetadata;
 using SchemaTypist.Generated.Domain;
 
-namespace SchemaTypist.Generated.Persistence
+namespace SchemaTypist.Generated.Persistence.Mapping
 {
 	static partial class Dbo
 	{
-		public static partial class User
+		public static partial class User0Mapper
 		{
 			static partial class Constants
 			{
@@ -35,7 +35,7 @@ namespace SchemaTypist.Generated.Persistence
 				public const string Location = "Location";
 				public const string Reputation = "Reputation";
 				public const string UpVote = "UpVotes";
-				public const string View = "Views";
+				public const string View0 = "Views";
 				public const string WebsiteUrl = "WebsiteUrl";
 			}
 
@@ -57,7 +57,7 @@ namespace SchemaTypist.Generated.Persistence
 					Location = new ColumnDefinition(Constants.Location, this);
 					Reputation = new ColumnDefinition(Constants.Reputation, this);
 					UpVote = new ColumnDefinition(Constants.UpVote, this);
-					View = new ColumnDefinition(Constants.View, this);
+					View0 = new ColumnDefinition(Constants.View0, this);
 					WebsiteUrl = new ColumnDefinition(Constants.WebsiteUrl, this);
 				}
 
@@ -75,29 +75,29 @@ namespace SchemaTypist.Generated.Persistence
 				public ColumnDefinition Location { get; private set; }
 				public ColumnDefinition Reputation { get; private set; }
 				public ColumnDefinition UpVote { get; private set; }
-				public ColumnDefinition View { get; private set; }
+				public ColumnDefinition View0 { get; private set; }
 				public ColumnDefinition WebsiteUrl { get; private set; }
 
 			}
 		
-			public static partial class QueryResultsMapper
+			public static partial class QueryResults
 			{
 				private static Dictionary<string, string> columnMap = new Dictionary<string, string>()
 				{
-					{Constants.AboutMe, nameof(UserEntity.AboutMe) },
-					{Constants.AccountId, nameof(UserEntity.AccountId) },
-					{Constants.Age, nameof(UserEntity.Age) },
-					{Constants.CreationDate, nameof(UserEntity.CreationDate) },
-					{Constants.DisplayName, nameof(UserEntity.DisplayName) },
-					{Constants.DownVote, nameof(UserEntity.DownVote) },
-					{Constants.EmailHash, nameof(UserEntity.EmailHash) },
-					{Constants.Id, nameof(UserEntity.Id) },
-					{Constants.LastAccessDate, nameof(UserEntity.LastAccessDate) },
-					{Constants.Location, nameof(UserEntity.Location) },
-					{Constants.Reputation, nameof(UserEntity.Reputation) },
-					{Constants.UpVote, nameof(UserEntity.UpVote) },
-					{Constants.View, nameof(UserEntity.View) },
-					{Constants.WebsiteUrl, nameof(UserEntity.WebsiteUrl) },
+					{Constants.AboutMe, nameof(User0.AboutMe) },
+					{Constants.AccountId, nameof(User0.AccountId) },
+					{Constants.Age, nameof(User0.Age) },
+					{Constants.CreationDate, nameof(User0.CreationDate) },
+					{Constants.DisplayName, nameof(User0.DisplayName) },
+					{Constants.DownVote, nameof(User0.DownVote) },
+					{Constants.EmailHash, nameof(User0.EmailHash) },
+					{Constants.Id, nameof(User0.Id) },
+					{Constants.LastAccessDate, nameof(User0.LastAccessDate) },
+					{Constants.Location, nameof(User0.Location) },
+					{Constants.Reputation, nameof(User0.Reputation) },
+					{Constants.UpVote, nameof(User0.UpVote) },
+					{Constants.View0, nameof(User0.View0) },
+					{Constants.WebsiteUrl, nameof(User0.WebsiteUrl) },
 				};
 
 				static Func<Type, string, PropertyInfo> GetMapperFunc()
@@ -111,9 +111,9 @@ namespace SchemaTypist.Generated.Persistence
 					return mapper;
 				}
 
-				public static CustomPropertyTypeMap GetMapper()
+				public static CustomPropertyTypeMap GetTypeMap()
 				{
-					var typeMap = new CustomPropertyTypeMap(typeof(UserEntity), GetMapperFunc());
+					var typeMap = new CustomPropertyTypeMap(typeof(User0), GetMapperFunc());
 					CustomizeTypeMap(typeMap);
 					return typeMap;
 				}
