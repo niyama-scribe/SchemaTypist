@@ -25,8 +25,11 @@ namespace SchemaTypist.Core.Config
         public string MappingNamespace { get; set; } = "Mapping";
         public string MapperNameSuffix { get; set; } = "Mapper";
         public string RootNamespace { get; set; } = "SchemaTypist.Generated";
+        public string NamingConflictResolutionSuffix { get; set; } = "0";
+        
         public string Include { get; set; }
         public string Exclude { get; set; }
+
 
     }
 
