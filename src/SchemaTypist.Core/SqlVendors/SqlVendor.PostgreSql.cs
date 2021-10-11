@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using SchemaTypist.Core.Model;
 using SchemaTypist.Core.SqlVendors;
 
 namespace SchemaTypist.Core.SqlVendors
@@ -21,6 +22,12 @@ namespace SchemaTypist.Core.SqlVendors
             public string DetermineDotNetDataType(string sqlDataType, bool isNullable)
             {
                 return "string";
+            }
+
+            public string BuildQualifiedName(TabularStructure tabularStructure)
+            {
+                //Fully qualified name for tabular structures in pgsql is schema.tableName.  Cross-database references are not implemented
+                return $"{tabularStructure.SqlSchema}.{tabularStructure.SqlName}";
             }
         }
     }

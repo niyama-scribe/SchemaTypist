@@ -2,6 +2,7 @@
 using Humanizer;
 using SchemaTypist.Core.Config;
 using SchemaTypist.Core.SqlVendors;
+using SchemaTypist.Core.Utilities;
 
 namespace SchemaTypist.Core.Language
 {
@@ -21,18 +22,14 @@ namespace SchemaTypist.Core.Language
 
         private static string ConvertName(string name, CodeGenConfig config, Func<string, string> humanizerFunc)
         {
-            //Ensure new name is not a Languages keyword or a database dialect keyword or a SchemaTypist keyword.
-            //If so, then add an 0 at the end of it. 
+            //Ensure new name is not a Languages keyword or a SchemaTypist keyword.
+            //If so, then disambiguate appropriately. 
 
             var proposedName = humanizerFunc(name);
-            var sqlDialect = SqlVendor.GetSqlDialect(config.Vendor);
             var programmingLanguage = Languages.GetProgrammingLanguage(config.TargetLanguage);
             var schemaTypistDsl = Languages.SchemaTypist;
-            while (programmingLanguage.HasConflict(proposedName) || 
-                   sqlDialect.HasConflict(proposedName) ||
-                   schemaTypistDsl.HasConflict(proposedName))
-                proposedName += "0";
-            return proposedName;
+            return Disambiguator.DisambiguateIdentifier(proposedName,
+                s => programmingLanguage.HasConflict(s) || schemaTypistDsl.HasConflict(s));
         }
     }
 }

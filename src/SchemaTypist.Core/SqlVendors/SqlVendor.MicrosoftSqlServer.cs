@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using SchemaTypist.Core.Model;
 
 namespace SchemaTypist.Core.SqlVendors
 {
@@ -310,6 +311,12 @@ namespace SchemaTypist.Core.SqlVendors
                     _ => "Object",
                 };
                 return retVal;
+            }
+
+            public string BuildQualifiedName(TabularStructure tabularStructure)
+            {
+                //Fully qualified name for tabular structures in mssql is catalog.schema.tableName.
+                return $"{tabularStructure.SqlCatalog}.{tabularStructure.SqlSchema}.{tabularStructure.SqlName}";
             }
         }
     }

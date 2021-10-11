@@ -30,6 +30,8 @@ namespace SchemaTypist.Core.Model
                         Config = config
                     });
 
+                tableStructureMap[key].SqlQualifiedName = SqlVendor.BuildQualifiedName(tableStructureMap[key], config);
+
                 if (tableStructureMap[key].Columns.Any(c => c.SqlName == col.ColumnName)) continue;
 
                 tableStructureMap[key].Columns.Add(new()
@@ -38,7 +40,7 @@ namespace SchemaTypist.Core.Model
                     SqlDataType = col.DataType,
                     Name = LanguageService.ConvertColumnName(col.ColumnName, config),
                     IsNullable = col.IsNullable == "Yes",
-                    DataType = DetermineDotNetDataType(col.DataType, col.IsNullable == "Yes", config)
+                    DataType = DetermineDotNetDataType(col.DataType, col.IsNullable == "Yes", config),
                 });
             }
             return tableStructureMap;
@@ -46,7 +48,7 @@ namespace SchemaTypist.Core.Model
 
         private static string DetermineDotNetDataType(string sqlDataType, bool isNullable, CodeGenConfig config)
         {
-            return SqlVendor.GetSqlDialect(config.Vendor).DetermineDotNetDataType(sqlDataType, isNullable);
+            return SqlVendor.DetermineDotNetDataType(sqlDataType, isNullable, config);
         }
     }
 }

@@ -18,7 +18,7 @@ namespace SchemaTypist.Core.Schemata.Mapping
 
             public partial class TableDefinition : TabularDefinition
             {
-                public TableDefinition() : base("StackOverflow", "INFORMATION_SCHEMA", "TABLE_CONSTRAINTS")
+                public TableDefinition() : base("StackOverflow.INFORMATION_SCHEMA.TABLE_CONSTRAINTS")
                 {
                     ConstraintCatalog = new ColumnDefinition(Constants.ConstraintCatalog, this);
                     ConstraintSchema = new ColumnDefinition(Constants.ConstraintSchema, this);

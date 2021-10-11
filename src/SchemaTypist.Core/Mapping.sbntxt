@@ -32,7 +32,7 @@ namespace {{ config.root_namespace }}.{{ config.persistence_namespace }}.{{ conf
 
 			public partial class TableDefinition : TabularDefinition
 			{
-				public TableDefinition() : base("{{ sql_catalog }}", "{{sql_schema }}", "{{sql_name}}")
+				public TableDefinition() : base("{{ sql_qualified_name }}")
 				{
 					{{~ for col in columns ~}}
 					{{ col.name }} = new ColumnDefinition(Constants.{{ col.name }}, this);

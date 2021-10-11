@@ -15,7 +15,7 @@ namespace SchemaTypist.Core.Schemata.Mapping
 
             public partial class TableDefinition : TabularDefinition
             {
-                public TableDefinition() : base("StackOverflow", "INFORMATION_SCHEMA", "COLUMNS")
+                public TableDefinition() : base("StackOverflow.INFORMATION_SCHEMA.COLUMNS")
                 {
                     TableCatalog = new ColumnDefinition(Constants.TableCatalog, this);
                     TableSchema = new ColumnDefinition(Constants.TableSchema, this);

@@ -21,7 +21,7 @@ namespace {{ config.root_namespace }}.{{ config.persistence_namespace }}.{{ conf
 			BeforeInit();
 			
 			{{~ for tab in tabular_structures ~}}
-			SqlMapper.SetTypeMap(typeof({{ tab.name }}{{ config.model_name_suffix }}), {{ tab.schema }}.{{ tab.name }}{{ config.mapper_name_suffix }}.QueryResults.GetTypeMap());
+			SqlMapper.SetTypeMap(typeof({{ tab.name }}{{ config.entity_name_suffix }}), {{ tab.schema }}.{{ tab.name }}{{ config.mapper_name_suffix }}.QueryResults.GetTypeMap());
 			{{~ end ~}}
 			
 			AfterInit();

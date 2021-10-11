@@ -9,6 +9,7 @@ namespace SchemaTypist.Core.Model
         public string SqlCatalog { get; set; }
         public string SqlSchema { get; set; }
         public string SqlName { get; set; }
+        public string SqlQualifiedName { get; set; }
         public string Catalog { get; set; }
         public string Schema { get; set; }
         public string Name { get; set; }
