@@ -23,7 +23,7 @@ namespace SchemaTypist.Generated.Persistence.Mapping
 		{
 			static partial class Constants
 			{
-				public const string Date0 = "Date";
+				public const string Date = "Date";
 				public const string Id = "Id";
 				public const string Name = "Name";
 				public const string UserId = "UserId";
@@ -33,9 +33,9 @@ namespace SchemaTypist.Generated.Persistence.Mapping
 
 			public partial class TableDefinition : TabularDefinition
 			{
-				public TableDefinition() : base("StackOverflow", "dbo", "Badges")
+				public TableDefinition() : base("StackOverflow.dbo.Badges")
 				{
-					Date0 = new ColumnDefinition(Constants.Date0, this);
+					Date = new ColumnDefinition(Constants.Date, this);
 					Id = new ColumnDefinition(Constants.Id, this);
 					Name = new ColumnDefinition(Constants.Name, this);
 					UserId = new ColumnDefinition(Constants.UserId, this);
@@ -43,7 +43,7 @@ namespace SchemaTypist.Generated.Persistence.Mapping
 
 				public TableDefinition As(string alias) => base.As<TableDefinition>(alias);
 
-				public ColumnDefinition Date0 { get; private set; }
+				public ColumnDefinition Date { get; private set; }
 				public ColumnDefinition Id { get; private set; }
 				public ColumnDefinition Name { get; private set; }
 				public ColumnDefinition UserId { get; private set; }
@@ -54,7 +54,7 @@ namespace SchemaTypist.Generated.Persistence.Mapping
 			{
 				private static Dictionary<string, string> columnMap = new Dictionary<string, string>()
 				{
-					{Constants.Date0, nameof(Badge.Date0) },
+					{Constants.Date, nameof(Badge.Date) },
 					{Constants.Id, nameof(Badge.Id) },
 					{Constants.Name, nameof(Badge.Name) },
 					{Constants.UserId, nameof(Badge.UserId) },

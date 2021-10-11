@@ -19,7 +19,7 @@ namespace SchemaTypist.Generated.Persistence.Mapping
 {
 	static partial class Dbo
 	{
-		public static partial class User0Mapper
+		public static partial class UserMapper
 		{
 			static partial class Constants
 			{
@@ -35,7 +35,7 @@ namespace SchemaTypist.Generated.Persistence.Mapping
 				public const string Location = "Location";
 				public const string Reputation = "Reputation";
 				public const string UpVote = "UpVotes";
-				public const string View0 = "Views";
+				public const string View = "Views";
 				public const string WebsiteUrl = "WebsiteUrl";
 			}
 
@@ -43,7 +43,7 @@ namespace SchemaTypist.Generated.Persistence.Mapping
 
 			public partial class TableDefinition : TabularDefinition
 			{
-				public TableDefinition() : base("StackOverflow", "dbo", "Users")
+				public TableDefinition() : base("StackOverflow.dbo.Users")
 				{
 					AboutMe = new ColumnDefinition(Constants.AboutMe, this);
 					AccountId = new ColumnDefinition(Constants.AccountId, this);
@@ -57,7 +57,7 @@ namespace SchemaTypist.Generated.Persistence.Mapping
 					Location = new ColumnDefinition(Constants.Location, this);
 					Reputation = new ColumnDefinition(Constants.Reputation, this);
 					UpVote = new ColumnDefinition(Constants.UpVote, this);
-					View0 = new ColumnDefinition(Constants.View0, this);
+					View = new ColumnDefinition(Constants.View, this);
 					WebsiteUrl = new ColumnDefinition(Constants.WebsiteUrl, this);
 				}
 
@@ -75,7 +75,7 @@ namespace SchemaTypist.Generated.Persistence.Mapping
 				public ColumnDefinition Location { get; private set; }
 				public ColumnDefinition Reputation { get; private set; }
 				public ColumnDefinition UpVote { get; private set; }
-				public ColumnDefinition View0 { get; private set; }
+				public ColumnDefinition View { get; private set; }
 				public ColumnDefinition WebsiteUrl { get; private set; }
 
 			}
@@ -84,20 +84,20 @@ namespace SchemaTypist.Generated.Persistence.Mapping
 			{
 				private static Dictionary<string, string> columnMap = new Dictionary<string, string>()
 				{
-					{Constants.AboutMe, nameof(User0.AboutMe) },
-					{Constants.AccountId, nameof(User0.AccountId) },
-					{Constants.Age, nameof(User0.Age) },
-					{Constants.CreationDate, nameof(User0.CreationDate) },
-					{Constants.DisplayName, nameof(User0.DisplayName) },
-					{Constants.DownVote, nameof(User0.DownVote) },
-					{Constants.EmailHash, nameof(User0.EmailHash) },
-					{Constants.Id, nameof(User0.Id) },
-					{Constants.LastAccessDate, nameof(User0.LastAccessDate) },
-					{Constants.Location, nameof(User0.Location) },
-					{Constants.Reputation, nameof(User0.Reputation) },
-					{Constants.UpVote, nameof(User0.UpVote) },
-					{Constants.View0, nameof(User0.View0) },
-					{Constants.WebsiteUrl, nameof(User0.WebsiteUrl) },
+					{Constants.AboutMe, nameof(User.AboutMe) },
+					{Constants.AccountId, nameof(User.AccountId) },
+					{Constants.Age, nameof(User.Age) },
+					{Constants.CreationDate, nameof(User.CreationDate) },
+					{Constants.DisplayName, nameof(User.DisplayName) },
+					{Constants.DownVote, nameof(User.DownVote) },
+					{Constants.EmailHash, nameof(User.EmailHash) },
+					{Constants.Id, nameof(User.Id) },
+					{Constants.LastAccessDate, nameof(User.LastAccessDate) },
+					{Constants.Location, nameof(User.Location) },
+					{Constants.Reputation, nameof(User.Reputation) },
+					{Constants.UpVote, nameof(User.UpVote) },
+					{Constants.View, nameof(User.View) },
+					{Constants.WebsiteUrl, nameof(User.WebsiteUrl) },
 				};
 
 				static Func<Type, string, PropertyInfo> GetMapperFunc()
@@ -113,7 +113,7 @@ namespace SchemaTypist.Generated.Persistence.Mapping
 
 				public static CustomPropertyTypeMap GetTypeMap()
 				{
-					var typeMap = new CustomPropertyTypeMap(typeof(User0), GetMapperFunc());
+					var typeMap = new CustomPropertyTypeMap(typeof(User), GetMapperFunc());
 					CustomizeTypeMap(typeMap);
 					return typeMap;
 				}

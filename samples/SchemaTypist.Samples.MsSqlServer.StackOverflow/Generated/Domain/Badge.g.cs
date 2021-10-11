@@ -15,7 +15,7 @@ namespace SchemaTypist.Generated.Domain
 {
 	public partial class Badge
 	{
-		public DateTime Date0 { get; set; }
+		public DateTime Date { get; set; }
 		public int Id { get; set; }
 		public string Name { get; set; }
 		public int UserId { get; set; }

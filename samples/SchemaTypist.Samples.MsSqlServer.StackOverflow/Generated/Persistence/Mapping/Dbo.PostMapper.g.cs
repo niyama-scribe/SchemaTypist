@@ -49,7 +49,7 @@ namespace SchemaTypist.Generated.Persistence.Mapping
 
 			public partial class TableDefinition : TabularDefinition
 			{
-				public TableDefinition() : base("StackOverflow", "dbo", "Posts")
+				public TableDefinition() : base("StackOverflow.dbo.Posts")
 				{
 					AcceptedAnswerId = new ColumnDefinition(Constants.AcceptedAnswerId, this);
 					AnswerCount = new ColumnDefinition(Constants.AnswerCount, this);

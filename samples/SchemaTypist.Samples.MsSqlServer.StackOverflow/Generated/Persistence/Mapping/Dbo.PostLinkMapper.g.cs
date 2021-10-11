@@ -34,7 +34,7 @@ namespace SchemaTypist.Generated.Persistence.Mapping
 
 			public partial class TableDefinition : TabularDefinition
 			{
-				public TableDefinition() : base("StackOverflow", "dbo", "PostLinks")
+				public TableDefinition() : base("StackOverflow.dbo.PostLinks")
 				{
 					CreationDate = new ColumnDefinition(Constants.CreationDate, this);
 					Id = new ColumnDefinition(Constants.Id, this);

@@ -35,7 +35,7 @@ namespace SchemaTypist.Generated.Persistence.Mapping
 
 			public partial class TableDefinition : TabularDefinition
 			{
-				public TableDefinition() : base("StackOverflow", "dbo", "Votes")
+				public TableDefinition() : base("StackOverflow.dbo.Votes")
 				{
 					BountyAmount = new ColumnDefinition(Constants.BountyAmount, this);
 					CreationDate = new ColumnDefinition(Constants.CreationDate, this);

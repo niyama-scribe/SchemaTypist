@@ -26,7 +26,7 @@ namespace SchemaTypist.Generated.Persistence.Mapping
 			SqlMapper.SetTypeMap(typeof(PostLink), Dbo.PostLinkMapper.QueryResults.GetTypeMap());
 			SqlMapper.SetTypeMap(typeof(Post), Dbo.PostMapper.QueryResults.GetTypeMap());
 			SqlMapper.SetTypeMap(typeof(PostType), Dbo.PostTypeMapper.QueryResults.GetTypeMap());
-			SqlMapper.SetTypeMap(typeof(User0), Dbo.User0Mapper.QueryResults.GetTypeMap());
+			SqlMapper.SetTypeMap(typeof(User), Dbo.UserMapper.QueryResults.GetTypeMap());
 			SqlMapper.SetTypeMap(typeof(Vote), Dbo.VoteMapper.QueryResults.GetTypeMap());
 			SqlMapper.SetTypeMap(typeof(VoteType), Dbo.VoteTypeMapper.QueryResults.GetTypeMap());
 			

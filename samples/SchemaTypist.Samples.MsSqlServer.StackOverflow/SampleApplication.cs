@@ -31,7 +31,7 @@ namespace SchemaTypist.Samples.MsSqlServer.StackOverflow
         public async Task<IEnumerable<Post>> GetPostsByUser(string userName)
         {
             var p = Dbo.PostMapper.Table.As("c");
-            var u = Dbo.User0Mapper.Table.As("tc");
+            var u = Dbo.UserMapper.Table.As("tc");
     
             var q = new Query()
                 .Select(p.Body, p.Id, p.LastActivityDate, p.Title)

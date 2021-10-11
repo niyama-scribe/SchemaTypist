@@ -31,7 +31,7 @@ namespace SchemaTypist.Generated.Persistence.Mapping
 
 			public partial class TableDefinition : TabularDefinition
 			{
-				public TableDefinition() : base("StackOverflow", "dbo", "VoteTypes")
+				public TableDefinition() : base("StackOverflow.dbo.VoteTypes")
 				{
 					Id = new ColumnDefinition(Constants.Id, this);
 					Name = new ColumnDefinition(Constants.Name, this);

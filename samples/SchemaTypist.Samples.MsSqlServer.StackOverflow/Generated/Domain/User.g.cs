@@ -13,7 +13,7 @@ using System.Reflection;
 
 namespace SchemaTypist.Generated.Domain
 {
-	public partial class User0
+	public partial class User
 	{
 		public string AboutMe { get; set; }
 		public int AccountId { get; set; }
@@ -27,7 +27,7 @@ namespace SchemaTypist.Generated.Domain
 		public string Location { get; set; }
 		public int Reputation { get; set; }
 		public int UpVote { get; set; }
-		public int View0 { get; set; }
+		public int View { get; set; }
 		public string WebsiteUrl { get; set; }
 	}
 }

@@ -27,7 +27,7 @@ namespace SchemaTypist.Generated.Persistence.Mapping
 				public const string Id = "Id";
 				public const string PostId = "PostId";
 				public const string Score = "Score";
-				public const string Text0 = "Text";
+				public const string Text = "Text";
 				public const string UserId = "UserId";
 			}
 
@@ -35,13 +35,13 @@ namespace SchemaTypist.Generated.Persistence.Mapping
 
 			public partial class TableDefinition : TabularDefinition
 			{
-				public TableDefinition() : base("StackOverflow", "dbo", "Comments")
+				public TableDefinition() : base("StackOverflow.dbo.Comments")
 				{
 					CreationDate = new ColumnDefinition(Constants.CreationDate, this);
 					Id = new ColumnDefinition(Constants.Id, this);
 					PostId = new ColumnDefinition(Constants.PostId, this);
 					Score = new ColumnDefinition(Constants.Score, this);
-					Text0 = new ColumnDefinition(Constants.Text0, this);
+					Text = new ColumnDefinition(Constants.Text, this);
 					UserId = new ColumnDefinition(Constants.UserId, this);
 				}
 
@@ -51,7 +51,7 @@ namespace SchemaTypist.Generated.Persistence.Mapping
 				public ColumnDefinition Id { get; private set; }
 				public ColumnDefinition PostId { get; private set; }
 				public ColumnDefinition Score { get; private set; }
-				public ColumnDefinition Text0 { get; private set; }
+				public ColumnDefinition Text { get; private set; }
 				public ColumnDefinition UserId { get; private set; }
 
 			}
@@ -64,7 +64,7 @@ namespace SchemaTypist.Generated.Persistence.Mapping
 					{Constants.Id, nameof(Comment.Id) },
 					{Constants.PostId, nameof(Comment.PostId) },
 					{Constants.Score, nameof(Comment.Score) },
-					{Constants.Text0, nameof(Comment.Text0) },
+					{Constants.Text, nameof(Comment.Text) },
 					{Constants.UserId, nameof(Comment.UserId) },
 				};
 
