@@ -81,7 +81,7 @@ namespace SchemaTypist.Cli
 
                         //genTask.Description = $"Generating code for {tse.Current.Key}";
                         await Task.Delay(500); 
-                        await SchemaTypistService.Generate(tse.Current.Value, config);
+                        SchemaTypistService.Generate(tse.Current.Value, config);
                         genTask.Increment(1);
 
                     }

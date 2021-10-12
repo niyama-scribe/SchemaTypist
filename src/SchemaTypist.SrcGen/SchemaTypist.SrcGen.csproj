@@ -1,0 +1,54 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+	  <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+	  <!-- Generates a package at build -->
+	  <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+	  <!-- Do not include the generator as a lib dependency -->
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="3.8.0" />
+  </ItemGroup>
+
+	<ItemGroup>
+		<CompilerVisibleProperty Include="SchemaTypist_Generate" />
+		<CompilerVisibleProperty Include="SchemaTypist_ConnectionString" />
+		<CompilerVisibleProperty Include="SchemaTypist_Vendor" />
+		<CompilerVisibleProperty Include="SchemaTypist_TargetFramework" />
+		<CompilerVisibleProperty Include="SchemaTypist_TargetLanguage" />
+		<CompilerVisibleProperty Include="SchemaTypist_TargetLanguageVersion" />
+		<CompilerVisibleProperty Include="SchemaTypist_OutputFileNameSuffix" />
+		<CompilerVisibleProperty Include="SchemaTypist_GenerateEntitiesOnly" />
+		<CompilerVisibleProperty Include="SchemaTypist_EntitiesNamespace" />
+		<CompilerVisibleProperty Include="SchemaTypist_EntityNameSuffix" />
+		<CompilerVisibleProperty Include="SchemaTypist_GeneratePersistenceOnly" />
+		<CompilerVisibleProperty Include="SchemaTypist_PersistenceNamespace" />
+		<CompilerVisibleProperty Include="SchemaTypist_MappingNamespace" />
+		<CompilerVisibleProperty Include="SchemaTypist_MapperNameSuffix" />
+		<CompilerVisibleProperty Include="SchemaTypist_RootNamespace" />
+		<CompilerVisibleProperty Include="SchemaTypist_NamingConflictResolutionSuffix" />
+		<CompilerVisibleProperty Include="SchemaTypist_Include" />
+		<CompilerVisibleProperty Include="SchemaTypist_Exclude" />
+
+
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\SchemaTypist.Core\SchemaTypist.Core.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<!-- Package the generator in the analyzer directory of the nuget package -->
+		<None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
+		<None Include="$(OutputPath)\SchemaTypist.Core.dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
+		<None Include="$(OutputPath)\SchemaTypist.dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
+
+	</ItemGroup>
+
+</Project>
