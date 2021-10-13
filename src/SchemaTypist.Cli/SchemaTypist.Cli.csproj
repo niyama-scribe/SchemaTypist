@@ -8,7 +8,7 @@
 	<ToolCommandName>schematypist</ToolCommandName>
 	<PackageOutputPath>./nupkg</PackageOutputPath>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild> <!-- Generates a package at build -->
-    <Version>0.1.0</Version>
+    
   </PropertyGroup>
 
 	<ItemGroup>
