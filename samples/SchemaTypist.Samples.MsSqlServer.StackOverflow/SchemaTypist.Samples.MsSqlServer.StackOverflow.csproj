@@ -5,35 +5,17 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
-	<ItemGroup>
-		<ProjectReference Include="..\..\src\SchemaTypist\SchemaTypist.csproj" />
-	</ItemGroup>
-
-	<PropertyGroup>
-		<SchemaTypist_Generate Condition="'$(SchemaTypist_Generate)'==''">false</SchemaTypist_Generate>
-		<SchemaTypist_OutputDir>$(MSBuildProjectDirectory)\Generated</SchemaTypist_OutputDir>
+	<PropertyGroup Label="SchemaTypist_Props">
 		<SchemaTypist_ConnectionString>%22server=localhost;user id=sa;password=N3v3r!nPr0d;Database=StackOverflow%22</SchemaTypist_ConnectionString>
+		<SchemaTypist_EntityNameSuffix>Entity</SchemaTypist_EntityNameSuffix>
 	</PropertyGroup>
-
-	<ItemGroup>
-		<Compile Remove="$(SchemaTypist_OutputDir)\**\*.*" Condition="'$(SchemaTypist_Generate)'=='true'"/>
-	</ItemGroup>
-
-	<Target Name="Generate" BeforeTargets="PrepareForBuild" Condition="'$(SchemaTypist_Generate)'=='true'">
-		<ItemGroup>
-			<SchemaTypist_Gen_RootDir Include="$(SchemaTypist_OutputDir)\**\*.*" />
-		</ItemGroup>
-		<Message Text="Cleaning up folder"/>
-		<Delete Files="@(SchemaTypist_Gen_RootDir)"/>
-		<Message Text="Running SchemaTypist generation"/>
-		<Exec Command="dotnet schematypist generate $(SchemaTypist_ConnectionString) %22$(SchemaTypist_OutputDir)%22 MicrosoftSqlServer"></Exec>
-		<ItemGroup>
-			<Compile Include="$(SchemaTypist_OutputDir)\**\*.*" />
-		</ItemGroup>
-
-	</Target>
-
 	
-
+	<Target Name="MyGeneratorTask" BeforeTargets="PrepareForBuild">
+		<CallTarget Targets="SchemaTypist_GenerateTask" />
+	</Target>
+	
+	<ItemGroup>
+	  <PackageReference Include="SchemaTypist" Version="0.1.0" />
+	</ItemGroup>
 
 </Project>

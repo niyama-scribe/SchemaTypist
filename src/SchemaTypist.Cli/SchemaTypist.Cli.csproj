@@ -1,14 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <!-- <OutputType>Exe</OutputType> -->
+    <OutputType>Exe</OutputType>
     <TargetFrameworks>net5.0</TargetFrameworks>
     <LangVersion>9.0</LangVersion>
 	<PackAsTool>true</PackAsTool>
 	<ToolCommandName>schematypist</ToolCommandName>
 	<PackageOutputPath>./nupkg</PackageOutputPath>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild> <!-- Generates a package at build -->
-    
   </PropertyGroup>
 
 	<ItemGroup>

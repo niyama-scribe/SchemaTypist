@@ -33,6 +33,7 @@ namespace SchemaTypist.Cli
             config.PersistenceNamespace = settings.PersistenceNamespace ?? config.PersistenceNamespace;
             config.MappingNamespace = settings.MappingNamespace ?? config.MappingNamespace;
             config.MapperNameSuffix = settings.MappingNameSuffix ?? config.MapperNameSuffix;
+            config.RootNamespace = settings.RootNamespace ?? config.RootNamespace;
 
             if ((!string.IsNullOrWhiteSpace(settings.DatabaseVendor))
                 && Enum.TryParse<SqlVendorType>(settings.DatabaseVendor, out var vendor))

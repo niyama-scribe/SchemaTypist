@@ -1,0 +1,40 @@
+﻿<Project>
+	<PropertyGroup>
+		<SchemaTypist_Generate Condition="'$(SchemaTypist_Generate)'==''">false</SchemaTypist_Generate>
+		<SchemaTypist_Vendor Condition="'$(SchemaTypist_Vendor)'==''">MicrosoftSqlServer</SchemaTypist_Vendor>
+		<SchemaTypist_TargetFramework Condition="'$(SchemaTypist_TargetFramework)'==''">netstandard2.0</SchemaTypist_TargetFramework>
+		<SchemaTypist_TargetLanguage Condition="'$(SchemaTypist_TargetLanguage)'==''">CSharp</SchemaTypist_TargetLanguage>
+		<SchemaTypist_TargetLanguageVersion Condition="'$(SchemaTypist_TargetLanguageVersion)'==''">9.0</SchemaTypist_TargetLanguageVersion>
+		<SchemaTypist_OutputDir Condition="'$(SchemaTypist_OutputDir)'==''">$(MSBuildProjectDirectory)\Generated</SchemaTypist_OutputDir>
+		<SchemaTypist_OutputFileNameSuffix Condition="'$(SchemaTypist_OutputFileNameSuffix)'==''">g</SchemaTypist_OutputFileNameSuffix>
+		<SchemaTypist_GenerateEntitiesOnly Condition="'$(SchemaTypist_GenerateEntitiesOnly)'==''">false</SchemaTypist_GenerateEntitiesOnly>
+		<SchemaTypist_EntitiesNamespace Condition="'$(SchemaTypist_EntitiesNamespace)'==''">Domain</SchemaTypist_EntitiesNamespace>
+		<SchemaTypist_EntityNameSuffix></SchemaTypist_EntityNameSuffix>
+		<SchemaTypist_GeneratePersistenceOnly Condition="'$(SchemaTypist_GeneratePersistenceOnly)'==''">false</SchemaTypist_GeneratePersistenceOnly>
+		<SchemaTypist_PersistenceNamespace Condition="'$(SchemaTypist_PersistenceNamespace)'==''">Persistence</SchemaTypist_PersistenceNamespace>
+		<SchemaTypist_MappingNamespace Condition="'$(SchemaTypist_MappingNamespace)'==''">Mapping</SchemaTypist_MappingNamespace>
+		<SchemaTypist_MapperNameSuffix>Mapper</SchemaTypist_MapperNameSuffix>
+		<SchemaTypist_RootNamespace Condition="'$(SchemaTypist_RootNamespace)'==''">SchemaTypist.Generated</SchemaTypist_RootNamespace>
+		<SchemaTypist_NamingConflictResolutionSuffix Condition="'$(SchemaTypist_NamingConflictResolutionSuffix)'==''">0</SchemaTypist_NamingConflictResolutionSuffix>
+
+
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Compile Remove="$(SchemaTypist_OutputDir)\**\*.*" Condition="'$(SchemaTypist_Generate)'=='true'"/>
+	</ItemGroup>
+
+	<Target Name="SchemaTypist_GenerateTask" Condition="'$(SchemaTypist_Generate)'=='true'">
+		<ItemGroup>
+			<SchemaTypist_Gen_RootDir Include="$(SchemaTypist_OutputDir)\**\*.*" />
+		</ItemGroup>
+		<Message Text="Cleaning up folder"/>
+		<Delete Files="@(SchemaTypist_Gen_RootDir)"/>
+		<Message Text="Running SchemaTypist generation"/>
+		<Exec Command="dotnet schematypist generate $(SchemaTypist_ConnectionString) %22$(SchemaTypist_OutputDir)%22 $(SchemaTypist_Vendor) --entities-only $(SchemaTypist_GenerateEntitiesOnly) --entities-namespace $(SchemaTypist_EntitiesNamespace) --entity-name-suffix $(SchemaTypist_EntityNameSuffix) --persistence-only $(SchemaTypist_GeneratePersistenceOnly) --persistence-namespace $(SchemaTypist_PersistenceNamespace) --mapping-namespace $(SchemaTypist_MappingNamespace) --mapping-name-suffix $(SchemaTypist_MapperNameSuffix) --root-namespace $(SchemaTypist_RootNamespace)"></Exec>
+		<ItemGroup>
+			<Compile Include="$(SchemaTypist_OutputDir)\**\*.*" />
+		</ItemGroup>
+
+	</Target>
+</Project>
