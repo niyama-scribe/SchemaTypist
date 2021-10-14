@@ -110,29 +110,37 @@ namespace SchemaTypist.Cli
 
             [Description("Use this option to generate domain model objects only.")]
             [CommandOption("-e|--entities-only")]
-            public bool EntitiesOnly { get; set; } = false;
+            [DefaultValue(false)]
+            public bool EntitiesOnly { get; set; }
 
             [CommandOption("--entities-namespace")]
+            [DefaultValue("Domain")]
             public string EntitiesNamespace { get; set; }
 
             [CommandOption("--entity-name-suffix")]
+            [DefaultValue("")]
             public string EntityNameSuffix{ get; set; }
 
             [Description("Use this option to generate data access layer only.  Remember, persistence code references entities.")]
             [CommandOption("-p|--persistence-only")]
-            public bool PersistenceOnly { get; set; } = false;
+            [DefaultValue(false)]
+            public bool PersistenceOnly { get; set; }
 
             [CommandOption("--persistence-namespace")]
+            [DefaultValue("Persistence")] 
             public string PersistenceNamespace { get; set; }
 
             [Description("This is the namespace for database metadata mapping classes within the persistence layer.")]
             [CommandOption("--mapping-namespace")]
+            [DefaultValue("Mapping")] 
             public string MappingNamespace { get; set; }
 
             [CommandOption("--mapping-name-suffix")]
+            [DefaultValue("Dao")]
             public string MappingNameSuffix { get; set; }
             
             [CommandOption("--root-namespace")]
+            [DefaultValue("SchemaTypist.Generated")]
             public string RootNamespace { get; set; }
             
             public override ValidationResult Validate()
