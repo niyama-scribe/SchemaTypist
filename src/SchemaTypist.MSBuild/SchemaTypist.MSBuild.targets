@@ -31,14 +31,15 @@
 		</PropertyGroup>
 	</Target>
 
+	<ItemGroup>
+		<Compile Remove="$(SchemaTypist_OutputDir)\**\*.*" Condition="'$(SchemaTypist_Generate)'=='true'"/>
+	</ItemGroup>
+
 	<PropertyGroup>
 		<SchemaTypist_DoGenerateDependsOn>SchemaTypist_BeforeGenerate;SchemaTypist_Build_Cli</SchemaTypist_DoGenerateDependsOn>
 	</PropertyGroup>
 
 	<Target Name="SchemaTypist_DoGenerate" Condition="'$(SchemaTypist_Generate)'=='true'" DependsOnTargets="$(SchemaTypist_DoGenerateDependsOn)">
-		<ItemGroup>
-			<Compile Remove="$(SchemaTypist_OutputDir)\**\*.*" Condition="'$(SchemaTypist_Generate)'=='true'"/>
-		</ItemGroup>
 		<ItemGroup>
 			<SchemaTypist_Gen_RootDir Include="$(SchemaTypist_OutputDir)\**\*.*" />
 		</ItemGroup>
