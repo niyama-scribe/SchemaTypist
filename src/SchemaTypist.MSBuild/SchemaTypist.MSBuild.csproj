@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+	  <TargetFramework>netstandard2.0</TargetFramework>
+	  <LangVersion>9.0</LangVersion>
+	  <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+	  <PackageId>SchemaTypist.MSBuild</PackageId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="SchemaTypist.MSBuild.props" />
+    <None Remove="SchemaTypist.MSBuild.targets" />
+  </ItemGroup>
+
+	<ItemGroup>
+		<Content Include="SchemaTypist.MSBuild.props" PackagePath="build\" Pack="true" />
+		<Content Include="SchemaTypist.MSBuild.targets" PackagePath="build\" Pack="true" />
+	</ItemGroup>
+
+</Project>

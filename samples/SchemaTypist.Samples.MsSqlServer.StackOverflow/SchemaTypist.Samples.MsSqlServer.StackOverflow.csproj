@@ -15,9 +15,11 @@
 		<Message Importance="high" Text="Generated source files using SchemaTypist" />
 	
 	</Target>
+
 	
 	<ItemGroup>
 	  <PackageReference Include="SchemaTypist" Version="0.1.0" />
+	  <PackageReference Include="SchemaTypist.MSBuild" Version="0.1.0" PrivateAssets="all" />
 	</ItemGroup>
 
 	

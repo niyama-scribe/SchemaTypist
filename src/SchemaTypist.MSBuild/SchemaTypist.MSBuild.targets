@@ -8,7 +8,7 @@
 		<SchemaTypist_OutputDir Condition="'$(SchemaTypist_OutputDir)' == ''">$(_SchemaTypist_OutputDir)</SchemaTypist_OutputDir>
 		<SchemaTypist_OutputFileNameSuffix Condition="'$(SchemaTypist_OutputFileNameSuffix)' == ''">$(_SchemaTypist_OutputFileNameSuffix)</SchemaTypist_OutputFileNameSuffix>
 		<SchemaTypist_GenerateEntitiesOnly Condition="'$(SchemaTypist_GenerateEntitiesOnly)' == ''">$(_SchemaTypist_GenerateEntitiesOnly)</SchemaTypist_GenerateEntitiesOnly>
-		<SchemaTypist_EntitiesNamespace Condition="'$(SchemaTypist_EntitiesNamespace)' == ''">$(_SchemaTypist_EntitiesNamespace)</SchemaTypist_EntitiesNamespace>
+		<SchemaTypist_EntitiesNamespace Condition="'$(SchemaTypist_E ntitiesNamespace)' == ''">$(_SchemaTypist_EntitiesNamespace)</SchemaTypist_EntitiesNamespace>
 		<SchemaTypist_EntityNameSuffix Condition="'$(SchemaTypist_EntityNameSuffix)' == ''">$(_SchemaTypist_EntityNameSuffix)</SchemaTypist_EntityNameSuffix>
 		<SchemaTypist_GeneratePersistenceOnly Condition="'$(SchemaTypist_GeneratePersistenceOnly)' == ''">$(_SchemaTypist_GeneratePersistenceOnly)</SchemaTypist_GeneratePersistenceOnly>
 		<SchemaTypist_PersistenceNamespace Condition="'$(SchemaTypist_PersistenceNamespace)' == ''">$(_SchemaTypist_PersistenceNamespace)</SchemaTypist_PersistenceNamespace>
