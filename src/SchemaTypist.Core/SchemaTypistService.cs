@@ -64,7 +64,7 @@ namespace SchemaTypist.Core
 
         public static string DetermineDapperMapperFilePath(CodeGenConfig config)
         {
-            return Path.Combine(config.PersistenceNamespace, config.MappingNamespace, $"DapperTypeMapping.{config.OutputFileNameSuffix}.cs");
+            return Path.Combine(config.OutputDirectory, config.PersistenceNamespace, config.MappingNamespace, $"DapperTypeMapping.{config.OutputFileNameSuffix}.cs");
         }
         
         [Obsolete]
@@ -94,7 +94,7 @@ namespace SchemaTypist.Core
         }
 
         [Obsolete]
-        public static async Task GenerateDapperMapping(IEnumerable<TabularStructure> tableStructures, CodeGenConfig config)
+        public static void GenerateDapperMapping(IEnumerable<TabularStructure> tableStructures, CodeGenConfig config)
         {
             //Generate DapperMapper
             var dapperTypeMappingTemplateFile = "DapperTypeMapping.sbntxt";
@@ -105,7 +105,7 @@ namespace SchemaTypist.Core
                 TabularStructures = tableStructures.ToList()
             };
 
-            var mapperOutput = await dapperTypeMappingTemplate.RenderAsync(dapperTypeMappingTemplateData);
+            var mapperOutput = dapperTypeMappingTemplate.Render(dapperTypeMappingTemplateData);
 
             //Write to file
             var dapperMapperFilePath = DetermineDapperMapperFilePath(config);

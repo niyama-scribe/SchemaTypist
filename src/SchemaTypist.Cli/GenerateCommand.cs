@@ -88,7 +88,7 @@ namespace SchemaTypist.Cli
                     }
                     
                     AnsiConsole.MarkupLine($"Generating Dapper Type Mapping");
-                    await SchemaTypistService.GenerateDapperMapping(tableStructureMap.Values.ToList(), config);
+                    SchemaTypistService.GenerateDapperMapping(tableStructureMap.Values.ToList(), config);
                 });
 
             return 0;
