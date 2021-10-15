@@ -1,0 +1,23 @@
+﻿<Project>
+	<PropertyGroup>
+		<_SchemaTypist_Generate>false</_SchemaTypist_Generate>
+		<_SchemaTypist_Vendor>MicrosoftSqlServer</_SchemaTypist_Vendor>
+		<_SchemaTypist_TargetFramework>netstandard2.0</_SchemaTypist_TargetFramework>
+		<_SchemaTypist_TargetLanguage>CSharp</_SchemaTypist_TargetLanguage>
+		<_SchemaTypist_TargetLanguageVersion>9.0</_SchemaTypist_TargetLanguageVersion>
+		<_SchemaTypist_OutputDir>$(MSBuildProjectDirectory)\Generated</_SchemaTypist_OutputDir>
+		<_SchemaTypist_OutputFileNameSuffix>g</_SchemaTypist_OutputFileNameSuffix>
+		<_SchemaTypist_GenerateEntitiesOnly>false</_SchemaTypist_GenerateEntitiesOnly>
+		<_SchemaTypist_EntitiesNamespace>Domain</_SchemaTypist_EntitiesNamespace>
+		<_SchemaTypist_EntityNameSuffix></_SchemaTypist_EntityNameSuffix>
+		<_SchemaTypist_GeneratePersistenceOnly>false</_SchemaTypist_GeneratePersistenceOnly>
+		<_SchemaTypist_PersistenceNamespace>Persistence</_SchemaTypist_PersistenceNamespace>
+		<_SchemaTypist_MappingNamespace>Mapping</_SchemaTypist_MappingNamespace>
+		<_SchemaTypist_MapperNameSuffix>Mapper</_SchemaTypist_MapperNameSuffix>
+		<_SchemaTypist_RootNamespace>SchemaTypist.Generated</_SchemaTypist_RootNamespace>
+		<_SchemaTypist_NamingConflictResolutionSuffix>0</_SchemaTypist_NamingConflictResolutionSuffix>
+
+	</PropertyGroup>
+
+	
+</Project>

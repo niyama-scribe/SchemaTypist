@@ -5,15 +5,21 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
-	<Target Name="MyGeneratorTask" BeforeTargets="PrepareForBuild">
-		<PropertyGroup Label="SchemaTypist_Props">
-			<SchemaTypist_ConnectionString>%22server=localhost;user id=sa;password=N3v3r!nPr0d;Database=StackOverflow%22</SchemaTypist_ConnectionString>
-		</PropertyGroup>
-		<CallTarget Targets="SchemaTypist_GenerateTask" />
+	<PropertyGroup>
+		<SchemaTypist_ConnectionString>%22server=localhost;user id=sa;password=N3v3r!nPr0d;Database=StackOverflow%22</SchemaTypist_ConnectionString>
+	</PropertyGroup>
+
+	
+	<Target Name="MyGenerator" BeforeTargets="PrepareForBuild">
+		<CallTarget Targets="SchemaTypist_DoGenerate" />
+		<Message Importance="high" Text="Generated source files using SchemaTypist" />
+	
 	</Target>
 	
 	<ItemGroup>
 	  <PackageReference Include="SchemaTypist" Version="0.1.0" />
 	</ItemGroup>
 
+	
+	
 </Project>

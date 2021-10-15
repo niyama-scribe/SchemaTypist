@@ -2,7 +2,7 @@
   "profiles": {
     "SchemaTypist.Cli": {
       "commandName": "Project",
-      "commandLineArgs": "generate \"server=localhost;user id=sa;password=N3v3r!nPr0d;initial catalog=StackOverflow\" MicrosoftSqlServer"
+      "commandLineArgs": "generate \"server=localhost;user id=sa;password=N3v3r!nPr0d;initial catalog=StackOverflow\" TestGen MicrosoftSqlServer --entities-namespace Yenta --root-namespace Whatever --mapper-name-suffix Dao"
     }
   }
 }

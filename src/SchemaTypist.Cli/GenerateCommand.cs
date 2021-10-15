@@ -49,7 +49,7 @@ namespace SchemaTypist.Cli
                     {
                         tableStructureMap = await SchemaTypistService.ExtractDbMetadata(config);
                         await Task.Delay(500);
-                        AnsiConsole.MarkupLine($"Fetched schema details.  Generating code ...");
+                        AnsiConsole.MarkupLine($"Fetched schema details.  Generating code here:  {Path.GetFullPath(config.OutputDirectory)}");
                         //await SchemaTypistService.Generate(dbMetadata, config);
 
                     }
