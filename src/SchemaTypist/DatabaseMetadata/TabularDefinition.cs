@@ -2,8 +2,9 @@
 
 namespace SchemaTypist.DatabaseMetadata
 {
-    public partial class TabularDefinition : IAliasable
+    public partial class TabularDefinition
     {
+        private AliasableTabularDefinition _aliasable = new();
         public TabularDefinition(string qualifiedName)
         {
             QualifiedName__ = qualifiedName ?? throw new ArgumentNullException(nameof(qualifiedName));
@@ -15,10 +16,44 @@ namespace SchemaTypist.DatabaseMetadata
             return (T)this;
         }
 
-        public string QualifiedName__ { get; private set; }
-        public string Alias__ { get; private set; }
-        public virtual string Declaration__ => AliasableDefaults.Declare(this);
-        public virtual string Usage__ => AliasableDefaults.Use(this);
+
+
+        internal string QualifiedName__
+        {
+            get
+            {
+                return _aliasable.QualifiedName__;
+            }
+            private set
+            {
+                _aliasable.QualifiedName__ = value;
+            }
+        }
+
+        internal string Alias__
+        {
+            get
+            {
+                return _aliasable.Alias__;
+            }
+            private set
+            {
+                _aliasable.Alias__ = value;
+            }
+        }
+
+        internal string Declaration__ => AliasableDefaults.Declare(_aliasable);
+        internal string Usage__ => AliasableDefaults.Use(_aliasable);
+
+        private class AliasableTabularDefinition : IAliasable
+        {
+            public AliasableTabularDefinition()
+            {
+
+            }
+            public string QualifiedName__ { get; set; }
+            public string Alias__ { get; set; }
+        }
     }
 
 }

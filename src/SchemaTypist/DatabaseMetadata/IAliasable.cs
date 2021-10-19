@@ -1,11 +1,9 @@
 ﻿namespace SchemaTypist.DatabaseMetadata
 {
-    public interface IAliasable
+    internal interface IAliasable
     {
         string QualifiedName__ { get; }
         string Alias__ { get; }
-        string Declaration__ { get; }
-        string Usage__ { get; }
     }
 
     static class AliasableDefaults
