@@ -18,8 +18,13 @@
 
 	
 	<ItemGroup>
-	  <PackageReference Include="SchemaTypist" Version="0.1.0" />
+	  <PackageReference Include="SchemaTypist" Version="0.1.0" Condition="'$(Configuration)'=='Release'" />
 	  <PackageReference Include="SchemaTypist.MSBuild" Version="0.1.0" />
+	</ItemGroup>
+
+	
+	<ItemGroup>
+	  <ProjectReference Include="..\..\src\SchemaTypist\SchemaTypist.csproj" Condition="'$(Configuration)'=='Debug'" />
 	</ItemGroup>
 
 	

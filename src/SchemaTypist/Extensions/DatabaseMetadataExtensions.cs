@@ -10,7 +10,12 @@ namespace SchemaTypist.Extensions
     {
         public static Query AsQuery(this TabularDefinition table)
         {
-            return new Query(table.Usage__);
+            return new Query(table.QualifiedName__);
+        }
+
+        public static Query For<T>(this Query q, T t) where T : TabularDefinition
+        {
+            return new Query(t.QualifiedName__);
         }
     }
 }

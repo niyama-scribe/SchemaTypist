@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Threading.Tasks;
 using SchemaTypist.DatabaseMetadata;
+using SchemaTypist.Extensions;
 using SchemaTypist.Generated.Domain;
 using SchemaTypist.Generated.Persistence.Mapping;
 using SchemaTypist.SqlKata;
@@ -39,7 +41,17 @@ namespace SchemaTypist.Samples.MsSqlServer.StackOverflow
                 .LeftJoin(u, j => j.On(p.OwnerUserId, u.Id))
                 .Where(u.DisplayName, Op.EQ, userName)
                 .Limit(1);
-    
+
+            /*var m = new Post();
+
+            var n = new Query().For(Dbo.PostMapper.Table).AsInsert(new[] {p.AcceptedAnswerId, p.AnswerCount}, new object[] {m.AcceptedAnswerId, m.AnswerCount});
+
+            var postTable = Dbo.PostMapper.Table;
+            Insert.Into(postTable, new[] { postTable.AcceptedAnswerId, postTable.AnswerCount})
+                .Values(new object[] {m.AcceptedAnswerId, m.AnswerCount});
+
+            Update.Table(postTable).Set
+            */
             var connection = new SqlConnection(@"server=localhost;user id=sa;password= N3v3r!nPr0d;initial catalog=StackOverflow");
             var compiler = new SqlServerCompiler();
             var db = new QueryFactory(connection, compiler);
