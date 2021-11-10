@@ -35,23 +35,31 @@ At its core, SchemaTypist provides a highly configurable, dotnet CLI tool called
    ```
  - You're done.  Now, go forth and query your database at runtime.
    ```csharp
-     public async Task<IEnumerable<Post>> GetPostsByUser(string userName)
+     public class SampleRepository
      {
-         var p = Dbo.PostMapper.Table.As("p");
-         var u = Dbo.UserMapper.Table.As("u");
+         static SampleRepository() 
+         {
+            //Do this once on app startup
+            DapperTypeMapping.Init();
+         }
+         public async Task<IEnumerable<Post>> GetPostsByUser(string userName)
+         {
+             var p = Dbo.PostMapper.Table.As("p");
+             var u = Dbo.UserMapper.Table.As("u");
     
-         var q = new Query()
-                    .Select(p.Body, p.Id, p.LastActivityDate, p.Title)
-                    .From(p)
-                    .LeftJoin(u, j => j.On(p.OwnerUserId, u.Id))
-                    .Where(u.DisplayName, Op.EQ, userName)
-                    .Limit(1);
+             var q = new Query()
+                        .Select(p.Body, p.Id, p.LastActivityDate, p.Title)
+                        .From(p)
+                        .LeftJoin(u, j => j.On(p.OwnerUserId, u.Id))
+                        .Where(u.DisplayName, Op.EQ, userName)
+                        .Limit(1);
 
-         var connection = new SqlConnection(@"server=localhost;user id=sa;password= N3v3r!nPr0d;initial catalog=StackOverflow");
-         var compiler = new SqlServerCompiler();
-         var db = new QueryFactory(connection, compiler);
-         var posts = await db.GetAsync<Post>(q);
-         return posts;
+             var connection = new SqlConnection(@"server=localhost;user id=sa;password= N3v3r!nPr0d;initial catalog=StackOverflow");
+             var compiler = new SqlServerCompiler();
+             var db = new QueryFactory(connection, compiler);
+             var posts = await db.GetAsync<Post>(q);
+             return posts;
+         }
      }
    ```
 
