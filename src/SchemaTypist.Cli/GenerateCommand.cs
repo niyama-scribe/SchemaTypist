@@ -23,10 +23,12 @@ namespace SchemaTypist.Cli
         public override async Task<int> ExecuteAsync(CommandContext context, GenerateCommand.Settings settings)
         {
             Dictionary<string, TabularStructure> tableStructureMap = new();
-            var config = new CodeGenConfig();
-            config.ConnectionString = settings.ConnectionString;
-            config.OutputDirectory = settings.OutputDir;
-            config.GenerateEntitiesOnly = settings.EntitiesOnly;
+            var config = new CodeGenConfig
+            {
+                ConnectionString = settings.ConnectionString,
+                OutputDirectory = settings.OutputDir,
+                GenerateEntitiesOnly = settings.EntitiesOnly
+            };
             config.EntitiesNamespace = settings.EntitiesNamespace ?? config.EntitiesNamespace;
             config.EntityNameSuffix = settings.EntityNameSuffix ?? config.EntityNameSuffix;
             config.GeneratePersistenceOnly = settings.PersistenceOnly;
@@ -36,7 +38,7 @@ namespace SchemaTypist.Cli
             config.RootNamespace = settings.RootNamespace ?? config.RootNamespace;
 
             if ((!string.IsNullOrWhiteSpace(settings.DatabaseVendor))
-                && Enum.TryParse<SqlVendorType>(settings.DatabaseVendor, out var vendor))
+                && Enum.TryParse<SqlVendorType>(settings.DatabaseVendor, out var vendor)) 
                 config.Vendor = vendor;
             
             await AnsiConsole.Status()

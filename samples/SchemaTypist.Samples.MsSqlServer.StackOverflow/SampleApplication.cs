@@ -28,36 +28,42 @@ namespace SchemaTypist.Samples.MsSqlServer.StackOverflow
         }
     }
 
-    public class SampleRepository
-    {
-        public async Task<IEnumerable<Post>> GetPostsByUser(string userName)
-        {
-            var p = Dbo.PostMapper.Table.As("c");
-            var u = Dbo.UserMapper.Table.As("tc");
-    
-            var q = new Query()
-                .Select(p.Body, p.Id, p.LastActivityDate, p.Title)
-                .From(p)
-                .LeftJoin(u, j => j.On(p.OwnerUserId, u.Id))
-                .Where(u.DisplayName, Op.EQ, userName)
-                .Limit(1);
+     public class SampleRepository
+     {
+         public async Task<IEnumerable<Post>> GetPostsByUser(string userName)
+         {
+             var p = Dbo.PostMapper.Table.As("c");
+             var u = Dbo.UserMapper.Table.As("tc");
+     
+             var q = new Query()
+                 .Select(p.Body, p.Id, p.LastActivityDate, p.Title)
+                 .From(p)
+                 .LeftJoin(u, j => j.On(p.OwnerUserId, u.Id))
+                 .Where(u.DisplayName, Op.EQ, userName)
+                 .Limit(1);
 
-            /*var m = new Post();
+             /*var m = new Post();
 
-            var n = new Query().For(Dbo.PostMapper.Table).AsInsert(new[] {p.AcceptedAnswerId, p.AnswerCount}, new object[] {m.AcceptedAnswerId, m.AnswerCount});
+             var n = new Query().For(Dbo.PostMapper.Table).AsInsert(new[] {p.AcceptedAnswerId, p.AnswerCount}, new object[] {m.AcceptedAnswerId, m.AnswerCount});
 
-            var postTable = Dbo.PostMapper.Table;
-            Insert.Into(postTable, new[] { postTable.AcceptedAnswerId, postTable.AnswerCount})
-                .Values(new object[] {m.AcceptedAnswerId, m.AnswerCount});
+             var postTable = Dbo.PostMapper.Table;
+             
+             Insert.Into(postTable, new[] { postTable.AcceptedAnswerId, postTable.AnswerCount})
+                 .Values(new object[] {m.AcceptedAnswerId, m.AnswerCount});
 
-            Update.Table(postTable).Set
-            */
-            var connection = new SqlConnection(@"server=localhost;user id=sa;password= N3v3r!nPr0d;initial catalog=StackOverflow");
-            var compiler = new SqlServerCompiler();
-            var db = new QueryFactory(connection, compiler);
-            var posts = await db.GetAsync<Post>(q);
-            return posts;
-    
-        }
-    }
+             Update.Table(postTable)
+             .Set(Expression, value)
+             .Set(Expression, value)
+             .Where(Query)
+             
+             Delete.From(postTable).Where(Query)
+             */
+             var connection = new SqlConnection(@"server=localhost;user id=sa;password= N3v3r!nPr0d;initial catalog=StackOverflow");
+             var compiler = new SqlServerCompiler();
+             var db = new QueryFactory(connection, compiler);
+             var posts = await db.GetAsync<Post>(q);
+             return posts;
+     
+         }
+     }
 }

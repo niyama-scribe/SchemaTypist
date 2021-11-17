@@ -9,21 +9,22 @@ namespace SchemaTypist.Core.Utilities
     /// </summary>
     internal static class Disambiguator
     {
-        private static HashSet<string> _usedNames = new HashSet<string>();
-
+        
         /// <summary>
         /// Simple algorithm that appends a numeral at the end of the name until it is unique.
         /// </summary>
         /// <param name="proposedName">Input object identifier</param>
         /// <returns></returns>
-        public static string DisambiguateIdentifier(string proposedName, Func<string, bool> conflictFinder = null)
+        public static string DisambiguateIdentifier(string proposedName, Func<string, bool> conflictFinder = null, 
+            HashSet<string> usedNames = null)
         {
             if (string.IsNullOrWhiteSpace(proposedName)) return proposedName;
             
             var numeral = 0;
             var retVal = proposedName;
-            while (_usedNames.Contains(proposedName) || (conflictFinder != null && conflictFinder(proposedName)))
-                retVal = proposedName + numeral++;
+            while ((conflictFinder != null && conflictFinder(retVal)) || (usedNames!=null && usedNames.Contains(retVal)))
+                retVal = retVal + numeral++;
+            usedNames?.Add(retVal);
             return retVal;
         }
     }

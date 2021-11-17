@@ -1,7 +1,7 @@
 ﻿<Project>
 	<PropertyGroup>
 		<SchemaTypist_Generate Condition="'$(SchemaTypist_Generate)' == ''">$(_SchemaTypist_Generate)</SchemaTypist_Generate>
-		<SchemaTypist_Vendor Condition="'$(SchemaTypist_Generate)' == ''">$(_SchemaTypist_Generate)</SchemaTypist_Vendor>
+		<SchemaTypist_Vendor Condition="'$(SchemaTypist_Vendor)' == ''">$(SchemaTypist_Vendor)</SchemaTypist_Vendor>
 		<SchemaTypist_TargetFramework Condition="'$(SchemaTypist_TargetFramework)' == ''">$(_SchemaTypist_TargetFramework)</SchemaTypist_TargetFramework>
 		<SchemaTypist_TargetLanguage Condition="'$(SchemaTypist_TargetLanguage)' == ''">$(_SchemaTypist_TargetLanguage)</SchemaTypist_TargetLanguage>
 		<SchemaTypist_TargetLanguageVersion Condition="'$(SchemaTypist_TargetLanguageVersion)' == ''">$(_SchemaTypist_TargetLanguageVersion)</SchemaTypist_TargetLanguageVersion>

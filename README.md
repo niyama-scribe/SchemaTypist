@@ -25,13 +25,13 @@ At its core, SchemaTypist provides a highly configurable, dotnet CLI tool called
 	</Target>
 	
 	<ItemGroup>
-	  <PackageReference Include="SchemaTypist" Version="0.1.0" Condition="'$(Configuration)'=='Release'" />
+	  <PackageReference Include="SchemaTypist" Version="0.1.0" />
 	  <PackageReference Include="SchemaTypist.MSBuild" Version="0.1.0" />
 	</ItemGroup>
    ```
  - Finally, run the build.
    ```commandline
-     dotnet build -p:SchemaTypist.Generate=true 
+     dotnet build -p:SchemaTypist_Generate=true 
    ```
  - You're done.  Now, go forth and query your database at runtime.
    ```csharp

@@ -15,7 +15,7 @@ namespace SchemaTypist.Core.Schemata.Mapping
 
             public partial class TableDefinition : TabularDefinition
             {
-                public TableDefinition() : base("INFORMATION_SCHEMA.COLUMNS")
+                public TableDefinition() : base("information_schema.columns")
                 {
                     TableCatalog = new ColumnDefinition(Constants.TableCatalog, this);
                     TableSchema = new ColumnDefinition(Constants.TableSchema, this);
@@ -46,16 +46,16 @@ namespace SchemaTypist.Core.Schemata.Mapping
 
             static partial class Constants
             {
-                public const string TableCatalog = "TABLE_CATALOG";
-                public const string TableSchema = "TABLE_SCHEMA";
-                public const string TableName = "TABLE_NAME";
-                public const string OrdinalPosition = "ORDINAL_POSITION";
-                public const string ColumnName = "COLUMN_NAME";
-                public const string DataType = "DATA_TYPE";
-                public const string CharacterMaximumLength = "CHARACTER_MAXIMUM_LENGTH";
-                public const string NumericPrecision = "NUMERIC_PRECISION";
-                public const string NumericScale = "NUMERIC_SCALE";
-                public const string IsNullable = "IS_NULLABLE";
+                public const string TableCatalog = "table_catalog";
+                public const string TableSchema = "table_schema";
+                public const string TableName = "table_name";
+                public const string OrdinalPosition = "ordinal_position";
+                public const string ColumnName = "column_name";
+                public const string DataType = "data_type";
+                public const string CharacterMaximumLength = "character_maximum_length";
+                public const string NumericPrecision = "numeric_precision";
+                public const string NumericScale = "numeric_scale";
+                public const string IsNullable = "is_nullable";
             }
 
             public static partial class QueryResultsMapper

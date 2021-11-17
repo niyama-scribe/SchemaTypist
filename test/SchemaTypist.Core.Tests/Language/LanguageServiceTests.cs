@@ -68,7 +68,7 @@ namespace SchemaTypist.Core.Tests.Language
         }
 
         [Fact]
-        public void ConvertCatalogName_ConflictWithSqlKeyword_CaseInsensitive_ReturnsPascalizedNameWithTrailingZero()
+        public void ConvertCatalogName_ConflictWithSqlKeyword_CaseInsensitive_ReturnsPascalizedName()
         {
             //Arrange
             var fixture = new Fixture();
@@ -83,7 +83,7 @@ namespace SchemaTypist.Core.Tests.Language
             var catalogName = LanguageService.ConvertCatalogName(proposedName, config);
 
             //Assert
-            catalogName.Should().Be($"Constraint{config.NamingConflictResolutionSuffix}");
+            catalogName.Should().Be("Constraint");
         }
 
     }

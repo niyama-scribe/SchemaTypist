@@ -28,5 +28,10 @@
 	</ItemGroup>
 
 	
+	<ItemGroup>
+	  <Folder Include="Generated\Persistence\Mapping\" />
+	</ItemGroup>
+
+	
 	
 </Project>

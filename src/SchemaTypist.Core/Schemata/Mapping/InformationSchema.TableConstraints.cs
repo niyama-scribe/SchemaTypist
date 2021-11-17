@@ -8,17 +8,17 @@ namespace SchemaTypist.Core.Schemata.Mapping
         {
             public static partial class Constants
             {
-                public const string ConstraintCatalog = "CONSTRAINT_CATALOG";
-                public const string ConstraintSchema = "CONSTRAINT_SCHEMA";
-                public const string TableName = "TABLE_NAME";
-                public const string ConstraintType = "CONSTRAINT_TYPE";
+                public const string ConstraintCatalog = "constraint_catalog";
+                public const string ConstraintSchema = "constraint_schema";
+                public const string TableName = "table_name";
+                public const string ConstraintType = "constraint_type";
             }
 
             public static TableDefinition Table => new TableDefinition();
 
             public partial class TableDefinition : TabularDefinition
             {
-                public TableDefinition() : base("INFORMATION_SCHEMA.TABLE_CONSTRAINTS")
+                public TableDefinition() : base("information_schema.table_constraints")
                 {
                     ConstraintCatalog = new ColumnDefinition(Constants.ConstraintCatalog, this);
                     ConstraintSchema = new ColumnDefinition(Constants.ConstraintSchema, this);

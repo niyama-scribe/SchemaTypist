@@ -22,23 +22,27 @@ namespace SchemaTypist.Core.Model
                         SqlCatalog = col.TableCatalog,
                         SqlSchema = col.TableSchema,
                         SqlName = col.TableName,
-                        Catalog = LanguageService.ConvertCatalogName(col.TableCatalog, config),
-                        Schema = LanguageService.ConvertSchemaName(col.TableSchema, config),
-                        Name = LanguageService.ConvertTableName(col.TableName, config),
                         TabularStructureType = TabularType.Table,
                         Columns = new List<ColumnMetadata>(),
                         Config = config
                     });
 
-                tableStructureMap[key].SqlQualifiedName = SqlVendor.BuildQualifiedName(tableStructureMap[key], config);
+                var tabStructure = tableStructureMap[key];
+                tabStructure.Catalog = LanguageService.ConvertCatalogName(col.TableCatalog, config);
+                tabStructure.Schema = LanguageService.ConvertSchemaName(col.TableSchema, config,
+                    tabStructure.Catalog);
+                tabStructure.Name = LanguageService.ConvertTableName(col.TableName, config, tabStructure.Schema);
 
-                if (tableStructureMap[key].Columns.Any(c => c.SqlName == col.ColumnName)) continue;
 
-                tableStructureMap[key].Columns.Add(new()
+                tabStructure.SqlQualifiedName = SqlVendor.BuildQualifiedName(tabStructure, config);
+
+                if (tabStructure.Columns.Any(c => c.SqlName == col.ColumnName)) continue;
+
+                tabStructure.Columns.Add(new()
                 {
                     SqlName = col.ColumnName,
                     SqlDataType = col.DataType,
-                    Name = LanguageService.ConvertColumnName(col.ColumnName, config),
+                    Name = LanguageService.ConvertColumnName(col.ColumnName, config, new HashSet<string>() {tabStructure.Name}),
                     IsNullable = col.IsNullable == "Yes",
                     DataType = DetermineDotNetDataType(col.DataType, col.IsNullable == "Yes", config),
                 });

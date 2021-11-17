@@ -22,5 +22,9 @@
 	  <ProjectReference Include="..\SchemaTypist.Core\SchemaTypist.Core.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="nupkg\" />
+	</ItemGroup>
+
 
 </Project>

@@ -2,7 +2,7 @@
   "profiles": {
     "SchemaTypist.Cli": {
       "commandName": "Project",
-      "commandLineArgs": "generate \"server=localhost;user id=sa;password=N3v3r!nPr0d;initial catalog=StackOverflow\" TestGen MicrosoftSqlServer --entities-namespace Yenta --root-namespace Whatever --mapper-name-suffix Dao"
+      "commandLineArgs": "generate \"Server=127.0.0.1;Port=5432;Database=postgres;User Id=postgres;Password=N3v3r!nPr0d;\" TestGen PostgreSql --entities-namespace Yenta --root-namespace Whatever --mapper-name-suffix Dao"
     }
   }
 }
