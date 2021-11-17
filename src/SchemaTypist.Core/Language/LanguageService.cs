@@ -19,7 +19,7 @@ namespace SchemaTypist.Core.Language
             ConvertName(sqlTableName, config, s => s.Pascalize().Singularize(false));
 
         public static string ConvertColumnName(string sqlColumnName, CodeGenConfig config, HashSet<string> additionalNamesToAvoid) =>
-            ConvertName(sqlColumnName, config, s => s.Pascalize().Singularize(false));
+            ConvertName(sqlColumnName, config, s => s.Pascalize().Singularize(false), additionalNamesToAvoid);
 
         private static string ConvertName(string name, CodeGenConfig config, Func<string, string> humanizerFunc, 
             HashSet<string> additionalNamesToAvoid = null)

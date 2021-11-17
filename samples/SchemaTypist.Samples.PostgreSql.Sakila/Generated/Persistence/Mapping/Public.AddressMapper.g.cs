@@ -23,7 +23,7 @@ namespace SchemaTypist.Generated.Persistence.Mapping
 		{
 			static partial class Constants
 			{
-				public const string Address = "address";
+				public const string Address0 = "address";
 				public const string Address2 = "address2";
 				public const string AddressId = "address_id";
 				public const string CityId = "city_id";
@@ -39,7 +39,7 @@ namespace SchemaTypist.Generated.Persistence.Mapping
 			{
 				public TableDefinition() : base("public.address")
 				{
-					Address = new ColumnDefinition(Constants.Address, this);
+					Address0 = new ColumnDefinition(Constants.Address0, this);
 					Address2 = new ColumnDefinition(Constants.Address2, this);
 					AddressId = new ColumnDefinition(Constants.AddressId, this);
 					CityId = new ColumnDefinition(Constants.CityId, this);
@@ -51,7 +51,7 @@ namespace SchemaTypist.Generated.Persistence.Mapping
 
 				public TableDefinition As(string alias) => base.As<TableDefinition>(alias);
 
-				public ColumnDefinition Address { get; private set; }
+				public ColumnDefinition Address0 { get; private set; }
 				public ColumnDefinition Address2 { get; private set; }
 				public ColumnDefinition AddressId { get; private set; }
 				public ColumnDefinition CityId { get; private set; }
@@ -66,7 +66,7 @@ namespace SchemaTypist.Generated.Persistence.Mapping
 			{
 				private static Dictionary<string, string> columnMap = new Dictionary<string, string>()
 				{
-					{Constants.Address, nameof(Address.Address) },
+					{Constants.Address0, nameof(Address.Address0) },
 					{Constants.Address2, nameof(Address.Address2) },
 					{Constants.AddressId, nameof(Address.AddressId) },
 					{Constants.CityId, nameof(Address.CityId) },

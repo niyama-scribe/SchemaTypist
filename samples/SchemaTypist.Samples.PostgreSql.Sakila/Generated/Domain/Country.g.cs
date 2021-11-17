@@ -15,7 +15,7 @@ namespace SchemaTypist.Generated.Domain
 {
 	public partial class Country
 	{
-		public string Country { get; set; }
+		public string Country0 { get; set; }
 		public int CountryId { get; set; }
 		public DateTime LastUpdate { get; set; }
 	}

@@ -15,7 +15,7 @@ namespace SchemaTypist.Generated.Domain
 {
 	public partial class Address
 	{
-		public string Address { get; set; }
+		public string Address0 { get; set; }
 		public string Address2 { get; set; }
 		public int AddressId { get; set; }
 		public short CityId { get; set; }

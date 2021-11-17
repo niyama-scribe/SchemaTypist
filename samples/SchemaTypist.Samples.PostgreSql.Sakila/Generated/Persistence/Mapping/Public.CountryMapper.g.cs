@@ -23,7 +23,7 @@ namespace SchemaTypist.Generated.Persistence.Mapping
 		{
 			static partial class Constants
 			{
-				public const string Country = "country";
+				public const string Country0 = "country";
 				public const string CountryId = "country_id";
 				public const string LastUpdate = "last_update";
 			}
@@ -34,14 +34,14 @@ namespace SchemaTypist.Generated.Persistence.Mapping
 			{
 				public TableDefinition() : base("public.country")
 				{
-					Country = new ColumnDefinition(Constants.Country, this);
+					Country0 = new ColumnDefinition(Constants.Country0, this);
 					CountryId = new ColumnDefinition(Constants.CountryId, this);
 					LastUpdate = new ColumnDefinition(Constants.LastUpdate, this);
 				}
 
 				public TableDefinition As(string alias) => base.As<TableDefinition>(alias);
 
-				public ColumnDefinition Country { get; private set; }
+				public ColumnDefinition Country0 { get; private set; }
 				public ColumnDefinition CountryId { get; private set; }
 				public ColumnDefinition LastUpdate { get; private set; }
 
@@ -51,7 +51,7 @@ namespace SchemaTypist.Generated.Persistence.Mapping
 			{
 				private static Dictionary<string, string> columnMap = new Dictionary<string, string>()
 				{
-					{Constants.Country, nameof(Country.Country) },
+					{Constants.Country0, nameof(Country.Country0) },
 					{Constants.CountryId, nameof(Country.CountryId) },
 					{Constants.LastUpdate, nameof(Country.LastUpdate) },
 				};
