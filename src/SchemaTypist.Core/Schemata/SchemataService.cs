@@ -22,11 +22,11 @@ namespace SchemaTypist.Core.Schemata
         public static async Task<IEnumerable<ColumnsDto>> ExtractDbMetadata(CodeGenConfig config)
         {
             var metadataQueries = new SchemataQueries(config);
-            (var connection, var compiler) = GetDbSpecificLibraries(config);
+            var (connection, compiler) = GetDbSpecificLibraries(config);
             var db = new QueryFactory(connection, compiler);
             var q = metadataQueries.InspectTables();
-            var sql = compiler.Compile(q).RawSql;
-            Console.WriteLine(sql);
+            // var sql = compiler.Compile(q).RawSql;
+            // Console.WriteLine(sql);
             var ts = await db.GetAsync<ColumnsDto>(q);
             return ts;
         }

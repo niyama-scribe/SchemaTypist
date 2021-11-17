@@ -16,7 +16,8 @@
 		<SchemaTypist_MapperNameSuffix Condition="'$(SchemaTypist_MapperNameSuffix)' == ''">$(_SchemaTypist_MapperNameSuffix)</SchemaTypist_MapperNameSuffix>
 		<SchemaTypist_RootNamespace Condition="'$(SchemaTypist_RootNamespace)' == ''">$(_SchemaTypist_RootNamespace)</SchemaTypist_RootNamespace>
 		<SchemaTypist_NamingConflictResolutionSuffix Condition="'$(SchemaTypist_NamingConflictResolutionSuffix)' == ''">$(_SchemaTypist_NamingConflictResolutionSuffix)</SchemaTypist_NamingConflictResolutionSuffix>
-
+		<SchemaTypist_Include Condition="'$(SchemaTypist_Include)' == ''">$(_SchemaTypist_Include)</SchemaTypist_Include>
+		<SchemaTypist_Exclude Condition="'$(SchemaTypist_Exclude)' == ''">$(_SchemaTypist_Exclude)</SchemaTypist_Exclude>
 	</PropertyGroup>
 
 
@@ -25,7 +26,7 @@
 	<Target Name="SchemaTypist_Build_Cli" DependsOnTargets="SchemaTypist_BeforeGenerate">
 		<Error Condition="'$(SchemaTypist_ConnectionString)' == ''" Text="Please ensure you set an appropriate value for SchemaTypist_ConnectionString property" />
 		<PropertyGroup >
-			<_SchemaTypist_Cli>dotnet schematypist generate $(SchemaTypist_ConnectionString) %22$(SchemaTypist_OutputDir)%22 $(SchemaTypist_Vendor) --entities-only $(SchemaTypist_GenerateEntitiesOnly) --entities-namespace $(SchemaTypist_EntitiesNamespace) --persistence-only $(SchemaTypist_GeneratePersistenceOnly) --persistence-namespace $(SchemaTypist_PersistenceNamespace) --mapping-namespace $(SchemaTypist_MappingNamespace) --mapping-name-suffix $(SchemaTypist_MapperNameSuffix) --root-namespace $(SchemaTypist_RootNamespace)</_SchemaTypist_Cli>
+			<_SchemaTypist_Cli>dotnet schematypist generate $(SchemaTypist_ConnectionString) %22$(SchemaTypist_OutputDir)%22 $(SchemaTypist_Vendor) --entities-only $(SchemaTypist_GenerateEntitiesOnly) --entities-namespace $(SchemaTypist_EntitiesNamespace) --persistence-only $(SchemaTypist_GeneratePersistenceOnly) --persistence-namespace $(SchemaTypist_PersistenceNamespace) --mapping-namespace $(SchemaTypist_MappingNamespace) --mapping-name-suffix $(SchemaTypist_MapperNameSuffix) --root-namespace $(SchemaTypist_RootNamespace) --include $(SchemaTypist_Include) --exclude $(SchemaTypist_Exclude)</_SchemaTypist_Cli>
 			<SchemaTypist_Cli Condition="'$(SchemaTypist_EntityNameSuffix)' == ''">$(_SchemaTypist_Cli)</SchemaTypist_Cli>
 			<SchemaTypist_Cli Condition="'$(SchemaTypist_EntityNameSuffix)' != ''">$(_SchemaTypist_Cli) --entity-name-suffix $(SchemaTypist_EntityNameSuffix)</SchemaTypist_Cli>
 		</PropertyGroup>

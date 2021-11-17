@@ -36,6 +36,8 @@ namespace SchemaTypist.Cli
             config.MappingNamespace = settings.MappingNamespace ?? config.MappingNamespace;
             config.MapperNameSuffix = settings.MappingNameSuffix ?? config.MapperNameSuffix;
             config.RootNamespace = settings.RootNamespace ?? config.RootNamespace;
+            config.Include = settings.Include ?? config.Include;
+            config.Exclude = settings.Exclude ?? config.Exclude;
 
             if ((!string.IsNullOrWhiteSpace(settings.DatabaseVendor))
                 && Enum.TryParse<SqlVendorType>(settings.DatabaseVendor, out var vendor)) 
@@ -144,7 +146,15 @@ namespace SchemaTypist.Cli
             [CommandOption("--root-namespace")]
             [DefaultValue("SchemaTypist.Generated")]
             public string RootNamespace { get; set; }
-            
+
+            [CommandOption("--include")]
+            [DefaultValue("")]
+            public string Include { get; set; }
+
+            [CommandOption("--exclude")]
+            [DefaultValue("")]
+            public string Exclude { get; set; }
+
             public override ValidationResult Validate()
             {
                 //1.  Should be able to connect to the db.

@@ -8,6 +8,7 @@
 	<PropertyGroup>
 		<SchemaTypist_ConnectionString>%22Server=127.0.0.1;Port=5432;Database=postgres;User Id=postgres;Password=N3v3r!nPr0d;%22</SchemaTypist_ConnectionString>
 		<SchemaTypist_Vendor>PostgreSql</SchemaTypist_Vendor>
+		<SchemaTypist_Include>*.public.*</SchemaTypist_Include>
 	</PropertyGroup>
 
 
@@ -21,6 +22,11 @@
 	<ItemGroup>
 		<PackageReference Include="SchemaTypist" Version="0.1.0" />
 		<PackageReference Include="SchemaTypist.MSBuild" Version="0.1.0" />
+	</ItemGroup>
+
+
+	<ItemGroup>
+	  <Folder Include="Generated\" />
 	</ItemGroup>
 
 </Project>
