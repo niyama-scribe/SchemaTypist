@@ -16,7 +16,8 @@
 		<_SchemaTypist_MapperNameSuffix>Mapper</_SchemaTypist_MapperNameSuffix>
 		<_SchemaTypist_RootNamespace>SchemaTypist.Generated</_SchemaTypist_RootNamespace>
 		<_SchemaTypist_NamingConflictResolutionSuffix>0</_SchemaTypist_NamingConflictResolutionSuffix>
-
+		<_SchemaTypist_Include>*</_SchemaTypist_Include>
+		<_SchemaTypist_Exclude>_#NONE#_</_SchemaTypist_Exclude>
 	</PropertyGroup>
 
 	

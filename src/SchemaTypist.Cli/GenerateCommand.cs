@@ -51,6 +51,8 @@ namespace SchemaTypist.Cli
                 {
                     try
                     {
+                        AnsiConsole.MarkupLine($" Inclusion rules: {config.Include}");
+                        AnsiConsole.MarkupLine($" Exclusion rules: {config.Exclude}");
                         tableStructureMap = await SchemaTypistService.ExtractDbMetadata(config);
                         await Task.Delay(500);
                         AnsiConsole.MarkupLine($"Fetched schema details.  Generating code here:  {Path.GetFullPath(config.OutputDirectory)}");
