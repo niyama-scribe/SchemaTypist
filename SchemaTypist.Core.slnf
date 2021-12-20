@@ -1,0 +1,12 @@
+{
+  "solution": {
+    "path": "SchemaTypist.sln",
+    "projects": [
+      "src\\SchemaTypist.Cli\\SchemaTypist.Cli.csproj",
+      "src\\SchemaTypist.Core\\SchemaTypist.Core.csproj",
+      "src\\SchemaTypist.MSBuild\\SchemaTypist.MSBuild.csproj",
+      "src\\SchemaTypist\\SchemaTypist.csproj",
+      "test\\SchemaTypist.Core.Tests\\SchemaTypist.Core.Tests.csproj"
+    ]
+  }
+}

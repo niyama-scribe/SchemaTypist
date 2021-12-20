@@ -1,0 +1,10 @@
+{
+  "solution": {
+    "path": "SchemaTypist.sln",
+    "projects": [
+      "samples\\SchemaTypist.Samples.MsSqlServer.StackOverflow\\SchemaTypist.Samples.MsSqlServer.StackOverflow.csproj",
+      "samples\\SchemaTypist.Samples.PostgreSql.Sakila\\SchemaTypist.Samples.PostgreSql.Sakila.csproj",
+      "src\\SchemaTypist\\SchemaTypist.csproj"
+    ]
+  }
+}
