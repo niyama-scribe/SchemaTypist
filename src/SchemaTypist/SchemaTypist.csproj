@@ -5,6 +5,7 @@
 	<LangVersion>9.0</LangVersion>
 	<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 	<PackageId>SchemaTypist</PackageId>
+	<PackageOutputPath>./nupkg</PackageOutputPath>
   </PropertyGroup>
 
 	<ItemGroup>
