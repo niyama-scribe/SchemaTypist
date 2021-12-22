@@ -10,23 +10,23 @@ namespace SchemaTypist.SqlKata
         public static Query AsInsert(this Query q, IEnumerable<ColumnDefinition> columns,
             IEnumerable<object> values)
         {
-            return q.AsInsert(columns.Select(c => c.QualifiedName__), values);
+            return q.AsInsert(columns.Select(c => c.ColumnName__), values);
         }
 
         public static Query AsInsert(this Query q, IEnumerable<KeyValuePair<ColumnDefinition, object>> values)
         {
-            return q.AsInsert(values.Select(kvp => new KeyValuePair<string, object>(kvp.Key.QualifiedName__, kvp.Value)));
+            return q.AsInsert(values.Select(kvp => new KeyValuePair<string, object>(kvp.Key.ColumnName__, kvp.Value)));
         }
 
         public static Query AsInsert(this Query q, IEnumerable<ColumnDefinition> columns,
             IEnumerable<IEnumerable<object>> rowsValues)
         {
-            return q.AsInsert(columns.Select(c => c.QualifiedName__), rowsValues);
+            return q.AsInsert(columns.Select(c => c.ColumnName__), rowsValues);
         }
 
         public static Query AsInsert(this Query q, IEnumerable<ColumnDefinition> columns, Query query)
         {
-            return q.AsInsert(columns.Select(c => c.QualifiedName__), query);
+            return q.AsInsert(columns.Select(c => c.ColumnName__), query);
         }
 
     }
