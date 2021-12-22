@@ -20,26 +20,14 @@ namespace SchemaTypist.DatabaseMetadata
 
         internal string QualifiedName__
         {
-            get
-            {
-                return _aliasable.QualifiedName__;
-            }
-            private set
-            {
-                _aliasable.QualifiedName__ = value;
-            }
+            get => _aliasable.QualifiedName__;
+            private set => _aliasable.QualifiedName__ = value;
         }
 
         internal string Alias__
         {
-            get
-            {
-                return _aliasable.Alias__;
-            }
-            private set
-            {
-                _aliasable.Alias__ = value;
-            }
+            get => _aliasable.Alias__;
+            private set => _aliasable.Alias__ = value;
         }
 
         internal string Declaration__ => AliasableDefaults.Declare(_aliasable);
