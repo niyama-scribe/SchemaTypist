@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Dapper;
 using Npgsql;
+using SchemaTypist.Generated.Domain;
 using SqlKata.Compilers;
 using SqlKata.Execution;
 
@@ -45,6 +46,14 @@ namespace SchemaTypist.Samples.PostgreSql.Sakila
             foreach (dynamic actorLastNameStat in actorLastNameStats)
             {
                 Console.WriteLine($"Last Name Trivia: There are {actorLastNameStat.actor_count} actors with the last name {actorLastNameStat.last_name}");
+            }
+
+            var rowsAffected = await actorRepository.InsertActor(new Actor() {FirstName = "Shabana", LastName = "Azmi"});
+            if (rowsAffected > 0)
+            {
+                var actor = await actorRepository.GetByName("Shabana", "Azmi");
+                Console.WriteLine($"Shabana Azmi's actor id is: {actor.ActorId}");
+                var rowsDeleted = await actorRepository.DeleteActor(actor.ActorId);
             }
 
         }
