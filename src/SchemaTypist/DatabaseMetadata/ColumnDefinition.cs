@@ -9,7 +9,7 @@ namespace SchemaTypist.DatabaseMetadata
         {
             if (string.IsNullOrEmpty(columnName)) throw new ArgumentNullException(nameof(columnName));
 
-            _aliasable = new AliasableColumnDefinition(ColumnName__, BelongsTo__);
+            _aliasable = new AliasableColumnDefinition(columnName, belongsTo);
         }
 
         public T As<T>(string alias) where T : ColumnDefinition
