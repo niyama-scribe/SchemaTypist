@@ -19,40 +19,34 @@ namespace SchemaTypist.Generated.Persistence.Mapping
 {
 	static partial class Public
 	{
-		public static partial class PaymentMapper
+		public static partial class StoreDao
 		{
 			static partial class Constants
 			{
-				public const string Amount = "amount";
-				public const string CustomerId = "customer_id";
-				public const string PaymentDate = "payment_date";
-				public const string PaymentId = "payment_id";
-				public const string RentalId = "rental_id";
-				public const string StaffId = "staff_id";
+				public const string AddressId = "address_id";
+				public const string LastUpdate = "last_update";
+				public const string ManagerStaffId = "manager_staff_id";
+				public const string StoreId = "store_id";
 			}
 
 			public static TableDefinition Table => new TableDefinition();
 
 			public partial class TableDefinition : TabularDefinition
 			{
-				public TableDefinition() : base("public.payment")
+				public TableDefinition() : base("public.store")
 				{
-					Amount = new ColumnDefinition(Constants.Amount, this);
-					CustomerId = new ColumnDefinition(Constants.CustomerId, this);
-					PaymentDate = new ColumnDefinition(Constants.PaymentDate, this);
-					PaymentId = new ColumnDefinition(Constants.PaymentId, this);
-					RentalId = new ColumnDefinition(Constants.RentalId, this);
-					StaffId = new ColumnDefinition(Constants.StaffId, this);
+					AddressId = new ColumnDefinition(Constants.AddressId, this);
+					LastUpdate = new ColumnDefinition(Constants.LastUpdate, this);
+					ManagerStaffId = new ColumnDefinition(Constants.ManagerStaffId, this);
+					StoreId = new ColumnDefinition(Constants.StoreId, this);
 				}
 
 				public TableDefinition As(string alias) => base.As<TableDefinition>(alias);
 
-				public ColumnDefinition Amount { get; private set; }
-				public ColumnDefinition CustomerId { get; private set; }
-				public ColumnDefinition PaymentDate { get; private set; }
-				public ColumnDefinition PaymentId { get; private set; }
-				public ColumnDefinition RentalId { get; private set; }
-				public ColumnDefinition StaffId { get; private set; }
+				public ColumnDefinition AddressId { get; private set; }
+				public ColumnDefinition LastUpdate { get; private set; }
+				public ColumnDefinition ManagerStaffId { get; private set; }
+				public ColumnDefinition StoreId { get; private set; }
 
 			}
 		
@@ -60,12 +54,10 @@ namespace SchemaTypist.Generated.Persistence.Mapping
 			{
 				private static Dictionary<string, string> columnMap = new Dictionary<string, string>()
 				{
-					{Constants.Amount, nameof(Payment.Amount) },
-					{Constants.CustomerId, nameof(Payment.CustomerId) },
-					{Constants.PaymentDate, nameof(Payment.PaymentDate) },
-					{Constants.PaymentId, nameof(Payment.PaymentId) },
-					{Constants.RentalId, nameof(Payment.RentalId) },
-					{Constants.StaffId, nameof(Payment.StaffId) },
+					{Constants.AddressId, nameof(Store.AddressId) },
+					{Constants.LastUpdate, nameof(Store.LastUpdate) },
+					{Constants.ManagerStaffId, nameof(Store.ManagerStaffId) },
+					{Constants.StoreId, nameof(Store.StoreId) },
 				};
 
 				static Func<Type, string, PropertyInfo> GetMapperFunc()
@@ -81,7 +73,7 @@ namespace SchemaTypist.Generated.Persistence.Mapping
 
 				public static CustomPropertyTypeMap GetTypeMap()
 				{
-					var typeMap = new CustomPropertyTypeMap(typeof(Payment), GetMapperFunc());
+					var typeMap = new CustomPropertyTypeMap(typeof(Store), GetMapperFunc());
 					CustomizeTypeMap(typeMap);
 					return typeMap;
 				}

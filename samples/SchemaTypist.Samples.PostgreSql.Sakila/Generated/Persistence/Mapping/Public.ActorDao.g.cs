@@ -19,34 +19,34 @@ namespace SchemaTypist.Generated.Persistence.Mapping
 {
 	static partial class Public
 	{
-		public static partial class StoreMapper
+		public static partial class ActorDao
 		{
 			static partial class Constants
 			{
-				public const string AddressId = "address_id";
+				public const string ActorId = "actor_id";
+				public const string FirstName = "first_name";
+				public const string LastName = "last_name";
 				public const string LastUpdate = "last_update";
-				public const string ManagerStaffId = "manager_staff_id";
-				public const string StoreId = "store_id";
 			}
 
 			public static TableDefinition Table => new TableDefinition();
 
 			public partial class TableDefinition : TabularDefinition
 			{
-				public TableDefinition() : base("public.store")
+				public TableDefinition() : base("public.actor")
 				{
-					AddressId = new ColumnDefinition(Constants.AddressId, this);
+					ActorId = new ColumnDefinition(Constants.ActorId, this);
+					FirstName = new ColumnDefinition(Constants.FirstName, this);
+					LastName = new ColumnDefinition(Constants.LastName, this);
 					LastUpdate = new ColumnDefinition(Constants.LastUpdate, this);
-					ManagerStaffId = new ColumnDefinition(Constants.ManagerStaffId, this);
-					StoreId = new ColumnDefinition(Constants.StoreId, this);
 				}
 
 				public TableDefinition As(string alias) => base.As<TableDefinition>(alias);
 
-				public ColumnDefinition AddressId { get; private set; }
+				public ColumnDefinition ActorId { get; private set; }
+				public ColumnDefinition FirstName { get; private set; }
+				public ColumnDefinition LastName { get; private set; }
 				public ColumnDefinition LastUpdate { get; private set; }
-				public ColumnDefinition ManagerStaffId { get; private set; }
-				public ColumnDefinition StoreId { get; private set; }
 
 			}
 		
@@ -54,10 +54,10 @@ namespace SchemaTypist.Generated.Persistence.Mapping
 			{
 				private static Dictionary<string, string> columnMap = new Dictionary<string, string>()
 				{
-					{Constants.AddressId, nameof(Store.AddressId) },
-					{Constants.LastUpdate, nameof(Store.LastUpdate) },
-					{Constants.ManagerStaffId, nameof(Store.ManagerStaffId) },
-					{Constants.StoreId, nameof(Store.StoreId) },
+					{Constants.ActorId, nameof(Actor.ActorId) },
+					{Constants.FirstName, nameof(Actor.FirstName) },
+					{Constants.LastName, nameof(Actor.LastName) },
+					{Constants.LastUpdate, nameof(Actor.LastUpdate) },
 				};
 
 				static Func<Type, string, PropertyInfo> GetMapperFunc()
@@ -73,7 +73,7 @@ namespace SchemaTypist.Generated.Persistence.Mapping
 
 				public static CustomPropertyTypeMap GetTypeMap()
 				{
-					var typeMap = new CustomPropertyTypeMap(typeof(Store), GetMapperFunc());
+					var typeMap = new CustomPropertyTypeMap(typeof(Actor), GetMapperFunc());
 					CustomizeTypeMap(typeMap);
 					return typeMap;
 				}

@@ -19,31 +19,31 @@ namespace SchemaTypist.Generated.Persistence.Mapping
 {
 	static partial class Public
 	{
-		public static partial class LanguageMapper
+		public static partial class FilmActorDao
 		{
 			static partial class Constants
 			{
-				public const string LanguageId = "language_id";
+				public const string ActorId = "actor_id";
+				public const string FilmId = "film_id";
 				public const string LastUpdate = "last_update";
-				public const string Name = "name";
 			}
 
 			public static TableDefinition Table => new TableDefinition();
 
 			public partial class TableDefinition : TabularDefinition
 			{
-				public TableDefinition() : base("public.language")
+				public TableDefinition() : base("public.film_actor")
 				{
-					LanguageId = new ColumnDefinition(Constants.LanguageId, this);
+					ActorId = new ColumnDefinition(Constants.ActorId, this);
+					FilmId = new ColumnDefinition(Constants.FilmId, this);
 					LastUpdate = new ColumnDefinition(Constants.LastUpdate, this);
-					Name = new ColumnDefinition(Constants.Name, this);
 				}
 
 				public TableDefinition As(string alias) => base.As<TableDefinition>(alias);
 
-				public ColumnDefinition LanguageId { get; private set; }
+				public ColumnDefinition ActorId { get; private set; }
+				public ColumnDefinition FilmId { get; private set; }
 				public ColumnDefinition LastUpdate { get; private set; }
-				public ColumnDefinition Name { get; private set; }
 
 			}
 		
@@ -51,9 +51,9 @@ namespace SchemaTypist.Generated.Persistence.Mapping
 			{
 				private static Dictionary<string, string> columnMap = new Dictionary<string, string>()
 				{
-					{Constants.LanguageId, nameof(Language.LanguageId) },
-					{Constants.LastUpdate, nameof(Language.LastUpdate) },
-					{Constants.Name, nameof(Language.Name) },
+					{Constants.ActorId, nameof(FilmActor.ActorId) },
+					{Constants.FilmId, nameof(FilmActor.FilmId) },
+					{Constants.LastUpdate, nameof(FilmActor.LastUpdate) },
 				};
 
 				static Func<Type, string, PropertyInfo> GetMapperFunc()
@@ -69,7 +69,7 @@ namespace SchemaTypist.Generated.Persistence.Mapping
 
 				public static CustomPropertyTypeMap GetTypeMap()
 				{
-					var typeMap = new CustomPropertyTypeMap(typeof(Language), GetMapperFunc());
+					var typeMap = new CustomPropertyTypeMap(typeof(FilmActor), GetMapperFunc());
 					CustomizeTypeMap(typeMap);
 					return typeMap;
 				}

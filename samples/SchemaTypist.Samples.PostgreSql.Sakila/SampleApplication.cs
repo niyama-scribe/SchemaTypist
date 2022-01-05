@@ -13,6 +13,7 @@ using SchemaTypist.SqlKata;
 using SqlKata;
 using SqlKata.Compilers;
 using SqlKata.Execution;
+using static SchemaTypist.Generated.Persistence.Mapping.Public;
 
 namespace SchemaTypist.Samples.PostgreSql.Sakila
 {
@@ -21,7 +22,7 @@ namespace SchemaTypist.Samples.PostgreSql.Sakila
         public static async Task Main(string[] args)
         {
             DapperTypeMapping.Init();
-            FilmRepository fr = new FilmRepository("Server=127.0.0.1;Port=5432;Database=postgres;User Id=postgres;Password=N3v3r!nPr0d;");
+            var fr = new FilmRepository("Server=127.0.0.1;Port=5432;Database=postgres;User Id=postgres;Password=N3v3r!nPr0d;");
 
             var films = await fr.GetRentedFilmsByReturnDate(DateTime.Parse("31 May 2005"));
             foreach (var film in films)
@@ -62,9 +63,9 @@ namespace SchemaTypist.Samples.PostgreSql.Sakila
              * where r.return_date < '2005-05-31'
              */
 
-            var r = Public.RentalMapper.Table.As("r");
-            var i = Public.InventoryMapper.Table.As("i");
-            var f = Public.FilmMapper.Table.As("f");
+            var r = RentalDao.Table.As("r");
+            var i = InventoryDao.Table.As("i");
+            var f = FilmDao.Table.As("f");
 
             var q = new Query()
                 .Select(f.Title, f.Description)
@@ -80,7 +81,7 @@ namespace SchemaTypist.Samples.PostgreSql.Sakila
 
         public async Task<Film> GetFilmByTitle(string title)
         {
-            var f = Public.FilmMapper.Table.As("f");
+            var f = FilmDao.Table.As("f");
 
             var query = new Query()
                 .Select()
@@ -93,7 +94,7 @@ namespace SchemaTypist.Samples.PostgreSql.Sakila
 
         public async Task UpdateFilmRentalRate(Film film)
         {
-            var f = Public.FilmMapper.Table;
+            var f = FilmDao.Table;
 
             var q = new Query("film")
                 .AsUpdate(new [] {f.RentalRate}, new object[] {film.RentalRate} )
@@ -107,6 +108,10 @@ namespace SchemaTypist.Samples.PostgreSql.Sakila
 
     public abstract class BaseRepository
     {
+        static BaseRepository()
+        {
+            
+        }
         private static readonly RepositoryConnector RepositoryType = RepositoryConnector.PostgreSql;
         protected QueryFactory Database { get; }
 

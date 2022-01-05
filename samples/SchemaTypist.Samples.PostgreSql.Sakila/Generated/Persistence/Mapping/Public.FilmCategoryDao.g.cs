@@ -19,28 +19,31 @@ namespace SchemaTypist.Generated.Persistence.Mapping
 {
 	static partial class Public
 	{
-		public static partial class SalesByFilmCategoryMapper
+		public static partial class FilmCategoryDao
 		{
 			static partial class Constants
 			{
-				public const string Category = "category";
-				public const string TotalSale = "total_sales";
+				public const string CategoryId = "category_id";
+				public const string FilmId = "film_id";
+				public const string LastUpdate = "last_update";
 			}
 
 			public static TableDefinition Table => new TableDefinition();
 
 			public partial class TableDefinition : TabularDefinition
 			{
-				public TableDefinition() : base("public.sales_by_film_category")
+				public TableDefinition() : base("public.film_category")
 				{
-					Category = new ColumnDefinition(Constants.Category, this);
-					TotalSale = new ColumnDefinition(Constants.TotalSale, this);
+					CategoryId = new ColumnDefinition(Constants.CategoryId, this);
+					FilmId = new ColumnDefinition(Constants.FilmId, this);
+					LastUpdate = new ColumnDefinition(Constants.LastUpdate, this);
 				}
 
 				public TableDefinition As(string alias) => base.As<TableDefinition>(alias);
 
-				public ColumnDefinition Category { get; private set; }
-				public ColumnDefinition TotalSale { get; private set; }
+				public ColumnDefinition CategoryId { get; private set; }
+				public ColumnDefinition FilmId { get; private set; }
+				public ColumnDefinition LastUpdate { get; private set; }
 
 			}
 		
@@ -48,8 +51,9 @@ namespace SchemaTypist.Generated.Persistence.Mapping
 			{
 				private static Dictionary<string, string> columnMap = new Dictionary<string, string>()
 				{
-					{Constants.Category, nameof(SalesByFilmCategory.Category) },
-					{Constants.TotalSale, nameof(SalesByFilmCategory.TotalSale) },
+					{Constants.CategoryId, nameof(FilmCategory.CategoryId) },
+					{Constants.FilmId, nameof(FilmCategory.FilmId) },
+					{Constants.LastUpdate, nameof(FilmCategory.LastUpdate) },
 				};
 
 				static Func<Type, string, PropertyInfo> GetMapperFunc()
@@ -65,7 +69,7 @@ namespace SchemaTypist.Generated.Persistence.Mapping
 
 				public static CustomPropertyTypeMap GetTypeMap()
 				{
-					var typeMap = new CustomPropertyTypeMap(typeof(SalesByFilmCategory), GetMapperFunc());
+					var typeMap = new CustomPropertyTypeMap(typeof(FilmCategory), GetMapperFunc());
 					CustomizeTypeMap(typeMap);
 					return typeMap;
 				}

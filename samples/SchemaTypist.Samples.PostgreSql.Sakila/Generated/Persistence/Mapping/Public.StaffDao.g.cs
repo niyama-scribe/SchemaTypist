@@ -19,34 +19,55 @@ namespace SchemaTypist.Generated.Persistence.Mapping
 {
 	static partial class Public
 	{
-		public static partial class ActorMapper
+		public static partial class StaffDao
 		{
 			static partial class Constants
 			{
-				public const string ActorId = "actor_id";
+				public const string Active = "active";
+				public const string AddressId = "address_id";
+				public const string Email = "email";
 				public const string FirstName = "first_name";
 				public const string LastName = "last_name";
 				public const string LastUpdate = "last_update";
+				public const string Password = "password";
+				public const string Picture = "picture";
+				public const string StaffId = "staff_id";
+				public const string StoreId = "store_id";
+				public const string Username = "username";
 			}
 
 			public static TableDefinition Table => new TableDefinition();
 
 			public partial class TableDefinition : TabularDefinition
 			{
-				public TableDefinition() : base("public.actor")
+				public TableDefinition() : base("public.staff")
 				{
-					ActorId = new ColumnDefinition(Constants.ActorId, this);
+					Active = new ColumnDefinition(Constants.Active, this);
+					AddressId = new ColumnDefinition(Constants.AddressId, this);
+					Email = new ColumnDefinition(Constants.Email, this);
 					FirstName = new ColumnDefinition(Constants.FirstName, this);
 					LastName = new ColumnDefinition(Constants.LastName, this);
 					LastUpdate = new ColumnDefinition(Constants.LastUpdate, this);
+					Password = new ColumnDefinition(Constants.Password, this);
+					Picture = new ColumnDefinition(Constants.Picture, this);
+					StaffId = new ColumnDefinition(Constants.StaffId, this);
+					StoreId = new ColumnDefinition(Constants.StoreId, this);
+					Username = new ColumnDefinition(Constants.Username, this);
 				}
 
 				public TableDefinition As(string alias) => base.As<TableDefinition>(alias);
 
-				public ColumnDefinition ActorId { get; private set; }
+				public ColumnDefinition Active { get; private set; }
+				public ColumnDefinition AddressId { get; private set; }
+				public ColumnDefinition Email { get; private set; }
 				public ColumnDefinition FirstName { get; private set; }
 				public ColumnDefinition LastName { get; private set; }
 				public ColumnDefinition LastUpdate { get; private set; }
+				public ColumnDefinition Password { get; private set; }
+				public ColumnDefinition Picture { get; private set; }
+				public ColumnDefinition StaffId { get; private set; }
+				public ColumnDefinition StoreId { get; private set; }
+				public ColumnDefinition Username { get; private set; }
 
 			}
 		
@@ -54,10 +75,17 @@ namespace SchemaTypist.Generated.Persistence.Mapping
 			{
 				private static Dictionary<string, string> columnMap = new Dictionary<string, string>()
 				{
-					{Constants.ActorId, nameof(Actor.ActorId) },
-					{Constants.FirstName, nameof(Actor.FirstName) },
-					{Constants.LastName, nameof(Actor.LastName) },
-					{Constants.LastUpdate, nameof(Actor.LastUpdate) },
+					{Constants.Active, nameof(Staff.Active) },
+					{Constants.AddressId, nameof(Staff.AddressId) },
+					{Constants.Email, nameof(Staff.Email) },
+					{Constants.FirstName, nameof(Staff.FirstName) },
+					{Constants.LastName, nameof(Staff.LastName) },
+					{Constants.LastUpdate, nameof(Staff.LastUpdate) },
+					{Constants.Password, nameof(Staff.Password) },
+					{Constants.Picture, nameof(Staff.Picture) },
+					{Constants.StaffId, nameof(Staff.StaffId) },
+					{Constants.StoreId, nameof(Staff.StoreId) },
+					{Constants.Username, nameof(Staff.Username) },
 				};
 
 				static Func<Type, string, PropertyInfo> GetMapperFunc()
@@ -73,7 +101,7 @@ namespace SchemaTypist.Generated.Persistence.Mapping
 
 				public static CustomPropertyTypeMap GetTypeMap()
 				{
-					var typeMap = new CustomPropertyTypeMap(typeof(Actor), GetMapperFunc());
+					var typeMap = new CustomPropertyTypeMap(typeof(Staff), GetMapperFunc());
 					CustomizeTypeMap(typeMap);
 					return typeMap;
 				}

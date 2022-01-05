@@ -19,34 +19,34 @@ namespace SchemaTypist.Generated.Persistence.Mapping
 {
 	static partial class Public
 	{
-		public static partial class CityMapper
+		public static partial class ActorInfoDao
 		{
 			static partial class Constants
 			{
-				public const string City0 = "city";
-				public const string CityId = "city_id";
-				public const string CountryId = "country_id";
-				public const string LastUpdate = "last_update";
+				public const string ActorId = "actor_id";
+				public const string FilmInfo = "film_info";
+				public const string FirstName = "first_name";
+				public const string LastName = "last_name";
 			}
 
 			public static TableDefinition Table => new TableDefinition();
 
 			public partial class TableDefinition : TabularDefinition
 			{
-				public TableDefinition() : base("public.city")
+				public TableDefinition() : base("public.actor_info")
 				{
-					City0 = new ColumnDefinition(Constants.City0, this);
-					CityId = new ColumnDefinition(Constants.CityId, this);
-					CountryId = new ColumnDefinition(Constants.CountryId, this);
-					LastUpdate = new ColumnDefinition(Constants.LastUpdate, this);
+					ActorId = new ColumnDefinition(Constants.ActorId, this);
+					FilmInfo = new ColumnDefinition(Constants.FilmInfo, this);
+					FirstName = new ColumnDefinition(Constants.FirstName, this);
+					LastName = new ColumnDefinition(Constants.LastName, this);
 				}
 
 				public TableDefinition As(string alias) => base.As<TableDefinition>(alias);
 
-				public ColumnDefinition City0 { get; private set; }
-				public ColumnDefinition CityId { get; private set; }
-				public ColumnDefinition CountryId { get; private set; }
-				public ColumnDefinition LastUpdate { get; private set; }
+				public ColumnDefinition ActorId { get; private set; }
+				public ColumnDefinition FilmInfo { get; private set; }
+				public ColumnDefinition FirstName { get; private set; }
+				public ColumnDefinition LastName { get; private set; }
 
 			}
 		
@@ -54,10 +54,10 @@ namespace SchemaTypist.Generated.Persistence.Mapping
 			{
 				private static Dictionary<string, string> columnMap = new Dictionary<string, string>()
 				{
-					{Constants.City0, nameof(City.City0) },
-					{Constants.CityId, nameof(City.CityId) },
-					{Constants.CountryId, nameof(City.CountryId) },
-					{Constants.LastUpdate, nameof(City.LastUpdate) },
+					{Constants.ActorId, nameof(ActorInfo.ActorId) },
+					{Constants.FilmInfo, nameof(ActorInfo.FilmInfo) },
+					{Constants.FirstName, nameof(ActorInfo.FirstName) },
+					{Constants.LastName, nameof(ActorInfo.LastName) },
 				};
 
 				static Func<Type, string, PropertyInfo> GetMapperFunc()
@@ -73,7 +73,7 @@ namespace SchemaTypist.Generated.Persistence.Mapping
 
 				public static CustomPropertyTypeMap GetTypeMap()
 				{
-					var typeMap = new CustomPropertyTypeMap(typeof(City), GetMapperFunc());
+					var typeMap = new CustomPropertyTypeMap(typeof(ActorInfo), GetMapperFunc());
 					CustomizeTypeMap(typeMap);
 					return typeMap;
 				}

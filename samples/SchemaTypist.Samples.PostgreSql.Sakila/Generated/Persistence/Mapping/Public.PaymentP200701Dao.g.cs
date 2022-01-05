@@ -19,7 +19,7 @@ namespace SchemaTypist.Generated.Persistence.Mapping
 {
 	static partial class Public
 	{
-		public static partial class PaymentP200701Mapper
+		public static partial class PaymentP200701Dao
 		{
 			static partial class Constants
 			{

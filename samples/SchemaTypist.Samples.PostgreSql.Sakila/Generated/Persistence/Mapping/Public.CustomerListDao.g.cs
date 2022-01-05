@@ -19,7 +19,7 @@ namespace SchemaTypist.Generated.Persistence.Mapping
 {
 	static partial class Public
 	{
-		public static partial class StaffListMapper
+		public static partial class CustomerListDao
 		{
 			static partial class Constants
 			{
@@ -28,6 +28,7 @@ namespace SchemaTypist.Generated.Persistence.Mapping
 				public const string Country = "country";
 				public const string Id = "id";
 				public const string Name = "name";
+				public const string Note = "notes";
 				public const string Phone = "phone";
 				public const string Sid = "sid";
 				public const string ZipCode = "zip code";
@@ -37,13 +38,14 @@ namespace SchemaTypist.Generated.Persistence.Mapping
 
 			public partial class TableDefinition : TabularDefinition
 			{
-				public TableDefinition() : base("public.staff_list")
+				public TableDefinition() : base("public.customer_list")
 				{
 					Address = new ColumnDefinition(Constants.Address, this);
 					City = new ColumnDefinition(Constants.City, this);
 					Country = new ColumnDefinition(Constants.Country, this);
 					Id = new ColumnDefinition(Constants.Id, this);
 					Name = new ColumnDefinition(Constants.Name, this);
+					Note = new ColumnDefinition(Constants.Note, this);
 					Phone = new ColumnDefinition(Constants.Phone, this);
 					Sid = new ColumnDefinition(Constants.Sid, this);
 					ZipCode = new ColumnDefinition(Constants.ZipCode, this);
@@ -56,6 +58,7 @@ namespace SchemaTypist.Generated.Persistence.Mapping
 				public ColumnDefinition Country { get; private set; }
 				public ColumnDefinition Id { get; private set; }
 				public ColumnDefinition Name { get; private set; }
+				public ColumnDefinition Note { get; private set; }
 				public ColumnDefinition Phone { get; private set; }
 				public ColumnDefinition Sid { get; private set; }
 				public ColumnDefinition ZipCode { get; private set; }
@@ -66,14 +69,15 @@ namespace SchemaTypist.Generated.Persistence.Mapping
 			{
 				private static Dictionary<string, string> columnMap = new Dictionary<string, string>()
 				{
-					{Constants.Address, nameof(StaffList.Address) },
-					{Constants.City, nameof(StaffList.City) },
-					{Constants.Country, nameof(StaffList.Country) },
-					{Constants.Id, nameof(StaffList.Id) },
-					{Constants.Name, nameof(StaffList.Name) },
-					{Constants.Phone, nameof(StaffList.Phone) },
-					{Constants.Sid, nameof(StaffList.Sid) },
-					{Constants.ZipCode, nameof(StaffList.ZipCode) },
+					{Constants.Address, nameof(CustomerList.Address) },
+					{Constants.City, nameof(CustomerList.City) },
+					{Constants.Country, nameof(CustomerList.Country) },
+					{Constants.Id, nameof(CustomerList.Id) },
+					{Constants.Name, nameof(CustomerList.Name) },
+					{Constants.Note, nameof(CustomerList.Note) },
+					{Constants.Phone, nameof(CustomerList.Phone) },
+					{Constants.Sid, nameof(CustomerList.Sid) },
+					{Constants.ZipCode, nameof(CustomerList.ZipCode) },
 				};
 
 				static Func<Type, string, PropertyInfo> GetMapperFunc()
@@ -89,7 +93,7 @@ namespace SchemaTypist.Generated.Persistence.Mapping
 
 				public static CustomPropertyTypeMap GetTypeMap()
 				{
-					var typeMap = new CustomPropertyTypeMap(typeof(StaffList), GetMapperFunc());
+					var typeMap = new CustomPropertyTypeMap(typeof(CustomerList), GetMapperFunc());
 					CustomizeTypeMap(typeMap);
 					return typeMap;
 				}

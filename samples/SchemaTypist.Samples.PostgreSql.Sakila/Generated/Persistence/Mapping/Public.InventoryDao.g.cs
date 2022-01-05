@@ -19,31 +19,34 @@ namespace SchemaTypist.Generated.Persistence.Mapping
 {
 	static partial class Public
 	{
-		public static partial class SalesByStoreMapper
+		public static partial class InventoryDao
 		{
 			static partial class Constants
 			{
-				public const string Manager = "manager";
-				public const string Store = "store";
-				public const string TotalSale = "total_sales";
+				public const string FilmId = "film_id";
+				public const string InventoryId = "inventory_id";
+				public const string LastUpdate = "last_update";
+				public const string StoreId = "store_id";
 			}
 
 			public static TableDefinition Table => new TableDefinition();
 
 			public partial class TableDefinition : TabularDefinition
 			{
-				public TableDefinition() : base("public.sales_by_store")
+				public TableDefinition() : base("public.inventory")
 				{
-					Manager = new ColumnDefinition(Constants.Manager, this);
-					Store = new ColumnDefinition(Constants.Store, this);
-					TotalSale = new ColumnDefinition(Constants.TotalSale, this);
+					FilmId = new ColumnDefinition(Constants.FilmId, this);
+					InventoryId = new ColumnDefinition(Constants.InventoryId, this);
+					LastUpdate = new ColumnDefinition(Constants.LastUpdate, this);
+					StoreId = new ColumnDefinition(Constants.StoreId, this);
 				}
 
 				public TableDefinition As(string alias) => base.As<TableDefinition>(alias);
 
-				public ColumnDefinition Manager { get; private set; }
-				public ColumnDefinition Store { get; private set; }
-				public ColumnDefinition TotalSale { get; private set; }
+				public ColumnDefinition FilmId { get; private set; }
+				public ColumnDefinition InventoryId { get; private set; }
+				public ColumnDefinition LastUpdate { get; private set; }
+				public ColumnDefinition StoreId { get; private set; }
 
 			}
 		
@@ -51,9 +54,10 @@ namespace SchemaTypist.Generated.Persistence.Mapping
 			{
 				private static Dictionary<string, string> columnMap = new Dictionary<string, string>()
 				{
-					{Constants.Manager, nameof(SalesByStore.Manager) },
-					{Constants.Store, nameof(SalesByStore.Store) },
-					{Constants.TotalSale, nameof(SalesByStore.TotalSale) },
+					{Constants.FilmId, nameof(Inventory.FilmId) },
+					{Constants.InventoryId, nameof(Inventory.InventoryId) },
+					{Constants.LastUpdate, nameof(Inventory.LastUpdate) },
+					{Constants.StoreId, nameof(Inventory.StoreId) },
 				};
 
 				static Func<Type, string, PropertyInfo> GetMapperFunc()
@@ -69,7 +73,7 @@ namespace SchemaTypist.Generated.Persistence.Mapping
 
 				public static CustomPropertyTypeMap GetTypeMap()
 				{
-					var typeMap = new CustomPropertyTypeMap(typeof(SalesByStore), GetMapperFunc());
+					var typeMap = new CustomPropertyTypeMap(typeof(Inventory), GetMapperFunc());
 					CustomizeTypeMap(typeMap);
 					return typeMap;
 				}

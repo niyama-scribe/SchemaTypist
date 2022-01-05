@@ -19,7 +19,7 @@ namespace SchemaTypist.Generated.Persistence.Mapping
 {
 	static partial class Public
 	{
-		public static partial class AddressMapper
+		public static partial class AddressDao
 		{
 			static partial class Constants
 			{

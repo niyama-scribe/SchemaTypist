@@ -19,7 +19,7 @@ namespace SchemaTypist.Generated.Persistence.Mapping
 {
 	static partial class Public
 	{
-		public static partial class FilmMapper
+		public static partial class FilmDao
 		{
 			static partial class Constants
 			{

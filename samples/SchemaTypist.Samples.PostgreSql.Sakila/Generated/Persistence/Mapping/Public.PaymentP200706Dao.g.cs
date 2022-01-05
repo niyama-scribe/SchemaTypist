@@ -19,7 +19,7 @@ namespace SchemaTypist.Generated.Persistence.Mapping
 {
 	static partial class Public
 	{
-		public static partial class PaymentP200704Mapper
+		public static partial class PaymentP200706Dao
 		{
 			static partial class Constants
 			{
@@ -35,7 +35,7 @@ namespace SchemaTypist.Generated.Persistence.Mapping
 
 			public partial class TableDefinition : TabularDefinition
 			{
-				public TableDefinition() : base("public.payment_p2007_04")
+				public TableDefinition() : base("public.payment_p2007_06")
 				{
 					Amount = new ColumnDefinition(Constants.Amount, this);
 					CustomerId = new ColumnDefinition(Constants.CustomerId, this);
@@ -60,12 +60,12 @@ namespace SchemaTypist.Generated.Persistence.Mapping
 			{
 				private static Dictionary<string, string> columnMap = new Dictionary<string, string>()
 				{
-					{Constants.Amount, nameof(PaymentP200704.Amount) },
-					{Constants.CustomerId, nameof(PaymentP200704.CustomerId) },
-					{Constants.PaymentDate, nameof(PaymentP200704.PaymentDate) },
-					{Constants.PaymentId, nameof(PaymentP200704.PaymentId) },
-					{Constants.RentalId, nameof(PaymentP200704.RentalId) },
-					{Constants.StaffId, nameof(PaymentP200704.StaffId) },
+					{Constants.Amount, nameof(PaymentP200706.Amount) },
+					{Constants.CustomerId, nameof(PaymentP200706.CustomerId) },
+					{Constants.PaymentDate, nameof(PaymentP200706.PaymentDate) },
+					{Constants.PaymentId, nameof(PaymentP200706.PaymentId) },
+					{Constants.RentalId, nameof(PaymentP200706.RentalId) },
+					{Constants.StaffId, nameof(PaymentP200706.StaffId) },
 				};
 
 				static Func<Type, string, PropertyInfo> GetMapperFunc()
@@ -81,7 +81,7 @@ namespace SchemaTypist.Generated.Persistence.Mapping
 
 				public static CustomPropertyTypeMap GetTypeMap()
 				{
-					var typeMap = new CustomPropertyTypeMap(typeof(PaymentP200704), GetMapperFunc());
+					var typeMap = new CustomPropertyTypeMap(typeof(PaymentP200706), GetMapperFunc());
 					CustomizeTypeMap(typeMap);
 					return typeMap;
 				}

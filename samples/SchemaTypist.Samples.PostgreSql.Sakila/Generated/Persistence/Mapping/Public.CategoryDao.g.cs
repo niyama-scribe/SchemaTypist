@@ -19,34 +19,31 @@ namespace SchemaTypist.Generated.Persistence.Mapping
 {
 	static partial class Public
 	{
-		public static partial class ActorInfoMapper
+		public static partial class CategoryDao
 		{
 			static partial class Constants
 			{
-				public const string ActorId = "actor_id";
-				public const string FilmInfo = "film_info";
-				public const string FirstName = "first_name";
-				public const string LastName = "last_name";
+				public const string CategoryId = "category_id";
+				public const string LastUpdate = "last_update";
+				public const string Name = "name";
 			}
 
 			public static TableDefinition Table => new TableDefinition();
 
 			public partial class TableDefinition : TabularDefinition
 			{
-				public TableDefinition() : base("public.actor_info")
+				public TableDefinition() : base("public.category")
 				{
-					ActorId = new ColumnDefinition(Constants.ActorId, this);
-					FilmInfo = new ColumnDefinition(Constants.FilmInfo, this);
-					FirstName = new ColumnDefinition(Constants.FirstName, this);
-					LastName = new ColumnDefinition(Constants.LastName, this);
+					CategoryId = new ColumnDefinition(Constants.CategoryId, this);
+					LastUpdate = new ColumnDefinition(Constants.LastUpdate, this);
+					Name = new ColumnDefinition(Constants.Name, this);
 				}
 
 				public TableDefinition As(string alias) => base.As<TableDefinition>(alias);
 
-				public ColumnDefinition ActorId { get; private set; }
-				public ColumnDefinition FilmInfo { get; private set; }
-				public ColumnDefinition FirstName { get; private set; }
-				public ColumnDefinition LastName { get; private set; }
+				public ColumnDefinition CategoryId { get; private set; }
+				public ColumnDefinition LastUpdate { get; private set; }
+				public ColumnDefinition Name { get; private set; }
 
 			}
 		
@@ -54,10 +51,9 @@ namespace SchemaTypist.Generated.Persistence.Mapping
 			{
 				private static Dictionary<string, string> columnMap = new Dictionary<string, string>()
 				{
-					{Constants.ActorId, nameof(ActorInfo.ActorId) },
-					{Constants.FilmInfo, nameof(ActorInfo.FilmInfo) },
-					{Constants.FirstName, nameof(ActorInfo.FirstName) },
-					{Constants.LastName, nameof(ActorInfo.LastName) },
+					{Constants.CategoryId, nameof(Category.CategoryId) },
+					{Constants.LastUpdate, nameof(Category.LastUpdate) },
+					{Constants.Name, nameof(Category.Name) },
 				};
 
 				static Func<Type, string, PropertyInfo> GetMapperFunc()
@@ -73,7 +69,7 @@ namespace SchemaTypist.Generated.Persistence.Mapping
 
 				public static CustomPropertyTypeMap GetTypeMap()
 				{
-					var typeMap = new CustomPropertyTypeMap(typeof(ActorInfo), GetMapperFunc());
+					var typeMap = new CustomPropertyTypeMap(typeof(Category), GetMapperFunc());
 					CustomizeTypeMap(typeMap);
 					return typeMap;
 				}

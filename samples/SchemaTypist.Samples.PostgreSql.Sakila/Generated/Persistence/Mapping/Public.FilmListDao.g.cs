@@ -19,7 +19,7 @@ namespace SchemaTypist.Generated.Persistence.Mapping
 {
 	static partial class Public
 	{
-		public static partial class NicerButSlowerFilmListMapper
+		public static partial class FilmListDao
 		{
 			static partial class Constants
 			{
@@ -37,7 +37,7 @@ namespace SchemaTypist.Generated.Persistence.Mapping
 
 			public partial class TableDefinition : TabularDefinition
 			{
-				public TableDefinition() : base("public.nicer_but_slower_film_list")
+				public TableDefinition() : base("public.film_list")
 				{
 					Actor = new ColumnDefinition(Constants.Actor, this);
 					Category = new ColumnDefinition(Constants.Category, this);
@@ -66,14 +66,14 @@ namespace SchemaTypist.Generated.Persistence.Mapping
 			{
 				private static Dictionary<string, string> columnMap = new Dictionary<string, string>()
 				{
-					{Constants.Actor, nameof(NicerButSlowerFilmList.Actor) },
-					{Constants.Category, nameof(NicerButSlowerFilmList.Category) },
-					{Constants.Description, nameof(NicerButSlowerFilmList.Description) },
-					{Constants.Fid, nameof(NicerButSlowerFilmList.Fid) },
-					{Constants.Length, nameof(NicerButSlowerFilmList.Length) },
-					{Constants.Price, nameof(NicerButSlowerFilmList.Price) },
-					{Constants.Rating, nameof(NicerButSlowerFilmList.Rating) },
-					{Constants.Title, nameof(NicerButSlowerFilmList.Title) },
+					{Constants.Actor, nameof(FilmList.Actor) },
+					{Constants.Category, nameof(FilmList.Category) },
+					{Constants.Description, nameof(FilmList.Description) },
+					{Constants.Fid, nameof(FilmList.Fid) },
+					{Constants.Length, nameof(FilmList.Length) },
+					{Constants.Price, nameof(FilmList.Price) },
+					{Constants.Rating, nameof(FilmList.Rating) },
+					{Constants.Title, nameof(FilmList.Title) },
 				};
 
 				static Func<Type, string, PropertyInfo> GetMapperFunc()
@@ -89,7 +89,7 @@ namespace SchemaTypist.Generated.Persistence.Mapping
 
 				public static CustomPropertyTypeMap GetTypeMap()
 				{
-					var typeMap = new CustomPropertyTypeMap(typeof(NicerButSlowerFilmList), GetMapperFunc());
+					var typeMap = new CustomPropertyTypeMap(typeof(FilmList), GetMapperFunc());
 					CustomizeTypeMap(typeMap);
 					return typeMap;
 				}

@@ -19,31 +19,46 @@ namespace SchemaTypist.Generated.Persistence.Mapping
 {
 	static partial class Public
 	{
-		public static partial class CategoryMapper
+		public static partial class StaffListDao
 		{
 			static partial class Constants
 			{
-				public const string CategoryId = "category_id";
-				public const string LastUpdate = "last_update";
+				public const string Address = "address";
+				public const string City = "city";
+				public const string Country = "country";
+				public const string Id = "id";
 				public const string Name = "name";
+				public const string Phone = "phone";
+				public const string Sid = "sid";
+				public const string ZipCode = "zip code";
 			}
 
 			public static TableDefinition Table => new TableDefinition();
 
 			public partial class TableDefinition : TabularDefinition
 			{
-				public TableDefinition() : base("public.category")
+				public TableDefinition() : base("public.staff_list")
 				{
-					CategoryId = new ColumnDefinition(Constants.CategoryId, this);
-					LastUpdate = new ColumnDefinition(Constants.LastUpdate, this);
+					Address = new ColumnDefinition(Constants.Address, this);
+					City = new ColumnDefinition(Constants.City, this);
+					Country = new ColumnDefinition(Constants.Country, this);
+					Id = new ColumnDefinition(Constants.Id, this);
 					Name = new ColumnDefinition(Constants.Name, this);
+					Phone = new ColumnDefinition(Constants.Phone, this);
+					Sid = new ColumnDefinition(Constants.Sid, this);
+					ZipCode = new ColumnDefinition(Constants.ZipCode, this);
 				}
 
 				public TableDefinition As(string alias) => base.As<TableDefinition>(alias);
 
-				public ColumnDefinition CategoryId { get; private set; }
-				public ColumnDefinition LastUpdate { get; private set; }
+				public ColumnDefinition Address { get; private set; }
+				public ColumnDefinition City { get; private set; }
+				public ColumnDefinition Country { get; private set; }
+				public ColumnDefinition Id { get; private set; }
 				public ColumnDefinition Name { get; private set; }
+				public ColumnDefinition Phone { get; private set; }
+				public ColumnDefinition Sid { get; private set; }
+				public ColumnDefinition ZipCode { get; private set; }
 
 			}
 		
@@ -51,9 +66,14 @@ namespace SchemaTypist.Generated.Persistence.Mapping
 			{
 				private static Dictionary<string, string> columnMap = new Dictionary<string, string>()
 				{
-					{Constants.CategoryId, nameof(Category.CategoryId) },
-					{Constants.LastUpdate, nameof(Category.LastUpdate) },
-					{Constants.Name, nameof(Category.Name) },
+					{Constants.Address, nameof(StaffList.Address) },
+					{Constants.City, nameof(StaffList.City) },
+					{Constants.Country, nameof(StaffList.Country) },
+					{Constants.Id, nameof(StaffList.Id) },
+					{Constants.Name, nameof(StaffList.Name) },
+					{Constants.Phone, nameof(StaffList.Phone) },
+					{Constants.Sid, nameof(StaffList.Sid) },
+					{Constants.ZipCode, nameof(StaffList.ZipCode) },
 				};
 
 				static Func<Type, string, PropertyInfo> GetMapperFunc()
@@ -69,7 +89,7 @@ namespace SchemaTypist.Generated.Persistence.Mapping
 
 				public static CustomPropertyTypeMap GetTypeMap()
 				{
-					var typeMap = new CustomPropertyTypeMap(typeof(Category), GetMapperFunc());
+					var typeMap = new CustomPropertyTypeMap(typeof(StaffList), GetMapperFunc());
 					CustomizeTypeMap(typeMap);
 					return typeMap;
 				}

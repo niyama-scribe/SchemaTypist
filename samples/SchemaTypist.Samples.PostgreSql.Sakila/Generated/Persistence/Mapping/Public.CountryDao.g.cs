@@ -19,34 +19,31 @@ namespace SchemaTypist.Generated.Persistence.Mapping
 {
 	static partial class Public
 	{
-		public static partial class InventoryMapper
+		public static partial class CountryDao
 		{
 			static partial class Constants
 			{
-				public const string FilmId = "film_id";
-				public const string InventoryId = "inventory_id";
+				public const string Country0 = "country";
+				public const string CountryId = "country_id";
 				public const string LastUpdate = "last_update";
-				public const string StoreId = "store_id";
 			}
 
 			public static TableDefinition Table => new TableDefinition();
 
 			public partial class TableDefinition : TabularDefinition
 			{
-				public TableDefinition() : base("public.inventory")
+				public TableDefinition() : base("public.country")
 				{
-					FilmId = new ColumnDefinition(Constants.FilmId, this);
-					InventoryId = new ColumnDefinition(Constants.InventoryId, this);
+					Country0 = new ColumnDefinition(Constants.Country0, this);
+					CountryId = new ColumnDefinition(Constants.CountryId, this);
 					LastUpdate = new ColumnDefinition(Constants.LastUpdate, this);
-					StoreId = new ColumnDefinition(Constants.StoreId, this);
 				}
 
 				public TableDefinition As(string alias) => base.As<TableDefinition>(alias);
 
-				public ColumnDefinition FilmId { get; private set; }
-				public ColumnDefinition InventoryId { get; private set; }
+				public ColumnDefinition Country0 { get; private set; }
+				public ColumnDefinition CountryId { get; private set; }
 				public ColumnDefinition LastUpdate { get; private set; }
-				public ColumnDefinition StoreId { get; private set; }
 
 			}
 		
@@ -54,10 +51,9 @@ namespace SchemaTypist.Generated.Persistence.Mapping
 			{
 				private static Dictionary<string, string> columnMap = new Dictionary<string, string>()
 				{
-					{Constants.FilmId, nameof(Inventory.FilmId) },
-					{Constants.InventoryId, nameof(Inventory.InventoryId) },
-					{Constants.LastUpdate, nameof(Inventory.LastUpdate) },
-					{Constants.StoreId, nameof(Inventory.StoreId) },
+					{Constants.Country0, nameof(Country.Country0) },
+					{Constants.CountryId, nameof(Country.CountryId) },
+					{Constants.LastUpdate, nameof(Country.LastUpdate) },
 				};
 
 				static Func<Type, string, PropertyInfo> GetMapperFunc()
@@ -73,7 +69,7 @@ namespace SchemaTypist.Generated.Persistence.Mapping
 
 				public static CustomPropertyTypeMap GetTypeMap()
 				{
-					var typeMap = new CustomPropertyTypeMap(typeof(Inventory), GetMapperFunc());
+					var typeMap = new CustomPropertyTypeMap(typeof(Country), GetMapperFunc());
 					CustomizeTypeMap(typeMap);
 					return typeMap;
 				}
