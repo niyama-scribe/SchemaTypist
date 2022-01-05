@@ -4,7 +4,6 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using SchemaTypist.DatabaseMetadata;
-using SchemaTypist.Extensions;
 using SchemaTypist.Generated.Domain;
 using SchemaTypist.Generated.Persistence.Mapping;
 using SchemaTypist.SqlKata;

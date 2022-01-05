@@ -8,7 +8,6 @@ using SchemaTypist.DatabaseMetadata;
 using SchemaTypist.Generated.Domain;
 using SqlKata;
 using SchemaTypist.SqlKata;
-using SchemaTypist.Extensions;
 using static SchemaTypist.Generated.Persistence.Mapping.Public;
 
 namespace SchemaTypist.Samples.PostgreSql.Sakila
