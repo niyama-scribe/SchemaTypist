@@ -21,7 +21,6 @@ namespace SchemaTypist.Samples.PostgreSql.Sakila
     {
         public static async Task Main(string[] args)
         {
-            DapperTypeMapping.Init();
             var fr = new FilmRepository("Server=127.0.0.1;Port=5432;Database=postgres;User Id=postgres;Password=N3v3r!nPr0d;");
 
             var films = await fr.GetRentedFilmsByReturnDate(DateTime.Parse("31 May 2005"));
@@ -110,7 +109,7 @@ namespace SchemaTypist.Samples.PostgreSql.Sakila
     {
         static BaseRepository()
         {
-            
+            DapperTypeMapping.Init();
         }
         private static readonly RepositoryConnector RepositoryType = RepositoryConnector.PostgreSql;
         protected QueryFactory Database { get; }
