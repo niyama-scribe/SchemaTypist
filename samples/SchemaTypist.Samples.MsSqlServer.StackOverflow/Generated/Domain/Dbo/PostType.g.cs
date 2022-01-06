@@ -9,9 +9,8 @@
 
 using System;
 using System.Collections.Generic;
-using System.Reflection;
 
-namespace SchemaTypist.Generated.Domain
+namespace SchemaTypist.Generated.Domain.Dbo
 {
 	public partial class PostType
 	{

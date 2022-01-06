@@ -12,14 +12,14 @@ using SqlKata.Execution;
 
 namespace SchemaTypist.Core.Schemata
 {
-    static class SchemataService
+    internal class SchemataService : ISchemataService
     {
         static SchemataService()
         {
             DapperTypeMapping.Init();
         }
 
-        public static async Task<IEnumerable<ColumnsDto>> ExtractDbMetadata(CodeGenConfig config)
+        public async Task<IEnumerable<ColumnsDto>> ExtractDbMetadata(CodeGenConfig config)
         {
             var metadataQueries = new SchemataQueries(config);
             var (connection, compiler) = GetDbSpecificLibraries(config);
@@ -41,5 +41,10 @@ namespace SchemaTypist.Core.Schemata
             };
             return retVal;
         }
+    }
+
+    internal interface ISchemataService
+    {
+        Task<IEnumerable<ColumnsDto>> ExtractDbMetadata(CodeGenConfig config);
     }
 }

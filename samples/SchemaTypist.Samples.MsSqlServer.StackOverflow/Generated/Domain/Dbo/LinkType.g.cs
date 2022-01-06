@@ -9,13 +9,12 @@
 
 using System;
 using System.Collections.Generic;
-using System.Reflection;
 
-namespace SchemaTypist.Generated.Domain
+namespace SchemaTypist.Generated.Domain.Dbo
 {
-	public partial class VoteType
+	public partial class LinkType
 	{
 		public int Id { get; set; }
-		public string Name { get; set; }
+		public string Type { get; set; }
 	}
 }

@@ -9,17 +9,16 @@
 
 using System;
 using System.Collections.Generic;
-using System.Reflection;
 
-namespace SchemaTypist.Generated.Domain
+namespace SchemaTypist.Generated.Domain.Dbo
 {
-	public partial class Comment
+	public partial class Vote
 	{
+		public int BountyAmount { get; set; }
 		public DateTime CreationDate { get; set; }
 		public int Id { get; set; }
 		public int PostId { get; set; }
-		public int Score { get; set; }
-		public string Text { get; set; }
 		public int UserId { get; set; }
+		public int VoteTypeId { get; set; }
 	}
 }

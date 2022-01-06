@@ -33,7 +33,6 @@ namespace SchemaTypist.Cli
             config.EntityNameSuffix = settings.EntityNameSuffix ?? config.EntityNameSuffix;
             config.GeneratePersistenceOnly = settings.PersistenceOnly;
             config.PersistenceNamespace = settings.PersistenceNamespace ?? config.PersistenceNamespace;
-            config.MappingNamespace = settings.MappingNamespace ?? config.MappingNamespace;
             config.MapperNameSuffix = settings.MappingNameSuffix ?? config.MapperNameSuffix;
             config.RootNamespace = settings.RootNamespace ?? config.RootNamespace;
             config.Include = settings.Include ?? config.Include;
@@ -135,11 +134,6 @@ namespace SchemaTypist.Cli
             [CommandOption("--persistence-namespace")]
             [DefaultValue("Persistence")] 
             public string PersistenceNamespace { get; set; }
-
-            [Description("This is the namespace for database metadata mapping classes within the persistence layer.")]
-            [CommandOption("--mapping-namespace")]
-            [DefaultValue("Mapping")] 
-            public string MappingNamespace { get; set; }
 
             [CommandOption("--mapping-name-suffix")]
             [DefaultValue("Dao")]

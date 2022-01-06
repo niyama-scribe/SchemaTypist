@@ -8,12 +8,13 @@ using AutoFixture.Xunit2;
 using FluentAssertions;
 using SchemaTypist.Core.Config;
 using Xunit;
-using SchemaTypist.Core.Language;
+using SchemaTypist.Core.Naming;
 
 namespace SchemaTypist.Core.Tests.Language
 {
     public class LanguageServiceTests
     {
+        private INamingService _sut = new LanguageService();
         [Fact]
         public void ConvertCatalogName_ConflictFreeName_ReturnsPascalizedName()
         {
@@ -25,7 +26,7 @@ namespace SchemaTypist.Core.Tests.Language
                 .Create();
 
             //Act
-            var catalogName = LanguageService.ConvertCatalogName(proposedName, config);
+            var catalogName = _sut.ConvertCatalogName(proposedName, config);
 
             //Assert
             catalogName.Should().StartWith("SomeName").And.NotContain($"{config.NamingConflictResolutionSuffix}");
@@ -43,7 +44,7 @@ namespace SchemaTypist.Core.Tests.Language
                 .Create();
 
             //Act
-            var catalogName = LanguageService.ConvertCatalogName(proposedName, config);
+            var catalogName = _sut.ConvertCatalogName(proposedName, config);
 
             //Assert
             catalogName.Should().Be($"IntPtr{config.NamingConflictResolutionSuffix}");
@@ -61,7 +62,7 @@ namespace SchemaTypist.Core.Tests.Language
                 .Create();
 
             //Act
-            var catalogName = LanguageService.ConvertCatalogName(proposedName, config);
+            var catalogName = _sut.ConvertCatalogName(proposedName, config);
 
             //Assert
             catalogName.Should().Be("Internal");
@@ -80,7 +81,7 @@ namespace SchemaTypist.Core.Tests.Language
                 .Create();
 
             //Act
-            var catalogName = LanguageService.ConvertCatalogName(proposedName, config);
+            var catalogName = _sut.ConvertCatalogName(proposedName, config);
 
             //Assert
             catalogName.Should().Be("Constraint");

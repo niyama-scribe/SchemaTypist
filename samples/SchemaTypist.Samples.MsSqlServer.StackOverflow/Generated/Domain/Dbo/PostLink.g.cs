@@ -9,13 +9,15 @@
 
 using System;
 using System.Collections.Generic;
-using System.Reflection;
 
-namespace SchemaTypist.Generated.Domain
+namespace SchemaTypist.Generated.Domain.Dbo
 {
-	public partial class LinkType
+	public partial class PostLink
 	{
+		public DateTime CreationDate { get; set; }
 		public int Id { get; set; }
-		public string Type { get; set; }
+		public int LinkTypeId { get; set; }
+		public int PostId { get; set; }
+		public int RelatedPostId { get; set; }
 	}
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using SchemaTypist.Core.Config;
 using SchemaTypist.Core.Model;
+using SchemaTypist.Core.Naming;
 using SchemaTypist.Core.Schemata;
 using SchemaTypist.Core.Utilities;
 using Scriban;
@@ -17,6 +18,8 @@ namespace SchemaTypist.Core
         private static readonly Template ModelTemplate;
         private static readonly Template MappingTemplate;
         private static readonly Template DapperMappingTemplate;
+        private static readonly ISchemataConverterService SchemataConverter = new SchemataConverterService(new LanguageService());
+        private static readonly ISchemataService SchemataExtractor = new SchemataService();
         static SchemaTypistService()
         {
             var modelTemplateFile = "Entities.sbntxt";
@@ -79,9 +82,9 @@ namespace SchemaTypist.Core
 
         public static async Task<Dictionary<string, TabularStructure>> ExtractDbMetadata(CodeGenConfig config)
         {
-            var columnsDtos = await SchemataService.ExtractDbMetadata(config);
+            var columnsDtos = await SchemataExtractor.ExtractDbMetadata(config);
             //Convert to code generator model
-            return ModelConverterService.Convert(columnsDtos, config);
+            return SchemataConverter.Convert(columnsDtos, config);
         }
         public static void Generate(TabularStructure tab, CodeGenConfig config)
         {

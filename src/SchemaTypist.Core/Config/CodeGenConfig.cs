@@ -25,8 +25,7 @@ namespace SchemaTypist.Core.Config
         public string EntityNameSuffix { get; set; } = "";
         public bool GeneratePersistenceOnly { get; set; } = false;
         public string PersistenceNamespace { get; set; } = "Persistence";
-        public string MappingNamespace { get; set; } = "Mapping";
-        public string MapperNameSuffix { get; set; } = "Mapper";
+        public string MapperNameSuffix { get; set; } = "Dao";
         public string RootNamespace { get; set; } = "SchemaTypist.Generated";
         public string NamingConflictResolutionSuffix { get; set; } = "0";
         

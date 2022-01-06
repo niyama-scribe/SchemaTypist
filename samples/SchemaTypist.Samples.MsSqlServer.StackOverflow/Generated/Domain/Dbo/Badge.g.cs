@@ -9,17 +9,14 @@
 
 using System;
 using System.Collections.Generic;
-using System.Reflection;
 
-namespace SchemaTypist.Generated.Domain
+namespace SchemaTypist.Generated.Domain.Dbo
 {
-	public partial class Vote
+	public partial class Badge
 	{
-		public int BountyAmount { get; set; }
-		public DateTime CreationDate { get; set; }
+		public DateTime Date { get; set; }
 		public int Id { get; set; }
-		public int PostId { get; set; }
+		public string Name { get; set; }
 		public int UserId { get; set; }
-		public int VoteTypeId { get; set; }
 	}
 }

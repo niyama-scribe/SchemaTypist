@@ -4,8 +4,9 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using SchemaTypist.DatabaseMetadata;
-using SchemaTypist.Generated.Domain;
-using SchemaTypist.Generated.Persistence.Mapping;
+using SchemaTypist.Generated.Domain.Dbo;
+using SchemaTypist.Generated.Persistence;
+using SchemaTypist.Generated.Persistence.Dbo;
 using SchemaTypist.SqlKata;
 using SqlKata;
 using SqlKata.Compilers;
@@ -31,8 +32,8 @@ namespace SchemaTypist.Samples.MsSqlServer.StackOverflow
      {
          public async Task<IEnumerable<Post>> GetPostsByUser(string userName)
          {
-             var p = Dbo.PostMapper.Table.As("c");
-             var u = Dbo.UserMapper.Table.As("tc");
+             var p = PostDao.Table.As("c");
+             var u = UserDao.Table.As("tc");
      
              var q = new Query()
                  .Select(p.Body, p.Id, p.LastActivityDate, p.Title)

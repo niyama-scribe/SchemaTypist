@@ -12,8 +12,7 @@
 		<_SchemaTypist_EntityNameSuffix></_SchemaTypist_EntityNameSuffix>
 		<_SchemaTypist_GeneratePersistenceOnly>false</_SchemaTypist_GeneratePersistenceOnly>
 		<_SchemaTypist_PersistenceNamespace>Persistence</_SchemaTypist_PersistenceNamespace>
-		<_SchemaTypist_MappingNamespace>Mapping</_SchemaTypist_MappingNamespace>
-		<_SchemaTypist_MapperNameSuffix>Mapper</_SchemaTypist_MapperNameSuffix>
+		<_SchemaTypist_MapperNameSuffix>Dao</_SchemaTypist_MapperNameSuffix>
 		<_SchemaTypist_RootNamespace>SchemaTypist.Generated</_SchemaTypist_RootNamespace>
 		<_SchemaTypist_NamingConflictResolutionSuffix>0</_SchemaTypist_NamingConflictResolutionSuffix>
 		<_SchemaTypist_Include>*</_SchemaTypist_Include>

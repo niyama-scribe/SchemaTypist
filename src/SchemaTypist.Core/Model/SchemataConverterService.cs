@@ -3,14 +3,21 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using SchemaTypist.Core.Config;
 using SchemaTypist.Core.Language;
+using SchemaTypist.Core.Naming;
 using SchemaTypist.Core.Schemata.Dto;
 using SchemaTypist.Core.SqlVendors;
 
 namespace SchemaTypist.Core.Model
 {
-    static class ModelConverterService
+    internal class SchemataConverterService : ISchemataConverterService
     {
-        public static Dictionary<string, TabularStructure> Convert(IEnumerable<ColumnsDto> fromColumns, CodeGenConfig config)
+        private readonly INamingService _namingService;
+
+        public SchemataConverterService(INamingService namingService)
+        {
+            _namingService = namingService;
+        }
+        public Dictionary<string, TabularStructure> Convert(IEnumerable<ColumnsDto> fromColumns, CodeGenConfig config)
         {
             //Convert
             var includeRegex = string.IsNullOrWhiteSpace(config.Include) ? null : 
@@ -35,10 +42,10 @@ namespace SchemaTypist.Core.Model
                     });
 
                 var tabStructure = tableStructureMap[key];
-                tabStructure.Catalog = LanguageService.ConvertCatalogName(col.TableCatalog, config);
-                tabStructure.Schema = LanguageService.ConvertSchemaName(col.TableSchema, config,
+                tabStructure.Catalog = _namingService.ConvertCatalogName(col.TableCatalog, config);
+                tabStructure.Schema = _namingService.ConvertSchemaName(col.TableSchema, config,
                     tabStructure.Catalog);
-                tabStructure.Name = LanguageService.ConvertTableName(col.TableName, config, tabStructure.Schema);
+                tabStructure.Name = _namingService.ConvertTableName(col.TableName, config, tabStructure.Schema);
 
 
                 tabStructure.SqlQualifiedName = SqlVendor.BuildQualifiedName(tabStructure, config);
@@ -49,7 +56,7 @@ namespace SchemaTypist.Core.Model
                 {
                     SqlName = col.ColumnName,
                     SqlDataType = col.DataType,
-                    Name = LanguageService.ConvertColumnName(col.ColumnName, config, new HashSet<string>() {tabStructure.Name}),
+                    Name = _namingService.ConvertColumnName(col.ColumnName, config, new HashSet<string>() {tabStructure.Name}),
                     IsNullable = col.IsNullable == "Yes",
                     DataType = DetermineDotNetDataType(col.DataType, col.IsNullable == "Yes", config),
                 });
@@ -61,5 +68,10 @@ namespace SchemaTypist.Core.Model
         {
             return SqlVendor.DetermineDotNetDataType(sqlDataType, isNullable, config);
         }
+    }
+
+    internal interface ISchemataConverterService
+    {
+        Dictionary<string, TabularStructure> Convert(IEnumerable<ColumnsDto> fromColumns, CodeGenConfig config);
     }
 }
