@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using SchemaTypist.Core.Config;
 using SchemaTypist.Core.Model;
 using SchemaTypist.Core.Schemata;
+using SchemaTypist.Core.Utilities;
 using Scriban;
 using Scriban.Runtime;
 
@@ -13,78 +13,76 @@ namespace SchemaTypist.Core
 {
     public class SchemaTypistService
     {
-        public static async Task<Dictionary<string, TabularStructure>> ExtractDbMetadata(CodeGenConfig config)
+        private static readonly IFileSystemWrapper FileSystem = new FileSystemWrapper();
+        private static readonly Template ModelTemplate;
+        private static readonly Template MappingTemplate;
+        private static readonly Template DapperMappingTemplate;
+        static SchemaTypistService()
         {
-            var columnsDtos =  await SchemataService.ExtractDbMetadata(config);
-            //Convert to code generator model
-            return ModelConverterService.Convert(columnsDtos, config);
+            var modelTemplateFile = "Entities.sbntxt";
+            ModelTemplate = Template.Parse(EmbeddedResource.GetContent(modelTemplateFile), modelTemplateFile);
+            var mappingTemplateFile = "Mapping.sbntxt";
+            MappingTemplate = Template.Parse(EmbeddedResource.GetContent(mappingTemplateFile), mappingTemplateFile);
+            var dapperTypeMappingTemplateFile = "DapperTypeMapping.sbntxt";
+            DapperMappingTemplate = Template.Parse(EmbeddedResource.GetContent(dapperTypeMappingTemplateFile), dapperTypeMappingTemplateFile);
         }
 
-        public static string GenerateEntity(TabularStructure tableStructure)
+        internal static string GenerateEntity(TabularStructure tableStructure)
         {
             //Generate entities
-            var modelTemplateFile = "Entities.sbntxt";
-            var modelTemplate = Template.Parse(EmbeddedResource.GetContent(modelTemplateFile), modelTemplateFile);
-            return modelTemplate.Render(tableStructure);
+            return ModelTemplate.Render(tableStructure);
         }
 
-        public static string DetermineEntityFilePath(CodeGenConfig config, TabularStructure tab)
+        internal static string DetermineEntityFilePath(CodeGenConfig config, TabularStructure tab)
         {
-            return Path.Combine(config.EntitiesNamespace, tab.Schema, $"{tab.Name}{config.EntityNameSuffix}.{config.OutputFileNameSuffix}.cs");
+            return FileSystem.Combine(config.EntitiesNamespace, tab.Schema, $"{tab.Name}{config.EntityNameSuffix}.{config.OutputFileNameSuffix}.cs");
         }
 
-        public static string GenerateMapper(TabularStructure tableStructure)
+        internal static string GenerateMapper(TabularStructure tableStructure)
         {
             //Generate mappers
-            var mappingTemplateFile = "Mapping.sbntxt";
-            var mappingTemplate = Template.Parse(EmbeddedResource.GetContent(mappingTemplateFile), mappingTemplateFile);
-            return mappingTemplate.Render(tableStructure);
+            return MappingTemplate.Render(tableStructure);
         }
 
-        public static string DetermineMapperFilePath(CodeGenConfig config, TabularStructure tab)
+        internal static string DetermineMapperFilePath(CodeGenConfig config, TabularStructure tab)
         {
-            return Path.Combine(config.PersistenceNamespace, tab.Schema,
+            return FileSystem.Combine(config.PersistenceNamespace, tab.Schema,
                 $"{tab.Name}{config.MapperNameSuffix}.{config.OutputFileNameSuffix}.cs");
         }
 
-        public static string GenerateDapperMapper(IEnumerable<TabularStructure> tableStructures, CodeGenConfig config)
+        internal static string DetermineDapperMapperFilePath(CodeGenConfig config)
+        {
+            return FileSystem.Combine(config.OutputDirectory, config.PersistenceNamespace, $"DapperTypeMapping.{config.OutputFileNameSuffix}.cs");
+        }
+
+        internal static void PrepDirectories(TabularStructure tableStructure, CodeGenConfig config)
+        {
+            FileSystem.EnsureDirectoryExists(config.OutputDirectory, config.EntitiesNamespace, tableStructure.Schema);
+            
+            FileSystem.EnsureDirectoryExists(config.OutputDirectory, config.PersistenceNamespace, tableStructure.Schema);
+        }
+
+        internal static string GenerateDapperMapper(IEnumerable<TabularStructure> tableStructures, CodeGenConfig config)
         {
             //Generate DapperMapper
-            var dapperTypeMappingTemplateFile = "DapperTypeMapping.sbntxt";
-            var dapperTypeMappingTemplate = Template.Parse(EmbeddedResource.GetContent(dapperTypeMappingTemplateFile), dapperTypeMappingTemplateFile);
             var dapperTypeMappingTemplateData = new DapperInitializerTemplateModel()
             {
                 Config = config,
                 TabularStructures = tableStructures.ToList()
             };
 
-            return dapperTypeMappingTemplate.Render(dapperTypeMappingTemplateData);
+            return DapperMappingTemplate.Render(dapperTypeMappingTemplateData);
 
         }
 
-        public static string DetermineDapperMapperFilePath(CodeGenConfig config)
+        #region Public Methods
+
+        public static async Task<Dictionary<string, TabularStructure>> ExtractDbMetadata(CodeGenConfig config)
         {
-            return Path.Combine(config.OutputDirectory, config.PersistenceNamespace, $"DapperTypeMapping.{config.OutputFileNameSuffix}.cs");
+            var columnsDtos = await SchemataService.ExtractDbMetadata(config);
+            //Convert to code generator model
+            return ModelConverterService.Convert(columnsDtos, config);
         }
-
-        public static void PrepDirectories(TabularStructure tableStructure, CodeGenConfig config)
-        {
-            var modelTargetDir = Path.Combine(config.OutputDirectory, config.EntitiesNamespace);
-            if (!Directory.Exists(modelTargetDir)) Directory.CreateDirectory(modelTargetDir);
-
-            var mappingTargetDir = Path.Combine(config.OutputDirectory, config.PersistenceNamespace);
-            if (!Directory.Exists(mappingTargetDir)) Directory.CreateDirectory(mappingTargetDir);
-
-            var entitySchemaTargetDir = Path.Combine(modelTargetDir, tableStructure.Schema);
-            if (!Directory.Exists(entitySchemaTargetDir)) Directory.CreateDirectory(entitySchemaTargetDir);
-
-            var mappingSchemaTargetDir = Path.Combine(mappingTargetDir, tableStructure.Schema);
-            if (!Directory.Exists(mappingSchemaTargetDir)) Directory.CreateDirectory(mappingSchemaTargetDir);
-
-
-        }
-
-        [Obsolete]
         public static void Generate(TabularStructure tab, CodeGenConfig config)
         {
             //Set up generation
@@ -94,36 +92,23 @@ namespace SchemaTypist.Core
             
             //Generate model and write to file
             var output = GenerateEntity(tab);
-            var modelFilePath = Path.Combine(config.OutputDirectory, DetermineEntityFilePath(config, tab));
-            File.WriteAllText(modelFilePath, output);
+            var modelFilePath = FileSystem.Combine(config.OutputDirectory, DetermineEntityFilePath(config, tab));
+            FileSystem.WriteAllText(modelFilePath, output);
 
             //Generate mapping and write to file
             output = GenerateMapper(tab);
-            var mappingFilePath = Path.Combine(config.OutputDirectory, DetermineMapperFilePath(config, tab));
-            File.WriteAllText(mappingFilePath, output);
+            var mappingFilePath = FileSystem.Combine(config.OutputDirectory, DetermineMapperFilePath(config, tab));
+            FileSystem.WriteAllText(mappingFilePath, output);
 
         }
-
-        [Obsolete]
         public static void GenerateDapperMapping(IEnumerable<TabularStructure> tableStructures, CodeGenConfig config)
         {
-            //Generate DapperMapper
-            var dapperTypeMappingTemplateFile = "DapperTypeMapping.sbntxt";
-            var dapperTypeMappingTemplate = Template.Parse(EmbeddedResource.GetContent(dapperTypeMappingTemplateFile), dapperTypeMappingTemplateFile);
-            var dapperTypeMappingTemplateData = new DapperInitializerTemplateModel()
-            {
-                Config = config,
-                TabularStructures = tableStructures.ToList()
-            };
-
-            var mapperOutput = dapperTypeMappingTemplate.Render(dapperTypeMappingTemplateData);
+            var mapperOutput = GenerateDapperMapper(tableStructures, config);
 
             //Write to file
             var dapperMapperFilePath = DetermineDapperMapperFilePath(config);
-            File.WriteAllText(dapperMapperFilePath, mapperOutput);
+            FileSystem.WriteAllText(dapperMapperFilePath, mapperOutput);
         }
-
-        
         public static bool Validate(string connectionString)
         {
             //TODO:  You should be able to connect to the db.
@@ -131,13 +116,7 @@ namespace SchemaTypist.Core
             return true;
         }
 
-    }
+        #endregion
 
-    class TemplateConstants
-    {
-        public const string FileNameExtension = ".sbntxt";
-        public const string Model = "Model";
-        public const string Mapping = "Mapping";
-        public const string DapperTypeMapping = "DapperTypeMapping";
     }
 }
