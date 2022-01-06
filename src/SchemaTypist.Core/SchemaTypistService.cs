@@ -66,26 +66,31 @@ namespace SchemaTypist.Core
         {
             return Path.Combine(config.OutputDirectory, config.PersistenceNamespace, $"DapperTypeMapping.{config.OutputFileNameSuffix}.cs");
         }
-        
-        [Obsolete]
-        public static void Generate(TabularStructure tableStructure, CodeGenConfig config)
+
+        public static void PrepDirectories(TabularStructure tableStructure, CodeGenConfig config)
         {
-            //Set up generation
             var modelTargetDir = Path.Combine(config.OutputDirectory, config.EntitiesNamespace);
             if (!Directory.Exists(modelTargetDir)) Directory.CreateDirectory(modelTargetDir);
 
             var mappingTargetDir = Path.Combine(config.OutputDirectory, config.PersistenceNamespace);
             if (!Directory.Exists(mappingTargetDir)) Directory.CreateDirectory(mappingTargetDir);
 
-
-            //Generate model and mapping
-            var tab = tableStructure;
-            
-            var entitySchemaTargetDir = Path.Combine(modelTargetDir, tab.Schema);
+            var entitySchemaTargetDir = Path.Combine(modelTargetDir, tableStructure.Schema);
             if (!Directory.Exists(entitySchemaTargetDir)) Directory.CreateDirectory(entitySchemaTargetDir);
 
-            var mappingSchemaTargetDir = Path.Combine(mappingTargetDir, tab.Schema);
+            var mappingSchemaTargetDir = Path.Combine(mappingTargetDir, tableStructure.Schema);
             if (!Directory.Exists(mappingSchemaTargetDir)) Directory.CreateDirectory(mappingSchemaTargetDir);
+
+
+        }
+
+        [Obsolete]
+        public static void Generate(TabularStructure tab, CodeGenConfig config)
+        {
+            //Set up generation
+            PrepDirectories(tab, config);
+
+            //Generate model and mapping
             
             //Generate model and write to file
             var output = GenerateEntity(tab);
