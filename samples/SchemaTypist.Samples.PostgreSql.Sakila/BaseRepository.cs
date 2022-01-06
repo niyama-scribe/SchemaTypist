@@ -1,5 +1,5 @@
 ﻿using System.Data;
-using SchemaTypist.Generated.Persistence.Mapping;
+using SchemaTypist.Generated.Persistence;
 using SqlKata.Execution;
 
 namespace SchemaTypist.Samples.PostgreSql.Sakila;

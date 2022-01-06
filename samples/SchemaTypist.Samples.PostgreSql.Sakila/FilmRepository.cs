@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Data;
 using System.Threading.Tasks;
 using SchemaTypist.DatabaseMetadata;
-using SchemaTypist.Generated.Domain;
-using SchemaTypist.Generated.Persistence.Mapping;
+using SchemaTypist.Generated.Domain.Public;
+using SchemaTypist.Generated.Persistence.Public;
 using SchemaTypist.SqlKata;
 using SqlKata;
 
@@ -29,9 +29,9 @@ internal class FilmRepository : BaseRepository
              * where r.return_date < '2005-05-31'
              */
 
-        var r = Public.RentalDao.Table.As("r");
-        var i = Public.InventoryDao.Table.As("i");
-        var f = Public.FilmDao.Table.As("f");
+        var r = RentalDao.Table.As("r");
+        var i = InventoryDao.Table.As("i");
+        var f = FilmDao.Table.As("f");
 
         var q = new Query()
             .Select(f.Title, f.Description)
@@ -47,7 +47,7 @@ internal class FilmRepository : BaseRepository
 
     public async Task<Film> GetFilmByTitle(string title)
     {
-        var f = Public.FilmDao.Table.As("f");
+        var f = FilmDao.Table.As("f");
 
         var query = new Query()
             .Select()
@@ -60,7 +60,7 @@ internal class FilmRepository : BaseRepository
 
     public async Task UpdateFilmRentalRate(Film film)
     {
-        var f = Public.FilmDao.Table;
+        var f = FilmDao.Table;
 
         var q = new Query("film")
             .AsUpdate(new [] {f.RentalRate}, new object[] {film.RentalRate} )

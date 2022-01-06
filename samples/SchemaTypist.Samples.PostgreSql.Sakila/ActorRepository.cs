@@ -5,10 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SchemaTypist.DatabaseMetadata;
-using SchemaTypist.Generated.Domain;
+using SchemaTypist.Generated.Domain.Public;
 using SqlKata;
 using SchemaTypist.SqlKata;
-using static SchemaTypist.Generated.Persistence.Mapping.Public;
+using SchemaTypist.Generated.Persistence.Public;
 
 namespace SchemaTypist.Samples.PostgreSql.Sakila
 {

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Dapper;
 using Npgsql;
-using SchemaTypist.Generated.Domain;
+using SchemaTypist.Generated.Domain.Public;
 using SqlKata.Compilers;
 using SqlKata.Execution;
 

@@ -30,7 +30,7 @@ namespace SchemaTypist.Core
 
         public static string DetermineEntityFilePath(CodeGenConfig config, TabularStructure tab)
         {
-            return Path.Combine(config.EntitiesNamespace, $"{tab.Name}{config.EntityNameSuffix}.{config.OutputFileNameSuffix}.cs");
+            return Path.Combine(config.EntitiesNamespace, tab.Schema, $"{tab.Name}{config.EntityNameSuffix}.{config.OutputFileNameSuffix}.cs");
         }
 
         public static string GenerateMapper(TabularStructure tableStructure)
@@ -43,8 +43,8 @@ namespace SchemaTypist.Core
 
         public static string DetermineMapperFilePath(CodeGenConfig config, TabularStructure tab)
         {
-            return Path.Combine(config.PersistenceNamespace, config.MappingNamespace, 
-                $"{tab.Schema}.{tab.Name}{config.MapperNameSuffix}.{config.OutputFileNameSuffix}.cs");
+            return Path.Combine(config.PersistenceNamespace, tab.Schema,
+                $"{tab.Name}{config.MapperNameSuffix}.{config.OutputFileNameSuffix}.cs");
         }
 
         public static string GenerateDapperMapper(IEnumerable<TabularStructure> tableStructures, CodeGenConfig config)
@@ -64,7 +64,7 @@ namespace SchemaTypist.Core
 
         public static string DetermineDapperMapperFilePath(CodeGenConfig config)
         {
-            return Path.Combine(config.OutputDirectory, config.PersistenceNamespace, config.MappingNamespace, $"DapperTypeMapping.{config.OutputFileNameSuffix}.cs");
+            return Path.Combine(config.OutputDirectory, config.PersistenceNamespace, $"DapperTypeMapping.{config.OutputFileNameSuffix}.cs");
         }
         
         [Obsolete]
@@ -74,12 +74,18 @@ namespace SchemaTypist.Core
             var modelTargetDir = Path.Combine(config.OutputDirectory, config.EntitiesNamespace);
             if (!Directory.Exists(modelTargetDir)) Directory.CreateDirectory(modelTargetDir);
 
-            var mappingTargetDir = Path.Combine(config.OutputDirectory, config.PersistenceNamespace, config.MappingNamespace);
+            var mappingTargetDir = Path.Combine(config.OutputDirectory, config.PersistenceNamespace);
             if (!Directory.Exists(mappingTargetDir)) Directory.CreateDirectory(mappingTargetDir);
 
 
             //Generate model and mapping
             var tab = tableStructure;
+            
+            var entitySchemaTargetDir = Path.Combine(modelTargetDir, tab.Schema);
+            if (!Directory.Exists(entitySchemaTargetDir)) Directory.CreateDirectory(entitySchemaTargetDir);
+
+            var mappingSchemaTargetDir = Path.Combine(mappingTargetDir, tab.Schema);
+            if (!Directory.Exists(mappingSchemaTargetDir)) Directory.CreateDirectory(mappingSchemaTargetDir);
             
             //Generate model and write to file
             var output = GenerateEntity(tab);
