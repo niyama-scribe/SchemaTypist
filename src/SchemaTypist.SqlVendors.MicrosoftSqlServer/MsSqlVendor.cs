@@ -1,17 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
+using SchemaTypist.Core.Config;
 using SchemaTypist.Core.Model;
+using SchemaTypist.Core.SqlVendors;
+using SqlKata.Compilers;
 
-namespace SchemaTypist.Core.SqlVendors
+namespace SchemaTypist.SqlVendors.MicrosoftSqlServer
 {
-    internal static partial class SqlVendor
+    [SqlVendorDefinition()]
+    public class MsSqlVendor : ISqlVendor
     {
-        public static ISqlDialect MicrosoftSqlServer { get; } = new MsSqlDialect();
+        public (IDbConnection, Compiler) GetDbInterfaceProviders(CodeGenConfig config) => (new SqlConnection(config.ConnectionString), new SqlServerCompiler());
+        public ISqlDialect Dialect => new MsSqlDialect();
+        public SqlVendorType VendorType => SqlVendorType.MicrosoftSqlServer;
 
-        private class MsSqlDialect:ISqlDialect
+
+
+        private class MsSqlDialect : ISqlDialect
         {
-            private static List<string> _keywords = new List<string> {
+            private static List<string> _keywords = new List<string>
+            {
                 "ADD",
                 "ALL",
                 "ALTER",
@@ -199,7 +210,8 @@ namespace SchemaTypist.Core.SqlVendors
                 "WRITETEXT"
             };
 
-            private static readonly List<string> _dataTypes = new List<string> {
+            private static readonly List<string> _dataTypes = new List<string>
+            {
                 "bigint",
                 "binary",
                 "bit",

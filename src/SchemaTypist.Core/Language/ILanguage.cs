@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace SchemaTypist.Core.Language
 {
-    internal interface ILanguage
+    public interface ILanguage
     {
         IEnumerable<string> Keywords { get; }
 

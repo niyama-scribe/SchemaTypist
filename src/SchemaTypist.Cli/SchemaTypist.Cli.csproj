@@ -19,6 +19,8 @@
 
 	<ItemGroup>
 	  <ProjectReference Include="..\SchemaTypist.Core\SchemaTypist.Core.csproj" />
+	  <ProjectReference Include="..\SchemaTypist.SqlVendors.MicrosoftSqlServer\SchemaTypist.SqlVendors.MicrosoftSqlServer.csproj" />
+	  <ProjectReference Include="..\SchemaTypist.SqlVendors.PostgreSql\SchemaTypist.SqlVendors.PostgreSql.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

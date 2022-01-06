@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Threading.Tasks;
-using Npgsql;
 using SchemaTypist.Core.Config;
 using SchemaTypist.Core.Schemata.Dto;
 using SchemaTypist.Core.Schemata.Mapping;
+using SchemaTypist.Core.SqlVendors;
 using SqlKata.Compilers;
 using SqlKata.Execution;
 
@@ -33,13 +33,14 @@ namespace SchemaTypist.Core.Schemata
 
         private static (IDbConnection, Compiler) GetDbSpecificLibraries(CodeGenConfig config)
         {
-            (IDbConnection, Compiler) retVal = config.Vendor switch
-            {
-                SqlVendorType.MicrosoftSqlServer => (new SqlConnection(config.ConnectionString), new SqlServerCompiler()),
-                SqlVendorType.PostgreSql => (new NpgsqlConnection(config.ConnectionString), new PostgresCompiler()),
-                _ => throw new InvalidOperationException()
-            };
-            return retVal;
+            return SqlVendor.GetDbInterfaceProviders(config);
+            // (IDbConnection, Compiler) retVal = config.Vendor switch
+            // {
+            //     SqlVendorType.MicrosoftSqlServer => (new SqlConnection(config.ConnectionString), new SqlServerCompiler()),
+            //     SqlVendorType.PostgreSql => (new NpgsqlConnection(config.ConnectionString), new PostgresCompiler()),
+            //     _ => throw new InvalidOperationException()
+            // };
+            // return retVal;
         }
     }
 

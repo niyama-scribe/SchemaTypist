@@ -1,15 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
-using System.Text;
+using Npgsql;
+using SchemaTypist.Core.Config;
 using SchemaTypist.Core.Model;
 using SchemaTypist.Core.SqlVendors;
+using SqlKata.Compilers;
 
-namespace SchemaTypist.Core.SqlVendors
+namespace SchemaTypist.SqlVendors.PostgreSql
 {
-    internal static partial class SqlVendor
+    [SqlVendorDefinition]
+    public class Postgres : ISqlVendor 
     {
-        public static ISqlDialect PostgreSql { get; } = new PostgresDialect();
+        public (IDbConnection, Compiler) GetDbInterfaceProviders(CodeGenConfig config)
+        {
+            return (new NpgsqlConnection(config.ConnectionString), new PostgresCompiler());
+        }
+
+        public SqlVendorType VendorType => SqlVendorType.PostgreSql;
+
+        public ISqlDialect Dialect => new PostgresDialect();
+
         private class PostgresDialect : ISqlDialect
         {
             public IEnumerable<string> Keywords { get; } = new List<string>()
@@ -36,7 +48,7 @@ namespace SchemaTypist.Core.SqlVendors
                 "CONDITION_NUMBER", "CONFIGURATION", "CONFLICT", "CONNECT", "CONNECTION",
                 "CONNECTION_NAME", "CONSTRAINT", "CONSTRAINTS", "CONSTRAINT_CATALOG",
                 "CONSTRAINT_NAME", "CONSTRAINT_SCHEMA", "CONSTRUCTOR", "CONTAINS", "CONTENT",
-                "CONTINUE", "CONTROL", "CONVERSION", "CONVERT", "COPY", "CORR","CORRESPONDING",
+                "CONTINUE", "CONTROL", "CONVERSION", "CONVERT", "COPY", "CORR", "CORRESPONDING",
                 "COS", "COSH", "COST", "COUNT", "COVAR_POP", "COVAR_SAMP", "CREATE",
                 "CROSS", "CSV", "CUBE", "CUME_DIST", "CURRENT", "CURRENT_CATALOG",
                 "CURRENT_DATE", "CURRENT_​DEFAULT_​TRANSFORM_​GROUP", "CURRENT_PATH", "CURRENT_ROLE",
@@ -143,7 +155,9 @@ namespace SchemaTypist.Core.SqlVendors
                 "XMLNAMESPACES", "XMLPARSE", "XMLPI", "XMLQUERY", "XMLROOT", "XMLSCHEMA",
                 "XMLSERIALIZE", "XMLTABLE", "XMLTEXT", "XMLVALIDATE", "YEAR", "YES", "ZONE"
             };
+
             public IEnumerable<string> DataTypes { get; } = Enumerable.Empty<string>();
+
             public bool HasConflict(string proposedName)
             {
                 return false;
