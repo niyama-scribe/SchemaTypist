@@ -20,6 +20,7 @@ namespace SchemaTypist.Cli
 {
     public class GenerateCommand : AsyncCommand<GenerateCommand.Settings>
     {
+        private readonly ISchemaTypistService _schemaTypistService = new SchemaTypistService();
         public override async Task<int> ExecuteAsync(CommandContext context, GenerateCommand.Settings settings)
         {
             Dictionary<string, TabularStructure> tableStructureMap = new();
@@ -52,7 +53,7 @@ namespace SchemaTypist.Cli
                     {
                         AnsiConsole.MarkupLine($" Inclusion rules: {config.Include}");
                         AnsiConsole.MarkupLine($" Exclusion rules: {config.Exclude}");
-                        tableStructureMap = await SchemaTypistService.ExtractDbMetadata(config);
+                        tableStructureMap = await _schemaTypistService.ExtractDbMetadata(config);
                         await Task.Delay(500);
                         AnsiConsole.MarkupLine($"Fetched schema details.  Generating code here:  {Path.GetFullPath(config.OutputDirectory)}");
                         //await SchemaTypistService.Generate(dbMetadata, config);
@@ -87,13 +88,13 @@ namespace SchemaTypist.Cli
 
                         //genTask.Description = $"Generating code for {tse.Current.Key}";
                         await Task.Delay(500); 
-                        SchemaTypistService.Generate(tse.Current.Value, config);
+                        _schemaTypistService.Generate(tse.Current.Value, config);
                         genTask.Increment(1);
 
                     }
                     
                     AnsiConsole.MarkupLine($"Generating Dapper Type Mapping");
-                    SchemaTypistService.GenerateDapperMapping(tableStructureMap.Values.ToList(), config);
+                    _schemaTypistService.GenerateDapperMapping(tableStructureMap.Values.ToList(), config);
                 });
 
             return 0;
@@ -101,6 +102,7 @@ namespace SchemaTypist.Cli
 
         public class Settings : CommandSettings
         {
+            private readonly ISchemaTypistService _schemaTypistService = new SchemaTypistService();
             [CommandArgument(0, "<CONNECTION_STRING>")]
             public string ConnectionString { get; set; }
 
@@ -155,7 +157,7 @@ namespace SchemaTypist.Cli
             {
                 //1.  Should be able to connect to the db.
                 //2.  Should be able to access the directories.
-                return SchemaTypistService.Validate(ConnectionString)
+                return _schemaTypistService.Validate(ConnectionString)
                     ? ValidationResult.Success()
                     : ValidationResult.Error(
                         "The database doesn't seem to be accessible.  Please ensure the database connection string is correct and the database is actually running.");

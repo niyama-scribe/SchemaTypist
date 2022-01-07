@@ -13,18 +13,29 @@ using Scriban.Runtime;
 
 namespace SchemaTypist.Core
 {
-    public class SchemaTypistService
+    public class SchemaTypistService : ISchemaTypistService
     {
-        private static readonly IFileSystemWrapper FileSystem = new FileSystemWrapper();
         private static readonly Template ModelTemplate;
         private static readonly Template MappingTemplate;
         private static readonly Template DapperMappingTemplate;
-        private static readonly IPluginLoader _pluginLoader = new PluginLoader();
-        private static readonly INamingService _namingService = new LanguageService();
-        private static readonly ISqlVendorService _sqlVendor = new SqlVendor(_pluginLoader);
-        private static readonly ISchemataService SchemataExtractor = new SchemataService(_sqlVendor);
-        private static readonly ISchemataConverterService SchemataConverter =
-            new SchemataConverterService(_namingService, _sqlVendor);
+        private readonly IFileSystemWrapper _fileSystem;
+        private readonly IPluginLoader _pluginLoader;
+        private readonly INamingService _namingService;
+        private readonly ISqlVendorService _sqlVendor;
+        private readonly ISchemataService _schemataExtractor;
+        private readonly ISchemataConverterService _schemataConverter;
+
+        public SchemaTypistService()
+        {
+            _fileSystem = new FileSystemWrapper();
+            _pluginLoader = new PluginLoader();
+            _namingService = new LanguageService();
+            _sqlVendor = new SqlVendor(_pluginLoader);
+            _schemataExtractor = new SchemataService(_sqlVendor);
+            _schemataConverter = new SchemataConverterService(_namingService, _sqlVendor);
+        }
+
+
         static SchemaTypistService()
         {
             var modelTemplateFile = "Entities.sbntxt";
@@ -35,42 +46,42 @@ namespace SchemaTypist.Core
             DapperMappingTemplate = Template.Parse(EmbeddedResource.GetContent(dapperTypeMappingTemplateFile), dapperTypeMappingTemplateFile);
         }
 
-        internal static string GenerateEntity(TabularStructure tableStructure)
+        internal string GenerateEntity(TabularStructure tableStructure)
         {
             //Generate entities
             return ModelTemplate.Render(tableStructure);
         }
 
-        internal static string DetermineEntityFilePath(CodeGenConfig config, TabularStructure tab)
+        internal string DetermineEntityFilePath(CodeGenConfig config, TabularStructure tab)
         {
-            return FileSystem.Combine(config.EntitiesNamespace, tab.Schema, $"{tab.Name}{config.EntityNameSuffix}.{config.OutputFileNameSuffix}.cs");
+            return _fileSystem.Combine(config.EntitiesNamespace, tab.Schema, $"{tab.Name}{config.EntityNameSuffix}.{config.OutputFileNameSuffix}.cs");
         }
 
-        internal static string GenerateMapper(TabularStructure tableStructure)
+        internal string GenerateMapper(TabularStructure tableStructure)
         {
             //Generate mappers
             return MappingTemplate.Render(tableStructure);
         }
 
-        internal static string DetermineMapperFilePath(CodeGenConfig config, TabularStructure tab)
+        internal string DetermineMapperFilePath(CodeGenConfig config, TabularStructure tab)
         {
-            return FileSystem.Combine(config.PersistenceNamespace, tab.Schema,
+            return _fileSystem.Combine(config.PersistenceNamespace, tab.Schema,
                 $"{tab.Name}{config.MapperNameSuffix}.{config.OutputFileNameSuffix}.cs");
         }
 
-        internal static string DetermineDapperMapperFilePath(CodeGenConfig config)
+        internal string DetermineDapperMapperFilePath(CodeGenConfig config)
         {
-            return FileSystem.Combine(config.OutputDirectory, config.PersistenceNamespace, $"DapperTypeMapping.{config.OutputFileNameSuffix}.cs");
+            return _fileSystem.Combine(config.OutputDirectory, config.PersistenceNamespace, $"DapperTypeMapping.{config.OutputFileNameSuffix}.cs");
         }
 
-        internal static void PrepDirectories(TabularStructure tableStructure, CodeGenConfig config)
+        internal void PrepDirectories(TabularStructure tableStructure, CodeGenConfig config)
         {
-            FileSystem.EnsureDirectoryExists(config.OutputDirectory, config.EntitiesNamespace, tableStructure.Schema);
+            _fileSystem.EnsureDirectoryExists(config.OutputDirectory, config.EntitiesNamespace, tableStructure.Schema);
             
-            FileSystem.EnsureDirectoryExists(config.OutputDirectory, config.PersistenceNamespace, tableStructure.Schema);
+            _fileSystem.EnsureDirectoryExists(config.OutputDirectory, config.PersistenceNamespace, tableStructure.Schema);
         }
 
-        internal static string GenerateDapperMapper(IEnumerable<TabularStructure> tableStructures, CodeGenConfig config)
+        internal string GenerateDapperMapper(IEnumerable<TabularStructure> tableStructures, CodeGenConfig config)
         {
             //Generate DapperMapper
             var dapperTypeMappingTemplateData = new DapperInitializerTemplateModel()
@@ -85,13 +96,13 @@ namespace SchemaTypist.Core
 
         #region Public Methods
 
-        public static async Task<Dictionary<string, TabularStructure>> ExtractDbMetadata(CodeGenConfig config)
+        public async Task<Dictionary<string, TabularStructure>> ExtractDbMetadata(CodeGenConfig config)
         {
-            var columnsDtos = await SchemataExtractor.ExtractDbMetadata(config);
+            var columnsDtos = await _schemataExtractor.ExtractDbMetadata(config);
             //Convert to code generator model
-            return SchemataConverter.Convert(columnsDtos, config);
+            return _schemataConverter.Convert(columnsDtos, config);
         }
-        public static void Generate(TabularStructure tab, CodeGenConfig config)
+        public void Generate(TabularStructure tab, CodeGenConfig config)
         {
             //Set up generation
             PrepDirectories(tab, config);
@@ -100,24 +111,24 @@ namespace SchemaTypist.Core
             
             //Generate model and write to file
             var output = GenerateEntity(tab);
-            var modelFilePath = FileSystem.Combine(config.OutputDirectory, DetermineEntityFilePath(config, tab));
-            FileSystem.WriteAllText(modelFilePath, output);
+            var modelFilePath = _fileSystem.Combine(config.OutputDirectory, DetermineEntityFilePath(config, tab));
+            _fileSystem.WriteAllText(modelFilePath, output);
 
             //Generate mapping and write to file
             output = GenerateMapper(tab);
-            var mappingFilePath = FileSystem.Combine(config.OutputDirectory, DetermineMapperFilePath(config, tab));
-            FileSystem.WriteAllText(mappingFilePath, output);
+            var mappingFilePath = _fileSystem.Combine(config.OutputDirectory, DetermineMapperFilePath(config, tab));
+            _fileSystem.WriteAllText(mappingFilePath, output);
 
         }
-        public static void GenerateDapperMapping(IEnumerable<TabularStructure> tableStructures, CodeGenConfig config)
+        public void GenerateDapperMapping(IEnumerable<TabularStructure> tableStructures, CodeGenConfig config)
         {
             var mapperOutput = GenerateDapperMapper(tableStructures, config);
 
             //Write to file
             var dapperMapperFilePath = DetermineDapperMapperFilePath(config);
-            FileSystem.WriteAllText(dapperMapperFilePath, mapperOutput);
+            _fileSystem.WriteAllText(dapperMapperFilePath, mapperOutput);
         }
-        public static bool Validate(string connectionString)
+        public bool Validate(string connectionString)
         {
             //TODO:  You should be able to connect to the db.
             //You should have access to the folders.
@@ -126,5 +137,13 @@ namespace SchemaTypist.Core
 
         #endregion
 
+    }
+
+    public interface ISchemaTypistService
+    {
+        Task<Dictionary<string, TabularStructure>> ExtractDbMetadata(CodeGenConfig config);
+        void Generate(TabularStructure tab, CodeGenConfig config);
+        void GenerateDapperMapping(IEnumerable<TabularStructure> tableStructures, CodeGenConfig config);
+        bool Validate(string connectionString);
     }
 }
