@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,8 +9,10 @@ using AutoFixture.AutoMoq;
 using FluentAssertions;
 using Moq;
 using SchemaTypist.Core.Config;
+using SchemaTypist.Core.Model;
 using SchemaTypist.Core.SqlVendors;
 using SchemaTypist.Core.Utilities;
+using SqlKata.Compilers;
 using Xunit;
 
 namespace SchemaTypist.Core.Tests.SqlVendors
@@ -95,6 +98,58 @@ namespace SchemaTypist.Core.Tests.SqlVendors
 
             //Assert
             
+        }
+
+        [Fact]
+        public void BuildQualifiedName_WhenValid_UsesRegisteredImpl()
+        {
+            //Arrange
+            var fixture = new Fixture().Customize(new AutoMoqCustomization());
+            var sqlDialect = fixture.Freeze<Mock<ISqlDialect>>();
+            sqlDialect.Setup(sd => sd.BuildQualifiedName(It.IsAny<TabularStructure>()))
+                .Returns("abracadabra");
+            var sqlVendor = fixture.Freeze<Mock<ISqlVendor>>();
+            sqlVendor.SetupGet(sv => sv.Dialect).Returns(sqlDialect.Object);
+            var pluginLoader = fixture.Freeze<Mock<IPluginLoader>>();
+            pluginLoader.Setup(pl => pl.FindPlugins<ISqlVendor>(It.IsAny<string>(), typeof(SqlVendorDefinition)))
+                .Returns(new[] { sqlVendor.Object });
+            var codeGenConfig = fixture.Build<CodeGenConfig>().With(cdc => cdc.Vendor, SqlVendorType.MicrosoftSqlServer).Create();
+            var tabularStructure = fixture.Build<TabularStructure>().Create();
+
+            var sut = fixture.Create<SqlVendorService>();
+
+
+            //Act
+            var retVal = sut.BuildQualifiedName(tabularStructure, codeGenConfig);
+
+            //Assert
+            retVal.Should().Be("abracadabra");
+        }
+
+        [Fact]
+        public void GetDbInterfaceProviders_WhenValid_UsesRegisteredImpl()
+        {
+            //Arrange
+            var fixture = new Fixture().Customize(new AutoMoqCustomization());
+            var dbConnection = fixture.Freeze<IDbConnection>();
+            var compiler = Mock.Of<Compiler>();
+            var sqlVendor = fixture.Freeze<Mock<ISqlVendor>>();
+            sqlVendor.Setup(sv => sv.GetDbInterfaceProviders(It.IsAny<CodeGenConfig>()))
+                .Returns((dbConnection, compiler));
+            var pluginLoader = fixture.Freeze<Mock<IPluginLoader>>();
+            pluginLoader.Setup(pl => pl.FindPlugins<ISqlVendor>(It.IsAny<string>(), typeof(SqlVendorDefinition)))
+                .Returns(new[] { sqlVendor.Object });
+            var codeGenConfig = fixture.Build<CodeGenConfig>().With(cdc => cdc.Vendor, SqlVendorType.MicrosoftSqlServer).Create();
+            
+            var sut = fixture.Create<SqlVendorService>();
+
+
+            //Act
+            var (dbConn, cpl) = sut.GetDbInterfaceProviders(codeGenConfig);
+
+            //Assert
+            dbConn.Should().Be(dbConnection);
+            cpl.Should().Be(compiler);
         }
     }
 }
