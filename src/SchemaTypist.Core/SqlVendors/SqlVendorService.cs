@@ -10,13 +10,13 @@ using SqlKata.Compilers;
 
 namespace SchemaTypist.Core.SqlVendors
 {
-    internal class SqlVendor : ISqlVendorService
+    internal class SqlVendorService : ISqlVendorService
     {
         private readonly IPluginLoader _pluginLoader;
         private readonly IDictionary<SqlVendorType, ISqlVendor> _registeredVendors =
             new Dictionary<SqlVendorType, ISqlVendor>();
 
-        public SqlVendor(IPluginLoader pluginLoader)
+        public SqlVendorService(IPluginLoader pluginLoader)
         {
             _pluginLoader = pluginLoader;
             LoadRegisteredVendors();
