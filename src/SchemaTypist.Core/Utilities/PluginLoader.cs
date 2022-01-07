@@ -27,7 +27,7 @@ namespace SchemaTypist.Core.Utilities
         }
     }
 
-    internal interface IPluginLoader
+    public interface IPluginLoader
     {
         IEnumerable<T> FindPlugins<T>(String assemblyNamePrefix, Type attributeType);
     }

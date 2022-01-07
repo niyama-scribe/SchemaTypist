@@ -73,7 +73,7 @@ namespace SchemaTypist.Core.SqlVendors
         }
     }
 
-    internal interface ISqlVendorService
+    public interface ISqlVendorService
     {
         string DisambiguateSqlIdentifier(string sqlIdentifier, CodeGenConfig config);
         string BuildQualifiedName(TabularStructure tableStructure, CodeGenConfig config);

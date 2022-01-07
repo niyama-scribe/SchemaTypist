@@ -35,7 +35,7 @@ namespace SchemaTypist.Core.Utilities
         }
     }
 
-    internal interface IFileSystemWrapper
+    public interface IFileSystemWrapper
     {
         void EnsureDirectoryExists(params string[] paths);
         string Combine(params string [] paths);

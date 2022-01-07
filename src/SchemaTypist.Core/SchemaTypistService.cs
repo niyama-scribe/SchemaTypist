@@ -25,16 +25,17 @@ namespace SchemaTypist.Core
         private readonly ISchemataService _schemataExtractor;
         private readonly ISchemataConverterService _schemataConverter;
 
-        public SchemaTypistService()
+        public SchemaTypistService(IFileSystemWrapper fileSystem, IPluginLoader pluginLoader, 
+            INamingService namingService, ISqlVendorService sqlVendor, ISchemataService schemataExtractor, 
+            ISchemataConverterService schemataConverter)
         {
-            _fileSystem = new FileSystemWrapper();
-            _pluginLoader = new PluginLoader();
-            _namingService = new LanguageService();
-            _sqlVendor = new SqlVendor(_pluginLoader);
-            _schemataExtractor = new SchemataService(_sqlVendor);
-            _schemataConverter = new SchemataConverterService(_namingService, _sqlVendor);
+            _fileSystem = fileSystem;
+            _pluginLoader = pluginLoader;
+            _namingService = namingService;
+            _sqlVendor = sqlVendor;
+            _schemataExtractor = schemataExtractor;
+            _schemataConverter = schemataConverter;
         }
-
 
         static SchemaTypistService()
         {

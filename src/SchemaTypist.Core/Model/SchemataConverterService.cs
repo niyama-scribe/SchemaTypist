@@ -72,7 +72,7 @@ namespace SchemaTypist.Core.Model
         }
     }
 
-    internal interface ISchemataConverterService
+    public interface ISchemataConverterService
     {
         Dictionary<string, TabularStructure> Convert(IEnumerable<ColumnsDto> fromColumns, CodeGenConfig config);
     }

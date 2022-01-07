@@ -44,7 +44,7 @@ namespace SchemaTypist.Core.Schemata
         }
     }
 
-    internal interface ISchemataService
+    public interface ISchemataService
     {
         Task<IEnumerable<ColumnsDto>> ExtractDbMetadata(CodeGenConfig config);
     }

@@ -20,7 +20,13 @@ namespace SchemaTypist.Cli
 {
     public class GenerateCommand : AsyncCommand<GenerateCommand.Settings>
     {
-        private readonly ISchemaTypistService _schemaTypistService = new SchemaTypistService();
+        private readonly ISchemaTypistService _schemaTypistService;
+
+        public GenerateCommand(ISchemaTypistService schemaTypistService)
+        {
+            _schemaTypistService = schemaTypistService;
+        }
+
         public override async Task<int> ExecuteAsync(CommandContext context, GenerateCommand.Settings settings)
         {
             Dictionary<string, TabularStructure> tableStructureMap = new();
@@ -102,7 +108,6 @@ namespace SchemaTypist.Cli
 
         public class Settings : CommandSettings
         {
-            private readonly ISchemaTypistService _schemaTypistService = new SchemaTypistService();
             [CommandArgument(0, "<CONNECTION_STRING>")]
             public string ConnectionString { get; set; }
 
@@ -152,16 +157,6 @@ namespace SchemaTypist.Cli
             [CommandOption("--exclude")]
             [DefaultValue("")]
             public string Exclude { get; set; }
-
-            public override ValidationResult Validate()
-            {
-                //1.  Should be able to connect to the db.
-                //2.  Should be able to access the directories.
-                return _schemaTypistService.Validate(ConnectionString)
-                    ? ValidationResult.Success()
-                    : ValidationResult.Error(
-                        "The database doesn't seem to be accessible.  Please ensure the database connection string is correct and the database is actually running.");
-            }
 
             /**
              * TODO:

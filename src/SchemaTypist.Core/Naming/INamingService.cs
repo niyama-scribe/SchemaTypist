@@ -3,7 +3,7 @@ using SchemaTypist.Core.Config;
 
 namespace SchemaTypist.Core.Naming
 {
-    internal interface INamingService
+    public interface INamingService
     {
         string ConvertCatalogName(string sqlCatalogName, CodeGenConfig config);
         string ConvertSchemaName(string sqlSchemaName, CodeGenConfig config, string enclosingType);
