@@ -7,9 +7,9 @@ using FluentAssemblyScanner;
 
 namespace SchemaTypist.Core.Utilities
 {
-    internal class PluginLoader
+    internal class PluginLoader : IPluginLoader
     {
-        public static IEnumerable<T> FindPlugins<T>(String assemblyNamePrefix, Type attributeType, bool inherit)
+        public IEnumerable<T> FindPlugins<T>(String assemblyNamePrefix, Type attributeType)
         {
              var types = AssemblyScanner.FromAssemblyMatchingNamed(assemblyNamePrefix,
                     new AssemblyFilter(AppDomain.CurrentDomain.BaseDirectory))
@@ -25,5 +25,10 @@ namespace SchemaTypist.Core.Utilities
                  yield return (T)Activator.CreateInstance(type);
              }
         }
+    }
+
+    internal interface IPluginLoader
+    {
+        IEnumerable<T> FindPlugins<T>(String assemblyNamePrefix, Type attributeType);
     }
 }

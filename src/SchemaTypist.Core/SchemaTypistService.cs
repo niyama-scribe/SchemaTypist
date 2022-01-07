@@ -6,6 +6,7 @@ using SchemaTypist.Core.Config;
 using SchemaTypist.Core.Model;
 using SchemaTypist.Core.Naming;
 using SchemaTypist.Core.Schemata;
+using SchemaTypist.Core.SqlVendors;
 using SchemaTypist.Core.Utilities;
 using Scriban;
 using Scriban.Runtime;
@@ -18,8 +19,12 @@ namespace SchemaTypist.Core
         private static readonly Template ModelTemplate;
         private static readonly Template MappingTemplate;
         private static readonly Template DapperMappingTemplate;
-        private static readonly ISchemataConverterService SchemataConverter = new SchemataConverterService(new LanguageService());
-        private static readonly ISchemataService SchemataExtractor = new SchemataService();
+        private static readonly IPluginLoader _pluginLoader = new PluginLoader();
+        private static readonly INamingService _namingService = new LanguageService();
+        private static readonly ISqlVendorService _sqlVendor = new SqlVendor(_pluginLoader);
+        private static readonly ISchemataService SchemataExtractor = new SchemataService(_sqlVendor);
+        private static readonly ISchemataConverterService SchemataConverter =
+            new SchemataConverterService(_namingService, _sqlVendor);
         static SchemaTypistService()
         {
             var modelTemplateFile = "Entities.sbntxt";

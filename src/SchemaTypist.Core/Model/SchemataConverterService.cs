@@ -12,10 +12,12 @@ namespace SchemaTypist.Core.Model
     internal class SchemataConverterService : ISchemataConverterService
     {
         private readonly INamingService _namingService;
+        private readonly ISqlVendorService _sqlVendor;
 
-        public SchemataConverterService(INamingService namingService)
+        public SchemataConverterService(INamingService namingService, ISqlVendorService sqlVendor)
         {
             _namingService = namingService;
+            _sqlVendor = sqlVendor;
         }
         public Dictionary<string, TabularStructure> Convert(IEnumerable<ColumnsDto> fromColumns, CodeGenConfig config)
         {
@@ -48,7 +50,7 @@ namespace SchemaTypist.Core.Model
                 tabStructure.Name = _namingService.ConvertTableName(col.TableName, config, tabStructure.Schema);
 
 
-                tabStructure.SqlQualifiedName = SqlVendor.BuildQualifiedName(tabStructure, config);
+                tabStructure.SqlQualifiedName = _sqlVendor.BuildQualifiedName(tabStructure, config);
 
                 if (tabStructure.Columns.Any(c => c.SqlName == col.ColumnName)) continue;
 
@@ -64,9 +66,9 @@ namespace SchemaTypist.Core.Model
             return tableStructureMap;
         }
 
-        private static string DetermineDotNetDataType(string sqlDataType, bool isNullable, CodeGenConfig config)
+        private string DetermineDotNetDataType(string sqlDataType, bool isNullable, CodeGenConfig config)
         {
-            return SqlVendor.DetermineDotNetDataType(sqlDataType, isNullable, config);
+            return _sqlVendor.DetermineDotNetDataType(sqlDataType, isNullable, config);
         }
     }
 

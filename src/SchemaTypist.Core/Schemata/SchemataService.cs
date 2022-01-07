@@ -14,9 +14,16 @@ namespace SchemaTypist.Core.Schemata
 {
     internal class SchemataService : ISchemataService
     {
+        private readonly ISqlVendorService _sqlVendor;
+
         static SchemataService()
         {
             DapperTypeMapping.Init();
+        }
+
+        public SchemataService(ISqlVendorService sqlVendor)
+        {
+            _sqlVendor = sqlVendor;
         }
 
         public async Task<IEnumerable<ColumnsDto>> ExtractDbMetadata(CodeGenConfig config)
@@ -31,16 +38,9 @@ namespace SchemaTypist.Core.Schemata
             return ts;
         }
 
-        private static (IDbConnection, Compiler) GetDbSpecificLibraries(CodeGenConfig config)
+        private (IDbConnection, Compiler) GetDbSpecificLibraries(CodeGenConfig config)
         {
-            return SqlVendor.GetDbInterfaceProviders(config);
-            // (IDbConnection, Compiler) retVal = config.Vendor switch
-            // {
-            //     SqlVendorType.MicrosoftSqlServer => (new SqlConnection(config.ConnectionString), new SqlServerCompiler()),
-            //     SqlVendorType.PostgreSql => (new NpgsqlConnection(config.ConnectionString), new PostgresCompiler()),
-            //     _ => throw new InvalidOperationException()
-            // };
-            // return retVal;
+            return _sqlVendor.GetDbInterfaceProviders(config);
         }
     }
 
