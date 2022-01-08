@@ -69,7 +69,6 @@ namespace SchemaTypist.Core.Tests.SqlVendors
             CodeGenConfig cdc, SqlVendorService sut)
         {
             //Arrange
-            var fixture = new Fixture();
             sv.Setup(sv => sv.GetDbInterfaceProviders(It.IsAny<CodeGenConfig>()))
                 .Returns((dbConnection, compiler));
             svp.Setup(p => p.GetSqlVendor(It.IsAny<SqlVendorType>())).Returns(sv.Object);

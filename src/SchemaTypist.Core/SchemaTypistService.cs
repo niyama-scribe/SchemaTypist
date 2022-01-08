@@ -22,11 +22,11 @@ namespace SchemaTypist.Core
         private readonly IPluginLoader _pluginLoader;
         private readonly INamingService _namingService;
         private readonly ISqlVendorService _sqlVendor;
-        private readonly ISchemataService _schemataExtractor;
+        private readonly ISchemataExtractorService _schemataExtractor;
         private readonly ISchemataConverterService _schemataConverter;
 
         public SchemaTypistService(IFileSystemWrapper fileSystem, IPluginLoader pluginLoader, 
-            INamingService namingService, ISqlVendorService sqlVendor, ISchemataService schemataExtractor, 
+            INamingService namingService, ISqlVendorService sqlVendor, ISchemataExtractorService schemataExtractor, 
             ISchemataConverterService schemataConverter)
         {
             _fileSystem = fileSystem;

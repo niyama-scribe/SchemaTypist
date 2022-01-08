@@ -18,7 +18,7 @@ namespace SchemaTypist.Core
             sc.AddSingleton<IPluginLoader, PluginLoader>();
             sc.AddSingleton<INamingService, LanguageService>();
             sc.AddSingleton<ISqlVendorService, SqlVendorService>();
-            sc.AddSingleton<ISchemataService, SchemataService>();
+            sc.AddSingleton<ISchemataExtractorService, SchemataExtractorService>();
             sc.AddSingleton<ISchemataConverterService, SchemataConverterService>();
             sc.AddSingleton<ISchemaTypistService, SchemaTypistService>();
         }

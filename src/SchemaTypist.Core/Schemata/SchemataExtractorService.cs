@@ -12,16 +12,16 @@ using SqlKata.Execution;
 
 namespace SchemaTypist.Core.Schemata
 {
-    internal class SchemataService : ISchemataService
+    internal class SchemataExtractorService : ISchemataExtractorService
     {
         private readonly ISqlVendorService _sqlVendor;
 
-        static SchemataService()
+        static SchemataExtractorService()
         {
             DapperTypeMapping.Init();
         }
 
-        public SchemataService(ISqlVendorService sqlVendor)
+        public SchemataExtractorService(ISqlVendorService sqlVendor)
         {
             _sqlVendor = sqlVendor;
         }
@@ -44,7 +44,7 @@ namespace SchemaTypist.Core.Schemata
         }
     }
 
-    public interface ISchemataService
+    public interface ISchemataExtractorService
     {
         Task<IEnumerable<ColumnsDto>> ExtractDbMetadata(CodeGenConfig config);
     }

@@ -2,12 +2,12 @@
 using System.Linq;
 using System.Text.RegularExpressions;
 using SchemaTypist.Core.Config;
-using SchemaTypist.Core.Language;
+using SchemaTypist.Core.Model;
 using SchemaTypist.Core.Naming;
 using SchemaTypist.Core.Schemata.Dto;
 using SchemaTypist.Core.SqlVendors;
 
-namespace SchemaTypist.Core.Model
+namespace SchemaTypist.Core.Schemata
 {
     internal class SchemataConverterService : ISchemataConverterService
     {
