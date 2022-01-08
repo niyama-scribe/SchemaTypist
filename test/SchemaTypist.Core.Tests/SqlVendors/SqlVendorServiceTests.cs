@@ -65,16 +65,16 @@ namespace SchemaTypist.Core.Tests.SqlVendors
         [AutoDomainData]
         internal void GetDbInterfaceProviders_WhenValid_UsesRegisteredImpl(
             [Frozen] IDbConnection dbConnection, [Frozen] Compiler compiler,
-            [Frozen] Mock<ISqlVendor> sv, [Frozen] Mock<ISqlVendorProvider> svp, 
-            SqlVendorService sut)
+            [Frozen] Mock<ISqlVendor> sv, [Frozen] Mock<ISqlVendorProvider> svp,
+            CodeGenConfig cdc, SqlVendorService sut)
         {
             //Arrange
             var fixture = new Fixture();
             sv.Setup(sv => sv.GetDbInterfaceProviders(It.IsAny<CodeGenConfig>()))
                 .Returns((dbConnection, compiler));
             svp.Setup(p => p.GetSqlVendor(It.IsAny<SqlVendorType>())).Returns(sv.Object);
-            var cdc = fixture.Build<CodeGenConfig>().With(c => c.Vendor, SqlVendorType.MicrosoftSqlServer).Create();
-            
+            cdc.Vendor = SqlVendorType.MicrosoftSqlServer;
+
             //Act
             var (dbConn, cpl) = sut.GetDbInterfaceProviders(cdc);
 
