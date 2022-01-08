@@ -19,85 +19,27 @@ namespace SchemaTypist.Core.Tests.SqlVendors
 {
     public class SqlVendorServiceTests
     {
-        [Fact]
-        public void DetermineDotnetDataType_WhenSingleRegisteredImpl_UsesRegisteredImpl()
+        [Theory]
+        [InlineData("datetime", false, "DateTime")]
+        [InlineData("datetime", true, "DateTime?")]
+        public void DetermineDotnetDataType_WhenValid_GetsDataTypeAsPerDialect(string sqlDataType, bool isNullable, string dotnetDataType)
         {
             //Arrange
             var fixture = new Fixture().Customize(new AutoMoqCustomization());
-            var sqlDialect = fixture.Freeze<Mock<ISqlDialect>>();
-            sqlDialect.Setup(sd => sd.DetermineDotNetDataType(It.IsAny<string>(), It.IsAny<bool>()))
-                .Returns(nameof(DateTime));
-            var sqlVendor = fixture.Freeze<Mock<ISqlVendor>>();
-            sqlVendor.SetupGet(sv => sv.Dialect).Returns(sqlDialect.Object);
-            var pluginLoader = fixture.Freeze<Mock<IPluginLoader>>();
-            pluginLoader.Setup(pl => pl.FindPlugins<ISqlVendor>(It.IsAny<string>(), typeof(SqlVendorDefinition)))
-                .Returns(new[] {sqlVendor.Object});
-             var codeGenConfig = fixture.Build<CodeGenConfig>().With(cdc => cdc.Vendor, SqlVendorType.MicrosoftSqlServer).Create();
-            
-            var sut = fixture.Create<SqlVendorService>();
-
-
-            //Act
-            var dotnetDataType = sut.DetermineDotNetDataType("datetime", false, codeGenConfig);
-
-            //Assert
-            dotnetDataType.Should().Be(nameof(DateTime));
-        }
-
-        [Fact]
-        public void DetermineDotnetDataType_WhenMutipleImplRegistered_UsesRegisteredImplBasedOnSqlVendorType()
-        {
-            //Arrange
-            var fixture = new Fixture().Customize(new AutoMoqCustomization());
-            var postgresDialect = new Mock<ISqlDialect>();
-            postgresDialect.Setup(sd => sd.DetermineDotNetDataType(It.Is<string>(s => s.Equals("oid")), It.IsAny<bool>()))
-                .Returns("uint");
-            var postgresVendor = new Mock<ISqlVendor>();
-            postgresVendor.SetupGet(sv => sv.Dialect).Returns(postgresDialect.Object);
-            postgresVendor.SetupGet(sv => sv.VendorType).Returns(SqlVendorType.PostgreSql);
-            var msDialect = new Mock<ISqlDialect>();
-            msDialect.Setup(sd => sd.DetermineDotNetDataType(It.Is<string>(s => s.Equals("datetime")), It.IsAny<bool>()))
-                .Returns(nameof(DateTime));
-            var msVendor = new Mock<ISqlVendor>();
-            msVendor.SetupGet(sv => sv.Dialect).Returns(msDialect.Object);
-            msVendor.SetupGet(sv => sv.VendorType).Returns(SqlVendorType.MicrosoftSqlServer);
-            
-            var pluginLoader = fixture.Freeze<Mock<IPluginLoader>>();
-            pluginLoader.Setup(pl => pl.FindPlugins<ISqlVendor>(It.IsAny<string>(), typeof(SqlVendorDefinition)))
-                .Returns(new[] { postgresVendor.Object, msVendor.Object });
-            var codeGenConfig = fixture.Build<CodeGenConfig>().With(cdc => cdc.Vendor, SqlVendorType.PostgreSql).Create();
-
-            var sut = fixture.Create<SqlVendorService>();
-
-
-            //Act
-            var dotnetDataType = sut.DetermineDotNetDataType("oid", false, codeGenConfig);
-
-            //Assert
-            dotnetDataType.Should().Be("uint");
-        }
-
-        [Fact]
-        public void DetermineDotNetDataType_WithNoImplsRegistered_ThrowsInvalidOperationException()
-        {
-            //Arrange
-            var fixture = new Fixture().Customize(new AutoMoqCustomization());
-            var sqlDialect = fixture.Freeze<Mock<ISqlDialect>>();
-            sqlDialect.Setup(sd => sd.DetermineDotNetDataType(It.IsAny<string>(), It.IsAny<bool>()))
-                .Returns(nameof(DateTime));
-            var sqlVendor = fixture.Freeze<Mock<ISqlVendor>>();
-            sqlVendor.SetupGet(sv => sv.Dialect).Returns(sqlDialect.Object);
-            var pluginLoader = fixture.Freeze<Mock<IPluginLoader>>();
-            var codeGenConfig = fixture.Build<CodeGenConfig>().With(cdc => cdc.Vendor, SqlVendorType.MicrosoftSqlServer).Create();
-
+            var sd = fixture.Freeze<Mock<ISqlDialect>>();
+            sd.Setup(d => d.DetermineDotNetDataType(sqlDataType, isNullable)).Returns(dotnetDataType);
+            var sv = fixture.Freeze<Mock<ISqlVendor>>();
+            sv.SetupGet(v => v.Dialect).Returns(sd.Object);
+            var svp = fixture.Freeze<Mock<ISqlVendorProvider>>();
+            svp.Setup(p => p.GetSqlVendor(It.IsAny<SqlVendorType>())).Returns(sv.Object);
+            var cdc = fixture.Create<CodeGenConfig>();
             var sut = fixture.Create<SqlVendorService>();
 
             //Act
-            sut.Invoking(s => s.DetermineDotNetDataType("anything", false, codeGenConfig)).Should()
-                .Throw<InvalidOperationException>();
+            var actual = sut.DetermineDotNetDataType(sqlDataType, isNullable, cdc);
 
             //Assert
-            
+            actual.Should().Be(dotnetDataType);
         }
 
         [Fact]
@@ -105,22 +47,19 @@ namespace SchemaTypist.Core.Tests.SqlVendors
         {
             //Arrange
             var fixture = new Fixture().Customize(new AutoMoqCustomization());
-            var sqlDialect = fixture.Freeze<Mock<ISqlDialect>>();
-            sqlDialect.Setup(sd => sd.BuildQualifiedName(It.IsAny<TabularStructure>()))
+            var sd = fixture.Freeze<Mock<ISqlDialect>>();
+            sd.Setup(sd => sd.BuildQualifiedName(It.IsAny<TabularStructure>()))
                 .Returns("abracadabra");
-            var sqlVendor = fixture.Freeze<Mock<ISqlVendor>>();
-            sqlVendor.SetupGet(sv => sv.Dialect).Returns(sqlDialect.Object);
-            var pluginLoader = fixture.Freeze<Mock<IPluginLoader>>();
-            pluginLoader.Setup(pl => pl.FindPlugins<ISqlVendor>(It.IsAny<string>(), typeof(SqlVendorDefinition)))
-                .Returns(new[] { sqlVendor.Object });
-            var codeGenConfig = fixture.Build<CodeGenConfig>().With(cdc => cdc.Vendor, SqlVendorType.MicrosoftSqlServer).Create();
-            var tabularStructure = fixture.Build<TabularStructure>().Create();
-
-            var sut = fixture.Create<SqlVendorService>();
-
-
+            var sv = fixture.Freeze<Mock<ISqlVendor>>();
+            sv.SetupGet(v => v.Dialect).Returns(sd.Object);
+            var svp = fixture.Freeze<Mock<ISqlVendorProvider>>();
+            svp.Setup(p => p.GetSqlVendor(It.IsAny<SqlVendorType>())).Returns(sv.Object);
+            var cdc = fixture.Create<CodeGenConfig>();
+            var sut = fixture.Create<SqlVendorService>(); 
+            var tabularStructure = fixture.Create<TabularStructure>();
+            
             //Act
-            var retVal = sut.BuildQualifiedName(tabularStructure, codeGenConfig);
+            var retVal = sut.BuildQualifiedName(tabularStructure, cdc);
 
             //Assert
             retVal.Should().Be("abracadabra");
@@ -133,19 +72,16 @@ namespace SchemaTypist.Core.Tests.SqlVendors
             var fixture = new Fixture().Customize(new AutoMoqCustomization());
             var dbConnection = fixture.Freeze<IDbConnection>();
             var compiler = Mock.Of<Compiler>();
-            var sqlVendor = fixture.Freeze<Mock<ISqlVendor>>();
-            sqlVendor.Setup(sv => sv.GetDbInterfaceProviders(It.IsAny<CodeGenConfig>()))
+            var sv = fixture.Freeze<Mock<ISqlVendor>>();
+            sv.Setup(sv => sv.GetDbInterfaceProviders(It.IsAny<CodeGenConfig>()))
                 .Returns((dbConnection, compiler));
-            var pluginLoader = fixture.Freeze<Mock<IPluginLoader>>();
-            pluginLoader.Setup(pl => pl.FindPlugins<ISqlVendor>(It.IsAny<string>(), typeof(SqlVendorDefinition)))
-                .Returns(new[] { sqlVendor.Object });
-            var codeGenConfig = fixture.Build<CodeGenConfig>().With(cdc => cdc.Vendor, SqlVendorType.MicrosoftSqlServer).Create();
-            
+            var svp = fixture.Freeze<Mock<ISqlVendorProvider>>();
+            svp.Setup(p => p.GetSqlVendor(It.IsAny<SqlVendorType>())).Returns(sv.Object);
+            var cdc = fixture.Build<CodeGenConfig>().With(c => c.Vendor, SqlVendorType.MicrosoftSqlServer).Create();
             var sut = fixture.Create<SqlVendorService>();
-
-
+            
             //Act
-            var (dbConn, cpl) = sut.GetDbInterfaceProviders(codeGenConfig);
+            var (dbConn, cpl) = sut.GetDbInterfaceProviders(cdc);
 
             //Assert
             dbConn.Should().Be(dbConnection);

@@ -12,40 +12,27 @@ namespace SchemaTypist.Core.SqlVendors
 {
     internal class SqlVendorService : ISqlVendorService
     {
-        private readonly IPluginLoader _pluginLoader;
-        private readonly IDictionary<SqlVendorType, ISqlVendor> _registeredVendors =
-            new Dictionary<SqlVendorType, ISqlVendor>();
+       private readonly Lazy<ISqlVendorProvider> _provider;
 
-        public SqlVendorService(IPluginLoader pluginLoader)
-        {
-            _pluginLoader = pluginLoader;
-            LoadRegisteredVendors();
-        }
+       public SqlVendorService(ISqlVendorProvider provider)
+       {
+           _provider = new Lazy<ISqlVendorProvider>(() =>
+           {
+               provider.LoadRegisteredVendors();
+               return provider;
+           });
+       }
 
-
-
-        private void LoadRegisteredVendors()
-        {
-            //Load known sql dialects.
-            var plugins = _pluginLoader.FindPlugins<ISqlVendor>("SchemaTypist.SqlVendors",
-                typeof(SqlVendorDefinition));
-            foreach (var plugin in plugins)
-            {
-                _registeredVendors.Add(plugin.VendorType, plugin);
-            }
-        }
-
-        private ISqlVendor GetSqlVendor(SqlVendorType vendorType)
-        {
-            if (_registeredVendors.Count <= 0) throw new InvalidOperationException("This really should not happen");
-            return _registeredVendors.Count == 1 ? _registeredVendors.Values.First() : _registeredVendors[vendorType];
-        }
+       private ISqlVendor GetSqlVendor(SqlVendorType vendorType)
+       {
+           return _provider.Value.GetSqlVendor(vendorType);
+       }
 
 
-        private ISqlDialect GetSqlDialect(SqlVendorType vendorType)
-        {
-            return GetSqlVendor(vendorType)?.Dialect;
-        }
+       private ISqlDialect GetSqlDialect(SqlVendorType vendorType)
+       {
+           return GetSqlVendor(vendorType)?.Dialect;
+       }
 
         public string DisambiguateSqlIdentifier(string sqlIdentifier, CodeGenConfig config)
         {
@@ -68,8 +55,7 @@ namespace SchemaTypist.Core.SqlVendors
 
         public (IDbConnection, Compiler) GetDbInterfaceProviders(CodeGenConfig config)
         {
-            var sqlDialect = GetSqlVendor(config.Vendor);
-            return sqlDialect.GetDbInterfaceProviders(config);
+            return GetSqlVendor(config.Vendor).GetDbInterfaceProviders(config);
         }
     }
 
