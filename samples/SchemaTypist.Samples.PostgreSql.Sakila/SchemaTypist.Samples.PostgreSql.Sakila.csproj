@@ -20,14 +20,9 @@
 
 
 	<ItemGroup>
-		<PackageReference Include="Npgsql" Version="6.0.0" />
-		<PackageReference Include="SchemaTypist" Version="0.1.0" />
-		<PackageReference Include="SchemaTypist.MSBuild" Version="0.1.0" />
-	</ItemGroup>
-
-
-	<ItemGroup>
-	  <ProjectReference Include="..\..\src\SchemaTypist\SchemaTypist.csproj" />
+		<PackageReference Include="Npgsql" Version="6.0.2" />
+		<PackageReference Include="SchemaTypist" Version="0.1.1" />
+		<PackageReference Include="SchemaTypist.MSBuild" Version="0.1.1" />
 	</ItemGroup>
 
 </Project>
