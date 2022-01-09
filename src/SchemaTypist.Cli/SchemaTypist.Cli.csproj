@@ -1,4 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+	
+	<Import Project="..\..\Common.props" />
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -7,6 +9,7 @@
 	<PackAsTool>true</PackAsTool>
 	<ToolCommandName>schematypist</ToolCommandName>
 	<PackageOutputPath>./nupkg</PackageOutputPath>
+	  <Description>SchemaTypist enables type-safe database interactions using Dapper and SqlKata, by generating C# code from database schemata. This CLI tool does all the heavy work. </Description>
   </PropertyGroup>
 
 	<ItemGroup>

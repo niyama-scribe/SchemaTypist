@@ -1,10 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk">
+  
+  <Import Project="..\..\Common.props" />
 
   <PropertyGroup>
 	  <TargetFramework>netstandard2.0</TargetFramework>
 	  <LangVersion>9.0</LangVersion>
 	  <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 	  <PackageId>SchemaTypist.MSBuild</PackageId>
+	  <Description>SchemaTypist enables type-safe database interactions using Dapper and SqlKata, by generating C# code from database schemata.  This package enables code generation through MSBuild.</Description>
   </PropertyGroup>
 
   <ItemGroup>
