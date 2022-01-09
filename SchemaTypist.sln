@@ -11,8 +11,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SchemaTypist", "src\SchemaT
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SchemaTypist.Core.Tests", "test\SchemaTypist.Core.Tests\SchemaTypist.Core.Tests.csproj", "{B18D33F2-F1A9-4321-8098-9AE454EA6A22}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SchemaTypist.Samples.MsSqlServer.StackOverflow", "samples\SchemaTypist.Samples.MsSqlServer.StackOverflow\SchemaTypist.Samples.MsSqlServer.StackOverflow.csproj", "{9A977EEA-0E82-40C5-B6D1-B845408D9AF5}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8187F539-5B57-4CBB-BD6D-859A8AB01D96}"
 	ProjectSection(SolutionItems) = preProject
 		Common.props = Common.props
@@ -23,13 +21,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SchemaTypist.MSBuild", "src\SchemaTypist.MSBuild\SchemaTypist.MSBuild.csproj", "{9DA84E15-7D47-4D75-B436-9281C3F6CFF4}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SchemaTypist.Samples.PostgreSql.Sakila", "samples\SchemaTypist.Samples.PostgreSql.Sakila\SchemaTypist.Samples.PostgreSql.Sakila.csproj", "{7AC95667-DF75-4791-9E62-45A8A69EB0E6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SchemaTypist.SqlVendors.MicrosoftSqlServer", "src\SchemaTypist.SqlVendors.MicrosoftSqlServer\SchemaTypist.SqlVendors.MicrosoftSqlServer.csproj", "{25E30DA5-4F43-46D2-B5E9-3BDE88E02CBE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchemaTypist.SqlVendors.MicrosoftSqlServer", "src\SchemaTypist.SqlVendors.MicrosoftSqlServer\SchemaTypist.SqlVendors.MicrosoftSqlServer.csproj", "{25E30DA5-4F43-46D2-B5E9-3BDE88E02CBE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SchemaTypist.SqlVendors.PostgreSql", "src\SchemaTypist.SqlVendors.PostgreSql\SchemaTypist.SqlVendors.PostgreSql.csproj", "{110422D9-19B4-4C5D-BB82-3079F5FF00A9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchemaTypist.SqlVendors.PostgreSql", "src\SchemaTypist.SqlVendors.PostgreSql\SchemaTypist.SqlVendors.PostgreSql.csproj", "{110422D9-19B4-4C5D-BB82-3079F5FF00A9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SchemaTypist.Samples.CSharp10", "samples\SchemaTypist.Samples.CSharp10\SchemaTypist.Samples.CSharp10.csproj", "{0D659FDD-A281-47DB-8D8F-3D41682BADF0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchemaTypist.Samples.CSharp10", "samples\SchemaTypist.Samples.CSharp10\SchemaTypist.Samples.CSharp10.csproj", "{0D659FDD-A281-47DB-8D8F-3D41682BADF0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SchemaTypist.Samples.Net6x.Postgres", "samples\SchemaTypist.Samples.Net6x.Postgres\SchemaTypist.Samples.Net6x.Postgres.csproj", "{6E8C76AE-78DB-4DAC-98F1-38CB8C33CF80}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchemaTypist.Samples.Net6x.MsSqlServer", "samples\SchemaTypist.Samples.Net6x.MsSqlServer\SchemaTypist.Samples.Net6x.MsSqlServer.csproj", "{8C229684-022A-4D47-868A-4EADEDC0B3D5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,18 +53,10 @@ Global
 		{B18D33F2-F1A9-4321-8098-9AE454EA6A22}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B18D33F2-F1A9-4321-8098-9AE454EA6A22}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B18D33F2-F1A9-4321-8098-9AE454EA6A22}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9A977EEA-0E82-40C5-B6D1-B845408D9AF5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9A977EEA-0E82-40C5-B6D1-B845408D9AF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9A977EEA-0E82-40C5-B6D1-B845408D9AF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9A977EEA-0E82-40C5-B6D1-B845408D9AF5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9DA84E15-7D47-4D75-B436-9281C3F6CFF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9DA84E15-7D47-4D75-B436-9281C3F6CFF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9DA84E15-7D47-4D75-B436-9281C3F6CFF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9DA84E15-7D47-4D75-B436-9281C3F6CFF4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7AC95667-DF75-4791-9E62-45A8A69EB0E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7AC95667-DF75-4791-9E62-45A8A69EB0E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7AC95667-DF75-4791-9E62-45A8A69EB0E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7AC95667-DF75-4791-9E62-45A8A69EB0E6}.Release|Any CPU.Build.0 = Release|Any CPU
 		{25E30DA5-4F43-46D2-B5E9-3BDE88E02CBE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{25E30DA5-4F43-46D2-B5E9-3BDE88E02CBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{25E30DA5-4F43-46D2-B5E9-3BDE88E02CBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -77,6 +69,14 @@ Global
 		{0D659FDD-A281-47DB-8D8F-3D41682BADF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0D659FDD-A281-47DB-8D8F-3D41682BADF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0D659FDD-A281-47DB-8D8F-3D41682BADF0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E8C76AE-78DB-4DAC-98F1-38CB8C33CF80}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E8C76AE-78DB-4DAC-98F1-38CB8C33CF80}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E8C76AE-78DB-4DAC-98F1-38CB8C33CF80}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E8C76AE-78DB-4DAC-98F1-38CB8C33CF80}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C229684-022A-4D47-868A-4EADEDC0B3D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C229684-022A-4D47-868A-4EADEDC0B3D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C229684-022A-4D47-868A-4EADEDC0B3D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C229684-022A-4D47-868A-4EADEDC0B3D5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

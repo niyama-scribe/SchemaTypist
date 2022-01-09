@@ -2,8 +2,9 @@
   "solution": {
     "path": "SchemaTypist.sln",
     "projects": [
-      "samples\\SchemaTypist.Samples.MsSqlServer.StackOverflow\\SchemaTypist.Samples.MsSqlServer.StackOverflow.csproj",
-      "samples\\SchemaTypist.Samples.PostgreSql.Sakila\\SchemaTypist.Samples.PostgreSql.Sakila.csproj"
+      "samples\\SchemaTypist.Samples.CSharp10\\SchemaTypist.Samples.CSharp10.csproj",
+      "samples\\SchemaTypist.Samples.Net6x.MsSqlServer\\SchemaTypist.Samples.Net6x.MsSqlServer.csproj",
+      "samples\\SchemaTypist.Samples.Net6x.Postgres\\SchemaTypist.Samples.Net6x.Postgres.csproj"
     ]
   }
 }

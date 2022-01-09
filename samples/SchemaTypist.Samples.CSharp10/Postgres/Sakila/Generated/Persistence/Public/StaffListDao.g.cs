@@ -13,9 +13,9 @@ using SchemaTypist.DatabaseMetadata;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
-using SchemaTypistSamples.Postgres.Sakila.Generated.Domain.Public;
+using SchemaTypist.Samples.CSharp10.Postgres.Sakila.Generated.Domain.Public;
 
-namespace SchemaTypistSamples.Postgres.Sakila.Generated.Persistence.Public
+namespace SchemaTypist.Samples.CSharp10.Postgres.Sakila.Generated.Persistence.Public
 {
 	public static partial class StaffListDao
 	{

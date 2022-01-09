@@ -10,7 +10,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace SchemaTypistSamples.Postgres.Sakila.Generated.Domain.Public
+namespace SchemaTypist.Samples.CSharp10.Postgres.Sakila.Generated.Domain.Public
 {
 	public partial class CustomerList
 	{
