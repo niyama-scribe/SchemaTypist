@@ -14,9 +14,7 @@ namespace SchemaTypist.Core.Config
         }
         public string ConnectionString { get; set; }
         public SqlVendorType Vendor { get; set; } = SqlVendorType.MicrosoftSqlServer;
-        public string TargetFramework { get; set; } = "netstandard2.0";
-        public string TargetLanguage { get; set; } = "CSharp";
-        public string TargetLanguageVersion { get; set; } = "9.0";
+        public string TargetLanguageVersion { get; set; } = "CSharp10"; //https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.csharp.languageversion?view=roslyn-dotnet-4.0.1
 
         public string OutputDirectory { get; set; } = _currDir;
         public string OutputFileNameSuffix { get; set; } = "g";

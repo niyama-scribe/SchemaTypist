@@ -1,6 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
-using SchemaTypist.Samples.CSharp10.MsSql.StackOverflow;
+using SchemaTypist.Samples.NetStandard20.MsSql.StackOverflow;
 
 Console.WriteLine("Hello, World!");
 

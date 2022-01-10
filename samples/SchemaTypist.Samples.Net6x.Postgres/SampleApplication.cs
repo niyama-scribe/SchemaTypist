@@ -1,7 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
-using SchemaTypist.Samples.CSharp10.Postgres.Sakila;
-using SchemaTypist.Samples.CSharp10.Postgres.Sakila.Generated.Domain.Public;
+using SchemaTypist.Samples.NetStandard20.Postgres.Sakila;
+using SchemaTypist.Samples.NetStandard20.Postgres.Sakila.Generated.Domain.Public;
 
 Console.WriteLine("Hello, World!");
 var fr = new FilmRepository("Server=127.0.0.1;Port=5432;Database=postgres;User Id=postgres;Password=N3v3r!nPr0d;");

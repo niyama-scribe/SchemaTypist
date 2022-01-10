@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SchemaTypist.Samples.CSharp10\SchemaTypist.Samples.CSharp10.csproj" />
+    <ProjectReference Include="..\SchemaTypist.Samples.NetStandard20\SchemaTypist.Samples.NetStandard20.csproj" />
   </ItemGroup>
 
 </Project>

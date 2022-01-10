@@ -1,8 +1,8 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
-	<PropertyGroup>
-		<TargetFramework>netstandard2.0</TargetFramework>
-	</PropertyGroup>
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
 
 	<ItemGroup>
 		<PackageReference Include="Npgsql" Version="6.0.0" />
@@ -16,7 +16,7 @@
 			<SchemaTypist_Vendor>PostgreSql</SchemaTypist_Vendor>
 			<SchemaTypist_Include>*.public.*</SchemaTypist_Include>
 			<SchemaTypist_OutputDir>$(MSBuildProjectDirectory)\Postgres\Sakila\Generated</SchemaTypist_OutputDir>
-			<SchemaTypist_RootNamespace>SchemaTypist.Samples.CSharp10.Postgres.Sakila.Generated</SchemaTypist_RootNamespace>
+			<SchemaTypist_RootNamespace>SchemaTypist.Samples.NetStandard20.Postgres.Sakila.Generated</SchemaTypist_RootNamespace>
 		</PropertyGroup>
 	</Target>
 
@@ -30,7 +30,7 @@
 			<SchemaTypist_Vendor>MicrosoftSqlServer</SchemaTypist_Vendor>
 			<SchemaTypist_Include>*</SchemaTypist_Include>
 			<SchemaTypist_OutputDir>$(MSBuildProjectDirectory)\MsSql\StackOverflow\Generated</SchemaTypist_OutputDir>
-			<SchemaTypist_RootNamespace>SchemaTypistSamples.MsSql.StackOverflow.Generated</SchemaTypist_RootNamespace>
+			<SchemaTypist_RootNamespace>SchemaTypist.Samples.NetStandard20.MsSql.StackOverflow.Generated</SchemaTypist_RootNamespace>
 		</PropertyGroup>
 	</Target>
 
@@ -38,10 +38,4 @@
 		<CallTarget Targets="SchemaTypist_DoGenerate" />
 	</Target>
 
-	<Target Name="MyGeneratorMsSql" BeforeTargets="PrepareForBuild">
-		<Message Importance="high" Text="Generated source files using SchemaTypist" />
-
-	</Target>
-
 </Project>
-
