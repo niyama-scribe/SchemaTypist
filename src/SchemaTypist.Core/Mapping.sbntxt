@@ -30,19 +30,22 @@ namespace {{ config.root_namespace }}.{{ config.persistence_namespace }}.{{ sche
 
 		public partial class TableDefinition : TabularDefinition
 		{
+			private readonly IDictionary<string, ColumnDefinition> _columns = new Dictionary<string, ColumnDefinition>();
+                
 			public TableDefinition() : base("{{ sql_qualified_name }}")
 			{
 				{{~ for col in columns ~}}
-				{{ col.name }} = new ColumnDefinition(Constants.{{ col.name }}, this);
+				_columns.Add(Constants.{{ col.name }}, new ColumnDefinition(Constants.{{ col.name }}, this));
 				{{~ end ~}}
 			}
 
 			public TableDefinition As(string alias) => base.As<TableDefinition>(alias);
 
 			{{~ for col in columns ~}}
-			public ColumnDefinition {{ col.name }} { get; private set; }
+			public ColumnDefinition {{ col.name }} => _columns[Constants.{{ col.name }}];
 			{{~ end ~}}
 
+			public IEnumerable<ColumnDefinition> Star => _columns.Values;
 		}
 	
 		public static partial class QueryResults

@@ -15,9 +15,21 @@ namespace SchemaTypist.Core.Schemata.Mapping
 
             public partial class TableDefinition : TabularDefinition
             {
+                private readonly IDictionary<string, ColumnDefinition> _columns = new Dictionary<string, ColumnDefinition>();
                 public TableDefinition() : base("information_schema.columns")
                 {
-                    TableCatalog = new ColumnDefinition(Constants.TableCatalog, this);
+                    _columns.Add(Constants.TableCatalog, new ColumnDefinition(Constants.TableCatalog, this));
+                    _columns.Add(Constants.TableSchema, new ColumnDefinition(Constants.TableSchema, this));
+                    _columns.Add(Constants.TableName, new ColumnDefinition(Constants.TableName, this));
+                    _columns.Add(Constants.OrdinalPosition, new ColumnDefinition(Constants.OrdinalPosition, this));
+                    _columns.Add(Constants.ColumnName, new ColumnDefinition(Constants.ColumnName, this));
+                    _columns.Add(Constants.DataType, new ColumnDefinition(Constants.DataType, this));
+                    _columns.Add(Constants.CharacterMaximumLength, new ColumnDefinition(Constants.CharacterMaximumLength, this));
+                    _columns.Add(Constants.NumericPrecision, new ColumnDefinition(Constants.NumericPrecision, this));
+                    _columns.Add(Constants.NumericScale, new ColumnDefinition(Constants.NumericScale, this));
+                    _columns.Add(Constants.IsNullable, new ColumnDefinition(Constants.IsNullable, this));
+
+                    /*TableCatalog = new ColumnDefinition(Constants.TableCatalog, this);
                     TableSchema = new ColumnDefinition(Constants.TableSchema, this);
                     TableName = new ColumnDefinition(Constants.TableName, this);
                     OrdinalPosition = new ColumnDefinition(Constants.OrdinalPosition, this);
@@ -26,22 +38,24 @@ namespace SchemaTypist.Core.Schemata.Mapping
                     CharacterMaximumLength = new ColumnDefinition(Constants.CharacterMaximumLength, this);
                     NumericPrecision = new ColumnDefinition(Constants.NumericPrecision, this);
                     NumericScale = new ColumnDefinition(Constants.NumericScale, this);
-                    IsNullable = new ColumnDefinition(Constants.IsNullable, this);
+                    IsNullable = new ColumnDefinition(Constants.IsNullable, this);*/
 
                 }
 
                 public TableDefinition As(string alias) => base.As<TableDefinition>(alias);
 
-                public ColumnDefinition TableCatalog { get; private set; }
-                public ColumnDefinition TableSchema { get; private set; }
-                public ColumnDefinition TableName { get; private set; }
-                public ColumnDefinition OrdinalPosition { get; private set; }
-                public ColumnDefinition ColumnName { get; private set; }
-                public ColumnDefinition DataType { get; private set; }
-                public ColumnDefinition CharacterMaximumLength { get; private set; }
-                public ColumnDefinition NumericPrecision { get; private set; }
-                public ColumnDefinition NumericScale { get; private set; }
-                public ColumnDefinition IsNullable { get; private set; }
+                public ColumnDefinition TableCatalog => _columns[Constants.TableCatalog];
+                public ColumnDefinition TableSchema => _columns[Constants.TableSchema];
+                public ColumnDefinition TableName => _columns[Constants.TableName];
+                public ColumnDefinition OrdinalPosition => _columns[Constants.OrdinalPosition];
+                public ColumnDefinition ColumnName => _columns[Constants.ColumnName];
+                public ColumnDefinition DataType => _columns[Constants.DataType];
+                public ColumnDefinition CharacterMaximumLength => _columns[Constants.CharacterMaximumLength];
+                public ColumnDefinition NumericPrecision => _columns[Constants.NumericPrecision];
+                public ColumnDefinition NumericScale => _columns[Constants.NumericScale];
+                public ColumnDefinition IsNullable => _columns[Constants.IsNullable];
+
+                public IEnumerable<ColumnDefinition> Star => _columns.Values;
             }
 
             static partial class Constants

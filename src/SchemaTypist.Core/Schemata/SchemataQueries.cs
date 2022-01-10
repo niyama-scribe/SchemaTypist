@@ -1,4 +1,5 @@
-﻿using SchemaTypist.Core.Config;
+﻿using System.Linq;
+using SchemaTypist.Core.Config;
 using SchemaTypist.DatabaseMetadata;
 using SchemaTypist.SqlKata;
 using SqlKata;
@@ -40,10 +41,7 @@ namespace SchemaTypist.Core.Schemata
             var tc = TableConstraints.Table.As("tc");
 
             var q = new Query()
-                .Select(c.TableCatalog, c.TableSchema, c.TableName,
-                        c.OrdinalPosition, c.ColumnName, c.DataType,
-                        c.CharacterMaximumLength, c.NumericPrecision, c.NumericScale,
-                        c.IsNullable)
+                .Select(c.Star, c.CharacterMaximumLength)
                 .From(c)
                 .LeftJoin(tc, 
                     j => j

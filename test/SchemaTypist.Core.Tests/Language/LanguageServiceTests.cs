@@ -22,7 +22,6 @@ namespace SchemaTypist.Core.Tests.Language
             var fixture = new Fixture();
             var proposedName = fixture.Create<string>("some_name");
             var config = fixture.Build<CodeGenConfig>()
-                .Without(cdc => cdc.TargetLanguage)
                 .Create();
 
             //Act
@@ -39,7 +38,6 @@ namespace SchemaTypist.Core.Tests.Language
             var fixture = new Fixture();
             var proposedName = "IntPtr";
             var config = fixture.Build<CodeGenConfig>()
-                .Without(cdc => cdc.TargetLanguage)
                 .Without(cdc => cdc.NamingConflictResolutionSuffix)
                 .Create();
 
@@ -57,7 +55,6 @@ namespace SchemaTypist.Core.Tests.Language
             var fixture = new Fixture();
             var proposedName = "internal";
             var config = fixture.Build<CodeGenConfig>()
-                .Without(cdc => cdc.TargetLanguage)
                 .Without(cdc => cdc.NamingConflictResolutionSuffix)
                 .Create();
 
@@ -75,7 +72,6 @@ namespace SchemaTypist.Core.Tests.Language
             var fixture = new Fixture();
             var proposedName = "constraint";
             var config = fixture.Build<CodeGenConfig>()
-                .Without(cdc => cdc.TargetLanguage)
                 .Without(cdc => cdc.NamingConflictResolutionSuffix)
                 .With(cdc => cdc.Vendor, SqlVendorType.MicrosoftSqlServer)
                 .Create();

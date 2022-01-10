@@ -28,7 +28,7 @@ namespace SchemaTypist.Core.Naming
             //If so, then disambiguate appropriately. 
 
             var proposedName = humanizerFunc(name);
-            var programmingLanguage = Languages.GetProgrammingLanguage(config.TargetLanguage);
+            var programmingLanguage = Languages.CSharp.Language;
             var schemaTypistDsl = Languages.SchemaTypist;
             return Disambiguator.DisambiguateIdentifier(proposedName,
                 s => programmingLanguage.HasConflict(s) || schemaTypistDsl.HasConflict(s), additionalNamesToAvoid);
