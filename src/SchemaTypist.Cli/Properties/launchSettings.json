@@ -2,7 +2,12 @@
   "profiles": {
     "SchemaTypist.Cli": {
       "commandName": "Project",
-      "commandLineArgs": "generate \"Server=127.0.0.1;Port=5432;Database=postgres;User Id=postgres;Password=N3v3r!nPr0d;\" TestGen PostgreSql --entities-namespace Yenta --root-namespace Whatever --mapper-name-suffix Dao --include \"*.public.*\""
+      "commandLineArgs": "generate \"Server=127.0.0.1;Port=5432;Database=postgres;User Id=postgres;Password=N3v3r!nPr0d;\" TestGen PostgreSql --entities-namespace Yenta --root-namespace Whatever --mapper-name-suffix Dao --include \"*.public.*\" --create-immutable-entities --create-record-entities"
+    },
+    "WSL": {
+      "commandName": "WSL2",
+      "environmentVariables": {},
+      "distributionName": ""
     }
   }
 }

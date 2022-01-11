@@ -34,7 +34,9 @@ namespace SchemaTypist.Cli
             {
                 ConnectionString = settings.ConnectionString,
                 OutputDirectory = settings.OutputDir,
-                GenerateEntitiesOnly = settings.EntitiesOnly
+                GenerateEntitiesOnly = settings.EntitiesOnly,
+                CreateImmutableEntities = settings.CreateImmutableEntities,
+                CreateRecordEntities = settings.CreateRecordEntities
             };
             config.EntitiesNamespace = settings.EntitiesNamespace ?? config.EntitiesNamespace;
             config.EntityNameSuffix = settings.EntityNameSuffix ?? config.EntityNameSuffix;
@@ -44,7 +46,7 @@ namespace SchemaTypist.Cli
             config.RootNamespace = settings.RootNamespace ?? config.RootNamespace;
             config.Include = settings.Include ?? config.Include;
             config.Exclude = settings.Exclude ?? config.Exclude;
-
+            
             if ((!string.IsNullOrWhiteSpace(settings.DatabaseVendor))
                 && Enum.TryParse<SqlVendorType>(settings.DatabaseVendor, out var vendor)) 
                 config.Vendor = vendor;
@@ -157,6 +159,15 @@ namespace SchemaTypist.Cli
             [CommandOption("--exclude")]
             [DefaultValue("")]
             public string Exclude { get; set; }
+
+            [CommandOption("--create-immutable-entities")]
+            [DefaultValue(false)]
+            public bool CreateImmutableEntities { get; set; }
+
+            [CommandOption("--create-record-entities")]
+            [DefaultValue(false)]
+            public bool CreateRecordEntities { get; set; }
+
 
             /**
              * TODO:

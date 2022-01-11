@@ -10,6 +10,7 @@ using SchemaTypist.Core.SqlVendors;
 using SchemaTypist.Core.Utilities;
 using Scriban;
 using Scriban.Runtime;
+using static SchemaTypist.Core.TemplateConstants;
 
 namespace SchemaTypist.Core
 {
@@ -39,12 +40,9 @@ namespace SchemaTypist.Core
 
         static SchemaTypistService()
         {
-            var modelTemplateFile = "Entities.sbntxt";
-            ModelTemplate = Template.Parse(EmbeddedResource.GetContent(modelTemplateFile), modelTemplateFile);
-            var mappingTemplateFile = "Mapping.sbntxt";
-            MappingTemplate = Template.Parse(EmbeddedResource.GetContent(mappingTemplateFile), mappingTemplateFile);
-            var dapperTypeMappingTemplateFile = "DapperTypeMapping.sbntxt";
-            DapperMappingTemplate = Template.Parse(EmbeddedResource.GetContent(dapperTypeMappingTemplateFile), dapperTypeMappingTemplateFile);
+            ModelTemplate = Template.Parse(EmbeddedResource.GetContent(EntitiesTemplateFile), EntitiesTemplateFile);
+            MappingTemplate = Template.Parse(EmbeddedResource.GetContent(MappingTemplateFile), MappingTemplateFile);
+            DapperMappingTemplate = Template.Parse(EmbeddedResource.GetContent(DapperMappingTemplateFile), DapperMappingTemplateFile);
         }
 
         internal string GenerateEntity(TabularStructure tableStructure)

@@ -14,7 +14,9 @@ namespace SchemaTypist.Core.Config
         }
         public string ConnectionString { get; set; }
         public SqlVendorType Vendor { get; set; } = SqlVendorType.MicrosoftSqlServer;
-        public string TargetLanguageVersion { get; set; } = "CSharp10"; //https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.csharp.languageversion?view=roslyn-dotnet-4.0.1
+        
+        //public string TargetLanguageVersion { get; set; } = "CSharp10";
+        //https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.csharp.languageversion?view=roslyn-dotnet-4.0.1
 
         public string OutputDirectory { get; set; } = _currDir;
         public string OutputFileNameSuffix { get; set; } = "g";
@@ -29,6 +31,10 @@ namespace SchemaTypist.Core.Config
         
         public string Include { get; set; }
         public string Exclude { get; set; }
+
+        public bool CreateImmutableEntities { get; set; } = false;
+
+        public bool CreateRecordEntities { get; set; } = false;
 
 
     }
