@@ -2,7 +2,6 @@
 	<PropertyGroup>
 		<_SchemaTypist_Generate>false</_SchemaTypist_Generate>
 		<_SchemaTypist_Vendor>MicrosoftSqlServer</_SchemaTypist_Vendor>
-		<_SchemaTypist_TargetLanguageVersion>CSharp10</_SchemaTypist_TargetLanguageVersion>
 		<_SchemaTypist_OutputDir>$(MSBuildProjectDirectory)\Generated</_SchemaTypist_OutputDir>
 		<_SchemaTypist_OutputFileNameSuffix>g</_SchemaTypist_OutputFileNameSuffix>
 		<_SchemaTypist_GenerateEntitiesOnly>false</_SchemaTypist_GenerateEntitiesOnly>
@@ -15,6 +14,8 @@
 		<_SchemaTypist_NamingConflictResolutionSuffix>0</_SchemaTypist_NamingConflictResolutionSuffix>
 		<_SchemaTypist_Include>*</_SchemaTypist_Include>
 		<_SchemaTypist_Exclude>_#NONE#_</_SchemaTypist_Exclude>
+		<_SchemaTypist_CreateImmutableEntities>false</_SchemaTypist_CreateImmutableEntities>
+		<_SchemaTypist_CreateRecordEntities>false</_SchemaTypist_CreateRecordEntities>
 	</PropertyGroup>
 
 	
