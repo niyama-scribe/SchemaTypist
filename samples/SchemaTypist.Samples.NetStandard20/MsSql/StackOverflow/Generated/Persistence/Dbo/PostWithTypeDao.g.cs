@@ -13,9 +13,9 @@ using SchemaTypist.DatabaseMetadata;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
-using SchemaTypist.Samples.NetStandard20.StackOverflow.Generated.Domain.Dbo;
+using SchemaTypist.Samples.NetStandard20.MsSql.StackOverflow.Generated.Domain.Dbo;
 
-namespace SchemaTypist.Samples.NetStandard20.StackOverflow.Generated.Persistence.Dbo
+namespace SchemaTypist.Samples.NetStandard20.MsSql.StackOverflow.Generated.Persistence.Dbo
 {
 	public static partial class PostWithTypeDao
 	{
@@ -49,57 +49,60 @@ namespace SchemaTypist.Samples.NetStandard20.StackOverflow.Generated.Persistence
 
 		public partial class TableDefinition : TabularDefinition
 		{
+			private readonly IDictionary<string, ColumnDefinition> _columns = new Dictionary<string, ColumnDefinition>();
+                
 			public TableDefinition() : base("StackOverflow.dbo.PostWithType")
 			{
-				AcceptedAnswerId = new ColumnDefinition(Constants.AcceptedAnswerId, this);
-				AnswerCount = new ColumnDefinition(Constants.AnswerCount, this);
-				Body = new ColumnDefinition(Constants.Body, this);
-				ClosedDate = new ColumnDefinition(Constants.ClosedDate, this);
-				CommentCount = new ColumnDefinition(Constants.CommentCount, this);
-				CommunityOwnedDate = new ColumnDefinition(Constants.CommunityOwnedDate, this);
-				CreationDate = new ColumnDefinition(Constants.CreationDate, this);
-				FavoriteCount = new ColumnDefinition(Constants.FavoriteCount, this);
-				Halflife = new ColumnDefinition(Constants.Halflife, this);
-				Id = new ColumnDefinition(Constants.Id, this);
-				LastActivityDate = new ColumnDefinition(Constants.LastActivityDate, this);
-				LastEditDate = new ColumnDefinition(Constants.LastEditDate, this);
-				LastEditorDisplayName = new ColumnDefinition(Constants.LastEditorDisplayName, this);
-				LastEditorUserId = new ColumnDefinition(Constants.LastEditorUserId, this);
-				OwnerUserId = new ColumnDefinition(Constants.OwnerUserId, this);
-				ParentId = new ColumnDefinition(Constants.ParentId, this);
-				PostTypeId = new ColumnDefinition(Constants.PostTypeId, this);
-				Score = new ColumnDefinition(Constants.Score, this);
-				Tag = new ColumnDefinition(Constants.Tag, this);
-				Title = new ColumnDefinition(Constants.Title, this);
-				Type = new ColumnDefinition(Constants.Type, this);
-				ViewCount = new ColumnDefinition(Constants.ViewCount, this);
+				_columns.Add(Constants.AcceptedAnswerId, new ColumnDefinition(Constants.AcceptedAnswerId, this));
+				_columns.Add(Constants.AnswerCount, new ColumnDefinition(Constants.AnswerCount, this));
+				_columns.Add(Constants.Body, new ColumnDefinition(Constants.Body, this));
+				_columns.Add(Constants.ClosedDate, new ColumnDefinition(Constants.ClosedDate, this));
+				_columns.Add(Constants.CommentCount, new ColumnDefinition(Constants.CommentCount, this));
+				_columns.Add(Constants.CommunityOwnedDate, new ColumnDefinition(Constants.CommunityOwnedDate, this));
+				_columns.Add(Constants.CreationDate, new ColumnDefinition(Constants.CreationDate, this));
+				_columns.Add(Constants.FavoriteCount, new ColumnDefinition(Constants.FavoriteCount, this));
+				_columns.Add(Constants.Halflife, new ColumnDefinition(Constants.Halflife, this));
+				_columns.Add(Constants.Id, new ColumnDefinition(Constants.Id, this));
+				_columns.Add(Constants.LastActivityDate, new ColumnDefinition(Constants.LastActivityDate, this));
+				_columns.Add(Constants.LastEditDate, new ColumnDefinition(Constants.LastEditDate, this));
+				_columns.Add(Constants.LastEditorDisplayName, new ColumnDefinition(Constants.LastEditorDisplayName, this));
+				_columns.Add(Constants.LastEditorUserId, new ColumnDefinition(Constants.LastEditorUserId, this));
+				_columns.Add(Constants.OwnerUserId, new ColumnDefinition(Constants.OwnerUserId, this));
+				_columns.Add(Constants.ParentId, new ColumnDefinition(Constants.ParentId, this));
+				_columns.Add(Constants.PostTypeId, new ColumnDefinition(Constants.PostTypeId, this));
+				_columns.Add(Constants.Score, new ColumnDefinition(Constants.Score, this));
+				_columns.Add(Constants.Tag, new ColumnDefinition(Constants.Tag, this));
+				_columns.Add(Constants.Title, new ColumnDefinition(Constants.Title, this));
+				_columns.Add(Constants.Type, new ColumnDefinition(Constants.Type, this));
+				_columns.Add(Constants.ViewCount, new ColumnDefinition(Constants.ViewCount, this));
 			}
 
 			public TableDefinition As(string alias) => base.As<TableDefinition>(alias);
 
-			public ColumnDefinition AcceptedAnswerId { get; private set; }
-			public ColumnDefinition AnswerCount { get; private set; }
-			public ColumnDefinition Body { get; private set; }
-			public ColumnDefinition ClosedDate { get; private set; }
-			public ColumnDefinition CommentCount { get; private set; }
-			public ColumnDefinition CommunityOwnedDate { get; private set; }
-			public ColumnDefinition CreationDate { get; private set; }
-			public ColumnDefinition FavoriteCount { get; private set; }
-			public ColumnDefinition Halflife { get; private set; }
-			public ColumnDefinition Id { get; private set; }
-			public ColumnDefinition LastActivityDate { get; private set; }
-			public ColumnDefinition LastEditDate { get; private set; }
-			public ColumnDefinition LastEditorDisplayName { get; private set; }
-			public ColumnDefinition LastEditorUserId { get; private set; }
-			public ColumnDefinition OwnerUserId { get; private set; }
-			public ColumnDefinition ParentId { get; private set; }
-			public ColumnDefinition PostTypeId { get; private set; }
-			public ColumnDefinition Score { get; private set; }
-			public ColumnDefinition Tag { get; private set; }
-			public ColumnDefinition Title { get; private set; }
-			public ColumnDefinition Type { get; private set; }
-			public ColumnDefinition ViewCount { get; private set; }
+			public ColumnDefinition AcceptedAnswerId => _columns[Constants.AcceptedAnswerId];
+			public ColumnDefinition AnswerCount => _columns[Constants.AnswerCount];
+			public ColumnDefinition Body => _columns[Constants.Body];
+			public ColumnDefinition ClosedDate => _columns[Constants.ClosedDate];
+			public ColumnDefinition CommentCount => _columns[Constants.CommentCount];
+			public ColumnDefinition CommunityOwnedDate => _columns[Constants.CommunityOwnedDate];
+			public ColumnDefinition CreationDate => _columns[Constants.CreationDate];
+			public ColumnDefinition FavoriteCount => _columns[Constants.FavoriteCount];
+			public ColumnDefinition Halflife => _columns[Constants.Halflife];
+			public ColumnDefinition Id => _columns[Constants.Id];
+			public ColumnDefinition LastActivityDate => _columns[Constants.LastActivityDate];
+			public ColumnDefinition LastEditDate => _columns[Constants.LastEditDate];
+			public ColumnDefinition LastEditorDisplayName => _columns[Constants.LastEditorDisplayName];
+			public ColumnDefinition LastEditorUserId => _columns[Constants.LastEditorUserId];
+			public ColumnDefinition OwnerUserId => _columns[Constants.OwnerUserId];
+			public ColumnDefinition ParentId => _columns[Constants.ParentId];
+			public ColumnDefinition PostTypeId => _columns[Constants.PostTypeId];
+			public ColumnDefinition Score => _columns[Constants.Score];
+			public ColumnDefinition Tag => _columns[Constants.Tag];
+			public ColumnDefinition Title => _columns[Constants.Title];
+			public ColumnDefinition Type => _columns[Constants.Type];
+			public ColumnDefinition ViewCount => _columns[Constants.ViewCount];
 
+			public IEnumerable<ColumnDefinition> Star => _columns.Values;
 		}
 	
 		public static partial class QueryResults

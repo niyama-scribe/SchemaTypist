@@ -12,6 +12,7 @@ using System.Collections.Generic;
 
 namespace SchemaTypist.Samples.NetStandard20.Postgres.Sakila.Generated.Domain.Public
 {
+	
 	public partial class Film
 	{
 		public string Description { get; set; }
@@ -29,4 +30,6 @@ namespace SchemaTypist.Samples.NetStandard20.Postgres.Sakila.Generated.Domain.Pu
 		public Object SpecialFeature { get; set; }
 		public string Title { get; set; }
 	}
+	
+
 }

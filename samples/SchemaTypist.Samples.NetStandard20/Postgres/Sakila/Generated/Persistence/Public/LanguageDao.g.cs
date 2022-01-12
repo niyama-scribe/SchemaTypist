@@ -30,19 +30,22 @@ namespace SchemaTypist.Samples.NetStandard20.Postgres.Sakila.Generated.Persisten
 
 		public partial class TableDefinition : TabularDefinition
 		{
+			private readonly IDictionary<string, ColumnDefinition> _columns = new Dictionary<string, ColumnDefinition>();
+                
 			public TableDefinition() : base("public.language")
 			{
-				LanguageId = new ColumnDefinition(Constants.LanguageId, this);
-				LastUpdate = new ColumnDefinition(Constants.LastUpdate, this);
-				Name = new ColumnDefinition(Constants.Name, this);
+				_columns.Add(Constants.LanguageId, new ColumnDefinition(Constants.LanguageId, this));
+				_columns.Add(Constants.LastUpdate, new ColumnDefinition(Constants.LastUpdate, this));
+				_columns.Add(Constants.Name, new ColumnDefinition(Constants.Name, this));
 			}
 
 			public TableDefinition As(string alias) => base.As<TableDefinition>(alias);
 
-			public ColumnDefinition LanguageId { get; private set; }
-			public ColumnDefinition LastUpdate { get; private set; }
-			public ColumnDefinition Name { get; private set; }
+			public ColumnDefinition LanguageId => _columns[Constants.LanguageId];
+			public ColumnDefinition LastUpdate => _columns[Constants.LastUpdate];
+			public ColumnDefinition Name => _columns[Constants.Name];
 
+			public IEnumerable<ColumnDefinition> Star => _columns.Values;
 		}
 	
 		public static partial class QueryResults

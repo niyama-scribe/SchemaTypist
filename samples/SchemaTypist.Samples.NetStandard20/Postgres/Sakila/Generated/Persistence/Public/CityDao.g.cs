@@ -31,21 +31,24 @@ namespace SchemaTypist.Samples.NetStandard20.Postgres.Sakila.Generated.Persisten
 
 		public partial class TableDefinition : TabularDefinition
 		{
+			private readonly IDictionary<string, ColumnDefinition> _columns = new Dictionary<string, ColumnDefinition>();
+                
 			public TableDefinition() : base("public.city")
 			{
-				City0 = new ColumnDefinition(Constants.City0, this);
-				CityId = new ColumnDefinition(Constants.CityId, this);
-				CountryId = new ColumnDefinition(Constants.CountryId, this);
-				LastUpdate = new ColumnDefinition(Constants.LastUpdate, this);
+				_columns.Add(Constants.City0, new ColumnDefinition(Constants.City0, this));
+				_columns.Add(Constants.CityId, new ColumnDefinition(Constants.CityId, this));
+				_columns.Add(Constants.CountryId, new ColumnDefinition(Constants.CountryId, this));
+				_columns.Add(Constants.LastUpdate, new ColumnDefinition(Constants.LastUpdate, this));
 			}
 
 			public TableDefinition As(string alias) => base.As<TableDefinition>(alias);
 
-			public ColumnDefinition City0 { get; private set; }
-			public ColumnDefinition CityId { get; private set; }
-			public ColumnDefinition CountryId { get; private set; }
-			public ColumnDefinition LastUpdate { get; private set; }
+			public ColumnDefinition City0 => _columns[Constants.City0];
+			public ColumnDefinition CityId => _columns[Constants.CityId];
+			public ColumnDefinition CountryId => _columns[Constants.CountryId];
+			public ColumnDefinition LastUpdate => _columns[Constants.LastUpdate];
 
+			public IEnumerable<ColumnDefinition> Star => _columns.Values;
 		}
 	
 		public static partial class QueryResults

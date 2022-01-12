@@ -33,25 +33,28 @@ namespace SchemaTypist.Samples.NetStandard20.Postgres.Sakila.Generated.Persisten
 
 		public partial class TableDefinition : TabularDefinition
 		{
+			private readonly IDictionary<string, ColumnDefinition> _columns = new Dictionary<string, ColumnDefinition>();
+                
 			public TableDefinition() : base("public.payment_p2007_06")
 			{
-				Amount = new ColumnDefinition(Constants.Amount, this);
-				CustomerId = new ColumnDefinition(Constants.CustomerId, this);
-				PaymentDate = new ColumnDefinition(Constants.PaymentDate, this);
-				PaymentId = new ColumnDefinition(Constants.PaymentId, this);
-				RentalId = new ColumnDefinition(Constants.RentalId, this);
-				StaffId = new ColumnDefinition(Constants.StaffId, this);
+				_columns.Add(Constants.Amount, new ColumnDefinition(Constants.Amount, this));
+				_columns.Add(Constants.CustomerId, new ColumnDefinition(Constants.CustomerId, this));
+				_columns.Add(Constants.PaymentDate, new ColumnDefinition(Constants.PaymentDate, this));
+				_columns.Add(Constants.PaymentId, new ColumnDefinition(Constants.PaymentId, this));
+				_columns.Add(Constants.RentalId, new ColumnDefinition(Constants.RentalId, this));
+				_columns.Add(Constants.StaffId, new ColumnDefinition(Constants.StaffId, this));
 			}
 
 			public TableDefinition As(string alias) => base.As<TableDefinition>(alias);
 
-			public ColumnDefinition Amount { get; private set; }
-			public ColumnDefinition CustomerId { get; private set; }
-			public ColumnDefinition PaymentDate { get; private set; }
-			public ColumnDefinition PaymentId { get; private set; }
-			public ColumnDefinition RentalId { get; private set; }
-			public ColumnDefinition StaffId { get; private set; }
+			public ColumnDefinition Amount => _columns[Constants.Amount];
+			public ColumnDefinition CustomerId => _columns[Constants.CustomerId];
+			public ColumnDefinition PaymentDate => _columns[Constants.PaymentDate];
+			public ColumnDefinition PaymentId => _columns[Constants.PaymentId];
+			public ColumnDefinition RentalId => _columns[Constants.RentalId];
+			public ColumnDefinition StaffId => _columns[Constants.StaffId];
 
+			public IEnumerable<ColumnDefinition> Star => _columns.Values;
 		}
 	
 		public static partial class QueryResults

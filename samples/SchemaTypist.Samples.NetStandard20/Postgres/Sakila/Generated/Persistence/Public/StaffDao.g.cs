@@ -38,35 +38,38 @@ namespace SchemaTypist.Samples.NetStandard20.Postgres.Sakila.Generated.Persisten
 
 		public partial class TableDefinition : TabularDefinition
 		{
+			private readonly IDictionary<string, ColumnDefinition> _columns = new Dictionary<string, ColumnDefinition>();
+                
 			public TableDefinition() : base("public.staff")
 			{
-				Active = new ColumnDefinition(Constants.Active, this);
-				AddressId = new ColumnDefinition(Constants.AddressId, this);
-				Email = new ColumnDefinition(Constants.Email, this);
-				FirstName = new ColumnDefinition(Constants.FirstName, this);
-				LastName = new ColumnDefinition(Constants.LastName, this);
-				LastUpdate = new ColumnDefinition(Constants.LastUpdate, this);
-				Password = new ColumnDefinition(Constants.Password, this);
-				Picture = new ColumnDefinition(Constants.Picture, this);
-				StaffId = new ColumnDefinition(Constants.StaffId, this);
-				StoreId = new ColumnDefinition(Constants.StoreId, this);
-				Username = new ColumnDefinition(Constants.Username, this);
+				_columns.Add(Constants.Active, new ColumnDefinition(Constants.Active, this));
+				_columns.Add(Constants.AddressId, new ColumnDefinition(Constants.AddressId, this));
+				_columns.Add(Constants.Email, new ColumnDefinition(Constants.Email, this));
+				_columns.Add(Constants.FirstName, new ColumnDefinition(Constants.FirstName, this));
+				_columns.Add(Constants.LastName, new ColumnDefinition(Constants.LastName, this));
+				_columns.Add(Constants.LastUpdate, new ColumnDefinition(Constants.LastUpdate, this));
+				_columns.Add(Constants.Password, new ColumnDefinition(Constants.Password, this));
+				_columns.Add(Constants.Picture, new ColumnDefinition(Constants.Picture, this));
+				_columns.Add(Constants.StaffId, new ColumnDefinition(Constants.StaffId, this));
+				_columns.Add(Constants.StoreId, new ColumnDefinition(Constants.StoreId, this));
+				_columns.Add(Constants.Username, new ColumnDefinition(Constants.Username, this));
 			}
 
 			public TableDefinition As(string alias) => base.As<TableDefinition>(alias);
 
-			public ColumnDefinition Active { get; private set; }
-			public ColumnDefinition AddressId { get; private set; }
-			public ColumnDefinition Email { get; private set; }
-			public ColumnDefinition FirstName { get; private set; }
-			public ColumnDefinition LastName { get; private set; }
-			public ColumnDefinition LastUpdate { get; private set; }
-			public ColumnDefinition Password { get; private set; }
-			public ColumnDefinition Picture { get; private set; }
-			public ColumnDefinition StaffId { get; private set; }
-			public ColumnDefinition StoreId { get; private set; }
-			public ColumnDefinition Username { get; private set; }
+			public ColumnDefinition Active => _columns[Constants.Active];
+			public ColumnDefinition AddressId => _columns[Constants.AddressId];
+			public ColumnDefinition Email => _columns[Constants.Email];
+			public ColumnDefinition FirstName => _columns[Constants.FirstName];
+			public ColumnDefinition LastName => _columns[Constants.LastName];
+			public ColumnDefinition LastUpdate => _columns[Constants.LastUpdate];
+			public ColumnDefinition Password => _columns[Constants.Password];
+			public ColumnDefinition Picture => _columns[Constants.Picture];
+			public ColumnDefinition StaffId => _columns[Constants.StaffId];
+			public ColumnDefinition StoreId => _columns[Constants.StoreId];
+			public ColumnDefinition Username => _columns[Constants.Username];
 
+			public IEnumerable<ColumnDefinition> Star => _columns.Values;
 		}
 	
 		public static partial class QueryResults

@@ -12,6 +12,7 @@ using System.Collections.Generic;
 
 namespace SchemaTypist.Samples.NetStandard20.Postgres.Sakila.Generated.Domain.Public
 {
+	
 	public partial class Rental
 	{
 		public short CustomerId { get; set; }
@@ -22,4 +23,6 @@ namespace SchemaTypist.Samples.NetStandard20.Postgres.Sakila.Generated.Domain.Pu
 		public DateTime ReturnDate { get; set; }
 		public short StaffId { get; set; }
 	}
+	
+
 }

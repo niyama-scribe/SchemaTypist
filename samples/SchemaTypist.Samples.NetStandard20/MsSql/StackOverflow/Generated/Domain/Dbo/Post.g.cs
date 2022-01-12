@@ -10,8 +10,9 @@
 using System;
 using System.Collections.Generic;
 
-namespace SchemaTypist.Samples.NetStandard20.StackOverflow.Generated.Domain.Dbo
+namespace SchemaTypist.Samples.NetStandard20.MsSql.StackOverflow.Generated.Domain.Dbo
 {
+	
 	public partial class Post
 	{
 		public int AcceptedAnswerId { get; set; }
@@ -35,4 +36,6 @@ namespace SchemaTypist.Samples.NetStandard20.StackOverflow.Generated.Domain.Dbo
 		public string Title { get; set; }
 		public int ViewCount { get; set; }
 	}
+	
+
 }

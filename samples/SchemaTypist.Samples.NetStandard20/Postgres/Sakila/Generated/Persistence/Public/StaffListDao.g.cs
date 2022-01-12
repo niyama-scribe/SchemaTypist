@@ -35,29 +35,32 @@ namespace SchemaTypist.Samples.NetStandard20.Postgres.Sakila.Generated.Persisten
 
 		public partial class TableDefinition : TabularDefinition
 		{
+			private readonly IDictionary<string, ColumnDefinition> _columns = new Dictionary<string, ColumnDefinition>();
+                
 			public TableDefinition() : base("public.staff_list")
 			{
-				Address = new ColumnDefinition(Constants.Address, this);
-				City = new ColumnDefinition(Constants.City, this);
-				Country = new ColumnDefinition(Constants.Country, this);
-				Id = new ColumnDefinition(Constants.Id, this);
-				Name = new ColumnDefinition(Constants.Name, this);
-				Phone = new ColumnDefinition(Constants.Phone, this);
-				Sid = new ColumnDefinition(Constants.Sid, this);
-				ZipCode = new ColumnDefinition(Constants.ZipCode, this);
+				_columns.Add(Constants.Address, new ColumnDefinition(Constants.Address, this));
+				_columns.Add(Constants.City, new ColumnDefinition(Constants.City, this));
+				_columns.Add(Constants.Country, new ColumnDefinition(Constants.Country, this));
+				_columns.Add(Constants.Id, new ColumnDefinition(Constants.Id, this));
+				_columns.Add(Constants.Name, new ColumnDefinition(Constants.Name, this));
+				_columns.Add(Constants.Phone, new ColumnDefinition(Constants.Phone, this));
+				_columns.Add(Constants.Sid, new ColumnDefinition(Constants.Sid, this));
+				_columns.Add(Constants.ZipCode, new ColumnDefinition(Constants.ZipCode, this));
 			}
 
 			public TableDefinition As(string alias) => base.As<TableDefinition>(alias);
 
-			public ColumnDefinition Address { get; private set; }
-			public ColumnDefinition City { get; private set; }
-			public ColumnDefinition Country { get; private set; }
-			public ColumnDefinition Id { get; private set; }
-			public ColumnDefinition Name { get; private set; }
-			public ColumnDefinition Phone { get; private set; }
-			public ColumnDefinition Sid { get; private set; }
-			public ColumnDefinition ZipCode { get; private set; }
+			public ColumnDefinition Address => _columns[Constants.Address];
+			public ColumnDefinition City => _columns[Constants.City];
+			public ColumnDefinition Country => _columns[Constants.Country];
+			public ColumnDefinition Id => _columns[Constants.Id];
+			public ColumnDefinition Name => _columns[Constants.Name];
+			public ColumnDefinition Phone => _columns[Constants.Phone];
+			public ColumnDefinition Sid => _columns[Constants.Sid];
+			public ColumnDefinition ZipCode => _columns[Constants.ZipCode];
 
+			public IEnumerable<ColumnDefinition> Star => _columns.Values;
 		}
 	
 		public static partial class QueryResults

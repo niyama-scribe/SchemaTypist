@@ -29,17 +29,20 @@ namespace SchemaTypist.Samples.NetStandard20.Postgres.Sakila.Generated.Persisten
 
 		public partial class TableDefinition : TabularDefinition
 		{
+			private readonly IDictionary<string, ColumnDefinition> _columns = new Dictionary<string, ColumnDefinition>();
+                
 			public TableDefinition() : base("public.sales_by_film_category")
 			{
-				Category = new ColumnDefinition(Constants.Category, this);
-				TotalSale = new ColumnDefinition(Constants.TotalSale, this);
+				_columns.Add(Constants.Category, new ColumnDefinition(Constants.Category, this));
+				_columns.Add(Constants.TotalSale, new ColumnDefinition(Constants.TotalSale, this));
 			}
 
 			public TableDefinition As(string alias) => base.As<TableDefinition>(alias);
 
-			public ColumnDefinition Category { get; private set; }
-			public ColumnDefinition TotalSale { get; private set; }
+			public ColumnDefinition Category => _columns[Constants.Category];
+			public ColumnDefinition TotalSale => _columns[Constants.TotalSale];
 
+			public IEnumerable<ColumnDefinition> Star => _columns.Values;
 		}
 	
 		public static partial class QueryResults

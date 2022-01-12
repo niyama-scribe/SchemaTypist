@@ -12,6 +12,7 @@ using System.Collections.Generic;
 
 namespace SchemaTypist.Samples.NetStandard20.Postgres.Sakila.Generated.Domain.Public
 {
+	
 	public partial class Staff
 	{
 		public bool Active { get; set; }
@@ -26,4 +27,6 @@ namespace SchemaTypist.Samples.NetStandard20.Postgres.Sakila.Generated.Domain.Pu
 		public short StoreId { get; set; }
 		public string Username { get; set; }
 	}
+	
+
 }

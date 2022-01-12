@@ -13,9 +13,9 @@ using SchemaTypist.DatabaseMetadata;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
-using SchemaTypist.Samples.NetStandard20.StackOverflow.Generated.Domain.Dbo;
+using SchemaTypist.Samples.NetStandard20.MsSql.StackOverflow.Generated.Domain.Dbo;
 
-namespace SchemaTypist.Samples.NetStandard20.StackOverflow.Generated.Persistence.Dbo
+namespace SchemaTypist.Samples.NetStandard20.MsSql.StackOverflow.Generated.Persistence.Dbo
 {
 	public static partial class VoteDao
 	{
@@ -33,25 +33,28 @@ namespace SchemaTypist.Samples.NetStandard20.StackOverflow.Generated.Persistence
 
 		public partial class TableDefinition : TabularDefinition
 		{
+			private readonly IDictionary<string, ColumnDefinition> _columns = new Dictionary<string, ColumnDefinition>();
+                
 			public TableDefinition() : base("StackOverflow.dbo.Votes")
 			{
-				BountyAmount = new ColumnDefinition(Constants.BountyAmount, this);
-				CreationDate = new ColumnDefinition(Constants.CreationDate, this);
-				Id = new ColumnDefinition(Constants.Id, this);
-				PostId = new ColumnDefinition(Constants.PostId, this);
-				UserId = new ColumnDefinition(Constants.UserId, this);
-				VoteTypeId = new ColumnDefinition(Constants.VoteTypeId, this);
+				_columns.Add(Constants.BountyAmount, new ColumnDefinition(Constants.BountyAmount, this));
+				_columns.Add(Constants.CreationDate, new ColumnDefinition(Constants.CreationDate, this));
+				_columns.Add(Constants.Id, new ColumnDefinition(Constants.Id, this));
+				_columns.Add(Constants.PostId, new ColumnDefinition(Constants.PostId, this));
+				_columns.Add(Constants.UserId, new ColumnDefinition(Constants.UserId, this));
+				_columns.Add(Constants.VoteTypeId, new ColumnDefinition(Constants.VoteTypeId, this));
 			}
 
 			public TableDefinition As(string alias) => base.As<TableDefinition>(alias);
 
-			public ColumnDefinition BountyAmount { get; private set; }
-			public ColumnDefinition CreationDate { get; private set; }
-			public ColumnDefinition Id { get; private set; }
-			public ColumnDefinition PostId { get; private set; }
-			public ColumnDefinition UserId { get; private set; }
-			public ColumnDefinition VoteTypeId { get; private set; }
+			public ColumnDefinition BountyAmount => _columns[Constants.BountyAmount];
+			public ColumnDefinition CreationDate => _columns[Constants.CreationDate];
+			public ColumnDefinition Id => _columns[Constants.Id];
+			public ColumnDefinition PostId => _columns[Constants.PostId];
+			public ColumnDefinition UserId => _columns[Constants.UserId];
+			public ColumnDefinition VoteTypeId => _columns[Constants.VoteTypeId];
 
+			public IEnumerable<ColumnDefinition> Star => _columns.Values;
 		}
 	
 		public static partial class QueryResults

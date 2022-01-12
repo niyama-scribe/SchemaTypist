@@ -12,6 +12,7 @@ using System.Collections.Generic;
 
 namespace SchemaTypist.Samples.NetStandard20.Postgres.Sakila.Generated.Domain.Public
 {
+	
 	public partial class PaymentP200704
 	{
 		public decimal Amount { get; set; }
@@ -21,4 +22,6 @@ namespace SchemaTypist.Samples.NetStandard20.Postgres.Sakila.Generated.Domain.Pu
 		public int RentalId { get; set; }
 		public short StaffId { get; set; }
 	}
+	
+
 }

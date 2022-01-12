@@ -12,6 +12,7 @@ using System.Collections.Generic;
 
 namespace SchemaTypist.Samples.NetStandard20.Postgres.Sakila.Generated.Domain.Public
 {
+	
 	public partial class CustomerList
 	{
 		public string Address { get; set; }
@@ -24,4 +25,6 @@ namespace SchemaTypist.Samples.NetStandard20.Postgres.Sakila.Generated.Domain.Pu
 		public short Sid { get; set; }
 		public string ZipCode { get; set; }
 	}
+	
+
 }

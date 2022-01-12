@@ -10,8 +10,9 @@
 using System;
 using System.Collections.Generic;
 
-namespace SchemaTypist.Samples.NetStandard20.StackOverflow.Generated.Domain.Dbo
+namespace SchemaTypist.Samples.NetStandard20.MsSql.StackOverflow.Generated.Domain.Dbo
 {
+	
 	public partial class PostLink
 	{
 		public DateTime CreationDate { get; set; }
@@ -20,4 +21,6 @@ namespace SchemaTypist.Samples.NetStandard20.StackOverflow.Generated.Domain.Dbo
 		public int PostId { get; set; }
 		public int RelatedPostId { get; set; }
 	}
+	
+
 }

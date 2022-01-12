@@ -31,21 +31,24 @@ namespace SchemaTypist.Samples.NetStandard20.Postgres.Sakila.Generated.Persisten
 
 		public partial class TableDefinition : TabularDefinition
 		{
+			private readonly IDictionary<string, ColumnDefinition> _columns = new Dictionary<string, ColumnDefinition>();
+                
 			public TableDefinition() : base("public.actor_info")
 			{
-				ActorId = new ColumnDefinition(Constants.ActorId, this);
-				FilmInfo = new ColumnDefinition(Constants.FilmInfo, this);
-				FirstName = new ColumnDefinition(Constants.FirstName, this);
-				LastName = new ColumnDefinition(Constants.LastName, this);
+				_columns.Add(Constants.ActorId, new ColumnDefinition(Constants.ActorId, this));
+				_columns.Add(Constants.FilmInfo, new ColumnDefinition(Constants.FilmInfo, this));
+				_columns.Add(Constants.FirstName, new ColumnDefinition(Constants.FirstName, this));
+				_columns.Add(Constants.LastName, new ColumnDefinition(Constants.LastName, this));
 			}
 
 			public TableDefinition As(string alias) => base.As<TableDefinition>(alias);
 
-			public ColumnDefinition ActorId { get; private set; }
-			public ColumnDefinition FilmInfo { get; private set; }
-			public ColumnDefinition FirstName { get; private set; }
-			public ColumnDefinition LastName { get; private set; }
+			public ColumnDefinition ActorId => _columns[Constants.ActorId];
+			public ColumnDefinition FilmInfo => _columns[Constants.FilmInfo];
+			public ColumnDefinition FirstName => _columns[Constants.FirstName];
+			public ColumnDefinition LastName => _columns[Constants.LastName];
 
+			public IEnumerable<ColumnDefinition> Star => _columns.Values;
 		}
 	
 		public static partial class QueryResults

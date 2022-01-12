@@ -13,9 +13,9 @@ using SchemaTypist.DatabaseMetadata;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
-using SchemaTypist.Samples.NetStandard20.StackOverflow.Generated.Domain.Dbo;
+using SchemaTypist.Samples.NetStandard20.MsSql.StackOverflow.Generated.Domain.Dbo;
 
-namespace SchemaTypist.Samples.NetStandard20.StackOverflow.Generated.Persistence.Dbo
+namespace SchemaTypist.Samples.NetStandard20.MsSql.StackOverflow.Generated.Persistence.Dbo
 {
 	public static partial class CommentDao
 	{
@@ -33,25 +33,28 @@ namespace SchemaTypist.Samples.NetStandard20.StackOverflow.Generated.Persistence
 
 		public partial class TableDefinition : TabularDefinition
 		{
+			private readonly IDictionary<string, ColumnDefinition> _columns = new Dictionary<string, ColumnDefinition>();
+                
 			public TableDefinition() : base("StackOverflow.dbo.Comments")
 			{
-				CreationDate = new ColumnDefinition(Constants.CreationDate, this);
-				Id = new ColumnDefinition(Constants.Id, this);
-				PostId = new ColumnDefinition(Constants.PostId, this);
-				Score = new ColumnDefinition(Constants.Score, this);
-				Text = new ColumnDefinition(Constants.Text, this);
-				UserId = new ColumnDefinition(Constants.UserId, this);
+				_columns.Add(Constants.CreationDate, new ColumnDefinition(Constants.CreationDate, this));
+				_columns.Add(Constants.Id, new ColumnDefinition(Constants.Id, this));
+				_columns.Add(Constants.PostId, new ColumnDefinition(Constants.PostId, this));
+				_columns.Add(Constants.Score, new ColumnDefinition(Constants.Score, this));
+				_columns.Add(Constants.Text, new ColumnDefinition(Constants.Text, this));
+				_columns.Add(Constants.UserId, new ColumnDefinition(Constants.UserId, this));
 			}
 
 			public TableDefinition As(string alias) => base.As<TableDefinition>(alias);
 
-			public ColumnDefinition CreationDate { get; private set; }
-			public ColumnDefinition Id { get; private set; }
-			public ColumnDefinition PostId { get; private set; }
-			public ColumnDefinition Score { get; private set; }
-			public ColumnDefinition Text { get; private set; }
-			public ColumnDefinition UserId { get; private set; }
+			public ColumnDefinition CreationDate => _columns[Constants.CreationDate];
+			public ColumnDefinition Id => _columns[Constants.Id];
+			public ColumnDefinition PostId => _columns[Constants.PostId];
+			public ColumnDefinition Score => _columns[Constants.Score];
+			public ColumnDefinition Text => _columns[Constants.Text];
+			public ColumnDefinition UserId => _columns[Constants.UserId];
 
+			public IEnumerable<ColumnDefinition> Star => _columns.Values;
 		}
 	
 		public static partial class QueryResults

@@ -12,6 +12,7 @@ using System.Collections.Generic;
 
 namespace SchemaTypist.Samples.NetStandard20.Postgres.Sakila.Generated.Domain.Public
 {
+	
 	public partial class Actor
 	{
 		public int ActorId { get; set; }
@@ -19,4 +20,6 @@ namespace SchemaTypist.Samples.NetStandard20.Postgres.Sakila.Generated.Domain.Pu
 		public string LastName { get; set; }
 		public DateTime LastUpdate { get; set; }
 	}
+	
+
 }

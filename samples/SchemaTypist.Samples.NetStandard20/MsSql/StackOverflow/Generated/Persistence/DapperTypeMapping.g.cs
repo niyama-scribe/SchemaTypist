@@ -9,7 +9,7 @@
 
 using Dapper;
 
-namespace SchemaTypist.Samples.NetStandard20.StackOverflow.Generated.Persistence
+namespace SchemaTypist.Samples.NetStandard20.MsSql.StackOverflow.Generated.Persistence
 {
 	static partial class DapperTypeMapping
 	{
@@ -19,16 +19,16 @@ namespace SchemaTypist.Samples.NetStandard20.StackOverflow.Generated.Persistence
         {
 			BeforeInit();
 			
-			SqlMapper.SetTypeMap(typeof(SchemaTypist.Samples.NetStandard20.StackOverflow.Generated.Domain.Dbo.Badge), SchemaTypist.Samples.NetStandard20.StackOverflow.Generated.Persistence.Dbo.BadgeDao.QueryResults.GetTypeMap());
-			SqlMapper.SetTypeMap(typeof(SchemaTypist.Samples.NetStandard20.StackOverflow.Generated.Domain.Dbo.Comment), SchemaTypist.Samples.NetStandard20.StackOverflow.Generated.Persistence.Dbo.CommentDao.QueryResults.GetTypeMap());
-			SqlMapper.SetTypeMap(typeof(SchemaTypist.Samples.NetStandard20.StackOverflow.Generated.Domain.Dbo.LinkType), SchemaTypist.Samples.NetStandard20.StackOverflow.Generated.Persistence.Dbo.LinkTypeDao.QueryResults.GetTypeMap());
-			SqlMapper.SetTypeMap(typeof(SchemaTypist.Samples.NetStandard20.StackOverflow.Generated.Domain.Dbo.PostLink), SchemaTypist.Samples.NetStandard20.StackOverflow.Generated.Persistence.Dbo.PostLinkDao.QueryResults.GetTypeMap());
-			SqlMapper.SetTypeMap(typeof(SchemaTypist.Samples.NetStandard20.StackOverflow.Generated.Domain.Dbo.Post), SchemaTypist.Samples.NetStandard20.StackOverflow.Generated.Persistence.Dbo.PostDao.QueryResults.GetTypeMap());
-			SqlMapper.SetTypeMap(typeof(SchemaTypist.Samples.NetStandard20.StackOverflow.Generated.Domain.Dbo.PostType), SchemaTypist.Samples.NetStandard20.StackOverflow.Generated.Persistence.Dbo.PostTypeDao.QueryResults.GetTypeMap());
-			SqlMapper.SetTypeMap(typeof(SchemaTypist.Samples.NetStandard20.StackOverflow.Generated.Domain.Dbo.PostWithType), SchemaTypist.Samples.NetStandard20.StackOverflow.Generated.Persistence.Dbo.PostWithTypeDao.QueryResults.GetTypeMap());
-			SqlMapper.SetTypeMap(typeof(SchemaTypist.Samples.NetStandard20.StackOverflow.Generated.Domain.Dbo.User), SchemaTypist.Samples.NetStandard20.StackOverflow.Generated.Persistence.Dbo.UserDao.QueryResults.GetTypeMap());
-			SqlMapper.SetTypeMap(typeof(SchemaTypist.Samples.NetStandard20.StackOverflow.Generated.Domain.Dbo.Vote), SchemaTypist.Samples.NetStandard20.StackOverflow.Generated.Persistence.Dbo.VoteDao.QueryResults.GetTypeMap());
-			SqlMapper.SetTypeMap(typeof(SchemaTypist.Samples.NetStandard20.StackOverflow.Generated.Domain.Dbo.VoteType), SchemaTypist.Samples.NetStandard20.StackOverflow.Generated.Persistence.Dbo.VoteTypeDao.QueryResults.GetTypeMap());
+			SqlMapper.SetTypeMap(typeof(SchemaTypist.Samples.NetStandard20.MsSql.StackOverflow.Generated.Domain.Dbo.Badge), SchemaTypist.Samples.NetStandard20.MsSql.StackOverflow.Generated.Persistence.Dbo.BadgeDao.QueryResults.GetTypeMap());
+			SqlMapper.SetTypeMap(typeof(SchemaTypist.Samples.NetStandard20.MsSql.StackOverflow.Generated.Domain.Dbo.Comment), SchemaTypist.Samples.NetStandard20.MsSql.StackOverflow.Generated.Persistence.Dbo.CommentDao.QueryResults.GetTypeMap());
+			SqlMapper.SetTypeMap(typeof(SchemaTypist.Samples.NetStandard20.MsSql.StackOverflow.Generated.Domain.Dbo.LinkType), SchemaTypist.Samples.NetStandard20.MsSql.StackOverflow.Generated.Persistence.Dbo.LinkTypeDao.QueryResults.GetTypeMap());
+			SqlMapper.SetTypeMap(typeof(SchemaTypist.Samples.NetStandard20.MsSql.StackOverflow.Generated.Domain.Dbo.PostLink), SchemaTypist.Samples.NetStandard20.MsSql.StackOverflow.Generated.Persistence.Dbo.PostLinkDao.QueryResults.GetTypeMap());
+			SqlMapper.SetTypeMap(typeof(SchemaTypist.Samples.NetStandard20.MsSql.StackOverflow.Generated.Domain.Dbo.Post), SchemaTypist.Samples.NetStandard20.MsSql.StackOverflow.Generated.Persistence.Dbo.PostDao.QueryResults.GetTypeMap());
+			SqlMapper.SetTypeMap(typeof(SchemaTypist.Samples.NetStandard20.MsSql.StackOverflow.Generated.Domain.Dbo.PostType), SchemaTypist.Samples.NetStandard20.MsSql.StackOverflow.Generated.Persistence.Dbo.PostTypeDao.QueryResults.GetTypeMap());
+			SqlMapper.SetTypeMap(typeof(SchemaTypist.Samples.NetStandard20.MsSql.StackOverflow.Generated.Domain.Dbo.PostWithType), SchemaTypist.Samples.NetStandard20.MsSql.StackOverflow.Generated.Persistence.Dbo.PostWithTypeDao.QueryResults.GetTypeMap());
+			SqlMapper.SetTypeMap(typeof(SchemaTypist.Samples.NetStandard20.MsSql.StackOverflow.Generated.Domain.Dbo.User), SchemaTypist.Samples.NetStandard20.MsSql.StackOverflow.Generated.Persistence.Dbo.UserDao.QueryResults.GetTypeMap());
+			SqlMapper.SetTypeMap(typeof(SchemaTypist.Samples.NetStandard20.MsSql.StackOverflow.Generated.Domain.Dbo.Vote), SchemaTypist.Samples.NetStandard20.MsSql.StackOverflow.Generated.Persistence.Dbo.VoteDao.QueryResults.GetTypeMap());
+			SqlMapper.SetTypeMap(typeof(SchemaTypist.Samples.NetStandard20.MsSql.StackOverflow.Generated.Domain.Dbo.VoteType), SchemaTypist.Samples.NetStandard20.MsSql.StackOverflow.Generated.Persistence.Dbo.VoteTypeDao.QueryResults.GetTypeMap());
 			
 			AfterInit();
 		}

@@ -31,21 +31,24 @@ namespace SchemaTypist.Samples.NetStandard20.Postgres.Sakila.Generated.Persisten
 
 		public partial class TableDefinition : TabularDefinition
 		{
+			private readonly IDictionary<string, ColumnDefinition> _columns = new Dictionary<string, ColumnDefinition>();
+                
 			public TableDefinition() : base("public.inventory")
 			{
-				FilmId = new ColumnDefinition(Constants.FilmId, this);
-				InventoryId = new ColumnDefinition(Constants.InventoryId, this);
-				LastUpdate = new ColumnDefinition(Constants.LastUpdate, this);
-				StoreId = new ColumnDefinition(Constants.StoreId, this);
+				_columns.Add(Constants.FilmId, new ColumnDefinition(Constants.FilmId, this));
+				_columns.Add(Constants.InventoryId, new ColumnDefinition(Constants.InventoryId, this));
+				_columns.Add(Constants.LastUpdate, new ColumnDefinition(Constants.LastUpdate, this));
+				_columns.Add(Constants.StoreId, new ColumnDefinition(Constants.StoreId, this));
 			}
 
 			public TableDefinition As(string alias) => base.As<TableDefinition>(alias);
 
-			public ColumnDefinition FilmId { get; private set; }
-			public ColumnDefinition InventoryId { get; private set; }
-			public ColumnDefinition LastUpdate { get; private set; }
-			public ColumnDefinition StoreId { get; private set; }
+			public ColumnDefinition FilmId => _columns[Constants.FilmId];
+			public ColumnDefinition InventoryId => _columns[Constants.InventoryId];
+			public ColumnDefinition LastUpdate => _columns[Constants.LastUpdate];
+			public ColumnDefinition StoreId => _columns[Constants.StoreId];
 
+			public IEnumerable<ColumnDefinition> Star => _columns.Values;
 		}
 	
 		public static partial class QueryResults

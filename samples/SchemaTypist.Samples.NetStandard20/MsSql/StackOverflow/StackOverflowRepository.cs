@@ -1,5 +1,5 @@
 ﻿using System.Data;
-using SchemaTypist.Samples.NetStandard20.StackOverflow.Generated.Persistence;
+using SchemaTypist.Samples.NetStandard20.MsSql.StackOverflow.Generated.Persistence;
 
 namespace SchemaTypist.Samples.NetStandard20.MsSql.StackOverflow
 {

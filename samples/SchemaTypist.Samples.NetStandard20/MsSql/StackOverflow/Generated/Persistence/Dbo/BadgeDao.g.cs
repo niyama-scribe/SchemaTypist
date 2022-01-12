@@ -13,9 +13,9 @@ using SchemaTypist.DatabaseMetadata;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
-using SchemaTypist.Samples.NetStandard20.StackOverflow.Generated.Domain.Dbo;
+using SchemaTypist.Samples.NetStandard20.MsSql.StackOverflow.Generated.Domain.Dbo;
 
-namespace SchemaTypist.Samples.NetStandard20.StackOverflow.Generated.Persistence.Dbo
+namespace SchemaTypist.Samples.NetStandard20.MsSql.StackOverflow.Generated.Persistence.Dbo
 {
 	public static partial class BadgeDao
 	{
@@ -31,21 +31,24 @@ namespace SchemaTypist.Samples.NetStandard20.StackOverflow.Generated.Persistence
 
 		public partial class TableDefinition : TabularDefinition
 		{
+			private readonly IDictionary<string, ColumnDefinition> _columns = new Dictionary<string, ColumnDefinition>();
+                
 			public TableDefinition() : base("StackOverflow.dbo.Badges")
 			{
-				Date = new ColumnDefinition(Constants.Date, this);
-				Id = new ColumnDefinition(Constants.Id, this);
-				Name = new ColumnDefinition(Constants.Name, this);
-				UserId = new ColumnDefinition(Constants.UserId, this);
+				_columns.Add(Constants.Date, new ColumnDefinition(Constants.Date, this));
+				_columns.Add(Constants.Id, new ColumnDefinition(Constants.Id, this));
+				_columns.Add(Constants.Name, new ColumnDefinition(Constants.Name, this));
+				_columns.Add(Constants.UserId, new ColumnDefinition(Constants.UserId, this));
 			}
 
 			public TableDefinition As(string alias) => base.As<TableDefinition>(alias);
 
-			public ColumnDefinition Date { get; private set; }
-			public ColumnDefinition Id { get; private set; }
-			public ColumnDefinition Name { get; private set; }
-			public ColumnDefinition UserId { get; private set; }
+			public ColumnDefinition Date => _columns[Constants.Date];
+			public ColumnDefinition Id => _columns[Constants.Id];
+			public ColumnDefinition Name => _columns[Constants.Name];
+			public ColumnDefinition UserId => _columns[Constants.UserId];
 
+			public IEnumerable<ColumnDefinition> Star => _columns.Values;
 		}
 	
 		public static partial class QueryResults

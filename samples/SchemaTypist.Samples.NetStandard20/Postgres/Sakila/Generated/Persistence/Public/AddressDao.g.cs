@@ -35,29 +35,32 @@ namespace SchemaTypist.Samples.NetStandard20.Postgres.Sakila.Generated.Persisten
 
 		public partial class TableDefinition : TabularDefinition
 		{
+			private readonly IDictionary<string, ColumnDefinition> _columns = new Dictionary<string, ColumnDefinition>();
+                
 			public TableDefinition() : base("public.address")
 			{
-				Address0 = new ColumnDefinition(Constants.Address0, this);
-				Address2 = new ColumnDefinition(Constants.Address2, this);
-				AddressId = new ColumnDefinition(Constants.AddressId, this);
-				CityId = new ColumnDefinition(Constants.CityId, this);
-				District = new ColumnDefinition(Constants.District, this);
-				LastUpdate = new ColumnDefinition(Constants.LastUpdate, this);
-				Phone = new ColumnDefinition(Constants.Phone, this);
-				PostalCode = new ColumnDefinition(Constants.PostalCode, this);
+				_columns.Add(Constants.Address0, new ColumnDefinition(Constants.Address0, this));
+				_columns.Add(Constants.Address2, new ColumnDefinition(Constants.Address2, this));
+				_columns.Add(Constants.AddressId, new ColumnDefinition(Constants.AddressId, this));
+				_columns.Add(Constants.CityId, new ColumnDefinition(Constants.CityId, this));
+				_columns.Add(Constants.District, new ColumnDefinition(Constants.District, this));
+				_columns.Add(Constants.LastUpdate, new ColumnDefinition(Constants.LastUpdate, this));
+				_columns.Add(Constants.Phone, new ColumnDefinition(Constants.Phone, this));
+				_columns.Add(Constants.PostalCode, new ColumnDefinition(Constants.PostalCode, this));
 			}
 
 			public TableDefinition As(string alias) => base.As<TableDefinition>(alias);
 
-			public ColumnDefinition Address0 { get; private set; }
-			public ColumnDefinition Address2 { get; private set; }
-			public ColumnDefinition AddressId { get; private set; }
-			public ColumnDefinition CityId { get; private set; }
-			public ColumnDefinition District { get; private set; }
-			public ColumnDefinition LastUpdate { get; private set; }
-			public ColumnDefinition Phone { get; private set; }
-			public ColumnDefinition PostalCode { get; private set; }
+			public ColumnDefinition Address0 => _columns[Constants.Address0];
+			public ColumnDefinition Address2 => _columns[Constants.Address2];
+			public ColumnDefinition AddressId => _columns[Constants.AddressId];
+			public ColumnDefinition CityId => _columns[Constants.CityId];
+			public ColumnDefinition District => _columns[Constants.District];
+			public ColumnDefinition LastUpdate => _columns[Constants.LastUpdate];
+			public ColumnDefinition Phone => _columns[Constants.Phone];
+			public ColumnDefinition PostalCode => _columns[Constants.PostalCode];
 
+			public IEnumerable<ColumnDefinition> Star => _columns.Values;
 		}
 	
 		public static partial class QueryResults

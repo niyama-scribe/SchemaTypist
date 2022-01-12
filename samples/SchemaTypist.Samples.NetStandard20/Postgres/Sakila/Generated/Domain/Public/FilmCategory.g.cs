@@ -12,10 +12,13 @@ using System.Collections.Generic;
 
 namespace SchemaTypist.Samples.NetStandard20.Postgres.Sakila.Generated.Domain.Public
 {
+	
 	public partial class FilmCategory
 	{
 		public short CategoryId { get; set; }
 		public short FilmId { get; set; }
 		public DateTime LastUpdate { get; set; }
 	}
+	
+
 }

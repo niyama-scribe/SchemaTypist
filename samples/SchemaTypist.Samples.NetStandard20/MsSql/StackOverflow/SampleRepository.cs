@@ -2,8 +2,8 @@
 using System.Data;
 using System.Threading.Tasks;
 using SchemaTypist.DatabaseMetadata;
-using SchemaTypist.Samples.NetStandard20.StackOverflow.Generated.Domain.Dbo;
-using SchemaTypist.Samples.NetStandard20.StackOverflow.Generated.Persistence.Dbo;
+using SchemaTypist.Samples.NetStandard20.MsSql.StackOverflow.Generated.Domain.Dbo;
+using SchemaTypist.Samples.NetStandard20.MsSql.StackOverflow.Generated.Persistence.Dbo;
 using SchemaTypist.SqlKata;
 using SqlKata;
 

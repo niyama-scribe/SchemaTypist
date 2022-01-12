@@ -12,6 +12,7 @@ using System.Collections.Generic;
 
 namespace SchemaTypist.Samples.NetStandard20.Postgres.Sakila.Generated.Domain.Public
 {
+	
 	public partial class City
 	{
 		public string City0 { get; set; }
@@ -19,4 +20,6 @@ namespace SchemaTypist.Samples.NetStandard20.Postgres.Sakila.Generated.Domain.Pu
 		public short CountryId { get; set; }
 		public DateTime LastUpdate { get; set; }
 	}
+	
+
 }

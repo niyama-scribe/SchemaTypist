@@ -12,6 +12,7 @@ using System.Collections.Generic;
 
 namespace SchemaTypist.Samples.NetStandard20.Postgres.Sakila.Generated.Domain.Public
 {
+	
 	public partial class NicerButSlowerFilmList
 	{
 		public string Actor { get; set; }
@@ -23,4 +24,6 @@ namespace SchemaTypist.Samples.NetStandard20.Postgres.Sakila.Generated.Domain.Pu
 		public Object Rating { get; set; }
 		public string Title { get; set; }
 	}
+	
+
 }

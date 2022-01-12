@@ -13,9 +13,9 @@ using SchemaTypist.DatabaseMetadata;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
-using SchemaTypist.Samples.NetStandard20.StackOverflow.Generated.Domain.Dbo;
+using SchemaTypist.Samples.NetStandard20.MsSql.StackOverflow.Generated.Domain.Dbo;
 
-namespace SchemaTypist.Samples.NetStandard20.StackOverflow.Generated.Persistence.Dbo
+namespace SchemaTypist.Samples.NetStandard20.MsSql.StackOverflow.Generated.Persistence.Dbo
 {
 	public static partial class LinkTypeDao
 	{
@@ -29,17 +29,20 @@ namespace SchemaTypist.Samples.NetStandard20.StackOverflow.Generated.Persistence
 
 		public partial class TableDefinition : TabularDefinition
 		{
+			private readonly IDictionary<string, ColumnDefinition> _columns = new Dictionary<string, ColumnDefinition>();
+                
 			public TableDefinition() : base("StackOverflow.dbo.LinkTypes")
 			{
-				Id = new ColumnDefinition(Constants.Id, this);
-				Type = new ColumnDefinition(Constants.Type, this);
+				_columns.Add(Constants.Id, new ColumnDefinition(Constants.Id, this));
+				_columns.Add(Constants.Type, new ColumnDefinition(Constants.Type, this));
 			}
 
 			public TableDefinition As(string alias) => base.As<TableDefinition>(alias);
 
-			public ColumnDefinition Id { get; private set; }
-			public ColumnDefinition Type { get; private set; }
+			public ColumnDefinition Id => _columns[Constants.Id];
+			public ColumnDefinition Type => _columns[Constants.Type];
 
+			public IEnumerable<ColumnDefinition> Star => _columns.Values;
 		}
 	
 		public static partial class QueryResults

@@ -10,8 +10,9 @@
 using System;
 using System.Collections.Generic;
 
-namespace SchemaTypist.Samples.NetStandard20.StackOverflow.Generated.Domain.Dbo
+namespace SchemaTypist.Samples.NetStandard20.MsSql.StackOverflow.Generated.Domain.Dbo
 {
+	
 	public partial class Vote
 	{
 		public int BountyAmount { get; set; }
@@ -21,4 +22,6 @@ namespace SchemaTypist.Samples.NetStandard20.StackOverflow.Generated.Domain.Dbo
 		public int UserId { get; set; }
 		public int VoteTypeId { get; set; }
 	}
+	
+
 }

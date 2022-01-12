@@ -13,9 +13,9 @@ using SchemaTypist.DatabaseMetadata;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
-using SchemaTypist.Samples.NetStandard20.StackOverflow.Generated.Domain.Dbo;
+using SchemaTypist.Samples.NetStandard20.MsSql.StackOverflow.Generated.Domain.Dbo;
 
-namespace SchemaTypist.Samples.NetStandard20.StackOverflow.Generated.Persistence.Dbo
+namespace SchemaTypist.Samples.NetStandard20.MsSql.StackOverflow.Generated.Persistence.Dbo
 {
 	public static partial class PostLinkDao
 	{
@@ -32,23 +32,26 @@ namespace SchemaTypist.Samples.NetStandard20.StackOverflow.Generated.Persistence
 
 		public partial class TableDefinition : TabularDefinition
 		{
+			private readonly IDictionary<string, ColumnDefinition> _columns = new Dictionary<string, ColumnDefinition>();
+                
 			public TableDefinition() : base("StackOverflow.dbo.PostLinks")
 			{
-				CreationDate = new ColumnDefinition(Constants.CreationDate, this);
-				Id = new ColumnDefinition(Constants.Id, this);
-				LinkTypeId = new ColumnDefinition(Constants.LinkTypeId, this);
-				PostId = new ColumnDefinition(Constants.PostId, this);
-				RelatedPostId = new ColumnDefinition(Constants.RelatedPostId, this);
+				_columns.Add(Constants.CreationDate, new ColumnDefinition(Constants.CreationDate, this));
+				_columns.Add(Constants.Id, new ColumnDefinition(Constants.Id, this));
+				_columns.Add(Constants.LinkTypeId, new ColumnDefinition(Constants.LinkTypeId, this));
+				_columns.Add(Constants.PostId, new ColumnDefinition(Constants.PostId, this));
+				_columns.Add(Constants.RelatedPostId, new ColumnDefinition(Constants.RelatedPostId, this));
 			}
 
 			public TableDefinition As(string alias) => base.As<TableDefinition>(alias);
 
-			public ColumnDefinition CreationDate { get; private set; }
-			public ColumnDefinition Id { get; private set; }
-			public ColumnDefinition LinkTypeId { get; private set; }
-			public ColumnDefinition PostId { get; private set; }
-			public ColumnDefinition RelatedPostId { get; private set; }
+			public ColumnDefinition CreationDate => _columns[Constants.CreationDate];
+			public ColumnDefinition Id => _columns[Constants.Id];
+			public ColumnDefinition LinkTypeId => _columns[Constants.LinkTypeId];
+			public ColumnDefinition PostId => _columns[Constants.PostId];
+			public ColumnDefinition RelatedPostId => _columns[Constants.RelatedPostId];
 
+			public IEnumerable<ColumnDefinition> Star => _columns.Values;
 		}
 	
 		public static partial class QueryResults

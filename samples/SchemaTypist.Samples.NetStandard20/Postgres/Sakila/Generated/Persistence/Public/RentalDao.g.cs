@@ -34,27 +34,30 @@ namespace SchemaTypist.Samples.NetStandard20.Postgres.Sakila.Generated.Persisten
 
 		public partial class TableDefinition : TabularDefinition
 		{
+			private readonly IDictionary<string, ColumnDefinition> _columns = new Dictionary<string, ColumnDefinition>();
+                
 			public TableDefinition() : base("public.rental")
 			{
-				CustomerId = new ColumnDefinition(Constants.CustomerId, this);
-				InventoryId = new ColumnDefinition(Constants.InventoryId, this);
-				LastUpdate = new ColumnDefinition(Constants.LastUpdate, this);
-				RentalDate = new ColumnDefinition(Constants.RentalDate, this);
-				RentalId = new ColumnDefinition(Constants.RentalId, this);
-				ReturnDate = new ColumnDefinition(Constants.ReturnDate, this);
-				StaffId = new ColumnDefinition(Constants.StaffId, this);
+				_columns.Add(Constants.CustomerId, new ColumnDefinition(Constants.CustomerId, this));
+				_columns.Add(Constants.InventoryId, new ColumnDefinition(Constants.InventoryId, this));
+				_columns.Add(Constants.LastUpdate, new ColumnDefinition(Constants.LastUpdate, this));
+				_columns.Add(Constants.RentalDate, new ColumnDefinition(Constants.RentalDate, this));
+				_columns.Add(Constants.RentalId, new ColumnDefinition(Constants.RentalId, this));
+				_columns.Add(Constants.ReturnDate, new ColumnDefinition(Constants.ReturnDate, this));
+				_columns.Add(Constants.StaffId, new ColumnDefinition(Constants.StaffId, this));
 			}
 
 			public TableDefinition As(string alias) => base.As<TableDefinition>(alias);
 
-			public ColumnDefinition CustomerId { get; private set; }
-			public ColumnDefinition InventoryId { get; private set; }
-			public ColumnDefinition LastUpdate { get; private set; }
-			public ColumnDefinition RentalDate { get; private set; }
-			public ColumnDefinition RentalId { get; private set; }
-			public ColumnDefinition ReturnDate { get; private set; }
-			public ColumnDefinition StaffId { get; private set; }
+			public ColumnDefinition CustomerId => _columns[Constants.CustomerId];
+			public ColumnDefinition InventoryId => _columns[Constants.InventoryId];
+			public ColumnDefinition LastUpdate => _columns[Constants.LastUpdate];
+			public ColumnDefinition RentalDate => _columns[Constants.RentalDate];
+			public ColumnDefinition RentalId => _columns[Constants.RentalId];
+			public ColumnDefinition ReturnDate => _columns[Constants.ReturnDate];
+			public ColumnDefinition StaffId => _columns[Constants.StaffId];
 
+			public IEnumerable<ColumnDefinition> Star => _columns.Values;
 		}
 	
 		public static partial class QueryResults

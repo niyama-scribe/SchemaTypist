@@ -10,8 +10,9 @@
 using System;
 using System.Collections.Generic;
 
-namespace SchemaTypist.Samples.NetStandard20.StackOverflow.Generated.Domain.Dbo
+namespace SchemaTypist.Samples.NetStandard20.MsSql.StackOverflow.Generated.Domain.Dbo
 {
+	
 	public partial class Badge
 	{
 		public DateTime Date { get; set; }
@@ -19,4 +20,6 @@ namespace SchemaTypist.Samples.NetStandard20.StackOverflow.Generated.Domain.Dbo
 		public string Name { get; set; }
 		public int UserId { get; set; }
 	}
+	
+
 }

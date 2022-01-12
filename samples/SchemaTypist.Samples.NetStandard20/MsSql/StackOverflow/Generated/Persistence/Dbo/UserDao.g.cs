@@ -13,9 +13,9 @@ using SchemaTypist.DatabaseMetadata;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
-using SchemaTypist.Samples.NetStandard20.StackOverflow.Generated.Domain.Dbo;
+using SchemaTypist.Samples.NetStandard20.MsSql.StackOverflow.Generated.Domain.Dbo;
 
-namespace SchemaTypist.Samples.NetStandard20.StackOverflow.Generated.Persistence.Dbo
+namespace SchemaTypist.Samples.NetStandard20.MsSql.StackOverflow.Generated.Persistence.Dbo
 {
 	public static partial class UserDao
 	{
@@ -41,41 +41,44 @@ namespace SchemaTypist.Samples.NetStandard20.StackOverflow.Generated.Persistence
 
 		public partial class TableDefinition : TabularDefinition
 		{
+			private readonly IDictionary<string, ColumnDefinition> _columns = new Dictionary<string, ColumnDefinition>();
+                
 			public TableDefinition() : base("StackOverflow.dbo.Users")
 			{
-				AboutMe = new ColumnDefinition(Constants.AboutMe, this);
-				AccountId = new ColumnDefinition(Constants.AccountId, this);
-				Age = new ColumnDefinition(Constants.Age, this);
-				CreationDate = new ColumnDefinition(Constants.CreationDate, this);
-				DisplayName = new ColumnDefinition(Constants.DisplayName, this);
-				DownVote = new ColumnDefinition(Constants.DownVote, this);
-				EmailHash = new ColumnDefinition(Constants.EmailHash, this);
-				Id = new ColumnDefinition(Constants.Id, this);
-				LastAccessDate = new ColumnDefinition(Constants.LastAccessDate, this);
-				Location = new ColumnDefinition(Constants.Location, this);
-				Reputation = new ColumnDefinition(Constants.Reputation, this);
-				UpVote = new ColumnDefinition(Constants.UpVote, this);
-				View = new ColumnDefinition(Constants.View, this);
-				WebsiteUrl = new ColumnDefinition(Constants.WebsiteUrl, this);
+				_columns.Add(Constants.AboutMe, new ColumnDefinition(Constants.AboutMe, this));
+				_columns.Add(Constants.AccountId, new ColumnDefinition(Constants.AccountId, this));
+				_columns.Add(Constants.Age, new ColumnDefinition(Constants.Age, this));
+				_columns.Add(Constants.CreationDate, new ColumnDefinition(Constants.CreationDate, this));
+				_columns.Add(Constants.DisplayName, new ColumnDefinition(Constants.DisplayName, this));
+				_columns.Add(Constants.DownVote, new ColumnDefinition(Constants.DownVote, this));
+				_columns.Add(Constants.EmailHash, new ColumnDefinition(Constants.EmailHash, this));
+				_columns.Add(Constants.Id, new ColumnDefinition(Constants.Id, this));
+				_columns.Add(Constants.LastAccessDate, new ColumnDefinition(Constants.LastAccessDate, this));
+				_columns.Add(Constants.Location, new ColumnDefinition(Constants.Location, this));
+				_columns.Add(Constants.Reputation, new ColumnDefinition(Constants.Reputation, this));
+				_columns.Add(Constants.UpVote, new ColumnDefinition(Constants.UpVote, this));
+				_columns.Add(Constants.View, new ColumnDefinition(Constants.View, this));
+				_columns.Add(Constants.WebsiteUrl, new ColumnDefinition(Constants.WebsiteUrl, this));
 			}
 
 			public TableDefinition As(string alias) => base.As<TableDefinition>(alias);
 
-			public ColumnDefinition AboutMe { get; private set; }
-			public ColumnDefinition AccountId { get; private set; }
-			public ColumnDefinition Age { get; private set; }
-			public ColumnDefinition CreationDate { get; private set; }
-			public ColumnDefinition DisplayName { get; private set; }
-			public ColumnDefinition DownVote { get; private set; }
-			public ColumnDefinition EmailHash { get; private set; }
-			public ColumnDefinition Id { get; private set; }
-			public ColumnDefinition LastAccessDate { get; private set; }
-			public ColumnDefinition Location { get; private set; }
-			public ColumnDefinition Reputation { get; private set; }
-			public ColumnDefinition UpVote { get; private set; }
-			public ColumnDefinition View { get; private set; }
-			public ColumnDefinition WebsiteUrl { get; private set; }
+			public ColumnDefinition AboutMe => _columns[Constants.AboutMe];
+			public ColumnDefinition AccountId => _columns[Constants.AccountId];
+			public ColumnDefinition Age => _columns[Constants.Age];
+			public ColumnDefinition CreationDate => _columns[Constants.CreationDate];
+			public ColumnDefinition DisplayName => _columns[Constants.DisplayName];
+			public ColumnDefinition DownVote => _columns[Constants.DownVote];
+			public ColumnDefinition EmailHash => _columns[Constants.EmailHash];
+			public ColumnDefinition Id => _columns[Constants.Id];
+			public ColumnDefinition LastAccessDate => _columns[Constants.LastAccessDate];
+			public ColumnDefinition Location => _columns[Constants.Location];
+			public ColumnDefinition Reputation => _columns[Constants.Reputation];
+			public ColumnDefinition UpVote => _columns[Constants.UpVote];
+			public ColumnDefinition View => _columns[Constants.View];
+			public ColumnDefinition WebsiteUrl => _columns[Constants.WebsiteUrl];
 
+			public IEnumerable<ColumnDefinition> Star => _columns.Values;
 		}
 	
 		public static partial class QueryResults

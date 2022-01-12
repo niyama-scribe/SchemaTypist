@@ -10,11 +10,14 @@
 using System;
 using System.Collections.Generic;
 
-namespace SchemaTypist.Samples.NetStandard20.StackOverflow.Generated.Domain.Dbo
+namespace SchemaTypist.Samples.NetStandard20.MsSql.StackOverflow.Generated.Domain.Dbo
 {
+	
 	public partial class LinkType
 	{
 		public int Id { get; set; }
 		public string Type { get; set; }
 	}
+	
+
 }

@@ -16,14 +16,14 @@ namespace {{ config.root_namespace }}.{{ config.entities_namespace }}.{{ schema 
 	public partial record {{ name }}{{ config.entity_name_suffix }}
 	{
 		{{~ for col in columns ~}}
-		public {{ col.data_type }} {{ col.name }} { get; init; };
+		public {{ col.data_type }} {{ col.name }} { get; init; }
 		{{~ end ~}}
 	}
 	{{ else if config.create_immutable_entities  }}
 	public partial class {{ name }}{{ config.entity_name_suffix }}
 	{
 		{{~ for col in columns ~}}
-		public {{ col.data_type }} {{ col.name }} { get; private set; };
+		public {{ col.data_type }} {{ col.name }} { get; private set; }
 		{{~ end ~}}
 	}
 	{{ else }}

@@ -35,29 +35,32 @@ namespace SchemaTypist.Samples.NetStandard20.Postgres.Sakila.Generated.Persisten
 
 		public partial class TableDefinition : TabularDefinition
 		{
+			private readonly IDictionary<string, ColumnDefinition> _columns = new Dictionary<string, ColumnDefinition>();
+                
 			public TableDefinition() : base("public.film_list")
 			{
-				Actor = new ColumnDefinition(Constants.Actor, this);
-				Category = new ColumnDefinition(Constants.Category, this);
-				Description = new ColumnDefinition(Constants.Description, this);
-				Fid = new ColumnDefinition(Constants.Fid, this);
-				Length = new ColumnDefinition(Constants.Length, this);
-				Price = new ColumnDefinition(Constants.Price, this);
-				Rating = new ColumnDefinition(Constants.Rating, this);
-				Title = new ColumnDefinition(Constants.Title, this);
+				_columns.Add(Constants.Actor, new ColumnDefinition(Constants.Actor, this));
+				_columns.Add(Constants.Category, new ColumnDefinition(Constants.Category, this));
+				_columns.Add(Constants.Description, new ColumnDefinition(Constants.Description, this));
+				_columns.Add(Constants.Fid, new ColumnDefinition(Constants.Fid, this));
+				_columns.Add(Constants.Length, new ColumnDefinition(Constants.Length, this));
+				_columns.Add(Constants.Price, new ColumnDefinition(Constants.Price, this));
+				_columns.Add(Constants.Rating, new ColumnDefinition(Constants.Rating, this));
+				_columns.Add(Constants.Title, new ColumnDefinition(Constants.Title, this));
 			}
 
 			public TableDefinition As(string alias) => base.As<TableDefinition>(alias);
 
-			public ColumnDefinition Actor { get; private set; }
-			public ColumnDefinition Category { get; private set; }
-			public ColumnDefinition Description { get; private set; }
-			public ColumnDefinition Fid { get; private set; }
-			public ColumnDefinition Length { get; private set; }
-			public ColumnDefinition Price { get; private set; }
-			public ColumnDefinition Rating { get; private set; }
-			public ColumnDefinition Title { get; private set; }
+			public ColumnDefinition Actor => _columns[Constants.Actor];
+			public ColumnDefinition Category => _columns[Constants.Category];
+			public ColumnDefinition Description => _columns[Constants.Description];
+			public ColumnDefinition Fid => _columns[Constants.Fid];
+			public ColumnDefinition Length => _columns[Constants.Length];
+			public ColumnDefinition Price => _columns[Constants.Price];
+			public ColumnDefinition Rating => _columns[Constants.Rating];
+			public ColumnDefinition Title => _columns[Constants.Title];
 
+			public IEnumerable<ColumnDefinition> Star => _columns.Values;
 		}
 	
 		public static partial class QueryResults

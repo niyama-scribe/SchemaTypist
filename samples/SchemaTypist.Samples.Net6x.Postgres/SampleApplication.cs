@@ -1,7 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
-using SchemaTypist.Samples.NetStandard20.Postgres.Sakila;
-using SchemaTypist.Samples.NetStandard20.Postgres.Sakila.Generated.Domain.Public;
+using SchemaTypist.Samples.Net6x.Postgres.Sakila;
+using SchemaTypist.Samples.Net6x.Postgres.Sakila.Generated.Domain.Public;
 
 Console.WriteLine("Hello, World!");
 var fr = new FilmRepository("Server=127.0.0.1;Port=5432;Database=postgres;User Id=postgres;Password=N3v3r!nPr0d;");
@@ -17,8 +17,15 @@ if (autumnCrow != null)
 {
     Console.WriteLine($"{autumnCrow.Title} : {autumnCrow.Description} : {autumnCrow.RentalRate}");
     //Update rating
-    autumnCrow.RentalRate = decimal.Equals(autumnCrow.RentalRate, new decimal(4.99)) ? new decimal(2.99) : new decimal(4.99);
-    await fr.UpdateFilmRentalRate(autumnCrow);
+    var filmWithUpdate = autumnCrow with
+    {
+        RentalRate = decimal.Equals(autumnCrow.RentalRate, new decimal(4.99))
+            ? new decimal(2.99)
+            : new decimal(4.99)
+    };
+    // var filmWithUpdate = autumnCrow;
+    // filmWithUpdate.RentalRate = decimal.Equals(autumnCrow.RentalRate, new decimal(4.99)) ? new decimal(2.99) : new decimal(4.99);
+    await fr.UpdateFilmRentalRate(filmWithUpdate);
 
     var refetch = await fr.GetFilmByTitle("AUTUMN CROW");
     Console.WriteLine($"After update - {refetch.Title} : {refetch.Description} : {refetch.RentalRate}");

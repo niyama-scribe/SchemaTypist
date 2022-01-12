@@ -41,41 +41,44 @@ namespace SchemaTypist.Samples.NetStandard20.Postgres.Sakila.Generated.Persisten
 
 		public partial class TableDefinition : TabularDefinition
 		{
+			private readonly IDictionary<string, ColumnDefinition> _columns = new Dictionary<string, ColumnDefinition>();
+                
 			public TableDefinition() : base("public.film")
 			{
-				Description = new ColumnDefinition(Constants.Description, this);
-				FilmId = new ColumnDefinition(Constants.FilmId, this);
-				Fulltext = new ColumnDefinition(Constants.Fulltext, this);
-				LanguageId = new ColumnDefinition(Constants.LanguageId, this);
-				LastUpdate = new ColumnDefinition(Constants.LastUpdate, this);
-				Length = new ColumnDefinition(Constants.Length, this);
-				OriginalLanguageId = new ColumnDefinition(Constants.OriginalLanguageId, this);
-				Rating = new ColumnDefinition(Constants.Rating, this);
-				ReleaseYear = new ColumnDefinition(Constants.ReleaseYear, this);
-				RentalDuration = new ColumnDefinition(Constants.RentalDuration, this);
-				RentalRate = new ColumnDefinition(Constants.RentalRate, this);
-				ReplacementCost = new ColumnDefinition(Constants.ReplacementCost, this);
-				SpecialFeature = new ColumnDefinition(Constants.SpecialFeature, this);
-				Title = new ColumnDefinition(Constants.Title, this);
+				_columns.Add(Constants.Description, new ColumnDefinition(Constants.Description, this));
+				_columns.Add(Constants.FilmId, new ColumnDefinition(Constants.FilmId, this));
+				_columns.Add(Constants.Fulltext, new ColumnDefinition(Constants.Fulltext, this));
+				_columns.Add(Constants.LanguageId, new ColumnDefinition(Constants.LanguageId, this));
+				_columns.Add(Constants.LastUpdate, new ColumnDefinition(Constants.LastUpdate, this));
+				_columns.Add(Constants.Length, new ColumnDefinition(Constants.Length, this));
+				_columns.Add(Constants.OriginalLanguageId, new ColumnDefinition(Constants.OriginalLanguageId, this));
+				_columns.Add(Constants.Rating, new ColumnDefinition(Constants.Rating, this));
+				_columns.Add(Constants.ReleaseYear, new ColumnDefinition(Constants.ReleaseYear, this));
+				_columns.Add(Constants.RentalDuration, new ColumnDefinition(Constants.RentalDuration, this));
+				_columns.Add(Constants.RentalRate, new ColumnDefinition(Constants.RentalRate, this));
+				_columns.Add(Constants.ReplacementCost, new ColumnDefinition(Constants.ReplacementCost, this));
+				_columns.Add(Constants.SpecialFeature, new ColumnDefinition(Constants.SpecialFeature, this));
+				_columns.Add(Constants.Title, new ColumnDefinition(Constants.Title, this));
 			}
 
 			public TableDefinition As(string alias) => base.As<TableDefinition>(alias);
 
-			public ColumnDefinition Description { get; private set; }
-			public ColumnDefinition FilmId { get; private set; }
-			public ColumnDefinition Fulltext { get; private set; }
-			public ColumnDefinition LanguageId { get; private set; }
-			public ColumnDefinition LastUpdate { get; private set; }
-			public ColumnDefinition Length { get; private set; }
-			public ColumnDefinition OriginalLanguageId { get; private set; }
-			public ColumnDefinition Rating { get; private set; }
-			public ColumnDefinition ReleaseYear { get; private set; }
-			public ColumnDefinition RentalDuration { get; private set; }
-			public ColumnDefinition RentalRate { get; private set; }
-			public ColumnDefinition ReplacementCost { get; private set; }
-			public ColumnDefinition SpecialFeature { get; private set; }
-			public ColumnDefinition Title { get; private set; }
+			public ColumnDefinition Description => _columns[Constants.Description];
+			public ColumnDefinition FilmId => _columns[Constants.FilmId];
+			public ColumnDefinition Fulltext => _columns[Constants.Fulltext];
+			public ColumnDefinition LanguageId => _columns[Constants.LanguageId];
+			public ColumnDefinition LastUpdate => _columns[Constants.LastUpdate];
+			public ColumnDefinition Length => _columns[Constants.Length];
+			public ColumnDefinition OriginalLanguageId => _columns[Constants.OriginalLanguageId];
+			public ColumnDefinition Rating => _columns[Constants.Rating];
+			public ColumnDefinition ReleaseYear => _columns[Constants.ReleaseYear];
+			public ColumnDefinition RentalDuration => _columns[Constants.RentalDuration];
+			public ColumnDefinition RentalRate => _columns[Constants.RentalRate];
+			public ColumnDefinition ReplacementCost => _columns[Constants.ReplacementCost];
+			public ColumnDefinition SpecialFeature => _columns[Constants.SpecialFeature];
+			public ColumnDefinition Title => _columns[Constants.Title];
 
+			public IEnumerable<ColumnDefinition> Star => _columns.Values;
 		}
 	
 		public static partial class QueryResults
