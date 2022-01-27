@@ -110,17 +110,19 @@ namespace SchemaTypist.Cli
 
         public class Settings : CommandSettings
         {
-            [CommandArgument(0, "<CONNECTION_STRING>")]
-            public string ConnectionString { get; set; }
+            [Description("MicrosoftSqlServer or PostgreSql")]
+            [CommandArgument(0, "[DATABASE_VENDOR]")]
+            [DefaultValue("MicrosoftSqlServer")]
+            public string DatabaseVendor { get; set; }
 
             [CommandArgument(1, "[OUTPUT_DIR]")]
             [DefaultValue(".")]
             public string OutputDir { get; set; }
 
-            [Description("MicrosoftSqlServer or PostgreSql")]
-            [CommandArgument(2, "[DATABASE_VENDOR]")]
-            [DefaultValue("MicrosoftSqlServer")]
-            public string DatabaseVendor { get; set; }
+            [Description("Static connection string to source database.")]
+            [CommandArgument(2, "[CONNECTION_STRING]")]
+            [DefaultValue("")]
+            public string ConnectionString { get; set; }
 
             [Description("Use this option to generate domain model objects only.")]
             [CommandOption("-e|--entities-only")]

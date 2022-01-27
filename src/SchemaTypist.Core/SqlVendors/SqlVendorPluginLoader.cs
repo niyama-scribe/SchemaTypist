@@ -11,7 +11,7 @@ namespace SchemaTypist.Core.SqlVendors
     /// This class provides methods to load SqlVendor plugins (basically libraries that are called SchemaTypist.SqlVendors.*)
     /// These libraries will contain all the RDBMS-specific customizations like sql dialects and other idiosyncrasies.
     /// </summary>
-    internal class SqlVendorProvider : ISqlVendorProvider
+    internal class SqlVendorPluginLoader : ISqlVendorPluginLoader
     {
         private readonly IPluginLoader _pluginLoader;
         private readonly IDictionary<SqlVendorType, ISqlVendor> _registeredVendors =
@@ -19,7 +19,7 @@ namespace SchemaTypist.Core.SqlVendors
 
         private volatile bool _isLoaded = false;
 
-        public SqlVendorProvider(IPluginLoader pluginLoader)
+        public SqlVendorPluginLoader(IPluginLoader pluginLoader)
         {
             _pluginLoader = pluginLoader;
         }
@@ -53,7 +53,7 @@ namespace SchemaTypist.Core.SqlVendors
         }
     }
 
-    public interface ISqlVendorProvider
+    public interface ISqlVendorPluginLoader
     {
         void LoadRegisteredVendors();
         ISqlVendor GetSqlVendor(SqlVendorType sqlVendorType);

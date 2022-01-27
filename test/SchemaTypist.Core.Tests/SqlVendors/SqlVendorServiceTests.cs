@@ -27,7 +27,7 @@ namespace SchemaTypist.Core.Tests.SqlVendors
         internal void DetermineDotnetDataType_WhenValid_GetsDataTypeAsPerDialect(
             string sqlDataType, bool isNullable, string dotnetDataType, 
             [Frozen] Mock<ISqlDialect> sd, [Frozen] Mock<ISqlVendor> sv, 
-            [Frozen] Mock<ISqlVendorProvider> svp, CodeGenConfig cdc, SqlVendorService sut)
+            [Frozen] Mock<ISqlVendorPluginLoader> svp, CodeGenConfig cdc, SqlVendorService sut)
         {
             //Arrange
             sd.Setup(d => d.DetermineDotNetDataType(sqlDataType, isNullable)).Returns(dotnetDataType);
@@ -45,7 +45,7 @@ namespace SchemaTypist.Core.Tests.SqlVendors
         [AutoDomainData]
         internal void BuildQualifiedName_WhenValid_UsesRegisteredImpl(
             [Frozen] Mock<ISqlDialect> sd, [Frozen] Mock<ISqlVendor> sv,
-            [Frozen] Mock<ISqlVendorProvider> svp, CodeGenConfig cdc, 
+            [Frozen] Mock<ISqlVendorPluginLoader> svp, CodeGenConfig cdc, 
             TabularStructure tabularStructure, SqlVendorService sut)
         {
             //Arrange
@@ -65,7 +65,7 @@ namespace SchemaTypist.Core.Tests.SqlVendors
         [AutoDomainData]
         internal void GetDbInterfaceProviders_WhenValid_UsesRegisteredImpl(
             [Frozen] IDbConnection dbConnection, [Frozen] Compiler compiler,
-            [Frozen] Mock<ISqlVendor> sv, [Frozen] Mock<ISqlVendorProvider> svp,
+            [Frozen] Mock<ISqlVendor> sv, [Frozen] Mock<ISqlVendorPluginLoader> svp,
             CodeGenConfig cdc, SqlVendorService sut)
         {
             //Arrange

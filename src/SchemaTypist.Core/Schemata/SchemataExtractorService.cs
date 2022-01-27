@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 using SchemaTypist.Core.Config;
 using SchemaTypist.Core.Schemata.Dto;
 using SchemaTypist.Core.Schemata.Mapping;
@@ -15,19 +17,22 @@ namespace SchemaTypist.Core.Schemata
     internal class SchemataExtractorService : ISchemataExtractorService
     {
         private readonly ISqlVendorService _sqlVendor;
+        private readonly SchemaTypistSecrets _secrets;
 
         static SchemataExtractorService()
         {
             DapperTypeMapping.Init();
         }
 
-        public SchemataExtractorService(ISqlVendorService sqlVendor)
+        public SchemataExtractorService(ISqlVendorService sqlVendor, IOptions<SchemaTypistSecrets> secrets = null)
         {
             _sqlVendor = sqlVendor;
+            _secrets = secrets?.Value;
         }
 
         public async Task<IEnumerable<ColumnsDto>> ExtractDbMetadata(CodeGenConfig config)
         {
+            config.ConnectionString = _secrets?.DatabaseConnectionString ?? config.ConnectionString;
             var metadataQueries = new SchemataQueries(config);
             var (connection, compiler) = GetDbSpecificLibraries(config);
             var db = new QueryFactory(connection, compiler);

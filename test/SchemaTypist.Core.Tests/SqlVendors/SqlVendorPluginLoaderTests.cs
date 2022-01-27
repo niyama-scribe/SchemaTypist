@@ -15,11 +15,11 @@ using Xunit;
 
 namespace SchemaTypist.Core.Tests.SqlVendors
 {
-    public class SqlVendorProviderTests
+    public class SqlVendorPluginLoaderTests
     {
         [Theory]
         [AutoDomainData]
-        internal void GetSqlVendor_WithoutCallingLoadRegisteredVendors_ThrowsInvalidOpException(SqlVendorProvider sut)
+        internal void GetSqlVendor_WithoutCallingLoadRegisteredVendors_ThrowsInvalidOpException(SqlVendorPluginLoader sut)
         {
             //Arrange
             
@@ -33,7 +33,7 @@ namespace SchemaTypist.Core.Tests.SqlVendors
 
         [Theory]
         [AutoDomainData]
-        internal void GetSqlVendor_WithNoRegisteredVendors_ThrowsInvalidOpException([Frozen] Mock<IPluginLoader> pluginLoader, SqlVendorProvider sut)
+        internal void GetSqlVendor_WithNoRegisteredVendors_ThrowsInvalidOpException([Frozen] Mock<IPluginLoader> pluginLoader, SqlVendorPluginLoader sut)
         {
             //Arrange
             pluginLoader.Setup(pl => pl.FindPlugins<ISqlVendor>(It.IsAny<string>(), typeof(SqlVendorDefinition))).Returns(Array.Empty<ISqlVendor>());
@@ -51,7 +51,7 @@ namespace SchemaTypist.Core.Tests.SqlVendors
         [AutoDomainData]
         internal void GetSqlVendor_WithOneRegisteredImpl_UseThatRegisteredImplRegardlessOfRequestedSqlVendorType(
             [Frozen] Mock<IPluginLoader> pluginLoader, [Frozen] Mock<ISqlVendor> sqlVendor, 
-            SqlVendorProvider sut)
+            SqlVendorPluginLoader sut)
         {
             //Arrange
             sqlVendor.SetupGet(sv => sv.VendorType).Returns(SqlVendorType.PostgreSql);
@@ -71,7 +71,7 @@ namespace SchemaTypist.Core.Tests.SqlVendors
         [InlineAutoDomainData(SqlVendorType.PostgreSql)]
         internal void GetSqlVendor_WithMultipleRegisteredImpl_UseMatchingRegisteredImplBasedOnRequestedSqlVendorType(
             SqlVendorType input, [Frozen] Mock<IPluginLoader> pluginLoader, Mock<ISqlVendor> msVendor, 
-            Mock<ISqlVendor> postgresVendor, SqlVendorProvider sut)
+            Mock<ISqlVendor> postgresVendor, SqlVendorPluginLoader sut)
         {
             //Arrange
             msVendor.SetupGet(sv => sv.VendorType).Returns(SqlVendorType.MicrosoftSqlServer);

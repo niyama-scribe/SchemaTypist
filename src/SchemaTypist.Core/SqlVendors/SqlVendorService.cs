@@ -12,20 +12,20 @@ namespace SchemaTypist.Core.SqlVendors
 {
     internal class SqlVendorService : ISqlVendorService
     {
-       private readonly Lazy<ISqlVendorProvider> _provider;
+       private readonly Lazy<ISqlVendorPluginLoader> _pluginLoader;
 
-       public SqlVendorService(ISqlVendorProvider provider)
+       public SqlVendorService(ISqlVendorPluginLoader pluginLoader)
        {
-           _provider = new Lazy<ISqlVendorProvider>(() =>
+           _pluginLoader = new Lazy<ISqlVendorPluginLoader>(() =>
            {
-               provider.LoadRegisteredVendors();
-               return provider;
+               pluginLoader.LoadRegisteredVendors();
+               return pluginLoader;
            });
        }
 
        private ISqlVendor GetSqlVendor(SqlVendorType vendorType)
        {
-           return _provider.Value.GetSqlVendor(vendorType);
+           return _pluginLoader.Value.GetSqlVendor(vendorType);
        }
 
 

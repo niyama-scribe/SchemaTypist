@@ -17,6 +17,7 @@ namespace SchemaTypist.Cli
                     .LeftAligned()
                     .Color(Color.SteelBlue1));
 
+            Startup.Configure();
             var registrations = new ServiceCollection();
             Startup.ConfigureServices(registrations);
             var registrar = new TypeRegistrar(registrations);
