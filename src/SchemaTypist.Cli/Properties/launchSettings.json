@@ -2,7 +2,7 @@
   "profiles": {
     "SchemaTypist.Cli": {
       "commandName": "Project",
-      "commandLineArgs": "generate PostgreSql TestGen --entities-namespace Yenta --root-namespace Whatever --mapper-name-suffix Dao --include \"*.public.*\" --create-immutable-entities --create-record-entities"
+      "commandLineArgs": "generate PostgreSql TestGen --entities-namespace Yenta --root-namespace Whatever --mapper-name-suffix Dao --include \"*.public.*\" --create-immutable-entities --create-record-entities --user-secrets-id \"ecdfba55-264c-4d0e-a630-7882f34a5f88\""
     },
     "WSL": {
       "commandName": "WSL2",

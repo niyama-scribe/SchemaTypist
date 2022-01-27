@@ -10,7 +10,7 @@
 	<ToolCommandName>dotnet-schematypist</ToolCommandName>
 	<PackageOutputPath>./nupkg</PackageOutputPath>
 	  <Description>SchemaTypist enables type-safe database interactions using Dapper and SqlKata, by generating C# code from database schemata. This CLI tool does all the heavy work. </Description>
-    <UserSecretsId>SchemaTypistSecrets</UserSecretsId>
+    <UserSecretsId>ecdfba55-264c-4d0e-a630-7882f34a5f88</UserSecretsId>
   </PropertyGroup>
 
 	<ItemGroup>

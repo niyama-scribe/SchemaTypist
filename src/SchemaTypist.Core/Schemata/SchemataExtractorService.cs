@@ -17,22 +17,18 @@ namespace SchemaTypist.Core.Schemata
     internal class SchemataExtractorService : ISchemataExtractorService
     {
         private readonly ISqlVendorService _sqlVendor;
-        private readonly SchemaTypistSecrets _secrets;
-
         static SchemataExtractorService()
         {
             DapperTypeMapping.Init();
         }
 
-        public SchemataExtractorService(ISqlVendorService sqlVendor, IOptions<SchemaTypistSecrets> secrets = null)
+        public SchemataExtractorService(ISqlVendorService sqlVendor)
         {
             _sqlVendor = sqlVendor;
-            _secrets = secrets?.Value;
         }
 
         public async Task<IEnumerable<ColumnsDto>> ExtractDbMetadata(CodeGenConfig config)
         {
-            config.ConnectionString = _secrets?.DatabaseConnectionString ?? config.ConnectionString;
             var metadataQueries = new SchemataQueries(config);
             var (connection, compiler) = GetDbSpecificLibraries(config);
             var db = new QueryFactory(connection, compiler);

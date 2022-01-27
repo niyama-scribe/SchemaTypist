@@ -16,8 +16,6 @@ namespace SchemaTypist.Core
     {
         public static void ConfigureServices(IServiceCollection sc)
         {
-            sc.AddOptions();
-            sc.Configure<SchemaTypistSecrets>(Config.GetSection("SchemaTypistSecrets"));
             sc.AddSingleton<IFileSystemWrapper, FileSystemWrapper>();
             sc.AddSingleton<IPluginLoader, PluginLoader>();
             sc.AddSingleton<INamingService, LanguageService>();
@@ -28,14 +26,13 @@ namespace SchemaTypist.Core
             sc.AddSingleton<ISchemaTypistService, SchemaTypistService>();
         }
 
-        public static IConfigurationRoot Configure()
+        public static SchemaTypistSecrets ReadSecrets(string userSecretsId)
         {
-            Config = new ConfigurationBuilder()
-                .AddUserSecrets("SchemaTypistSecrets")
+            var configRoot = new ConfigurationBuilder()
+                .AddUserSecrets(userSecretsId)
                 .Build();
-            return Config;
+            var sts = configRoot.GetSection(nameof(SchemaTypistSecrets)).Get<SchemaTypistSecrets>();
+            return sts;
         }
-
-        public static IConfigurationRoot Config { get; private set; }
     }
 }

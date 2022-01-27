@@ -16,6 +16,7 @@
 		<_SchemaTypist_Exclude>_#NONE#_</_SchemaTypist_Exclude>
 		<_SchemaTypist_CreateImmutableEntities>false</_SchemaTypist_CreateImmutableEntities>
 		<_SchemaTypist_CreateRecordEntities>false</_SchemaTypist_CreateRecordEntities>
+		<_SchemaTypist_User_Secrets_Id>_#NONE#_</_SchemaTypist_User_Secrets_Id>
 	</PropertyGroup>
 
 	

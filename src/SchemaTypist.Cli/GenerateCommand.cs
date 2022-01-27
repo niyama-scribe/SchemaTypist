@@ -30,9 +30,12 @@ namespace SchemaTypist.Cli
         public override async Task<int> ExecuteAsync(CommandContext context, GenerateCommand.Settings settings)
         {
             Dictionary<string, TabularStructure> tableStructureMap = new();
+            var connString = settings.ConnectionString;
+            if (!string.IsNullOrWhiteSpace(settings.UserSecretsId))
+                connString = Startup.ReadSecrets(settings.UserSecretsId).DatabaseConnectionString;
             var config = new CodeGenConfig
             {
-                ConnectionString = settings.ConnectionString,
+                ConnectionString = connString,
                 OutputDirectory = settings.OutputDir,
                 GenerateEntitiesOnly = settings.EntitiesOnly,
                 CreateImmutableEntities = settings.CreateImmutableEntities,
@@ -169,6 +172,10 @@ namespace SchemaTypist.Cli
             [CommandOption("--create-record-entities")]
             [DefaultValue(false)]
             public bool CreateRecordEntities { get; set; }
+
+            [CommandOption("--user-secrets-id")]
+            [DefaultValue("")]
+            public string UserSecretsId { get; set; }
 
 
             /**

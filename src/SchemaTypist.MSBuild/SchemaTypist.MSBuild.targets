@@ -16,6 +16,8 @@
 		<SchemaTypist_Exclude Condition="'$(SchemaTypist_Exclude)' == ''">$(_SchemaTypist_Exclude)</SchemaTypist_Exclude>
 		<SchemaTypist_CreateImmutableEntities Condition="'$(SchemaTypist_CreateImmutableEntities)' == ''">$(_SchemaTypist_CreateImmutableEntities)</SchemaTypist_CreateImmutableEntities>
 		<SchemaTypist_CreateRecordEntities Condition="'$(SchemaTypist_CreateRecordEntities)' == ''">$(_SchemaTypist_CreateRecordEntities)</SchemaTypist_CreateRecordEntities>
+		<SchemaTypist_User_Secrets_Id Condition="'$(SchemaTypist_User_Secrets_Id)' == ''">$(_SchemaTypist_User_Secrets_Id)</SchemaTypist_User_Secrets_Id>
+
 	</PropertyGroup>
 
 
@@ -26,6 +28,7 @@
 			<_SchemaTypist_Cli>dotnet schematypist generate $(SchemaTypist_Vendor) %22$(SchemaTypist_OutputDir)%22 $(SchemaTypist_ConnectionString) --entities-only $(SchemaTypist_GenerateEntitiesOnly) --entities-namespace $(SchemaTypist_EntitiesNamespace) --persistence-only $(SchemaTypist_GeneratePersistenceOnly) --persistence-namespace $(SchemaTypist_PersistenceNamespace) --mapping-name-suffix $(SchemaTypist_MapperNameSuffix) --root-namespace $(SchemaTypist_RootNamespace) --include $(SchemaTypist_Include) --exclude $(SchemaTypist_Exclude) --create-immutable-entities $(SchemaTypist_CreateImmutableEntities) --create-record-entities $(SchemaTypist_CreateRecordEntities)</_SchemaTypist_Cli>
 			<SchemaTypist_Cli Condition="'$(SchemaTypist_EntityNameSuffix)' == ''">$(_SchemaTypist_Cli)</SchemaTypist_Cli>
 			<SchemaTypist_Cli Condition="'$(SchemaTypist_EntityNameSuffix)' != ''">$(_SchemaTypist_Cli) --entity-name-suffix $(SchemaTypist_EntityNameSuffix)</SchemaTypist_Cli>
+			<SchemaTypist_Cli Condition="'$(SchemaTypist_User_Secrets_Id)' != '_#NONE#_'">$(SchemaTypist_Cli) --user-secrets-id $(SchemaTypist_User_Secrets_Id)</SchemaTypist_Cli>
 		</PropertyGroup>
 	</Target>
 
