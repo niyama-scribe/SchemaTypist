@@ -11,7 +11,7 @@ At its core, SchemaTypist provides a highly configurable, dotnet CLI tool called
 
  - Install the SchemaTypist CLI tool.
    ```commandline 
-     dotnet install -g schematypist.cli 
+     dotnet tool install -g schematypist.cli 
    ```
  - Add the following to your csproj file.
    ```xml
