@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using SchemaTypist.Core.Config;
@@ -58,8 +59,8 @@ namespace SchemaTypist.Core.Schemata
                     SqlName = col.ColumnName,
                     SqlDataType = col.DataType,
                     Name = _namingService.ConvertColumnName(col.ColumnName, config, new HashSet<string>() {tabStructure.Name}),
-                    IsNullable = col.IsNullable == "Yes",
-                    DataType = DetermineDotNetDataType(col.DataType, col.IsNullable == "Yes", config),
+                    IsNullable = string.Equals(col.IsNullable, "Yes", StringComparison.InvariantCultureIgnoreCase),
+                    DataType = DetermineDotNetDataType(col.DataType, string.Equals(col.IsNullable, "Yes", StringComparison.InvariantCultureIgnoreCase), config),
                 });
             }
             return tableStructureMap;
