@@ -5,7 +5,6 @@ namespace SchemaTypist.Core.Model
 {
     public class TabularStructure
     {
-        public CodeGenConfig Config { get; set; }
         public string SqlCatalog { get; set; }
         public string SqlSchema { get; set; }
         public string SqlName { get; set; }

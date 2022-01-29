@@ -39,8 +39,7 @@ namespace SchemaTypist.Core.Schemata
                         SqlSchema = col.TableSchema,
                         SqlName = col.TableName,
                         TabularStructureType = TabularType.Table,
-                        Columns = new List<ColumnMetadata>(),
-                        Config = config
+                        Columns = new List<ColumnMetadata>()
                     });
 
                 var tabStructure = tableStructureMap[key];

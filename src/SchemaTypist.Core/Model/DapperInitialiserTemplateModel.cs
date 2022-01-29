@@ -3,7 +3,7 @@ using SchemaTypist.Core.Config;
 
 namespace SchemaTypist.Core.Model
 {
-    internal class DapperInitializerTemplateModel
+    internal class DapperInitialiserTemplateModel
     {
         public CodeGenConfig Config { get; set; }
         public List<TabularStructure> TabularStructures { get; set; }

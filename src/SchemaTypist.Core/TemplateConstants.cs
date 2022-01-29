@@ -8,15 +8,15 @@ namespace SchemaTypist.Core
     {
         public const string TemplateFileExtension = "sbntxt";
         public const string EntitiesTemplateFilePrefix = "Entities";
-        public const string MappingTemplateFilePrefix = "Mapping";
-        public const string DapperMappingTemplateFilePrefix = "DapperTypeMapping";
+        public const string PersistenceTemplateFilePrefix = "Persistence";
+        public const string DapperInitialiserTemplateFilePrefix = "DapperInitialiser";
 
 
         public static readonly string EntitiesTemplateFile = $"{EntitiesTemplateFilePrefix}.{TemplateFileExtension}";
-        public static readonly string MappingTemplateFile = $"{MappingTemplateFilePrefix}.{TemplateFileExtension}";
+        public static readonly string PersistenceTemplateFile = $"{PersistenceTemplateFilePrefix}.{TemplateFileExtension}";
 
-        public static readonly string DapperMappingTemplateFile =
-            $"{DapperMappingTemplateFilePrefix}.{TemplateFileExtension}";
+        public static readonly string DapperInitialiserTemplateFile =
+            $"{DapperInitialiserTemplateFilePrefix}.{TemplateFileExtension}";
 
     }
 }
