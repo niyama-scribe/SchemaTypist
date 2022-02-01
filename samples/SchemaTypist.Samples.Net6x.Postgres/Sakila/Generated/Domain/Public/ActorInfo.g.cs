@@ -15,7 +15,7 @@ namespace SchemaTypist.Samples.Net6x.Postgres.Sakila.Generated.Domain.Public
 	
 	public partial record ActorInfo
 	{
-		public int ActorId { get; init; }
+		public int? ActorId { get; init; }
 		public string FilmInfo { get; init; }
 		public string FirstName { get; init; }
 		public string LastName { get; init; }

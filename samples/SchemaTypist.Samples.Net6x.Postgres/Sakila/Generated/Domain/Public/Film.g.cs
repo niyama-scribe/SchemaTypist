@@ -20,10 +20,10 @@ namespace SchemaTypist.Samples.Net6x.Postgres.Sakila.Generated.Domain.Public
 		public Object Fulltext { get; init; }
 		public short LanguageId { get; init; }
 		public DateTime LastUpdate { get; init; }
-		public short Length { get; init; }
-		public short OriginalLanguageId { get; init; }
+		public short? Length { get; init; }
+		public short? OriginalLanguageId { get; init; }
 		public Object Rating { get; init; }
-		public int ReleaseYear { get; init; }
+		public int? ReleaseYear { get; init; }
 		public short RentalDuration { get; init; }
 		public decimal RentalRate { get; init; }
 		public decimal ReplacementCost { get; init; }

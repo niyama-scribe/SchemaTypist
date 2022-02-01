@@ -20,7 +20,7 @@ namespace SchemaTypist.Samples.Net6x.Postgres.Sakila.Generated.Domain.Public
 		public DateTime LastUpdate { get; init; }
 		public DateTime RentalDate { get; init; }
 		public int RentalId { get; init; }
-		public DateTime ReturnDate { get; init; }
+		public DateTime? ReturnDate { get; init; }
 		public short StaffId { get; init; }
 	}
 	

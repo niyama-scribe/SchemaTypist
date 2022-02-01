@@ -6,8 +6,8 @@
 
 	<ItemGroup>
 		<PackageReference Include="Npgsql" Version="6.0.0" />
-		<PackageReference Include="SchemaTypist" Version="0.4.0-alpha" />
-		<PackageReference Include="SchemaTypist.MSBuild" Version="0.4.0-alpha" />
+		<PackageReference Include="SchemaTypist" Version="0.5.0-alpha.2" />
+		<PackageReference Include="SchemaTypist.MSBuild" Version="0.5.0-alpha.2" />
 	</ItemGroup>
 
 	<Target Name="SetPostgresProps">
@@ -21,7 +21,7 @@
 	</Target>
 
 	<Target Name="GeneratePostgres" DependsOnTargets="SetPostgresProps" BeforeTargets="PrepareForBuild">
-		<CallTarget Targets="SchemaTypist_DoGenerate" />
+		<!-- <CallTarget Targets="SchemaTypist_DoGenerate" /> -->
 	</Target>
 
 	<Target Name="SetMsSqlProps">
@@ -35,7 +35,7 @@
 	</Target>
 
 	<Target Name="GenerateMsSql" DependsOnTargets="SetMsSqlProps" BeforeTargets="PrepareForBuild">
-		<CallTarget Targets="SchemaTypist_DoGenerate" />
+		<!-- <CallTarget Targets="SchemaTypist_DoGenerate" /> -->
 	</Target>
 
 </Project>

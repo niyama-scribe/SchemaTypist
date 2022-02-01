@@ -121,7 +121,7 @@ namespace SchemaTypist.Cli
             public string DatabaseVendor { get; set; }
 
             [CommandArgument(1, "[ROOT_OUTPUT_DIR]")]
-            [DefaultValue(".")]
+            [DefaultValue("")]
             public string RootOutputDir { get; set; }
 
             [Description("Static connection string to source database.")]

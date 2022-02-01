@@ -16,7 +16,7 @@ namespace SchemaTypist.Samples.Net6x.Postgres.Sakila.Generated.Domain.Public
 	public partial record SalesByFilmCategory
 	{
 		public string Category { get; init; }
-		public decimal TotalSale { get; init; }
+		public decimal? TotalSale { get; init; }
 	}
 	
 
