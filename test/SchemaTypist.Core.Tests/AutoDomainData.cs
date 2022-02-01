@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using AutoFixture;
 using AutoFixture.AutoMoq;
 using AutoFixture.Xunit2;
+using SchemaTypist.Core.Utilities;
 using SqlKata.Compilers;
 using Xunit.Sdk;
 
@@ -18,6 +19,7 @@ namespace SchemaTypist.Core.Tests
             {
                 var fixture = new Fixture().Customize(new AutoMoqCustomization());
                 fixture.Register<Compiler>(() => new FakeCompiler());
+                fixture.Register<IFileSystemWrapper>(() => new FakeFileSystemWrapper());
                 return fixture;
             })
         {
@@ -35,6 +37,27 @@ namespace SchemaTypist.Core.Tests
     {
         public FakeCompiler()
         {
+        }
+    }
+
+    internal class FakeFileSystemWrapper : IFileSystemWrapper
+    {
+        public char DirectorySeparatorChar => '\\';
+        public char AltDirectorySeparatorChar => '/';
+        public string CurrentDirectory => "CurrDir";
+        public void EnsureDirectoryExists(params string[] paths)
+        {
+            //Do nothing
+        }
+
+        public string Combine(params string[] paths)
+        {
+            return string.Join(AltDirectorySeparatorChar, paths);
+        }
+
+        public void WriteAllText(string path, string contents)
+        {
+            //Do nothing
         }
     }
 }

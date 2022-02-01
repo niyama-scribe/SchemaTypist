@@ -20,20 +20,17 @@ namespace SchemaTypist.Core
         private static readonly Template PersistenceTemplate;
         private static readonly Template DapperInitialiserTemplate;
         private readonly IFileSystemWrapper _fileSystem;
-        private readonly IPluginLoader _pluginLoader;
-        private readonly INamingService _namingService;
-        private readonly ISqlVendorService _sqlVendor;
+        private readonly IPathNamespaceService _pathNamespaceService;
         private readonly ISchemataExtractorService _schemataExtractor;
         private readonly ISchemataConverterService _schemataConverter;
 
-        public SchemaTypistService(IFileSystemWrapper fileSystem, IPluginLoader pluginLoader, 
-            INamingService namingService, ISqlVendorService sqlVendor, ISchemataExtractorService schemataExtractor, 
+        public SchemaTypistService(IFileSystemWrapper fileSystem, 
+            IPathNamespaceService pathNamespaceService,
+            ISchemataExtractorService schemataExtractor, 
             ISchemataConverterService schemataConverter)
         {
             _fileSystem = fileSystem;
-            _pluginLoader = pluginLoader;
-            _namingService = namingService;
-            _sqlVendor = sqlVendor;
+            _pathNamespaceService = pathNamespaceService;
             _schemataExtractor = schemataExtractor;
             _schemataConverter = schemataConverter;
         }
@@ -51,33 +48,10 @@ namespace SchemaTypist.Core
             return EntitiesTemplate.Render(tableStructureModel);
         }
 
-        internal string DetermineEntityFilePath(CodeGenConfig config, TabularStructure tab)
-        {
-            return _fileSystem.Combine(config.EntitiesCustomNamespace, tab.Schema, $"{tab.Name}{config.EntityNameSuffix}.{config.OutputFileNameSuffix}.cs");
-        }
-
         internal string GeneratePersistence(PersistenceTemplateModel persistenceModel)
         {
             //Generate mappers
             return PersistenceTemplate.Render(persistenceModel);
-        }
-
-        internal string DetermineMapperFilePath(CodeGenConfig config, TabularStructure tab)
-        {
-            return _fileSystem.Combine(config.PersistenceCustomNamespace, tab.Schema,
-                $"{tab.Name}{config.MapperNameSuffix}.{config.OutputFileNameSuffix}.cs");
-        }
-
-        internal string DetermineDapperMapperFilePath(CodeGenConfig config)
-        {
-            return _fileSystem.Combine(config.RootOutputDirectory, config.PersistenceCustomNamespace, $"DapperTypeMapping.{config.OutputFileNameSuffix}.cs");
-        }
-
-        internal void PrepDirectories(TabularStructure tableStructure, CodeGenConfig config)
-        {
-            _fileSystem.EnsureDirectoryExists(config.RootOutputDirectory, config.EntitiesCustomNamespace, tableStructure.Schema);
-            
-            _fileSystem.EnsureDirectoryExists(config.RootOutputDirectory, config.PersistenceCustomNamespace, tableStructure.Schema);
         }
 
         internal string GenerateDapperMapper(DapperInitialiserTemplateModel dapperInitialiserModel)
@@ -97,8 +71,10 @@ namespace SchemaTypist.Core
         }
         public void Generate(TabularStructure tab, CodeGenConfig config)
         {
+            var pathNamespace = _pathNamespaceService.Resolve(config, tab);
+            
             //Set up generation
-            PrepDirectories(tab, config);
+            _pathNamespaceService.Prep(pathNamespace);
 
             //Generate model and mapping
             
@@ -106,36 +82,38 @@ namespace SchemaTypist.Core
             var etm = new EntitiesTemplateModel()
             {
                 Config = config,
-                TabularStructure = tab
+                TabularStructure = tab,
+                PathNamespace = pathNamespace
             };
 
             var output = GenerateEntity(etm);
-            var modelFilePath = _fileSystem.Combine(config.RootOutputDirectory, DetermineEntityFilePath(config, tab));
-            _fileSystem.WriteAllText(modelFilePath, output);
+            _fileSystem.WriteAllText(pathNamespace.EntitiesFilePath, output);
 
             //Generate mapping and write to file
             var ptm = new PersistenceTemplateModel()
             {
                 Config = config,
-                TabularStructure = tab
+                TabularStructure = tab,
+                PathNamespace = pathNamespace
             };
             output = GeneratePersistence(ptm);
-            var mappingFilePath = _fileSystem.Combine(config.RootOutputDirectory, DetermineMapperFilePath(config, tab));
-            _fileSystem.WriteAllText(mappingFilePath, output);
+            _fileSystem.WriteAllText(pathNamespace.PersistenceFilePath, output);
 
         }
         public void GenerateDapperMapping(IEnumerable<TabularStructure> tableStructures, CodeGenConfig config)
         {
+            var tabularStructures = tableStructures.ToList();
+            var pathNamespace = _pathNamespaceService.Resolve(config, tabularStructures.First());
             var dapperInitialiserModel = new DapperInitialiserTemplateModel()
             {
                 Config = config,
-                TabularStructures = tableStructures.ToList()
+                TabularStructures = tabularStructures,
+                PathNamespace = pathNamespace
             };
-            var mapperOutput = GenerateDapperMapper(dapperInitialiserModel);
+            var dapperInitialiserOutput = GenerateDapperMapper(dapperInitialiserModel);
 
             //Write to file
-            var dapperMapperFilePath = DetermineDapperMapperFilePath(config);
-            _fileSystem.WriteAllText(dapperMapperFilePath, mapperOutput);
+            _fileSystem.WriteAllText(pathNamespace.DapperInitialiserFilePath, dapperInitialiserOutput);
         }
         public bool Validate(string connectionString)
         {

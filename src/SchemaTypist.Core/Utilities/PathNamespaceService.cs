@@ -52,6 +52,13 @@ namespace SchemaTypist.Core.Utilities
             if (!string.IsNullOrWhiteSpace(config.PersistenceCustomNamespace))
                 persistenceNsStringBuilder.Append($".{config.PersistenceCustomNamespace}");
 
+            //Dapper initialiser class is always added to the root persistence directory.
+            //Dapper initialiser namespace is always set to the root persistence namespace.
+            var dapperInitialiserFilePath = _fileSystem.Combine(persistenceFilePathParams.ToArray());
+            dapperInitialiserFilePath = _fileSystem.Combine(dapperInitialiserFilePath,
+                $"DapperTypeMapping.{config.OutputFileNameSuffix}.cs");
+            var dapperInitialiserNs = persistenceNsStringBuilder.ToString();
+            
             //Finally
             entitiesNsStringBuilder.Append($".{tab.Schema}");
             persistenceNsStringBuilder.Append($".{tab.Schema}");
@@ -66,7 +73,9 @@ namespace SchemaTypist.Core.Utilities
                 EntitiesNamespace = entitiesNsStringBuilder.ToString(),
                 EntitiesFilePath = _fileSystem.Combine(entitiesFilePathParams.ToArray()),
                 PersistenceNamespace = persistenceNsStringBuilder.ToString(),   
-                PersistenceFilePath = _fileSystem.Combine(persistenceFilePathParams.ToArray())
+                PersistenceFilePath = _fileSystem.Combine(persistenceFilePathParams.ToArray()),
+                DapperInitialiserFilePath = dapperInitialiserFilePath,
+                DapperInitialiserNamespace = dapperInitialiserNs
             };
             return pns;
         }
@@ -85,7 +94,7 @@ namespace SchemaTypist.Core.Utilities
         }
     }
 
-    internal interface IPathNamespaceService
+    public interface IPathNamespaceService
     {
         PathNamespaceStructure Resolve(CodeGenConfig config, TabularStructure tab);
         void Prep(PathNamespaceStructure pathNamespace);

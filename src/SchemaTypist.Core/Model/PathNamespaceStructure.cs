@@ -7,7 +7,7 @@ namespace SchemaTypist.Core.Model
     /// <summary>
     /// Contains resolved path and namespace settings for the source code to be generated.
     /// </summary>
-    internal class PathNamespaceStructure
+    public class PathNamespaceStructure
     {
         public string EntitiesFilePath { get; set; }
         public string EntitiesNamespace { get; set; }

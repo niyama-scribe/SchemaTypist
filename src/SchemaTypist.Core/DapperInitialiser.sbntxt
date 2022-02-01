@@ -9,7 +9,7 @@
 
 using Dapper;
 
-namespace {{ config.root_namespace }}.{{ config.persistence_namespace }}
+namespace {{ path_namespace.dapper_initialiser_namespace }}
 {
 	static partial class DapperTypeMapping
 	{
@@ -20,7 +20,7 @@ namespace {{ config.root_namespace }}.{{ config.persistence_namespace }}
 			BeforeInit();
 			
 			{{~ for tab in tabular_structures ~}}
-			SqlMapper.SetTypeMap(typeof({{ config.root_namespace }}.{{ config.entities_namespace }}.{{ tab.schema }}.{{ tab.name }}{{ config.entity_name_suffix }}), {{ config.root_namespace }}.{{ config.persistence_namespace }}.{{ tab.schema }}.{{ tab.name }}{{ config.mapper_name_suffix }}.QueryResults.GetTypeMap());
+			SqlMapper.SetTypeMap(typeof({{ path_namespace.entities_namespace }}.{{ tab.name }}{{ config.entity_name_suffix }}), {{ path_namespace.persistence_namespace }}.{{ tab.name }}{{ config.mapper_name_suffix }}.QueryResults.GetTypeMap());
 			{{~ end ~}}
 			
 			AfterInit();

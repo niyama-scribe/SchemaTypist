@@ -5,10 +5,8 @@ using SchemaTypist.Core.Config;
 
 namespace SchemaTypist.Core.Model
 {
-    internal abstract class TableStructureTemplateModel
+    internal abstract class TableStructureTemplateModel : TemplateModel
     {
-        public CodeGenConfig Config { get; set; }
         public TabularStructure TabularStructure { get; set; }
-        public PathNamespaceStructure PathNamespace { get; set; }
     }
 }

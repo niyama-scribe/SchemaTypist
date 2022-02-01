@@ -17,6 +17,7 @@ namespace SchemaTypist.Core
         public static void ConfigureServices(IServiceCollection sc)
         {
             sc.AddSingleton<IFileSystemWrapper, FileSystemWrapper>();
+            sc.AddSingleton<IPathNamespaceService, PathNamespaceService>();
             sc.AddSingleton<IPluginLoader, PluginLoader>();
             sc.AddSingleton<INamingService, LanguageService>();
             sc.AddSingleton<ISqlVendorPluginLoader, SqlVendorPluginLoader>();

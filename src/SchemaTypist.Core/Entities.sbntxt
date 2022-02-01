@@ -10,7 +10,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace {{ config.root_namespace }}.{{ config.entities_namespace }}.{{ tabular_structure.schema }}
+namespace {{ path_namespace.entities_namespace }}
 {
 	{{ if config.create_record_entities && config.create_immutable_entities }}
 	public partial record {{ tabular_structure.name }}{{ config.entity_name_suffix }}

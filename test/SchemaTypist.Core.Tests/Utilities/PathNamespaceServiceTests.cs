@@ -27,12 +27,9 @@ namespace SchemaTypist.Core.Tests.Utilities
         internal void Resolve_Namespaces_WithoutCustomNamespacesInput_SetToFormattedValueBasedOnDirStructure(
             string rootNs, string rootOutputDir, string entitiesOutputDir,
             string persistenceOutputDir, string expectedEntitiesNs, string expectedPersistenceNs,
-            [Frozen]Mock<IFileSystemWrapper> fileSystemWrapperMock, PathNamespaceService sut)
+            PathNamespaceService sut)
         {
             //Arrange
-            fileSystemWrapperMock.Setup(fsw=>fsw.AltDirectorySeparatorChar).Returns(() => '/');
-            fileSystemWrapperMock.Setup(fsw => fsw.DirectorySeparatorChar).Returns(() => '\\');
-
             var fixture = new Fixture();
             var codeGenConfig = fixture.Build<CodeGenConfig>()
                 .With(cgc => cgc.RootNamespace, rootNs)
@@ -56,33 +53,58 @@ namespace SchemaTypist.Core.Tests.Utilities
         }
 
         [Theory]
-        [InlineAutoDomainData("Company.Product", "Generated", "Domain", "Persistence", "Company.Product.Generated.Domain", "Company.Product.Generated.Persistence")]
+        [InlineAutoDomainData("Company.Product", "Generated", "Domain", "Persistence", "Generated/Domain", "Generated/Persistence")]
+        [InlineAutoDomainData("Company.Product", null, "Domain", "Persistence", "Domain", "Persistence")]
+        [InlineAutoDomainData("Company.Product", " ", "Domain", "Persistence", "Domain", "Persistence")]
+        [InlineAutoDomainData("Company.Product", "Generated", null, "Persistence", "Generated", "Generated/Persistence")]
+        [InlineAutoDomainData("Company.Product", "Generated", " ", "Persistence", "Generated", "Generated/Persistence")]
+        [InlineAutoDomainData("Company.Product", "Generated", "Domain", null, "Generated/Domain", "Generated")]
+        [InlineAutoDomainData("Company.Product", "Generated", "Domain", " ", "Generated/Domain", "Generated")]
         internal void Resolve_Directories_BuildsDirectoryHierarchy(
             string rootNs, string rootOutputDir, string entitiesOutputDir,
-            string persistenceOutputDir, string expectedEntitiesNs, string expectedPersistenceNs,
-            [Frozen] Mock<IFileSystemWrapper> fileSystemWrapperMock, PathNamespaceService sut)
+            string persistenceOutputDir, string expectedEntitiesFilePath, string expectedPersistenceRootFilePath,
+            IFileSystemWrapper fileSystemWrapper, PathNamespaceService sut)
         {
             //Arrange
-            fileSystemWrapperMock.Setup(fsw => fsw.Combine(It.IsAny<string[]>())).Returns(() => '/');
+            var fixture = new Fixture();
+            var codeGenConfig = fixture.Build<CodeGenConfig>()
+                .With(cgc => cgc.RootNamespace, rootNs)
+                .With(cgc => cgc.RootOutputDirectory, rootOutputDir)
+                .With(cgc => cgc.EntitiesOutputDirectory, entitiesOutputDir)
+                .With(cgc => cgc.PersistenceOutputDirectory, persistenceOutputDir)
+                .With(cgc => cgc.OutputFileNameSuffix, "g")
+                .With(cgc => cgc.EntityNameSuffix, "Entity")
+                .With(cgc => cgc.MapperNameSuffix, "Mapper")
+                .Without(cgc => cgc.EntitiesCustomNamespace)
+                .Without(cgc => cgc.PersistenceCustomNamespace)
+                .Create();
+            var tabStructure = fixture.Build<TabularStructure>()
+                .With(ts => ts.Schema, "Public")
+                .With(ts => ts.Name, "SomeModel")
+                .Create();
 
 
             //Act
+            var actual = sut.Resolve(codeGenConfig, tabStructure);
 
             //Assert
-        }
+            actual.EntitiesFilePath.Should()
+                .Be($"{fileSystemWrapper.CurrentDirectory}/{expectedEntitiesFilePath}/Public/SomeModelEntity.g.cs");
+            actual.PersistenceFilePath.Should()
+                .Be(
+                    $"{fileSystemWrapper.CurrentDirectory}/{expectedPersistenceRootFilePath}/Public/SomeModelMapper.g.cs");
+            actual.DapperInitialiserFilePath.Should()
+                .Be($"{fileSystemWrapper.CurrentDirectory}/{expectedPersistenceRootFilePath}/DapperTypeMapping.g.cs");
+    }
 
         [Theory]
         [InlineAutoDomainData("Company.Product", "Generated/Location", "Domain/Model", "Persistence/Dao")]
         [InlineAutoDomainData("Company.Product", @"Magical\Location", @"Entities\Design", @"Dal\Layer")]
         internal void Resolve_Namespaces_WithDirectoryHierarchyAsInput_SetToFormattedValueBasedOnDirStructure(
             string rootNs, string rootOutputDir, string entitiesOutputDir,
-            string persistenceOutputDir, [Frozen] Mock<IFileSystemWrapper> fileSystemWrapperMock,
-            PathNamespaceService sut)
+            string persistenceOutputDir, PathNamespaceService sut)
         {
             //Arrange
-            fileSystemWrapperMock.Setup(fsw => fsw.AltDirectorySeparatorChar).Returns(() => '/');
-            fileSystemWrapperMock.Setup(fsw => fsw.DirectorySeparatorChar).Returns(() => '\\');
-
             var fixture = new Fixture();
             var codeGenConfig = fixture.Build<CodeGenConfig>()
                 .With(cgc => cgc.RootNamespace, rootNs)
@@ -110,13 +132,9 @@ namespace SchemaTypist.Core.Tests.Utilities
         internal void Resolve_Namespaces_WithCustomNamespacesInput_SetToFormattedValueBasedOnDirStructureAndCustomNs(
             string rootNs, string rootOutputDir, string entitiesOutputDir,
             string persistenceOutputDir, string entitiesCustomNs, string persistenceCustomNs,
-            [Frozen] Mock<IFileSystemWrapper> fileSystemWrapperMock,
             PathNamespaceService sut)
         {
             //Arrange
-            fileSystemWrapperMock.Setup(fsw => fsw.AltDirectorySeparatorChar).Returns(() => '/');
-            fileSystemWrapperMock.Setup(fsw => fsw.DirectorySeparatorChar).Returns(() => '\\');
-
             var fixture = new Fixture();
             var codeGenConfig = fixture.Build<CodeGenConfig>()
                 .With(cgc => cgc.RootNamespace, rootNs)
