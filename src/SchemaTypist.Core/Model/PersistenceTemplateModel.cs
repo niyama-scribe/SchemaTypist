@@ -5,9 +5,7 @@ using SchemaTypist.Core.Config;
 
 namespace SchemaTypist.Core.Model
 {
-    internal class PersistenceTemplateModel
+    internal class PersistenceTemplateModel : TableStructureTemplateModel
     {
-        public CodeGenConfig Config { get; set; }
-        public TabularStructure TabularStructure { get; set; }
     }
 }

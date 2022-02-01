@@ -36,15 +36,17 @@ namespace SchemaTypist.Cli
             var config = new CodeGenConfig
             {
                 ConnectionString = connString,
-                OutputDirectory = settings.OutputDir,
+                RootOutputDirectory = settings.RootOutputDir,
                 GenerateEntitiesOnly = settings.EntitiesOnly,
                 CreateImmutableEntities = settings.CreateImmutableEntities,
                 CreateRecordEntities = settings.CreateRecordEntities
             };
-            config.EntitiesNamespace = settings.EntitiesNamespace ?? config.EntitiesNamespace;
+            config.EntitiesOutputDirectory = settings.EntitiesOutputDir ?? config.EntitiesOutputDirectory;
+            config.EntitiesCustomNamespace = settings.EntitiesCustomNamespace ?? config.EntitiesCustomNamespace;
             config.EntityNameSuffix = settings.EntityNameSuffix ?? config.EntityNameSuffix;
             config.GeneratePersistenceOnly = settings.PersistenceOnly;
-            config.PersistenceNamespace = settings.PersistenceNamespace ?? config.PersistenceNamespace;
+            config.PersistenceOutputDirectory = settings.PersistenceOutputDir ?? config.PersistenceOutputDirectory;
+            config.PersistenceCustomNamespace = settings.PersistenceCustomNamespace ?? config.PersistenceCustomNamespace;
             config.MapperNameSuffix = settings.MappingNameSuffix ?? config.MapperNameSuffix;
             config.RootNamespace = settings.RootNamespace ?? config.RootNamespace;
             config.Include = settings.Include ?? config.Include;
@@ -66,7 +68,7 @@ namespace SchemaTypist.Cli
                         AnsiConsole.MarkupLine($" Exclusion rules: {config.Exclude}");
                         tableStructureMap = await _schemaTypistService.ExtractDbMetadata(config);
                         await Task.Delay(500);
-                        AnsiConsole.MarkupLine($"Fetched schema details.  Generating code here:  {Path.GetFullPath(config.OutputDirectory)}");
+                        AnsiConsole.MarkupLine($"Fetched schema details.  Generating code here:  {Path.GetFullPath(config.RootOutputDirectory)}");
                         //await SchemaTypistService.Generate(dbMetadata, config);
 
                     }
@@ -118,9 +120,9 @@ namespace SchemaTypist.Cli
             [DefaultValue("MicrosoftSqlServer")]
             public string DatabaseVendor { get; set; }
 
-            [CommandArgument(1, "[OUTPUT_DIR]")]
+            [CommandArgument(1, "[ROOT_OUTPUT_DIR]")]
             [DefaultValue(".")]
-            public string OutputDir { get; set; }
+            public string RootOutputDir { get; set; }
 
             [Description("Static connection string to source database.")]
             [CommandArgument(2, "[CONNECTION_STRING]")]
@@ -132,9 +134,12 @@ namespace SchemaTypist.Cli
             [DefaultValue(false)]
             public bool EntitiesOnly { get; set; }
 
-            [CommandOption("--entities-namespace")]
+            [CommandOption("--entities-output-dir")]
             [DefaultValue("Domain")]
-            public string EntitiesNamespace { get; set; }
+            public string EntitiesOutputDir { get; set; }
+
+            [CommandOption("--entities-custom-namespace")]
+            public string EntitiesCustomNamespace { get; set; }
 
             [CommandOption("--entity-name-suffix")]
             [DefaultValue("")]
@@ -145,9 +150,12 @@ namespace SchemaTypist.Cli
             [DefaultValue(false)]
             public bool PersistenceOnly { get; set; }
 
-            [CommandOption("--persistence-namespace")]
-            [DefaultValue("Persistence")] 
-            public string PersistenceNamespace { get; set; }
+            [CommandOption("--persistence-output-dir")]
+            [DefaultValue("Persistence")]
+            public string PersistenceOutputDir { get; set; }
+            
+            [CommandOption("--persistence-custom-namespace")]
+            public string PersistenceCustomNamespace { get; set; }
 
             [CommandOption("--mapping-name-suffix")]
             [DefaultValue("Dao")]

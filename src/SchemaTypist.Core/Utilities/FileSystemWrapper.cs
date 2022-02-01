@@ -9,9 +9,13 @@ namespace SchemaTypist.Core.Utilities
     internal class FileSystemWrapper : IFileSystemWrapper
     {
         private HashSet<string> _directories = new HashSet<string>();
+        public char DirectorySeparatorChar => Path.DirectorySeparatorChar;
+        public char AltDirectorySeparatorChar => Path.AltDirectorySeparatorChar;
+        public string CurrentDirectory => Directory.GetCurrentDirectory();
+
         public void EnsureDirectoryExists(params string[] paths)
         {
-            var directoryName = Combine(paths);
+            var directoryName = Path.GetDirectoryName(Combine(paths));
             EnsureDirectoryExists(directoryName);
         }
 
@@ -37,6 +41,9 @@ namespace SchemaTypist.Core.Utilities
 
     public interface IFileSystemWrapper
     {
+        char DirectorySeparatorChar { get; }
+        char AltDirectorySeparatorChar { get; }
+        string CurrentDirectory { get; }
         void EnsureDirectoryExists(params string[] paths);
         string Combine(params string [] paths);
 
