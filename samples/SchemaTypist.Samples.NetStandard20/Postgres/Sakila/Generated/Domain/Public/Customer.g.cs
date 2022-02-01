@@ -15,7 +15,7 @@ namespace SchemaTypist.Samples.NetStandard20.Postgres.Sakila.Generated.Domain.Pu
 	
 	public partial class Customer
 	{
-		public int Active { get; set; }
+		public int? Active { get; set; }
 		public bool Activebool { get; set; }
 		public short AddressId { get; set; }
 		public DateTime CreateDate { get; set; }
@@ -23,7 +23,7 @@ namespace SchemaTypist.Samples.NetStandard20.Postgres.Sakila.Generated.Domain.Pu
 		public string Email { get; set; }
 		public string FirstName { get; set; }
 		public string LastName { get; set; }
-		public DateTime LastUpdate { get; set; }
+		public DateTime? LastUpdate { get; set; }
 		public short StoreId { get; set; }
 	}
 	

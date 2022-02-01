@@ -16,8 +16,8 @@ namespace SchemaTypist.Samples.NetStandard20.MsSql.StackOverflow.Generated.Domai
 	public partial class User
 	{
 		public string AboutMe { get; set; }
-		public int AccountId { get; set; }
-		public int Age { get; set; }
+		public int? AccountId { get; set; }
+		public int? Age { get; set; }
 		public DateTime CreationDate { get; set; }
 		public string DisplayName { get; set; }
 		public int DownVote { get; set; }

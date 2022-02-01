@@ -15,11 +15,11 @@ namespace SchemaTypist.Samples.NetStandard20.MsSql.StackOverflow.Generated.Domai
 	
 	public partial class Vote
 	{
-		public int BountyAmount { get; set; }
+		public int? BountyAmount { get; set; }
 		public DateTime CreationDate { get; set; }
 		public int Id { get; set; }
 		public int PostId { get; set; }
-		public int UserId { get; set; }
+		public int? UserId { get; set; }
 		public int VoteTypeId { get; set; }
 	}
 	

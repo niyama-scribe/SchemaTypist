@@ -18,9 +18,9 @@ namespace SchemaTypist.Samples.NetStandard20.Postgres.Sakila.Generated.Domain.Pu
 		public string Actor { get; set; }
 		public string Category { get; set; }
 		public string Description { get; set; }
-		public int Fid { get; set; }
-		public short Length { get; set; }
-		public decimal Price { get; set; }
+		public int? Fid { get; set; }
+		public short? Length { get; set; }
+		public decimal? Price { get; set; }
 		public Object Rating { get; set; }
 		public string Title { get; set; }
 	}
