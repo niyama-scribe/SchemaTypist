@@ -16,7 +16,7 @@ jobs:
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: 6.0.x
-      - name: Restore dependencies
+      - name: Restore all dependencies
         run: dotnet restore
       - name: Build
         run: dotnet build --no-restore -c Release
