@@ -2,9 +2,10 @@
 	<PropertyGroup>
 		<Authors>Sachin Rao, Niyama-Scribe</Authors>
 		<PackageProjectUrl>https://github.com/niyama-scribe/SchemaTypist</PackageProjectUrl>
-		<Copyright>Copyright © Niyama-Scribe 2022</Copyright>
+		<Copyright>Copyright Â© Niyama-Scribe 2022</Copyright>
 		<PublishRepositoryUrl>true</PublishRepositoryUrl>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageTags>dotnet;c#;dapper;schematypist</PackageTags>
+		<MinVerTagPrefix>v</MinVerTagPrefix>
 	</PropertyGroup>
 </Project>
