@@ -33,7 +33,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SchemaTypist.Samples.Net6x.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchemaTypist.Samples.NetFramework.MsSqlServer", "samples\SchemaTypist.Samples.NetFramework.MsSqlServer\SchemaTypist.Samples.NetFramework.MsSqlServer.csproj", "{9F5C9042-0BEE-4505-94B4-A3CF56319DCC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchemaTypist.Samples.NetStandard20", "samples\SchemaTypist.Samples.NetStandard20\SchemaTypist.Samples.NetStandard20.csproj", "{241CB796-F294-4F1A-960A-81EE480D68B2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SchemaTypist.Samples.NetStandard20", "samples\SchemaTypist.Samples.NetStandard20\SchemaTypist.Samples.NetStandard20.csproj", "{241CB796-F294-4F1A-960A-81EE480D68B2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -80,7 +80,6 @@ Global
 		{9F5C9042-0BEE-4505-94B4-A3CF56319DCC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9F5C9042-0BEE-4505-94B4-A3CF56319DCC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9F5C9042-0BEE-4505-94B4-A3CF56319DCC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9F5C9042-0BEE-4505-94B4-A3CF56319DCC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{241CB796-F294-4F1A-960A-81EE480D68B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{241CB796-F294-4F1A-960A-81EE480D68B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{241CB796-F294-4F1A-960A-81EE480D68B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
