@@ -51,6 +51,8 @@ namespace SchemaTypist.Cli
             config.RootNamespace = settings.RootNamespace ?? config.RootNamespace;
             config.Include = settings.Include ?? config.Include;
             config.Exclude = settings.Exclude ?? config.Exclude;
+            config.StripPrefix = settings.StripPrefix ?? config.StripPrefix;
+            config.StripSuffix = settings.StripSuffix ?? config.StripSuffix;
             
             if ((!string.IsNullOrWhiteSpace(settings.DatabaseVendor))
                 && Enum.TryParse<SqlVendorType>(settings.DatabaseVendor, out var vendor)) 
@@ -185,6 +187,13 @@ namespace SchemaTypist.Cli
             [DefaultValue("")]
             public string UserSecretsId { get; set; }
 
+            [CommandOption("--strip-prefix")]
+            [DefaultValue("")]
+            public string StripPrefix { get; set; }
+
+            [CommandOption("--strip-suffix")]
+            [DefaultValue("")]
+            public string StripSuffix { get; set; }
 
             /**
              * TODO:

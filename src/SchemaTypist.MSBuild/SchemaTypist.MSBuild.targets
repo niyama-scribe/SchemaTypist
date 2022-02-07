@@ -17,6 +17,8 @@
 		<SchemaTypist_CreateImmutableEntities Condition="'$(SchemaTypist_CreateImmutableEntities)' == ''">$(_SchemaTypist_CreateImmutableEntities)</SchemaTypist_CreateImmutableEntities>
 		<SchemaTypist_CreateRecordEntities Condition="'$(SchemaTypist_CreateRecordEntities)' == ''">$(_SchemaTypist_CreateRecordEntities)</SchemaTypist_CreateRecordEntities>
 		<SchemaTypist_User_Secrets_Id Condition="'$(SchemaTypist_User_Secrets_Id)' == ''">$(_SchemaTypist_User_Secrets_Id)</SchemaTypist_User_Secrets_Id>
+		<SchemaTypist_StripPrefix Condition="'$(SchemaTypist_StripPrefix)' == ''">$(_SchemaTypist_StripPrefix)</SchemaTypist_StripPrefix>
+		<SchemaTypist_StripSuffix Condition="'$(SchemaTypist_StripSuffix)' == ''">$(_SchemaTypist_StripSuffix)</SchemaTypist_StripSuffix>
 
 	</PropertyGroup>
 
@@ -27,10 +29,11 @@
 		<PropertyGroup >
 			<_SchemaTypist_Cli>dotnet schematypist generate $(SchemaTypist_Vendor)</_SchemaTypist_Cli>
 			<_SchemaTypist_Cli Condition="'$(SchemaTypist_RootOutputDir)' != '_#NONE#_'">$(_SchemaTypist_Cli) %22$(SchemaTypist_RootOutputDir)%22</_SchemaTypist_Cli>
-			<_SchemaTypist_Cli>$(_SchemaTypist_Cli) $(SchemaTypist_ConnectionString) --entities-only $(SchemaTypist_GenerateEntitiesOnly) --entities-output-dir $(SchemaTypist_EntitiesOutputDir) --persistence-only $(SchemaTypist_GeneratePersistenceOnly) --persistence-output-dir $(SchemaTypist_PersistenceOutputDir) --mapping-name-suffix $(SchemaTypist_MapperNameSuffix) --root-namespace $(SchemaTypist_RootNamespace) --include $(SchemaTypist_Include) --exclude $(SchemaTypist_Exclude) --create-immutable-entities $(SchemaTypist_CreateImmutableEntities) --create-record-entities $(SchemaTypist_CreateRecordEntities)</_SchemaTypist_Cli>
+			<_SchemaTypist_Cli>$(_SchemaTypist_Cli) $(SchemaTypist_ConnectionString) --entities-only $(SchemaTypist_GenerateEntitiesOnly) --entities-output-dir $(SchemaTypist_EntitiesOutputDir) --persistence-only $(SchemaTypist_GeneratePersistenceOnly) --persistence-output-dir $(SchemaTypist_PersistenceOutputDir) --mapping-name-suffix $(SchemaTypist_MapperNameSuffix) --root-namespace $(SchemaTypist_RootNamespace) --include $(SchemaTypist_Include) --exclude $(SchemaTypist_Exclude) --create-immutable-entities $(SchemaTypist_CreateImmutableEntities) --create-record-entities $(SchemaTypist_CreateRecordEntities) --strip-prefix $(SchemaTypist_StripPrefix)</_SchemaTypist_Cli>
 			<SchemaTypist_Cli Condition="'$(SchemaTypist_EntityNameSuffix)' == ''">$(_SchemaTypist_Cli)</SchemaTypist_Cli>
 			<SchemaTypist_Cli Condition="'$(SchemaTypist_EntityNameSuffix)' != ''">$(_SchemaTypist_Cli) --entity-name-suffix $(SchemaTypist_EntityNameSuffix)</SchemaTypist_Cli>
 			<SchemaTypist_Cli Condition="'$(SchemaTypist_User_Secrets_Id)' != '_#NONE#_'">$(SchemaTypist_Cli) --user-secrets-id $(SchemaTypist_User_Secrets_Id)</SchemaTypist_Cli>
+			<SchemaTypist_Cli Condition="'$(SchemaTypist_StripSuffix)' != '_#NONE#_'">$(SchemaTypist_Cli) --strip-suffix $(SchemaTypist_StripSuffix)</SchemaTypist_Cli>
 		</PropertyGroup>
 	</Target>
 

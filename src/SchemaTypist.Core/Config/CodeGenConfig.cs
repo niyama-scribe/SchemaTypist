@@ -42,6 +42,9 @@ namespace SchemaTypist.Core.Config
 
         public bool CreateRecordEntities { get; set; } = false;
 
+        public string StripPrefix { get; set; }
+
+        public string StripSuffix { get; set; }
 
     }
 
