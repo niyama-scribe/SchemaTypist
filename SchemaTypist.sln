@@ -13,9 +13,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SchemaTypist.Core.Tests", "
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8187F539-5B57-4CBB-BD6D-859A8AB01D96}"
 	ProjectSection(SolutionItems) = preProject
+		.github\build.yaml = .github\build.yaml
 		Common.props = Common.props
 		Directory.Build.props = Directory.Build.props
 		Directory.Build.targets = Directory.Build.targets
+		.github\publish.yaml = .github\publish.yaml
 		README.md = README.md
 	EndProjectSection
 EndProject
