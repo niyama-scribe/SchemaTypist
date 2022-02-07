@@ -22,7 +22,11 @@ jobs:
         run: dotnet build --no-restore -c Release
       - name: Test
         run: dotnet test -c Release --no-build --verbosity normal
-      - name: Pack
-        run: dotnet pack -c Release -o ./nupkgs --no-build
+      - name: Pack SchemaTypist
+        run: dotnet pack -c Release -o ./nupkgs --no-build src/SchemaTypist/SchemaTypist.csproj
+      - name: Pack SchemaTypist.Cli
+        run: dotnet pack -c Release -o ./nupkgs --no-build src/SchemaTypist/SchemaTypist.Cli.csproj
+      - name: Pack SchemaTypist.MSBuild
+        run: dotnet pack -c Release -o ./nupkgs --no-build src/SchemaTypist/SchemaTypist.MSBuild.csproj
       - name: Publish
         run: dotnet nuget push ./nupkgs/*.nupkg --api-key ${{ secrets.NUGET_PUBLISH_API_KEY }}  --skip-duplicate -s https://api.nuget.org/v3/index.json
