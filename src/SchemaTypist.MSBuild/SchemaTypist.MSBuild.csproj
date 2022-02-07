@@ -16,8 +16,8 @@
   </ItemGroup>
 
 	<ItemGroup>
-		<Content Include="SchemaTypist.MSBuild.props" PackagePath="build\" Pack="true" />
-		<Content Include="SchemaTypist.MSBuild.targets" PackagePath="build\" Pack="true" />
+		<Content Include="build\SchemaTypist.MSBuild.props" PackagePath="build\" Pack="true" />
+		<Content Include="build\SchemaTypist.MSBuild.targets" PackagePath="build\" Pack="true" />
 	</ItemGroup>
 
 	<ItemGroup>

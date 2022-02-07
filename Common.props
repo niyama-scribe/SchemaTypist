@@ -6,6 +6,5 @@
 		<PublishRepositoryUrl>true</PublishRepositoryUrl>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageTags>dotnet;c#;dapper;schematypist</PackageTags>
-		<MinVerTagPrefix>v</MinVerTagPrefix>
 	</PropertyGroup>
 </Project>
