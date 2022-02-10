@@ -10,6 +10,7 @@ using FluentAssertions;
 using Moq;
 using SchemaTypist.Core.Config;
 using SchemaTypist.Core.SqlVendors;
+using SchemaTypist.Core.Tests.Autofixture;
 using SchemaTypist.Core.Utilities;
 using Xunit;
 

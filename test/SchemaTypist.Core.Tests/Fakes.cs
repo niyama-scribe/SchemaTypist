@@ -4,33 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AutoFixture;
-using AutoFixture.AutoMoq;
-using AutoFixture.Xunit2;
 using SchemaTypist.Core.Utilities;
 using SqlKata.Compilers;
-using Xunit.Sdk;
 
 namespace SchemaTypist.Core.Tests
 {
-    public class AutoDomainDataAttribute : AutoDataAttribute
+    class Fakes
     {
-        public AutoDomainDataAttribute() 
-            : base(() =>
-            {
-                var fixture = new Fixture()
-                    .Customize(new FakesCustomization())
-                    .Customize(new AutoMoqCustomization());
-                return fixture;
-            })
-        {
-        }
-    }
-
-    public class InlineAutoDomainDataAttribute : InlineAutoDataAttribute
-    {
-        public InlineAutoDomainDataAttribute(params object[] values) : base(new AutoDomainDataAttribute(), values)
-        {
-        }
     }
 
     internal class FakesCustomization : ICustomization

@@ -9,6 +9,7 @@ using FluentAssertions;
 using SchemaTypist.Core.Config;
 using Xunit;
 using SchemaTypist.Core.Naming;
+using SchemaTypist.Core.Tests.Autofixture;
 
 namespace SchemaTypist.Core.Tests.Language
 {

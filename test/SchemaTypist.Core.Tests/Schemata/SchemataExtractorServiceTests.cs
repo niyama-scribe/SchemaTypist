@@ -12,6 +12,7 @@ using SchemaTypist.Core.Config;
 using SchemaTypist.Core.Schemata;
 using SchemaTypist.Core.Schemata.Dto;
 using SchemaTypist.Core.SqlVendors;
+using SchemaTypist.Core.Tests.Autofixture;
 using SqlKata.Compilers;
 using Xunit;
 
