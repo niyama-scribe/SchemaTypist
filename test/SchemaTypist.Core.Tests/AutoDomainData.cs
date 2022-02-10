@@ -17,9 +17,9 @@ namespace SchemaTypist.Core.Tests
         public AutoDomainDataAttribute() 
             : base(() =>
             {
-                var fixture = new Fixture().Customize(new AutoMoqCustomization());
-                fixture.Register<Compiler>(() => new FakeCompiler());
-                fixture.Register<IFileSystemWrapper>(() => new FakeFileSystemWrapper());
+                var fixture = new Fixture()
+                    .Customize(new FakesCustomization())
+                    .Customize(new AutoMoqCustomization());
                 return fixture;
             })
         {
@@ -30,6 +30,15 @@ namespace SchemaTypist.Core.Tests
     {
         public InlineAutoDomainDataAttribute(params object[] values) : base(new AutoDomainDataAttribute(), values)
         {
+        }
+    }
+
+    internal class FakesCustomization : ICustomization
+    {
+        public void Customize(IFixture fixture)
+        {
+            fixture.Register<Compiler>(() => new FakeCompiler());
+            fixture.Register<IFileSystemWrapper>(() => new FakeFileSystemWrapper());
         }
     }
 
