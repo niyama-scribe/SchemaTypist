@@ -12,7 +12,7 @@ using SchemaTypist.Core.Naming;
 using SchemaTypist.Core.Schemata;
 using SchemaTypist.Core.Schemata.Dto;
 using SchemaTypist.Core.SqlVendors;
-using SchemaTypist.Core.Tests.Autofixture;
+using SchemaTypist.TestBase.Autofixture;
 using Xunit;
 
 namespace SchemaTypist.Core.Tests.Schemata
@@ -20,7 +20,7 @@ namespace SchemaTypist.Core.Tests.Schemata
     public class SchemataConverterServiceTests
     {
         [Theory]
-        [AutoDomainData]
+        [AutoTestParams]
         internal void Convert_WhenQualifiedTableNameIsExcluded_WillBeIgnored(
             [Frozen] INamingService namingSvc, [Frozen] ISqlVendorService sqlVendorSvc,
             SchemataConverterService sut)

@@ -13,8 +13,8 @@ using Moq;
 using SchemaTypist.Core.Config;
 using SchemaTypist.Core.Model;
 using SchemaTypist.Core.SqlVendors;
-using SchemaTypist.Core.Tests.Autofixture;
 using SchemaTypist.Core.Utilities;
+using SchemaTypist.TestBase.Autofixture;
 using SqlKata.Compilers;
 using Xunit;
 
@@ -23,8 +23,8 @@ namespace SchemaTypist.Core.Tests.SqlVendors
     public class SqlVendorServiceTests
     {
         [Theory]
-        [InlineAutoDomainData("datetime", false, "DateTime")]
-        [InlineAutoDomainData("datetime", true, "DateTime?")]
+        [InlineAutoDataTestParams("datetime", false, "DateTime")]
+        [InlineAutoDataTestParams("datetime", true, "DateTime?")]
         internal void DetermineDotnetDataType_WhenValid_GetsDataTypeAsPerDialect(
             string sqlDataType, bool isNullable, string dotnetDataType, 
             [Frozen] Mock<ISqlDialect> sd, [Frozen] Mock<ISqlVendor> sv, 
@@ -43,7 +43,7 @@ namespace SchemaTypist.Core.Tests.SqlVendors
         }
 
         [Theory]
-        [AutoDomainData]
+        [AutoTestParams]
         internal void BuildQualifiedName_WhenValid_UsesRegisteredImpl(
             [Frozen] Mock<ISqlDialect> sd, [Frozen] Mock<ISqlVendor> sv,
             [Frozen] Mock<ISqlVendorPluginLoader> svp, CodeGenConfig cdc, 
@@ -63,7 +63,7 @@ namespace SchemaTypist.Core.Tests.SqlVendors
         }
 
         [Theory]
-        [AutoDomainData]
+        [AutoTestParams]
         internal void GetDbInterfaceProviders_WhenValid_UsesRegisteredImpl(
             [Frozen] IDbConnection dbConnection, [Frozen] Compiler compiler,
             [Frozen] Mock<ISqlVendor> sv, [Frozen] Mock<ISqlVendorPluginLoader> svp,

@@ -10,8 +10,8 @@ using FluentAssertions;
 using Moq;
 using SchemaTypist.Core.Config;
 using SchemaTypist.Core.SqlVendors;
-using SchemaTypist.Core.Tests.Autofixture;
 using SchemaTypist.Core.Utilities;
+using SchemaTypist.TestBase.Autofixture;
 using Xunit;
 
 namespace SchemaTypist.Core.Tests.SqlVendors
@@ -19,7 +19,7 @@ namespace SchemaTypist.Core.Tests.SqlVendors
     public class SqlVendorPluginLoaderTests
     {
         [Theory]
-        [AutoDomainData]
+        [AutoTestParams]
         internal void GetSqlVendor_WithoutCallingLoadRegisteredVendors_ThrowsInvalidOpException(SqlVendorPluginLoader sut)
         {
             //Arrange
@@ -33,7 +33,7 @@ namespace SchemaTypist.Core.Tests.SqlVendors
         }
 
         [Theory]
-        [AutoDomainData]
+        [AutoTestParams]
         internal void GetSqlVendor_WithNoRegisteredVendors_ThrowsInvalidOpException([Frozen] Mock<IPluginLoader> pluginLoader, SqlVendorPluginLoader sut)
         {
             //Arrange
@@ -49,7 +49,7 @@ namespace SchemaTypist.Core.Tests.SqlVendors
         }
 
         [Theory]
-        [AutoDomainData]
+        [AutoTestParams]
         internal void GetSqlVendor_WithOneRegisteredImpl_UseThatRegisteredImplRegardlessOfRequestedSqlVendorType(
             [Frozen] Mock<IPluginLoader> pluginLoader, [Frozen] Mock<ISqlVendor> sqlVendor, 
             SqlVendorPluginLoader sut)
@@ -68,8 +68,8 @@ namespace SchemaTypist.Core.Tests.SqlVendors
         }
 
         [Theory]
-        [InlineAutoDomainData(SqlVendorType.MicrosoftSqlServer)]
-        [InlineAutoDomainData(SqlVendorType.PostgreSql)]
+        [InlineAutoDataTestParams(SqlVendorType.MicrosoftSqlServer)]
+        [InlineAutoDataTestParams(SqlVendorType.PostgreSql)]
         internal void GetSqlVendor_WithMultipleRegisteredImpl_UseMatchingRegisteredImplBasedOnRequestedSqlVendorType(
             SqlVendorType input, [Frozen] Mock<IPluginLoader> pluginLoader, Mock<ISqlVendor> msVendor, 
             Mock<ISqlVendor> postgresVendor, SqlVendorPluginLoader sut)

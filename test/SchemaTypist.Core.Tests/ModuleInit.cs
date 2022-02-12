@@ -4,8 +4,9 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using AutoFixture;
 using AutoFixture.AutoMoq;
-using SchemaTypist.Core.Tests.Autofixture;
+using SchemaTypist.TestBase.Autofixture;
 
 namespace SchemaTypist.Core.Tests
 {
@@ -19,7 +20,8 @@ namespace SchemaTypist.Core.Tests
         public static void Initialize()
         {
             FixtureCustomizationsRegistrar.Default.Register(
-                new FakesCustomization(), 
+                new FakesCustomization(),
+                new FileSystemWrapperSpecimenBuilder().ToCustomization(),
                 new AutoMoqCustomization());
         }
     }

@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using AutoFixture;
-using AutoFixture.AutoMoq;
+﻿using AutoFixture;
 
-namespace SchemaTypist.Core.Tests.Autofixture
+namespace SchemaTypist.TestBase.Autofixture
 {
     /// <summary>
     /// This class serves as the registry for autofixture customizations.
@@ -21,8 +14,7 @@ namespace SchemaTypist.Core.Tests.Autofixture
 
         public FixtureCustomizationsRegistrar Register(IEnumerable<ICustomization> customizations)
         {
-            if (customizations != null)
-                _registry.AddRange(customizations);
+            _registry.AddRange(customizations);
             return this;
         }
 

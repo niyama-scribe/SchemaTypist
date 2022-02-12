@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\SchemaTypist.Core\SchemaTypist.Core.csproj" />
+    <ProjectReference Include="..\SchemaTypist.TestBase.Autofixture\SchemaTypist.TestBase.Autofixture.csproj" />
   </ItemGroup>
 
 </Project>

@@ -12,7 +12,7 @@ using SchemaTypist.Core.Config;
 using SchemaTypist.Core.Schemata;
 using SchemaTypist.Core.Schemata.Dto;
 using SchemaTypist.Core.SqlVendors;
-using SchemaTypist.Core.Tests.Autofixture;
+using SchemaTypist.TestBase.Autofixture;
 using SqlKata.Compilers;
 using Xunit;
 
@@ -20,8 +20,7 @@ namespace SchemaTypist.Core.Tests.Schemata
 {
     public class SchemataExtractorServiceTests
     {
-        [Theory]
-        [AutoDomainData]
+        [Theory, AutoTestParams]
         internal void ExtractDbMetadata_WhenValid_CallsDbConnection(
             [Frozen] Mock<IDbConnection> conn, [Frozen] DbCommand cmd,
             [Frozen] Compiler compiler,

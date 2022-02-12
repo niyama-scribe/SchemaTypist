@@ -13,6 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SchemaTypist.Core.Tests", "
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8187F539-5B57-4CBB-BD6D-859A8AB01D96}"
 	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
 		.github\workflows\build.yaml = .github\workflows\build.yaml
 		Common.props = Common.props
 		Directory.Build.props = Directory.Build.props
@@ -34,6 +35,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchemaTypist.Samples.NetFramework.MsSqlServer", "samples\SchemaTypist.Samples.NetFramework.MsSqlServer\SchemaTypist.Samples.NetFramework.MsSqlServer.csproj", "{9F5C9042-0BEE-4505-94B4-A3CF56319DCC}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SchemaTypist.Samples.NetStandard20", "samples\SchemaTypist.Samples.NetStandard20\SchemaTypist.Samples.NetStandard20.csproj", "{241CB796-F294-4F1A-960A-81EE480D68B2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchemaTypist.TestBase.Autofixture", "test\SchemaTypist.TestBase.Autofixture\SchemaTypist.TestBase.Autofixture.csproj", "{1BA850DA-D3EB-4DA1-BD63-D2FEDA3AB721}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -84,6 +87,10 @@ Global
 		{241CB796-F294-4F1A-960A-81EE480D68B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{241CB796-F294-4F1A-960A-81EE480D68B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{241CB796-F294-4F1A-960A-81EE480D68B2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1BA850DA-D3EB-4DA1-BD63-D2FEDA3AB721}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1BA850DA-D3EB-4DA1-BD63-D2FEDA3AB721}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1BA850DA-D3EB-4DA1-BD63-D2FEDA3AB721}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1BA850DA-D3EB-4DA1-BD63-D2FEDA3AB721}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
