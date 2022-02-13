@@ -7,7 +7,7 @@ using AutoFixture.Kernel;
 
 namespace SchemaTypist.TestBase.Autofixture
 {
-    public abstract class BaseTypeSpecimenBuilder<T> : ISpecimenBuilder
+    public abstract class CustomTypeSpecimenBuilderBase<T> : ISpecimenBuilder
     {
         public object? Create(object request, ISpecimenContext context)
         {

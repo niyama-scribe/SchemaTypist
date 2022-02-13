@@ -8,16 +8,16 @@ namespace SchemaTypist.TestBase.Autofixture
     /// </summary>
     public class FixtureCustomizationsScanner
     {
-        private static readonly Lazy<List<ICustomization>> Registry = new Lazy<List<ICustomization>>(DiscoverCustomizations);
+        private static readonly Lazy<List<ICustomization>> Registry = new(DiscoverCustomizations);
         
         private static List<ICustomization> DiscoverCustomizations()
         {
             var matchingTypes = AppDomain.CurrentDomain.GetAssemblies()
                 .SelectMany(a => a.GetTypes()
-                    .Where(t => typeof(IAutofixtureCustomizationsProvider).IsAssignableFrom(t)));
-            var type = matchingTypes.First() ?? typeof(DefaultAutofixtureCustomizationsProvider);
-            if (Activator.CreateInstance(type) is IAutofixtureCustomizationsProvider customizationsProvider)
-                return customizationsProvider.ProvideCustomizations().ToList();
+                    .Where(t => typeof(IAutofixtureCustomizationsSpecifier).IsAssignableFrom(t)));
+            var type = matchingTypes.First() ?? typeof(DefaultAutofixtureCustomizationsSpecifier);
+            if (Activator.CreateInstance(type) is IAutofixtureCustomizationsSpecifier customizationsProvider)
+                return customizationsProvider.SpecifyCustomizations().ToList();
             return new List<ICustomization>();
         }
 

@@ -22,7 +22,7 @@ namespace SchemaTypist.Core.Tests
         }
     }
 
-    internal class CompilerSpecimenBuilder : BaseTypeSpecimenBuilder<Compiler>
+    internal class CompilerSpecimenBuilder : CustomTypeSpecimenBuilderBase<Compiler>
     {
         protected override Compiler? BuildSpecimen() => new FakeCompiler();
     }
@@ -55,7 +55,7 @@ namespace SchemaTypist.Core.Tests
         }
     }
 
-    internal class FileSystemWrapperSpecimenBuilder : BaseTypeSpecimenBuilder<IFileSystemWrapper>
+    internal class FileSystemWrapperSpecimenBuilder : CustomTypeSpecimenBuilderBase<IFileSystemWrapper>
     {
         protected override IFileSystemWrapper? BuildSpecimen() => new FakeFileSystemWrapper();
 

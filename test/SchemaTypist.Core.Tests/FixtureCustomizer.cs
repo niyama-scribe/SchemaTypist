@@ -9,9 +9,9 @@ using SchemaTypist.TestBase.Autofixture;
 
 namespace SchemaTypist.Core.Tests
 {
-    internal class FixtureCustomizer : IAutofixtureCustomizationsProvider
+    internal class FixtureCustomizer : IAutofixtureCustomizationsSpecifier
     {
-        public IEnumerable<ICustomization> ProvideCustomizations()
+        public IEnumerable<ICustomization> SpecifyCustomizations()
         {
             var l = new List<ICustomization>()
             {
