@@ -10,7 +10,7 @@ namespace SchemaTypist.TestBase.Autofixture
             : base(() =>
             {
                 var fixture = new Fixture()
-                    .Customize(FixtureCustomizationsRegistrar.Default.Compose());
+                    .Customize(FixtureCustomizationsScanner.Compose());
                 return fixture;
             })
         {

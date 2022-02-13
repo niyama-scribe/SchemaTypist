@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using AutoFixture;
@@ -10,19 +9,17 @@ using SchemaTypist.TestBase.Autofixture;
 
 namespace SchemaTypist.Core.Tests
 {
-    /// <summary>
-    /// Using module initializer to register all the
-    /// autofixture customizations I need
-    /// </summary>
-    public static class ModuleInit
+    internal class FixtureCustomizer : IAutofixtureCustomizationsProvider
     {
-        [ModuleInitializer]
-        public static void Initialize()
+        public IEnumerable<ICustomization> ProvideCustomizations()
         {
-            FixtureCustomizationsRegistrar.Default.Register(
+            var l = new List<ICustomization>()
+            {
                 new FakesCustomization(),
                 new FileSystemWrapperSpecimenBuilder().ToCustomization(),
-                new AutoMoqCustomization());
+                new AutoMoqCustomization()
+            };
+            return l;
         }
     }
 }
