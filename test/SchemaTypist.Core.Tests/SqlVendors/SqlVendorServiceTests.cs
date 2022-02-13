@@ -14,6 +14,7 @@ using SchemaTypist.Core.Config;
 using SchemaTypist.Core.Model;
 using SchemaTypist.Core.SqlVendors;
 using SchemaTypist.Core.Utilities;
+using SchemaTypist.TestBase.Autofixture;
 using SqlKata.Compilers;
 using Xunit;
 

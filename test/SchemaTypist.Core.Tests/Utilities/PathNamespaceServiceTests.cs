@@ -10,6 +10,7 @@ using Moq;
 using SchemaTypist.Core.Config;
 using SchemaTypist.Core.Model;
 using SchemaTypist.Core.Utilities;
+using SchemaTypist.TestBase.Autofixture;
 using Xunit;
 
 namespace SchemaTypist.Core.Tests.Utilities

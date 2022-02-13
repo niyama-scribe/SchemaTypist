@@ -12,6 +12,7 @@ using SchemaTypist.Core.Naming;
 using SchemaTypist.Core.Schemata;
 using SchemaTypist.Core.Schemata.Dto;
 using SchemaTypist.Core.SqlVendors;
+using SchemaTypist.TestBase.Autofixture;
 using Xunit;
 
 namespace SchemaTypist.Core.Tests.Schemata

@@ -5,51 +5,21 @@ using System.Text;
 using System.Threading.Tasks;
 using AutoFixture;
 using AutoFixture.AutoMoq;
-using AutoFixture.Xunit2;
-
-// using SchemaTypist.TestBase.Autofixture;
+using SchemaTypist.TestBase.Autofixture;
 
 namespace SchemaTypist.Core.Tests
 {
-    // internal class FixtureCustomizer : IAutofixtureCustomizationsProvider
-    // {
-    //     public IEnumerable<ICustomization> ProvideCustomizations()
-    //     {
-    //         var l = new List<ICustomization>()
-    //         {
-    //             new FakesCustomization(),
-    //             new FileSystemWrapperSpecimenBuilder().ToCustomization(),
-    //             new AutoMoqCustomization()
-    //         };
-    //         return l;
-    //     }
-    // }
-
-    [AttributeUsage(AttributeTargets.Method)]
-    public class AutoTestParamsAttribute : AutoDataAttribute
+    internal class FixtureCustomizer : IAutofixtureCustomizationsProvider
     {
-        public AutoTestParamsAttribute()
-            : base(() =>
+        public IEnumerable<ICustomization> ProvideCustomizations()
+        {
+            var l = new List<ICustomization>()
             {
-                var fixture = new Fixture()
-                    .Customize(
-                        new CompositeCustomization(
-                            new FakesCustomization(),
-                            new AutoMoqCustomization()
-                            )
-                        );
-                return fixture;
-            })
-        {
-        }
-    }
-
-    [AttributeUsage(AttributeTargets.Method, AllowMultiple = true)]
-    public class InlineAutoDataTestParamsAttribute : InlineAutoDataAttribute
-    {
-        public InlineAutoDataTestParamsAttribute(params object[] values)
-            : base(new AutoTestParamsAttribute(), values)
-        {
+                new FakesCustomization(),
+                new FileSystemWrapperSpecimenBuilder().ToCustomization(),
+                new AutoMoqCustomization()
+            };
+            return l;
         }
     }
 }

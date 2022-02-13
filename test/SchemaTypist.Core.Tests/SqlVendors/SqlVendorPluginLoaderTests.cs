@@ -11,6 +11,7 @@ using Moq;
 using SchemaTypist.Core.Config;
 using SchemaTypist.Core.SqlVendors;
 using SchemaTypist.Core.Utilities;
+using SchemaTypist.TestBase.Autofixture;
 using Xunit;
 
 namespace SchemaTypist.Core.Tests.SqlVendors
