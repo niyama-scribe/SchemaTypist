@@ -8,8 +8,7 @@
       "src\\SchemaTypist.SqlVendors.MicrosoftSqlServer\\SchemaTypist.SqlVendors.MicrosoftSqlServer.csproj",
       "src\\SchemaTypist.SqlVendors.PostgreSql\\SchemaTypist.SqlVendors.PostgreSql.csproj",
       "src\\SchemaTypist\\SchemaTypist.csproj",
-      "test\\SchemaTypist.Core.Tests\\SchemaTypist.Core.Tests.csproj",
-      "test\\SchemaTypist.TestBase.Autofixture\\SchemaTypist.TestBase.Autofixture.csproj"
+      "test\\SchemaTypist.Core.Tests\\SchemaTypist.Core.Tests.csproj"
     ]
   }
 }

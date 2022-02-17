@@ -25,8 +25,8 @@ At its core, SchemaTypist provides a highly configurable, dotnet CLI tool called
 	</Target>
 	
 	<ItemGroup>
-	  <PackageReference Include="SchemaTypist" Version="0.1.1" />
-	  <PackageReference Include="SchemaTypist.MSBuild" Version="0.1.1" />
+	  <PackageReference Include="SchemaTypist" Version="0.6.4" />
+	  <PackageReference Include="SchemaTypist.MSBuild" Version="0.6.4" />
 	</ItemGroup>
    ```
  - Finally, run the build.
