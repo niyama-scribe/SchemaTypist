@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -9,6 +9,7 @@
     <PackageReference Include="AutoFixture.AutoMoq" Version="4.17.0" />
     <PackageReference Include="AutoFixture.SeedExtensions" Version="4.17.0" />
     <PackageReference Include="AutoFixture.Xunit2" Version="4.17.0" />
+    <PackageReference Include="Auzaar.AutoFixture" Version="0.1.0" />
     <PackageReference Include="FluentAssertions" Version="6.3.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.11.0" />
     <PackageReference Include="Moq" Version="4.16.1" />
@@ -21,7 +22,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\SchemaTypist.Core\SchemaTypist.Core.csproj" />
-    <ProjectReference Include="..\SchemaTypist.TestBase.Autofixture\SchemaTypist.TestBase.Autofixture.csproj" />
   </ItemGroup>
 
 </Project>

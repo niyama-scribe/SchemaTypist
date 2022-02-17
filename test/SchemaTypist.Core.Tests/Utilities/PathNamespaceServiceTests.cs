@@ -5,12 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using AutoFixture;
 using AutoFixture.Xunit2;
+using Auzaar.AutoFixture;
 using FluentAssertions;
 using Moq;
 using SchemaTypist.Core.Config;
 using SchemaTypist.Core.Model;
 using SchemaTypist.Core.Utilities;
-using SchemaTypist.TestBase.Autofixture;
 using Xunit;
 
 namespace SchemaTypist.Core.Tests.Utilities
@@ -18,13 +18,13 @@ namespace SchemaTypist.Core.Tests.Utilities
     public class PathNamespaceServiceTests
     {
         [Theory]
-        [InlineAutoDataTestParams("Company.Product", "Generated", "Domain", "Persistence", "Company.Product.Generated.Domain", "Company.Product.Generated.Persistence")]
-        [InlineAutoDataTestParams("Company.Product", null, "Domain", "Persistence", "Company.Product.Domain", "Company.Product.Persistence")]
-        [InlineAutoDataTestParams("Company.Product", " ", "Domain", "Persistence", "Company.Product.Domain", "Company.Product.Persistence")]
-        [InlineAutoDataTestParams("Company.Product", "Generated", null, "Persistence", "Company.Product.Generated", "Company.Product.Generated.Persistence")]
-        [InlineAutoDataTestParams("Company.Product", "Generated", " ", "Persistence", "Company.Product.Generated", "Company.Product.Generated.Persistence")]
-        [InlineAutoDataTestParams("Company.Product", "Generated", "Domain", null, "Company.Product.Generated.Domain", "Company.Product.Generated")]
-        [InlineAutoDataTestParams("Company.Product", "Generated", "Domain", " ", "Company.Product.Generated.Domain", "Company.Product.Generated")]
+        [AutoTestParamsInlineData("Company.Product", "Generated", "Domain", "Persistence", "Company.Product.Generated.Domain", "Company.Product.Generated.Persistence")]
+        [AutoTestParamsInlineData("Company.Product", null, "Domain", "Persistence", "Company.Product.Domain", "Company.Product.Persistence")]
+        [AutoTestParamsInlineData("Company.Product", " ", "Domain", "Persistence", "Company.Product.Domain", "Company.Product.Persistence")]
+        [AutoTestParamsInlineData("Company.Product", "Generated", null, "Persistence", "Company.Product.Generated", "Company.Product.Generated.Persistence")]
+        [AutoTestParamsInlineData("Company.Product", "Generated", " ", "Persistence", "Company.Product.Generated", "Company.Product.Generated.Persistence")]
+        [AutoTestParamsInlineData("Company.Product", "Generated", "Domain", null, "Company.Product.Generated.Domain", "Company.Product.Generated")]
+        [AutoTestParamsInlineData("Company.Product", "Generated", "Domain", " ", "Company.Product.Generated.Domain", "Company.Product.Generated")]
         internal void Resolve_Namespaces_WithoutCustomNamespacesInput_SetToFormattedValueBasedOnDirStructure(
             string rootNs, string rootOutputDir, string entitiesOutputDir,
             string persistenceOutputDir, string expectedEntitiesNs, string expectedPersistenceNs,
@@ -54,13 +54,13 @@ namespace SchemaTypist.Core.Tests.Utilities
         }
 
         [Theory]
-        [InlineAutoDataTestParams("Company.Product", "Generated", "Domain", "Persistence", "Generated/Domain", "Generated/Persistence")]
-        [InlineAutoDataTestParams("Company.Product", null, "Domain", "Persistence", "Domain", "Persistence")]
-        [InlineAutoDataTestParams("Company.Product", " ", "Domain", "Persistence", "Domain", "Persistence")]
-        [InlineAutoDataTestParams("Company.Product", "Generated", null, "Persistence", "Generated", "Generated/Persistence")]
-        [InlineAutoDataTestParams("Company.Product", "Generated", " ", "Persistence", "Generated", "Generated/Persistence")]
-        [InlineAutoDataTestParams("Company.Product", "Generated", "Domain", null, "Generated/Domain", "Generated")]
-        [InlineAutoDataTestParams("Company.Product", "Generated", "Domain", " ", "Generated/Domain", "Generated")]
+        [AutoTestParamsInlineData("Company.Product", "Generated", "Domain", "Persistence", "Generated/Domain", "Generated/Persistence")]
+        [AutoTestParamsInlineData("Company.Product", null, "Domain", "Persistence", "Domain", "Persistence")]
+        [AutoTestParamsInlineData("Company.Product", " ", "Domain", "Persistence", "Domain", "Persistence")]
+        [AutoTestParamsInlineData("Company.Product", "Generated", null, "Persistence", "Generated", "Generated/Persistence")]
+        [AutoTestParamsInlineData("Company.Product", "Generated", " ", "Persistence", "Generated", "Generated/Persistence")]
+        [AutoTestParamsInlineData("Company.Product", "Generated", "Domain", null, "Generated/Domain", "Generated")]
+        [AutoTestParamsInlineData("Company.Product", "Generated", "Domain", " ", "Generated/Domain", "Generated")]
         internal void Resolve_Directories_BuildsDirectoryHierarchy(
             string rootNs, string rootOutputDir, string entitiesOutputDir,
             string persistenceOutputDir, string expectedEntitiesFilePath, string expectedPersistenceRootFilePath,
@@ -99,8 +99,8 @@ namespace SchemaTypist.Core.Tests.Utilities
     }
 
         [Theory]
-        [InlineAutoDataTestParams("Company.Product", "Generated/Location", "Domain/Model", "Persistence/Dao")]
-        [InlineAutoDataTestParams("Company.Product", @"Magical\Location", @"Entities\Design", @"Dal\Layer")]
+        [AutoTestParamsInlineData("Company.Product", "Generated/Location", "Domain/Model", "Persistence/Dao")]
+        [AutoTestParamsInlineData("Company.Product", @"Magical\Location", @"Entities\Design", @"Dal\Layer")]
         internal void Resolve_Namespaces_WithDirectoryHierarchyAsInput_SetToFormattedValueBasedOnDirStructure(
             string rootNs, string rootOutputDir, string entitiesOutputDir,
             string persistenceOutputDir, PathNamespaceService sut)
@@ -129,7 +129,7 @@ namespace SchemaTypist.Core.Tests.Utilities
         }
 
         [Theory]
-        [InlineAutoDataTestParams("Company.Product", "Generated", "Domain", "Persistence", "EntitiesCustomNamespace", "PersistenceCustomNamespace")]
+        [AutoTestParamsInlineData("Company.Product", "Generated", "Domain", "Persistence", "EntitiesCustomNamespace", "PersistenceCustomNamespace")]
         internal void Resolve_Namespaces_WithCustomNamespacesInput_SetToFormattedValueBasedOnDirStructureAndCustomNs(
             string rootNs, string rootOutputDir, string entitiesOutputDir,
             string persistenceOutputDir, string entitiesCustomNs, string persistenceCustomNs,

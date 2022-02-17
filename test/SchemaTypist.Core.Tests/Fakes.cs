@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using AutoFixture;
 using AutoFixture.Kernel;
 using SchemaTypist.Core.Utilities;
-using SchemaTypist.TestBase.Autofixture;
+using Auzaar.AutoFixture;
 using SqlKata.Compilers;
 
 namespace SchemaTypist.Core.Tests

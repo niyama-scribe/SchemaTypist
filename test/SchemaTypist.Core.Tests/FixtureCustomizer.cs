@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AutoFixture;
 using AutoFixture.AutoMoq;
-using SchemaTypist.TestBase.Autofixture;
+using Auzaar.AutoFixture;
 
 namespace SchemaTypist.Core.Tests
 {

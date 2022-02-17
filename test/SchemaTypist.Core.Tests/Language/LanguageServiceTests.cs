@@ -9,7 +9,7 @@ using FluentAssertions;
 using SchemaTypist.Core.Config;
 using Xunit;
 using SchemaTypist.Core.Naming;
-using SchemaTypist.TestBase.Autofixture;
+using Auzaar.AutoFixture;
 
 namespace SchemaTypist.Core.Tests.Language
 {
@@ -86,13 +86,13 @@ namespace SchemaTypist.Core.Tests.Language
         }
 
         [Theory]
-        [InlineAutoDataTestParams("tbl_,vw_,t_", "tbl_some_table_name", "SomeTableName")]
-        [InlineAutoDataTestParams("tbl_,vw_,t_", "t_ThisEntity", "ThisEntity")]
-        [InlineAutoDataTestParams("tbl_,vw_,t_", "vw_Some_Views", "SomeView")]
-        [InlineAutoDataTestParams("tbl_,vw_,t_", "sans_removal", "SansRemoval")]
-        [InlineAutoDataTestParams("tbl_,vw_,t_", "sans_removal_ignoreSuffix", "SansRemovalIgnoreSuffix")]
-        [InlineAutoDataTestParams("", "tbl_some_table_name", "TblSomeTableName")]
-        [InlineAutoDataTestParams(null, "tbl_some_table_name", "TblSomeTableName")]
+        [AutoTestParamsInlineData("tbl_,vw_,t_", "tbl_some_table_name", "SomeTableName")]
+        [AutoTestParamsInlineData("tbl_,vw_,t_", "t_ThisEntity", "ThisEntity")]
+        [AutoTestParamsInlineData("tbl_,vw_,t_", "vw_Some_Views", "SomeView")]
+        [AutoTestParamsInlineData("tbl_,vw_,t_", "sans_removal", "SansRemoval")]
+        [AutoTestParamsInlineData("tbl_,vw_,t_", "sans_removal_ignoreSuffix", "SansRemovalIgnoreSuffix")]
+        [AutoTestParamsInlineData("", "tbl_some_table_name", "TblSomeTableName")]
+        [AutoTestParamsInlineData(null, "tbl_some_table_name", "TblSomeTableName")]
         internal void ConvertTableName_WhenContainsPrefixesToBeStripped_ReturnsStrippedName(
             string stripPrefixes, string rawDatabaseObjectName, string expectedEntityName, LanguageService sut)
         {
@@ -112,14 +112,14 @@ namespace SchemaTypist.Core.Tests.Language
         }
 
         [Theory]
-        [InlineAutoDataTestParams("_tbl,_vw,_t", "some_table_name", "SomeTableName")]
-        [InlineAutoDataTestParams("_tbl,_vw,_t", "thisEntity_t", "ThisEntity")]
-        [InlineAutoDataTestParams("_tbl,_vw,_t", "myObject_tbl", "MyObject")]
-        [InlineAutoDataTestParams("_tbl,_vw,_t", "Some_Views_vw", "SomeView")]
-        [InlineAutoDataTestParams("_tbl,_vw,_t", "sans_removal", "SansRemoval")]
-        [InlineAutoDataTestParams("_tbl,_vw,_t", "ignorePrefix_sans_removal", "IgnorePrefixSansRemoval")]
-        [InlineAutoDataTestParams("", "some_table_name_tbl", "SomeTableNameTbl")]
-        [InlineAutoDataTestParams(null, "some_table_name_tbl", "SomeTableNameTbl")]
+        [AutoTestParamsInlineData("_tbl,_vw,_t", "some_table_name", "SomeTableName")]
+        [AutoTestParamsInlineData("_tbl,_vw,_t", "thisEntity_t", "ThisEntity")]
+        [AutoTestParamsInlineData("_tbl,_vw,_t", "myObject_tbl", "MyObject")]
+        [AutoTestParamsInlineData("_tbl,_vw,_t", "Some_Views_vw", "SomeView")]
+        [AutoTestParamsInlineData("_tbl,_vw,_t", "sans_removal", "SansRemoval")]
+        [AutoTestParamsInlineData("_tbl,_vw,_t", "ignorePrefix_sans_removal", "IgnorePrefixSansRemoval")]
+        [AutoTestParamsInlineData("", "some_table_name_tbl", "SomeTableNameTbl")]
+        [AutoTestParamsInlineData(null, "some_table_name_tbl", "SomeTableNameTbl")]
         internal void ConvertTableName_WhenContainsSuffixesToBeStripped_ReturnsStrippedName(
             string stripSuffixes, string rawDatabaseObjectName, string expectedEntityName, LanguageService sut)
         {

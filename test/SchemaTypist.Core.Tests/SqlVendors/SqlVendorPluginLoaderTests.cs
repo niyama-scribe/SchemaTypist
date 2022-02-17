@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 using AutoFixture;
 using AutoFixture.AutoMoq;
 using AutoFixture.Xunit2;
+using Auzaar.AutoFixture;
 using FluentAssertions;
 using Moq;
 using SchemaTypist.Core.Config;
 using SchemaTypist.Core.SqlVendors;
 using SchemaTypist.Core.Utilities;
-using SchemaTypist.TestBase.Autofixture;
 using Xunit;
 
 namespace SchemaTypist.Core.Tests.SqlVendors
@@ -68,8 +68,8 @@ namespace SchemaTypist.Core.Tests.SqlVendors
         }
 
         [Theory]
-        [InlineAutoDataTestParams(SqlVendorType.MicrosoftSqlServer)]
-        [InlineAutoDataTestParams(SqlVendorType.PostgreSql)]
+        [AutoTestParamsInlineData(SqlVendorType.MicrosoftSqlServer)]
+        [AutoTestParamsInlineData(SqlVendorType.PostgreSql)]
         internal void GetSqlVendor_WithMultipleRegisteredImpl_UseMatchingRegisteredImplBasedOnRequestedSqlVendorType(
             SqlVendorType input, [Frozen] Mock<IPluginLoader> pluginLoader, Mock<ISqlVendor> msVendor, 
             Mock<ISqlVendor> postgresVendor, SqlVendorPluginLoader sut)

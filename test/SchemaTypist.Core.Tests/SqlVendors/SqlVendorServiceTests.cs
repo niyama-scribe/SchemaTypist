@@ -8,13 +8,13 @@ using AutoFixture;
 using AutoFixture.AutoMoq;
 using AutoFixture.Dsl;
 using AutoFixture.Xunit2;
+using Auzaar.AutoFixture;
 using FluentAssertions;
 using Moq;
 using SchemaTypist.Core.Config;
 using SchemaTypist.Core.Model;
 using SchemaTypist.Core.SqlVendors;
 using SchemaTypist.Core.Utilities;
-using SchemaTypist.TestBase.Autofixture;
 using SqlKata.Compilers;
 using Xunit;
 
@@ -23,8 +23,8 @@ namespace SchemaTypist.Core.Tests.SqlVendors
     public class SqlVendorServiceTests
     {
         [Theory]
-        [InlineAutoDataTestParams("datetime", false, "DateTime")]
-        [InlineAutoDataTestParams("datetime", true, "DateTime?")]
+        [AutoTestParamsInlineData("datetime", false, "DateTime")]
+        [AutoTestParamsInlineData("datetime", true, "DateTime?")]
         internal void DetermineDotnetDataType_WhenValid_GetsDataTypeAsPerDialect(
             string sqlDataType, bool isNullable, string dotnetDataType, 
             [Frozen] Mock<ISqlDialect> sd, [Frozen] Mock<ISqlVendor> sv, 

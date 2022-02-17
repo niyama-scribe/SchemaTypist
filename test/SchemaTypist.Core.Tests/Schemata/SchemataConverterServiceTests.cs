@@ -6,13 +6,13 @@ using System.Text;
 using System.Threading.Tasks;
 using AutoFixture;
 using AutoFixture.Xunit2;
+using Auzaar.AutoFixture;
 using FluentAssertions;
 using SchemaTypist.Core.Config;
 using SchemaTypist.Core.Naming;
 using SchemaTypist.Core.Schemata;
 using SchemaTypist.Core.Schemata.Dto;
 using SchemaTypist.Core.SqlVendors;
-using SchemaTypist.TestBase.Autofixture;
 using Xunit;
 
 namespace SchemaTypist.Core.Tests.Schemata
@@ -22,7 +22,6 @@ namespace SchemaTypist.Core.Tests.Schemata
         [Theory]
         [AutoTestParams]
         internal void Convert_WhenQualifiedTableNameIsExcluded_WillBeIgnored(
-            [Frozen] INamingService namingSvc, [Frozen] ISqlVendorService sqlVendorSvc,
             SchemataConverterService sut)
         {
             //Arrange
