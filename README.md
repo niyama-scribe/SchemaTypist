@@ -2,6 +2,10 @@
 
 SchemaTypist enables type-safe database interactions using Dapper and SqlKata, by generating C# code from database schemata.  All you need to worry about are the actual queries.  Leave the rest to SchemaTypist!
 
+![Nuget](https://img.shields.io/nuget/v/SchemaTypist?color=blue&label=SchemaTypist&logo=Nuget&style=plastic)
+![Nuget](https://img.shields.io/nuget/v/SchemaTypist.Cli?color=blue&label=SchemaTypist.Cli&logo=Nuget&style=plastic)
+![Nuget](https://img.shields.io/nuget/v/SchemaTypist.MSBuild?color=blue&label=SchemaTypist.MSBuild&logo=Nuget&style=plastic)
+
 
 ## How does it work?
 
