@@ -19,8 +19,8 @@ namespace {{ path_namespace.dapper_initialiser_namespace }}
         {
 			BeforeInit();
 			
-			{{~ for tab in tabular_structures ~}}
-			SqlMapper.SetTypeMap(typeof({{ path_namespace.entities_namespace }}.{{ tab.name }}{{ config.entity_name_suffix }}), {{ path_namespace.persistence_namespace }}.{{ tab.name }}{{ config.mapper_name_suffix }}.QueryResults.GetTypeMap());
+			{{~ for model in template_models ~}}
+			SqlMapper.SetTypeMap(typeof({{ model.path_namespace.entities_namespace }}.{{ model.tabular_structure.name }}{{ config.entity_name_suffix }}), {{ model.path_namespace.persistence_namespace }}.{{ model.tabular_structure.name }}{{ config.mapper_name_suffix }}.QueryResults.GetTypeMap());
 			{{~ end ~}}
 			
 			AfterInit();

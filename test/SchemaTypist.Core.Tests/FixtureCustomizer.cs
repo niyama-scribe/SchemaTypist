@@ -13,6 +13,8 @@ namespace SchemaTypist.Core.Tests
     {
         public IEnumerable<ICustomization> SpecifyCustomizations()
         {
+            //These can be any implementations of ICustomization or ISpecimenBuilder
+            //Choose to extend CustomTypeSpecimenBuilderBase<T> to make it even easier!
             var l = new List<ICustomization>()
             {
                 new FakesCustomization(),

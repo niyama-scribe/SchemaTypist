@@ -107,7 +107,12 @@ namespace SchemaTypist.Core
             var dapperInitialiserModel = new DapperInitialiserTemplateModel()
             {
                 Config = config,
-                TabularStructures = tabularStructures,
+                TemplateModels = tabularStructures.Select(s => new EntitiesTemplateModel()
+                {
+                    Config = config,
+                    PathNamespace = _pathNamespaceService.Resolve(config, s),
+                    TabularStructure = s
+                }).ToList(),
                 PathNamespace = pathNamespace
             };
             var dapperInitialiserOutput = GenerateDapperMapper(dapperInitialiserModel);
