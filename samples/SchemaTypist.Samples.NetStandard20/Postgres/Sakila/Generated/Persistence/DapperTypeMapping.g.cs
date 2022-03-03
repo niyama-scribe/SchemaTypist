@@ -47,6 +47,8 @@ namespace SchemaTypist.Samples.NetStandard20.Postgres.Sakila.Generated.Persisten
 			SqlMapper.SetTypeMap(typeof(SchemaTypist.Samples.NetStandard20.Postgres.Sakila.Generated.Domain.Public.Staff), SchemaTypist.Samples.NetStandard20.Postgres.Sakila.Generated.Persistence.Public.StaffDao.QueryResults.GetTypeMap());
 			SqlMapper.SetTypeMap(typeof(SchemaTypist.Samples.NetStandard20.Postgres.Sakila.Generated.Domain.Public.StaffList), SchemaTypist.Samples.NetStandard20.Postgres.Sakila.Generated.Persistence.Public.StaffListDao.QueryResults.GetTypeMap());
 			SqlMapper.SetTypeMap(typeof(SchemaTypist.Samples.NetStandard20.Postgres.Sakila.Generated.Domain.Public.Store), SchemaTypist.Samples.NetStandard20.Postgres.Sakila.Generated.Persistence.Public.StoreDao.QueryResults.GetTypeMap());
+			SqlMapper.SetTypeMap(typeof(SchemaTypist.Samples.NetStandard20.Postgres.Sakila.Generated.Domain.Public.DoNotUse), SchemaTypist.Samples.NetStandard20.Postgres.Sakila.Generated.Persistence.Public.DoNotUseDao.QueryResults.GetTypeMap());
+			SqlMapper.SetTypeMap(typeof(SchemaTypist.Samples.NetStandard20.Postgres.Sakila.Generated.Domain.Public.DoNotUseView), SchemaTypist.Samples.NetStandard20.Postgres.Sakila.Generated.Persistence.Public.DoNotUseViewDao.QueryResults.GetTypeMap());
 			
 			AfterInit();
 		}

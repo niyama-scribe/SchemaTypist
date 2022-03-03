@@ -2,12 +2,13 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <Configurations>Debug;Release;Generate</Configurations>
   </PropertyGroup>
 
 	<ItemGroup>
 		<PackageReference Include="Npgsql" Version="6.0.0" />
-		<PackageReference Include="SchemaTypist" Version="0.6.4" />
-		<PackageReference Include="SchemaTypist.MSBuild" Version="0.6.4" />
+		<PackageReference Include="SchemaTypist" Version="0.6.6" />
+		<PackageReference Include="SchemaTypist.MSBuild" Version="0.6.6" />
 	</ItemGroup>
 
 	<Target Name="SetPostgresProps">

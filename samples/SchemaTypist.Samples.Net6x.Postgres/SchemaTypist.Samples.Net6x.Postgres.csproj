@@ -6,13 +6,14 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <!-- <Nullable>enable</Nullable> -->
     <UserSecretsId>985bc46a-a3d3-44c8-ba47-ef6a1a2154ab</UserSecretsId>
+    <Configurations>Debug;Release;Generate</Configurations>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Dapper" Version="2.0.123" />
     <PackageReference Include="Npgsql" Version="6.0.0" />
-    <PackageReference Include="SchemaTypist" Version="0.6.4" />
-    <PackageReference Include="SchemaTypist.MSBuild" Version="0.6.4" />
+    <PackageReference Include="SchemaTypist" Version="0.6.6" />
+    <PackageReference Include="SchemaTypist.MSBuild" Version="0.6.6" />
     <PackageReference Include="System.Data.SqlClient" Version="4.4.0" />
   </ItemGroup>
 
@@ -31,9 +32,10 @@
 		<SchemaTypist_RootNamespace>SchemaTypist.Samples.Net6x.Postgres</SchemaTypist_RootNamespace>
 		<SchemaTypist_CreateImmutableEntities>true</SchemaTypist_CreateImmutableEntities>
 		<SchemaTypist_CreateRecordEntities>true</SchemaTypist_CreateRecordEntities>
+		<SchemaTypist_Generate Condition="$(Configuration) == 'Generate'">true</SchemaTypist_Generate>
 	</PropertyGroup>
 
-	<Target Name="MyGenerator" BeforeTargets="PrepareForBuild">
+	<Target Name="MyGenerator" BeforeTargets="PrepareForBuild" Condition="$(Configuration) == 'Generate'">
 		<CallTarget Targets="SchemaTypist_DoGenerate" />
 	</Target>
 
