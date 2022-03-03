@@ -19,7 +19,7 @@ namespace SchemaTypist.Core
             sc.AddSingleton<IFileSystemWrapper, FileSystemWrapper>();
             sc.AddSingleton<IPathNamespaceService, PathNamespaceService>();
             sc.AddSingleton<IPluginLoader, PluginLoader>();
-            sc.AddSingleton<INamingService, LanguageService>();
+            sc.AddSingleton<INamingService, NamingService>();
             sc.AddSingleton<ISqlVendorPluginLoader, SqlVendorPluginLoader>();
             sc.AddSingleton<ISqlVendorService, SqlVendorService>();
             sc.AddSingleton<ISchemataExtractorService, SchemataExtractorService>();

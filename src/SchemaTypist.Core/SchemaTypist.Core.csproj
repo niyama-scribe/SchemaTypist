@@ -32,10 +32,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Naming\" />
-	</ItemGroup>
-
-	<ItemGroup>
 	  <None Include="..\..\.editorconfig" Link=".editorconfig" />
 	</ItemGroup>
 

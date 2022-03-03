@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
+using SchemaTypist.Core.Config;
 
 namespace SchemaTypist.Core.Language
 {
@@ -46,6 +48,40 @@ namespace SchemaTypist.Core.Language
                     return Keywords.Contains(proposedName) || DataTypes.Contains(proposedName);
                 }
 
+            }
+
+            public static string HandleNullability(string typeName, CodeGenConfig config)
+            {
+                if (string.IsNullOrWhiteSpace(typeName) || config == null || typeName.EndsWith("?")) return typeName;
+                if (!config.UseNullableRefTypes ) return typeName;
+                var type = GetTypeWithMatchingName(typeName);
+                return type is {IsValueType: false}
+                    ? $"{typeName}?"
+                    : typeName;
+            }
+
+            private static Type GetTypeWithMatchingName(string typeName)
+            {
+                //Best effort to try and find the actual runtime type given the typeName.
+                foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
+                {
+                    try
+                    {
+                        foreach (var type in assembly.GetTypes())
+                        {
+                            if (type.Name.Equals(typeName, StringComparison.OrdinalIgnoreCase))
+                            {
+                                return type;
+                            }
+                        }
+                    }
+                    catch (ReflectionTypeLoadException)
+                    {
+                        continue;
+                    }
+                }
+
+                return null;
             }
 
         }

@@ -13,9 +13,9 @@ using Auzaar.AutoFixture;
 
 namespace SchemaTypist.Core.Tests.Language
 {
-    public class LanguageServiceTests
+    public class NamingServiceTests
     {
-        private INamingService _sut = new LanguageService();
+        private INamingService _sut = new NamingService();
 
         [Fact]
         public void ConvertCatalogName_ConflictFreeName_ReturnsPascalizedName()
@@ -94,7 +94,7 @@ namespace SchemaTypist.Core.Tests.Language
         [AutoTestParamsInlineData("", "tbl_some_table_name", "TblSomeTableName")]
         [AutoTestParamsInlineData(null, "tbl_some_table_name", "TblSomeTableName")]
         internal void ConvertTableName_WhenContainsPrefixesToBeStripped_ReturnsStrippedName(
-            string stripPrefixes, string rawDatabaseObjectName, string expectedEntityName, LanguageService sut)
+            string stripPrefixes, string rawDatabaseObjectName, string expectedEntityName, NamingService sut)
         {
             //Arrange
             var fixture = new Fixture();
@@ -121,7 +121,7 @@ namespace SchemaTypist.Core.Tests.Language
         [AutoTestParamsInlineData("", "some_table_name_tbl", "SomeTableNameTbl")]
         [AutoTestParamsInlineData(null, "some_table_name_tbl", "SomeTableNameTbl")]
         internal void ConvertTableName_WhenContainsSuffixesToBeStripped_ReturnsStrippedName(
-            string stripSuffixes, string rawDatabaseObjectName, string expectedEntityName, LanguageService sut)
+            string stripSuffixes, string rawDatabaseObjectName, string expectedEntityName, NamingService sut)
         {
             //Arrange
             var fixture = new Fixture();

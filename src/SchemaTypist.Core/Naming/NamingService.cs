@@ -8,7 +8,7 @@ using SchemaTypist.Core.Utilities;
 
 namespace SchemaTypist.Core.Naming
 {
-    internal class LanguageService : INamingService
+    internal class NamingService : INamingService
     {
         public string ConvertCatalogName(string sqlCatalogName, CodeGenConfig config) => 
             ConvertName(sqlCatalogName, config, s => s.Pascalize());

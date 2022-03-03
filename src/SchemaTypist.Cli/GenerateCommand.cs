@@ -53,6 +53,7 @@ namespace SchemaTypist.Cli
             config.Exclude = settings.Exclude ?? config.Exclude;
             config.StripPrefix = settings.StripPrefix ?? config.StripPrefix;
             config.StripSuffix = settings.StripSuffix ?? config.StripSuffix;
+            config.TargetLanguageVersion = settings.TargetLanguageVersion ?? config.TargetLanguageVersion;
             
             if ((!string.IsNullOrWhiteSpace(settings.DatabaseVendor))
                 && Enum.TryParse<SqlVendorType>(settings.DatabaseVendor, out var vendor)) 
@@ -194,6 +195,11 @@ namespace SchemaTypist.Cli
             [CommandOption("--strip-suffix")]
             [DefaultValue("")]
             public string StripSuffix { get; set; }
+
+            [Description("We support CSharp7_3, CSharp8 and CSharp10 (default).")]
+            [CommandOption("--target-lang-version")]
+            [DefaultValue("CSharp10")]
+            public string TargetLanguageVersion { get; set; }
 
             /**
              * TODO:

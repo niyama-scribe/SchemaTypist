@@ -18,10 +18,13 @@ namespace SchemaTypist.Core.Config
         }
         public string ConnectionString { get; set; }
         public SqlVendorType Vendor { get; set; } = SqlVendorType.MicrosoftSqlServer;
-        
-        //public string TargetLanguageVersion { get; set; } = "CSharp10";
-        //https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.csharp.languageversion?view=roslyn-dotnet-4.0.1
 
+        //https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.csharp.languageversion?view=roslyn-dotnet-4.0.1
+        //https://docs.microsoft.com/en-us/dotnet/standard/frameworks
+        //https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/configure-language-version
+        //CSharp7_3 (net462, net47, net471, net472, netstandard1.x, netstandard2.0), CSharp8 (netstandard2.1), CSharp10 (net6.0)
+        //net48 will be CSharp7_3, netstandard2.1=CSharp8, net6.0 will be CSharp10
+        public string TargetLanguageVersion { get; set; } = "CSharp10";
         public string RootOutputDirectory { get; set; } = _currDir;
         public string RootNamespace { get; set; } = "SchemaTypist.Generated"; //Should never be empty.
         public string OutputFileNameSuffix { get; set; } = "g";
@@ -41,6 +44,7 @@ namespace SchemaTypist.Core.Config
         public bool CreateImmutableEntities { get; set; } = false;
 
         public bool CreateRecordEntities { get; set; } = false;
+        public bool UseNullableRefTypes { get; set; } = false;
 
         public string StripPrefix { get; set; }
 

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using SchemaTypist.Core.Config;
+using SchemaTypist.Core.Language;
 using SchemaTypist.Core.Model;
 using SchemaTypist.Core.Utilities;
 using SqlKata.Compilers;
@@ -49,7 +50,8 @@ namespace SchemaTypist.Core.SqlVendors
         public string DetermineDotNetDataType(string sqlDataType, bool isNullable, CodeGenConfig config)
         {
             var sqlDialect = GetSqlDialect(config.Vendor);
-            return sqlDialect.DetermineDotNetDataType(sqlDataType, isNullable);
+            var dotNetDataType = sqlDialect.DetermineDotNetDataType(sqlDataType, isNullable);
+            return Languages.CSharp.HandleNullability(dotNetDataType, config);
 
         }
 
