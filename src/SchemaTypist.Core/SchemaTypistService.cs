@@ -10,15 +10,14 @@ using SchemaTypist.Core.SqlVendors;
 using SchemaTypist.Core.Utilities;
 using Scriban;
 using Scriban.Runtime;
-using static SchemaTypist.Core.TemplateConstants;
 
 namespace SchemaTypist.Core
 {
     public class SchemaTypistService : ISchemaTypistService
     {
-        private static readonly Template EntitiesTemplate;
-        private static readonly Template PersistenceTemplate;
-        private static readonly Template DapperInitialiserTemplate;
+        private Template EntitiesTemplate;
+        private Template PersistenceTemplate;
+        private Template DapperInitialiserTemplate;
         private readonly IFileSystemWrapper _fileSystem;
         private readonly IPathNamespaceService _pathNamespaceService;
         private readonly ISchemataExtractorService _schemataExtractor;
@@ -35,11 +34,19 @@ namespace SchemaTypist.Core
             _schemataConverter = schemataConverter;
         }
 
-        static SchemaTypistService()
+        internal Template GetTemplate(string templateFileName)
         {
-            EntitiesTemplate = Template.Parse(EmbeddedResource.GetContent(EntitiesTemplateFile), EntitiesTemplateFile);
-            PersistenceTemplate = Template.Parse(EmbeddedResource.GetContent(PersistenceTemplateFile), PersistenceTemplateFile);
-            DapperInitialiserTemplate = Template.Parse(EmbeddedResource.GetContent(DapperInitialiserTemplateFile), DapperInitialiserTemplateFile);
+            return Template.Parse(EmbeddedResource.GetContent(templateFileName), templateFileName);
+        }
+
+        internal void LoadTemplates(CodeGenConfig config)
+        {
+            var (entitiesTemplateName, persistenceTemplateName, dapperInitialiserTemplateName) =
+                TemplateConstants.GetTemplateFileNames(config);
+
+            EntitiesTemplate = GetTemplate(entitiesTemplateName);
+            PersistenceTemplate = GetTemplate(persistenceTemplateName);
+            DapperInitialiserTemplate = GetTemplate(dapperInitialiserTemplateName);
         }
 
         internal string GenerateEntity(TableStructureTemplateModel tableStructureModel)
@@ -71,6 +78,9 @@ namespace SchemaTypist.Core
         }
         public void Generate(TabularStructure tab, CodeGenConfig config)
         {
+            //Resolve templates to use
+            LoadTemplates(config);
+            
             var pathNamespace = _pathNamespaceService.Resolve(config, tab);
             
             //Set up generation

@@ -54,6 +54,7 @@ namespace SchemaTypist.Cli
             config.StripPrefix = settings.StripPrefix ?? config.StripPrefix;
             config.StripSuffix = settings.StripSuffix ?? config.StripSuffix;
             config.TargetLanguageVersion = settings.TargetLanguageVersion ?? config.TargetLanguageVersion;
+            config.UseNullableRefTypes = settings.UseNullableRefTypes;
             
             if ((!string.IsNullOrWhiteSpace(settings.DatabaseVendor))
                 && Enum.TryParse<SqlVendorType>(settings.DatabaseVendor, out var vendor)) 
@@ -201,21 +202,11 @@ namespace SchemaTypist.Cli
             [DefaultValue("CSharp10")]
             public string TargetLanguageVersion { get; set; }
 
-            /**
-             * TODO:
-             * 1.  Add support for multiple C# LangVersions (i.e. multiple target frameworks).
-             * 2.  Add good readme and documentation.
-             * 3.  Add CI integration.
-             * 4.  Easier option to select all columns.
-             * 5.  Add integration tests.
-             * 6.  Enhance config:  Naming preference configurations, pluralisations and prefix handling.
-             * 7.  Add indexes, foreign keys, etc. and generate DAO objects.
-             * 8.  Support stored procedures and UDTs.
-             * 9.  Computed columns support.
-             * 10. Better multi-mapping support.
-             * 11. Do validation correctly.
-             * 12. Adding support for src generators and visual studio extensions.
-             */
+            [Description("Nullable ref types are supported.")]
+            [CommandOption("--use-nullable-ref-types")]
+            [DefaultValue(false)]
+            public bool UseNullableRefTypes { get; set; }
+
         }
     }
 

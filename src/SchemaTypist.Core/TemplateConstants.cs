@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using SchemaTypist.Core.Config;
 
 namespace SchemaTypist.Core
 {
@@ -12,11 +13,18 @@ namespace SchemaTypist.Core
         public const string DapperInitialiserTemplateFilePrefix = "DapperInitialiser";
 
 
-        public static readonly string EntitiesTemplateFile = $"{EntitiesTemplateFilePrefix}.{TemplateFileExtension}";
-        public static readonly string PersistenceTemplateFile = $"{PersistenceTemplateFilePrefix}.{TemplateFileExtension}";
+        private static readonly string EntitiesTemplateFile = $"{EntitiesTemplateFilePrefix}.{TemplateFileExtension}";
+        private static readonly string PersistenceTemplateFile = $"{PersistenceTemplateFilePrefix}.{TemplateFileExtension}";
 
-        public static readonly string DapperInitialiserTemplateFile =
+        private static readonly string DapperInitialiserTemplateFile =
             $"{DapperInitialiserTemplateFilePrefix}.{TemplateFileExtension}";
+
+        public static (string, string, string) GetTemplateFileNames(CodeGenConfig config)
+        {
+            return ($"{config.TargetLanguageVersion}.{EntitiesTemplateFile}",
+                $"{config.TargetLanguageVersion}.{PersistenceTemplateFile}",
+                $"{config.TargetLanguageVersion}.{DapperInitialiserTemplateFile}");
+        }
 
     }
 }

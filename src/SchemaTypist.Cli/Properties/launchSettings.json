@@ -2,7 +2,7 @@
   "profiles": {
     "SchemaTypist.Cli": {
       "commandName": "Project",
-      "commandLineArgs": "generate PostgreSql TestGen --root-namespace Whatever --entities-output-dir Amka --persistence-output-dir Damka --mapping-name-suffix Dao --include \"*.public.*\" --create-immutable-entities --create-record-entities --user-secrets-id \"ecdfba55-264c-4d0e-a630-7882f34a5f88\""
+      "commandLineArgs": "generate PostgreSql TestGen --root-namespace Whatever --entities-output-dir Amka --persistence-output-dir Damka --mapping-name-suffix Dao --include \"*.public.*\" --create-immutable-entities --create-record-entities --use-nullable-ref-types --user-secrets-id \"ecdfba55-264c-4d0e-a630-7882f34a5f88\""
     },
     "WSL": {
       "commandName": "WSL2",
