@@ -66,6 +66,23 @@ At its core, SchemaTypist provides a highly configurable, dotnet CLI tool called
 
    For more examples, please look in the samples folder.
 
+## Features
+ - Can use secrets for connection string instead of storing it in plain text in your csproj file.
+ - Currently supports Microsoft SQL Server as well as PostgreSql.
+ - Currently supported language version: C# 10
+ - Include and exclude regexes to select/exclude database objects respectively.
+ - Supports immutable objects.
+ - Class and property names follow database object names, but are cleansed to fit C# naming conventions:
+   1. Supports stripping common db object name prefixes like "tbl_", "vw_" etc. when creating classes.
+   2. Converts snake_case db objects to PascalCase.
+   3. Entity class names are singularized by default.
+   4. Customizable suffixes for entity as well as persistence classes.
+ - Files, paths and namespaces:
+   1. Root directory and root namespace for generated code
+   2. Custom subdirectories  for entity as well as persistence classes
+   3. Custom file name suffix
+  
+
 ## Support
 - Don't forget to give a ⭐ on [GitHub](https://github.com/niyama-scribe/SchemaTypist)
 - Share your feedback and ideas to improve this tool.  Please feel free to create an issue to discuss further.
