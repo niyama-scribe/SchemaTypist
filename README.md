@@ -30,8 +30,8 @@ At its core, SchemaTypist provides a highly configurable, dotnet CLI tool called
 	</Target>
 	
 	<ItemGroup>
-	  <PackageReference Include="SchemaTypist" Version="0.6.4" />
-	  <PackageReference Include="SchemaTypist.MSBuild" Version="0.6.4" />
+	  <PackageReference Include="SchemaTypist" Version="0.6.6" />
+	  <PackageReference Include="SchemaTypist.MSBuild" Version="0.6.6" />
 	</ItemGroup>
    ```
  - Finally, run the build.
@@ -68,19 +68,24 @@ At its core, SchemaTypist provides a highly configurable, dotnet CLI tool called
 
 ## Features
  - Can use secrets for connection string instead of storing it in plain text in your csproj file.
- - Currently supports Microsoft SQL Server as well as PostgreSql.
- - Currently supported language version: C# 10
+ - Supports the following RDBMS Providers:
+   *  Microsoft Sql Server (tested).
+   *  PostgreSql (tested).
+   *  Potentially supports any RDBMS that is compliant with SQL-99 standard (i.e. exposes INFORMATION_SCHEMA views).
+ - Generated code is compatible with:
+   *  .NET Standard 2.0 (.NET Framework 4.6.1 and above) - CSharp 7.3
+   *  .NET 6.0 - CSharp 10
  - Include and exclude regexes to select/exclude database objects respectively.
  - Supports immutable objects.
  - Class and property names follow database object names, but are cleansed to fit C# naming conventions:
-   1. Supports stripping common db object name prefixes like "tbl_", "vw_" etc. when creating classes.
-   2. Converts snake_case db objects to PascalCase.
-   3. Entity class names are singularized by default.
-   4. Customizable suffixes for entity as well as persistence classes.
+   * Supports stripping common db object name prefixes like "tbl_", "vw_" etc. when creating classes.
+   * Converts snake_case db objects to PascalCase.
+   * Entity class names are singularized by default.
+   * Customizable suffixes for entity as well as persistence classes.
  - Files, paths and namespaces:
-   1. Root directory and root namespace for generated code
-   2. Custom subdirectories  for entity as well as persistence classes
-   3. Custom file name suffix
+   * Root directory and root namespace for generated code
+   * Custom subdirectories  for entity as well as persistence classes
+   * Custom file name suffix
   
 
 ## Support
