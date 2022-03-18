@@ -1,4 +1,4 @@
-# SchemaTypist
+﻿# SchemaTypist
 
 SchemaTypist enables type-safe database interactions using Dapper and SqlKata, by generating C# code from database schemata.  All you need to worry about are the actual queries.  Leave the rest to SchemaTypist!
 
@@ -65,3 +65,7 @@ At its core, SchemaTypist provides a highly configurable, dotnet CLI tool called
    ```
 
    For more examples, please look in the samples folder.
+
+## Support
+- Don't forget to give a ⭐ on [GitHub](https://github.com/niyama-scribe/SchemaTypist)
+- Share your feedback and ideas to improve this tool.  Please feel free to create an issue to discuss further.
