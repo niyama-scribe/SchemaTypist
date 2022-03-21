@@ -75,17 +75,18 @@ At its core, SchemaTypist provides a highly configurable, dotnet CLI tool called
  - Generated code is compatible with:
    *  .NET Standard 2.0 (.NET Framework 4.6.1 and above) - CSharp 7.3
    *  .NET 6.0 - CSharp 10
- - Include and exclude regexes to select/exclude database objects respectively.
- - Supports immutable objects.
+ - Include and exclude regexes to include/exclude database objects respectively.
+ - Supports immutable objects and supports records.
  - Class and property names follow database object names, but are cleansed to fit C# naming conventions:
    * Supports stripping common db object name prefixes like "tbl_", "vw_" etc. when creating classes.
-   * Converts snake_case db objects to PascalCase.
+   * Converts DB object names from snake_case or kebab-case_ to PascalCase.
    * Entity class names are singularized by default.
    * Customizable suffixes for entity as well as persistence classes.
  - Files, paths and namespaces:
    * Root directory and root namespace for generated code
    * Custom subdirectories  for entity as well as persistence classes
    * Custom file name suffix
+ - And many more...
   
 
 ## Support
