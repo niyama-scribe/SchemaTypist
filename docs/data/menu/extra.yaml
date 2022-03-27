@@ -1,0 +1,11 @@
+---
+header:
+  - name: Twitter
+    ref: https://twitter.com/SchemaTypist
+    icon: twitter-square
+    external: true
+  - name: GitHub
+    ref: https://github.com/niyama-scribe/SchemaTypist
+    icon: github
+    external: true
+  

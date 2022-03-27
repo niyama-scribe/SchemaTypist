@@ -1,0 +1,26 @@
+---
+main:
+  - name: Introduction
+    ref: "/docs/introduction"
+    icon: "gdoc_star"
+    sub:
+      - name: Getting Started
+        ref: "/docs/introduction/getting-started.md"
+  - name: Tutorials
+    ref: "/docs/tutorials"
+    sub:
+      - name: End-to-End Tutorial
+        ref: "docs/tutorials/e2e-tutorial.md" 
+  - name: How-to guides
+    ref: "docs/how-to"
+    sub: 
+      - name: Optimal Developer Setup
+        ref: "/docs/how-to/setup-developer-environment.md"
+      - name: Generate Entities as records
+        ref: "docs/how-to/generate-records.md"    
+  - name: Reference
+    ref:  /docs/reference
+    sub:
+      - name: Configuration
+        ref: /docs/reference/configuration.md
+  
