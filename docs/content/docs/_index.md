@@ -1,8 +1,8 @@
 ---
-title: "Reference"
-weight: 4
+title: "Documentation"
+weight: 1
 # geekdocFlatSection: false
 # geekdocToc: 6
 # geekdocHidden: false
-geekdocCollapseSection: true
 ---
+{{< toc-tree >}}

@@ -1,6 +1,6 @@
 ---
 title: "How To"
-weight: 1
+weight: 3
 geekdocFlatSection: true
 # geekdocToc: 6
 # geekdocHidden: false

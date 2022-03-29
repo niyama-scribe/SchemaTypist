@@ -1,5 +1,5 @@
 ---
-title: "E2e Tutorial"
+title: "End-to-End Tutorial"
 weight: 1
 # geekdocFlatSection: false
 # geekdocToc: 6
