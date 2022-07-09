@@ -30,7 +30,7 @@ enableRobotsTXT = true
 
   # (Optional, default static/brand.svg) Set the path to a logo for the Geekdoc
   # relative to your 'static/' folder.
-  geekdocLogo = "laptop-solid.svg"
+  geekdocLogo = "noun-typewriter-1949858.svg"
 
   # (Optional, default false) Render menu from data file in 'data/menu/main.yaml'.
   # See also https://geekdocs.de/usage/menus/#bundle-menu.
