@@ -4,6 +4,7 @@
     "projects": [
       "src\\SchemaTypist.Cli\\SchemaTypist.Cli.csproj",
       "src\\SchemaTypist.Core\\SchemaTypist.Core.csproj",
+      "src\\SchemaTypist.MSBuild.CustomTasks\\SchemaTypist.MSBuild.CustomTasks.csproj",
       "src\\SchemaTypist.MSBuild\\SchemaTypist.MSBuild.csproj",
       "src\\SchemaTypist.SqlVendors.MicrosoftSqlServer\\SchemaTypist.SqlVendors.MicrosoftSqlServer.csproj",
       "src\\SchemaTypist.SqlVendors.PostgreSql\\SchemaTypist.SqlVendors.PostgreSql.csproj",

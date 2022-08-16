@@ -36,6 +36,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchemaTypist.Samples.NetFra
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SchemaTypist.Samples.NetStandard20", "samples\SchemaTypist.Samples.NetStandard20\SchemaTypist.Samples.NetStandard20.csproj", "{241CB796-F294-4F1A-960A-81EE480D68B2}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SchemaTypist.MSBuild.CustomTasks", "src\SchemaTypist.MSBuild.CustomTasks\SchemaTypist.MSBuild.CustomTasks.csproj", "{EAC69B90-DFAF-4D3F-9E73-E17B38874840}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -99,6 +101,12 @@ Global
 		{241CB796-F294-4F1A-960A-81EE480D68B2}.Generate|Any CPU.Build.0 = Generate|Any CPU
 		{241CB796-F294-4F1A-960A-81EE480D68B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{241CB796-F294-4F1A-960A-81EE480D68B2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EAC69B90-DFAF-4D3F-9E73-E17B38874840}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EAC69B90-DFAF-4D3F-9E73-E17B38874840}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EAC69B90-DFAF-4D3F-9E73-E17B38874840}.Generate|Any CPU.ActiveCfg = Debug|Any CPU
+		{EAC69B90-DFAF-4D3F-9E73-E17B38874840}.Generate|Any CPU.Build.0 = Debug|Any CPU
+		{EAC69B90-DFAF-4D3F-9E73-E17B38874840}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EAC69B90-DFAF-4D3F-9E73-E17B38874840}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
