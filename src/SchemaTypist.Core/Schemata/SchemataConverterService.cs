@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using SchemaTypist.Core.Config;
+using SchemaTypist.Core.Language;
 using SchemaTypist.Core.Model;
 using SchemaTypist.Core.Naming;
 using SchemaTypist.Core.Schemata.Dto;
@@ -54,16 +55,55 @@ namespace SchemaTypist.Core.Schemata
 
                 if (tabStructure.Columns.Any(c => c.SqlName == col.ColumnName)) continue;
 
-                tabStructure.Columns.Add(new()
+                ColumnMetadata columnMetadata = new()
                 {
                     SqlName = col.ColumnName,
                     SqlDataType = col.DataType,
-                    Name = _namingService.ConvertColumnName(col.ColumnName, config, new HashSet<string>() {tabStructure.Name}),
+                    Name = _namingService.ConvertColumnName(col.ColumnName, config,
+                        new HashSet<string>() {tabStructure.Name}),
                     IsNullable = string.Equals(col.IsNullable, "Yes", StringComparison.InvariantCultureIgnoreCase),
-                    DataType = DetermineDotNetDataType(col.DataType, string.Equals(col.IsNullable, "Yes", StringComparison.InvariantCultureIgnoreCase), config),
-                });
+                    DataType = DetermineDotNetDataType(col.DataType,
+                        string.Equals(col.IsNullable, "Yes", StringComparison.InvariantCultureIgnoreCase), config),
+                };
+
+                UpdateDefaultValue(columnMetadata, col.ColumnDefault, config);
+
+                tabStructure.Columns.Add(columnMetadata);
             }
             return tableStructureMap;
+        }
+
+        private void UpdateDefaultValue(ColumnMetadata columnMetadata, string columnDefault, CodeGenConfig config)
+        {
+            var defaultValue = _sqlVendor.DetermineDefaultValue(columnDefault, columnMetadata.DataType, config);
+
+            //Default value can be null, "null", non-null-literal-value
+            if (string.IsNullOrWhiteSpace(defaultValue)) defaultValue = null;
+
+            //Handle language vagaries
+            /*
+             * PROPERTY INITIALIZATION
+             *
+             * If db column has non-null default value
+             *      Initialize property to non-null-default-value
+             * Else
+             *      if mapped type is reference type and db column is not nullable
+             *          if using nullable references
+             *            Initialize property to "default!"
+             */
+
+            if (defaultValue is "null")
+            {
+                defaultValue = Languages.CSharp.IsReferenceType(columnMetadata.DataType) &&
+                               !Languages.CSharp.IsNullable(columnMetadata.DataType)
+                               && config.UseNullableRefTypes
+                    ? "default!"
+                    : null;
+            }
+                
+
+
+            columnMetadata.DefaultValue = defaultValue;
         }
 
         private string DetermineDotNetDataType(string sqlDataType, bool isNullable, CodeGenConfig config)

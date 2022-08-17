@@ -12,7 +12,8 @@ namespace SchemaTypist.Core.SqlVendors
         string DetermineDotNetDataType(string sqlDataType, bool isNullable);
 
         string BuildQualifiedName(TabularStructure tabularStructure);
-        
+
+        string DetermineDefaultValue(string columnDefault);
     }
 
     public interface ISqlVendor

@@ -50,14 +50,32 @@ namespace SchemaTypist.Core.Language
 
             }
 
-            public static string HandleNullability(string typeName, CodeGenConfig config)
+            public static string HandleNullability(string typeName, bool canBeSetToNull, CodeGenConfig config)
             {
-                if (string.IsNullOrWhiteSpace(typeName) || config == null || typeName.EndsWith("?")) return typeName;
-                if (!config.UseNullableRefTypes ) return typeName;
-                var type = GetTypeWithMatchingName(typeName);
-                return type is {IsValueType: false}
-                    ? $"{typeName}?"
-                    : typeName;
+                if (string.IsNullOrWhiteSpace(typeName) || config == null) return typeName;
+
+                if (!canBeSetToNull) return typeName; //If db column is not nullable, return mapped type.
+
+                var isReferenceType = IsReferenceType(typeName);
+                if (!isReferenceType) return typeName;  //If db column is nullable and mapped type is value type, return mapped type as we handle nullability implicitly.
+
+                //At this point, db column is nullable and mapped type is reference type.
+                //If not using nullable reference types, just return mapped type.
+                //If using nullable reference type, then return it as nullable.
+
+                return config.UseNullableRefTypes ? $"{typeName}?" : 
+                    typeName; 
+            }
+
+            public static bool IsNullable(string typeName) => (typeName ?? "").EndsWith("?");
+
+            public static bool IsReferenceType(string typeName)
+            {
+                if (string.IsNullOrEmpty(typeName)) return false;
+
+                var coreTypeName = typeName.Replace("?", "");
+                var type = GetTypeWithMatchingName(coreTypeName);
+                return type is {IsValueType: false};
             }
 
             private static Type GetTypeWithMatchingName(string typeName)

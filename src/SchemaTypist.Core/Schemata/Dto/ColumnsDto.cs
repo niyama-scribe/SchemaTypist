@@ -12,5 +12,6 @@
         public int NumericPrecision { get; set; }
         public int NumericScale { get; set; }
         public string IsNullable { get; set; }
+        public string ColumnDefault { get; set; }
     }
 }

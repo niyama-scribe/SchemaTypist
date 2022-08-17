@@ -32,5 +32,6 @@ namespace SchemaTypist.Core.Model
         public int NumericPrecision { get; set; }
         public int NumericScale { get; set; }
         public bool IsNullable { get; set; }
+        public string DefaultValue { get; set; }
     }
 }

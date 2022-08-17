@@ -28,6 +28,7 @@ namespace SchemaTypist.Core.Schemata.Mapping
                     _columns.Add(Constants.NumericPrecision, new ColumnDefinition(Constants.NumericPrecision, this));
                     _columns.Add(Constants.NumericScale, new ColumnDefinition(Constants.NumericScale, this));
                     _columns.Add(Constants.IsNullable, new ColumnDefinition(Constants.IsNullable, this));
+                    _columns.Add(Constants.ColumnDefault, new ColumnDefinition(Constants.ColumnDefault, this));
 
                     /*TableCatalog = new ColumnDefinition(Constants.TableCatalog, this);
                     TableSchema = new ColumnDefinition(Constants.TableSchema, this);
@@ -54,6 +55,7 @@ namespace SchemaTypist.Core.Schemata.Mapping
                 public ColumnDefinition NumericPrecision => _columns[Constants.NumericPrecision];
                 public ColumnDefinition NumericScale => _columns[Constants.NumericScale];
                 public ColumnDefinition IsNullable => _columns[Constants.IsNullable];
+                public ColumnDefinition ColumnDefault => _columns[Constants.ColumnDefault];
 
                 public IEnumerable<ColumnDefinition> Star => _columns.Values;
             }
@@ -70,6 +72,7 @@ namespace SchemaTypist.Core.Schemata.Mapping
                 public const string NumericPrecision = "numeric_precision";
                 public const string NumericScale = "numeric_scale";
                 public const string IsNullable = "is_nullable";
+                public const string ColumnDefault = "column_default";
             }
 
             public static partial class QueryResultsMapper
@@ -85,7 +88,8 @@ namespace SchemaTypist.Core.Schemata.Mapping
                     {Constants.CharacterMaximumLength, nameof(ColumnsDto.CharacterMaxLength) },
                     {Constants.NumericPrecision, nameof(ColumnsDto.NumericPrecision) },
                     {Constants.NumericScale, nameof(ColumnsDto.NumericScale) },
-                    {Constants.IsNullable, nameof(ColumnsDto.IsNullable) }
+                    {Constants.IsNullable, nameof(ColumnsDto.IsNullable) },
+                    {Constants.ColumnDefault, nameof(ColumnsDto.ColumnDefault)}
 
                 };
 

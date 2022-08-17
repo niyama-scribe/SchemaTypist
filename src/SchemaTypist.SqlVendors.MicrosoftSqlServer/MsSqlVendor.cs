@@ -256,6 +256,8 @@ namespace SchemaTypist.SqlVendors.MicrosoftSqlServer
 
             public string DetermineDotNetDataType(string sqlDataType, bool isNullable)
             {
+                //https://docs.microsoft.com/en-us/dotnet/framework/data/adonet/sql-server-data-type-mappings
+
                 var retVal = (sqlDataType, isNullable) switch
                 {
                     ("bigint", false) => "long",
@@ -292,8 +294,8 @@ namespace SchemaTypist.SqlVendors.MicrosoftSqlServer
                     ("numeric", true) => "decimal",
                     ("nvarchar", false) => "string",
                     ("nvarchar", true) => "string",
-                    ("real", false) => "single",
-                    ("real", true) => "single?",
+                    ("real", false) => "float",
+                    ("real", true) => "float?",
                     ("rowversion", false) => "byte[]",
                     ("rowversion", true) => "byte[]",
                     ("smalldatetime", false) => "DateTime",
@@ -329,6 +331,26 @@ namespace SchemaTypist.SqlVendors.MicrosoftSqlServer
             {
                 //Fully qualified name for tabular structures in mssql is catalog.schema.tableName.
                 return $"{tabularStructure.SqlCatalog}.{tabularStructure.SqlSchema}.{tabularStructure.SqlName}";
+            }
+
+            public string DetermineDefaultValue(string columnDefault)
+            {
+                if (columnDefault is null) return null; //No columnDefault has been set.
+                if (columnDefault == "(NULL)") return "null"; //Default is to assign null to that column.
+                //Strip all enclosing brackets.
+                var s = columnDefault;
+                while (s.StartsWith("(") && s.EndsWith(")"))
+                {
+                    s = s.Substring(1, s.Length - 2);
+                }
+
+                //If string still ends with ), then it is a sql function call, in which case ignore
+                if (s.EndsWith(")")) return null;
+
+                //The rest are literals.  Replace any single quotes with double-quotes
+                s = s.Replace("'", "");
+
+                return s;
             }
         }
     }

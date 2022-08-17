@@ -82,5 +82,36 @@ namespace SchemaTypist.Core.Tests.SqlVendors
             dbConn.Should().Be(dbConnection);
             cpl.Should().Be(compiler);
         }
+
+        [Theory]
+        [AutoTestParamsInlineData(null, "any", null)]
+        [AutoTestParamsInlineData("", "any", null)]
+        [AutoTestParamsInlineData("null", "any", "null")]
+        [AutoTestParamsInlineData("1", "string", "\"1\"")]
+        [AutoTestParamsInlineData("c", "char", "'c'")]
+        [AutoTestParamsInlineData("22.35", "double", "22.35")]
+        [AutoTestParamsInlineData("22.35", "float", "22.35f")]
+        [AutoTestParamsInlineData("22.35", "decimal", "(decimal) 22.35")]
+        [AutoTestParamsInlineData("22", "short", "22")]
+        [AutoTestParamsInlineData("22", "int", "22")]
+        [AutoTestParamsInlineData("22", "long", "22")]
+        internal void DetermineDefaultValue_WhenProvidedColumnDefault_ReturnsFormattedDefaultValue(
+            string columnDefault, string dotnetDataType, string expected, 
+            [Frozen] Mock<ISqlDialect> sd, [Frozen] Mock<ISqlVendor> sv,
+            [Frozen] Mock<ISqlVendorPluginLoader> svp, CodeGenConfig cdc,
+            SqlVendorService sut)
+        {
+            //Arrange
+            sd.Setup(d => d.DetermineDefaultValue(It.IsAny<string>())).Returns(columnDefault);
+            sv.SetupGet(v => v.Dialect).Returns(sd.Object);
+            svp.Setup(p => p.GetSqlVendor(It.IsAny<SqlVendorType>())).Returns(sv.Object);
+            
+
+            //Act
+            var actual = sut.DetermineDefaultValue("value retrieved from db", dotnetDataType, cdc);
+
+            //Assert
+            actual.Should().Be(expected);
+        }
     }
 }
