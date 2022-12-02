@@ -77,6 +77,7 @@ namespace SchemaTypist.Core.Language
                 if (string.IsNullOrEmpty(typeName)) return false;
 
                 var coreTypeName = typeName.Replace("?", "");
+                if (coreTypeName.ToLowerInvariant() == "object") return true;
                 //HACK:  checking for closing square brackets to determine if it is an array, need a better way of doing this
                 if (coreTypeName.EndsWith("]")) return true;
                 var type = GetTypeWithMatchingName(coreTypeName);

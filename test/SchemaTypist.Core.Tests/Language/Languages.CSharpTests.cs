@@ -15,6 +15,14 @@ namespace SchemaTypist.Core.Tests.Language
     public class LanguagesCSharpTests
     {
         [Theory]
+        [AutoTestParamsInlineData("Object", true, true, "Object?")]
+        [AutoTestParamsInlineData("Object", false, true, "Object")]
+        [AutoTestParamsInlineData("Object", true, false, "Object")]
+        [AutoTestParamsInlineData("Object", false, false, "Object")]
+        [AutoTestParamsInlineData("object", true, true, "object?")]
+        [AutoTestParamsInlineData("object", false, true, "object")]
+        [AutoTestParamsInlineData("object", true, false, "object")]
+        [AutoTestParamsInlineData("object", false, false, "object")]
         [AutoTestParamsInlineData("string", true, true, "string?")]
         [AutoTestParamsInlineData("string", false, true, "string")]
         [AutoTestParamsInlineData("string", true, false, "string")]
@@ -23,6 +31,7 @@ namespace SchemaTypist.Core.Tests.Language
         [AutoTestParamsInlineData("byte[]", false, true, "byte[]")]
         [AutoTestParamsInlineData("byte[]", true, false, "byte[]")]
         [AutoTestParamsInlineData("byte[]", false, false, "byte[]")]
+
         [AutoTestParamsInlineData("UnknownType", true, true, "UnknownType")]
         [AutoTestParamsInlineData("UnknownType", false, true, "UnknownType")]
         [AutoTestParamsInlineData("UnknownType", true, false, "UnknownType")]

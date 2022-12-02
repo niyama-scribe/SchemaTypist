@@ -304,8 +304,8 @@ namespace SchemaTypist.SqlVendors.MicrosoftSqlServer
                     ("smallint", true) => "short?",
                     ("smallmoney", false) => "decimal",
                     ("smallmoney", true) => "decimal?",
-                    ("sql_variant", false) => "Object",
-                    ("sql_variant", true) => "Object",
+                    ("sql_variant", false) => "object",
+                    ("sql_variant", true) => "object",
                     ("text", false) => "string",
                     ("text", true) => "string",
                     ("time", false) => "TimeSpan",
@@ -322,7 +322,7 @@ namespace SchemaTypist.SqlVendors.MicrosoftSqlServer
                     ("varchar", true) => "string",
                     ("xml", false) => "string",
                     ("xml", true) => "string",
-                    _ => "Object",
+                    _ => "object",
                 };
                 return retVal;
             }

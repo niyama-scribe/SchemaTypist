@@ -229,7 +229,7 @@ namespace SchemaTypist.SqlVendors.PostgreSql
                     ("name", true) => "string",
                     ("char", false) => "char",
                     ("char", true) => "char?",
-                    _ => "Object",
+                    _ => "object",
                 };
                 return retVal;
             }
