@@ -8,14 +8,16 @@ namespace SchemaTypist.SqlKata
     public static partial class Ext
     {
         public static Query AsInsert(this Query q, IEnumerable<ColumnDefinition> columns,
-            IEnumerable<object> values)
+            IEnumerable<object> values, bool returnId = false)
         {
-            return q.AsInsert(columns.Select(c => c.ColumnName__), values);
+            var kvpEnumerable =
+                columns.Zip(values, (col, val) => new KeyValuePair<string, object>(col.ColumnName__, val));
+            return q.AsInsert(kvpEnumerable, returnId);
         }
 
-        public static Query AsInsert(this Query q, IEnumerable<KeyValuePair<ColumnDefinition, object>> values)
+        public static Query AsInsert(this Query q, IEnumerable<KeyValuePair<ColumnDefinition, object>> values, bool returnId = false)
         {
-            return q.AsInsert(values.Select(kvp => new KeyValuePair<string, object>(kvp.Key.ColumnName__, kvp.Value)));
+            return q.AsInsert(values.Select(kvp => new KeyValuePair<string, object>(kvp.Key.ColumnName__, kvp.Value)), returnId);
         }
 
         public static Query AsInsert(this Query q, IEnumerable<ColumnDefinition> columns,
