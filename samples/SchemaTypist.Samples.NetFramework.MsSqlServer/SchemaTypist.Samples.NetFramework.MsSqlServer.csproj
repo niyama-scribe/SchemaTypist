@@ -42,8 +42,8 @@
     <Reference Include="Humanizer, Version=2.13.0.0, Culture=neutral, PublicKeyToken=979442b78dfc278e, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Humanizer.Core.2.13.14\lib\netstandard2.0\Humanizer.dll</HintPath>
     </Reference>
-    <Reference Include="SchemaTypist, Version=0.5.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SchemaTypist.0.5.0-alpha.2\lib\netstandard2.0\SchemaTypist.dll</HintPath>
+    <Reference Include="SchemaTypist, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SchemaTypist.0.7.0\lib\netstandard2.0\SchemaTypist.dll</HintPath>
     </Reference>
     <Reference Include="SqlKata, Version=2.3.7.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SqlKata.2.3.7\lib\netstandard2.0\SqlKata.dll</HintPath>
