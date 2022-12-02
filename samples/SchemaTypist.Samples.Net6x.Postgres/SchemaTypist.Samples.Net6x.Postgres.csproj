@@ -1,25 +1,26 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <TargetFramework>net6.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <!-- <Nullable>enable</Nullable> -->
-    <UserSecretsId>985bc46a-a3d3-44c8-ba47-ef6a1a2154ab</UserSecretsId>
-    <Configurations>Debug;Release;Generate</Configurations>
-  </PropertyGroup>
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFramework>net6.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<Configurations>Debug;Release;Generate</Configurations>
+		<UserSecretsId>d0c6a6a9-e917-4e64-a268-283f78b19d5a</UserSecretsId>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Dapper" Version="2.0.123" />
-    <PackageReference Include="Npgsql" Version="6.0.0" />
-    <PackageReference Include="SchemaTypist" Version="0.6.6" />
-    <PackageReference Include="SchemaTypist.MSBuild" Version="0.6.6" />
-    <PackageReference Include="System.Data.SqlClient" Version="4.4.0" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Dapper" Version="2.0.123" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="5.0.0" />
+		<PackageReference Include="Npgsql" Version="6.0.0" />
+		<PackageReference Include="SchemaTypist" Version="0.6.7-alpha.0.10" />
+		<PackageReference Include="SchemaTypist.MSBuild" Version="0.6.7-alpha.0.10" />
+		<PackageReference Include="System.Data.SqlClient" Version="4.4.0" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Sakila\Generated\" />
-  </ItemGroup>
+	<ItemGroup>
+		<Folder Include="Sakila\Generated\" />
+	</ItemGroup>
 
 	<PropertyGroup>
 		<!-- <SchemaTypist_ConnectionString>%22Server=127.0.0.1;Port=5432;Database=postgres;User Id=postgres;Password=N3v3r!nPr0d;%22</SchemaTypist_ConnectionString> -->
@@ -33,6 +34,7 @@
 		<SchemaTypist_CreateImmutableEntities>true</SchemaTypist_CreateImmutableEntities>
 		<SchemaTypist_CreateRecordEntities>true</SchemaTypist_CreateRecordEntities>
 		<SchemaTypist_Generate Condition="$(Configuration) == 'Generate'">true</SchemaTypist_Generate>
+		<SchemaTypist_UseNullableRefTypes>true</SchemaTypist_UseNullableRefTypes>
 	</PropertyGroup>
 
 	<Target Name="MyGenerator" BeforeTargets="PrepareForBuild" Condition="$(Configuration) == 'Generate'">

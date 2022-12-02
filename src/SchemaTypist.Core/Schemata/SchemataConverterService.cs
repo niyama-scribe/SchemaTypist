@@ -77,7 +77,7 @@ namespace SchemaTypist.Core.Schemata
         {
             var defaultValue = _sqlVendor.DetermineDefaultValue(columnDefault, columnMetadata.DataType, config);
 
-            //Default value can be null, "null", non-null-literal-value
+            //Default value can be null, "null", blank or non-null-literal-value
             if (string.IsNullOrWhiteSpace(defaultValue)) defaultValue = null;
 
             //Handle language vagaries
@@ -92,7 +92,7 @@ namespace SchemaTypist.Core.Schemata
              *            Initialize property to "default!"
              */
 
-            if (defaultValue is "null")
+            if (defaultValue is null or "null")
             {
                 defaultValue = Languages.CSharp.IsReferenceType(columnMetadata.DataType) &&
                                !Languages.CSharp.IsNullable(columnMetadata.DataType)

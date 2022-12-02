@@ -10,21 +10,27 @@
 using System;
 using System.Collections.Generic;
 
+
+#nullable enable
+
+
 namespace SchemaTypist.Samples.Net6x.Postgres.Sakila.Generated.Domain.Public
 {
-	
 	public partial record CustomerList
 	{
-		public string Address { get; init; }
-		public string City { get; init; }
-		public string Country { get; init; }
+		public string? Address { get; init; }
+		public string? City { get; init; }
+		public string? Country { get; init; }
 		public int? Id { get; init; }
-		public string Name { get; init; }
-		public string Note { get; init; }
-		public string Phone { get; init; }
+		public string? Name { get; init; }
+		public string? Note { get; init; }
+		public string? Phone { get; init; }
 		public short? Sid { get; init; }
-		public string ZipCode { get; init; }
+		public string? ZipCode { get; init; }
 	}
-	
-
 }
+
+
+#nullable restore
+
+

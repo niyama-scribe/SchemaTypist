@@ -10,15 +10,21 @@
 using System;
 using System.Collections.Generic;
 
+
+#nullable enable
+
+
 namespace SchemaTypist.Samples.Net6x.Postgres.Sakila.Generated.Domain.Public
 {
-	
 	public partial record Country
 	{
-		public string Country0 { get; init; }
+		public string Country0 { get; init; } = default!; 
 		public int CountryId { get; init; }
 		public DateTime LastUpdate { get; init; }
 	}
-	
-
 }
+
+
+#nullable restore
+
+

@@ -47,6 +47,14 @@ namespace SchemaTypist.Core
             EntitiesTemplate = GetTemplate(entitiesTemplateName);
             PersistenceTemplate = GetTemplate(persistenceTemplateName);
             DapperInitialiserTemplate = GetTemplate(dapperInitialiserTemplateName);
+
+            if (EntitiesTemplate.HasErrors)
+            {
+                foreach (var entitiesTemplateMessage in EntitiesTemplate.Messages)
+                {
+                    Console.WriteLine(entitiesTemplateMessage);
+                }
+            }
         }
 
         internal string GenerateEntity(TableStructureTemplateModel tableStructureModel)

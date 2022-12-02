@@ -1,8 +1,10 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using Microsoft.CSharp;
 using SchemaTypist.Core.Config;
 
 namespace SchemaTypist.Core.Language
@@ -11,6 +13,7 @@ namespace SchemaTypist.Core.Language
     {
         internal static class CSharp
         {
+            private static Assembly _mscorLib = Assembly.GetAssembly(typeof(int));
             public static ILanguage Language { get; } = new LanguageDetails();
             private class LanguageDetails : ILanguage
             {
@@ -74,14 +77,34 @@ namespace SchemaTypist.Core.Language
                 if (string.IsNullOrEmpty(typeName)) return false;
 
                 var coreTypeName = typeName.Replace("?", "");
+                //HACK:  checking for closing square brackets to determine if it is an array, need a better way of doing this
+                if (coreTypeName.EndsWith("]")) return true;
                 var type = GetTypeWithMatchingName(coreTypeName);
-                return type is {IsValueType: false};
+                return type is {IsValueType: false, IsArray:false};
             }
 
             private static Type GetTypeWithMatchingName(string typeName)
             {
                 //Best effort to try and find the actual runtime type given the typeName.
-                foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
+
+                
+                using (var provider = new CSharpCodeProvider())
+                {
+                    foreach (var type in _mscorLib.DefinedTypes)
+                    {
+                        if (string.Equals(type.Namespace, "System"))
+                        {
+                            var typeRef = new CodeTypeReference(type);
+                            var csTypeName = provider.GetTypeOutput(typeRef);
+                            if (typeName.Equals(csTypeName))
+                            {
+                                return type;
+                            }
+                        }
+                    }
+                }
+
+                /*foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
                 {
                     try
                     {
@@ -97,7 +120,7 @@ namespace SchemaTypist.Core.Language
                     {
                         continue;
                     }
-                }
+                }*/
 
                 return null;
             }

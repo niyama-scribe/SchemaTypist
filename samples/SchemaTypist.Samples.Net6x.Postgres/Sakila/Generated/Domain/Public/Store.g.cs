@@ -10,9 +10,12 @@
 using System;
 using System.Collections.Generic;
 
+
+#nullable enable
+
+
 namespace SchemaTypist.Samples.Net6x.Postgres.Sakila.Generated.Domain.Public
 {
-	
 	public partial record Store
 	{
 		public short AddressId { get; init; }
@@ -20,6 +23,9 @@ namespace SchemaTypist.Samples.Net6x.Postgres.Sakila.Generated.Domain.Public
 		public short ManagerStaffId { get; init; }
 		public int StoreId { get; init; }
 	}
-	
-
 }
+
+
+#nullable restore
+
+

@@ -41,5 +41,11 @@
 	  <Folder Include="nupkg\" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <None Update="LocalTest.bat">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	</ItemGroup>
+
 
 </Project>

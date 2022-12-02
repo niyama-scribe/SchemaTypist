@@ -10,9 +10,12 @@
 using System;
 using System.Collections.Generic;
 
+
+#nullable enable
+
+
 namespace SchemaTypist.Samples.Net6x.Postgres.Sakila.Generated.Domain.Public
 {
-	
 	public partial record Inventory
 	{
 		public short FilmId { get; init; }
@@ -20,6 +23,9 @@ namespace SchemaTypist.Samples.Net6x.Postgres.Sakila.Generated.Domain.Public
 		public DateTime LastUpdate { get; init; }
 		public short StoreId { get; init; }
 	}
-	
-
 }
+
+
+#nullable restore
+
+

@@ -10,9 +10,12 @@
 using System;
 using System.Collections.Generic;
 
+
+#nullable enable
+
+
 namespace SchemaTypist.Samples.Net6x.Postgres.Sakila.Generated.Domain.Public
 {
-	
 	public partial record PaymentP200705
 	{
 		public decimal Amount { get; init; }
@@ -22,6 +25,9 @@ namespace SchemaTypist.Samples.Net6x.Postgres.Sakila.Generated.Domain.Public
 		public int RentalId { get; init; }
 		public short StaffId { get; init; }
 	}
-	
-
 }
+
+
+#nullable restore
+
+

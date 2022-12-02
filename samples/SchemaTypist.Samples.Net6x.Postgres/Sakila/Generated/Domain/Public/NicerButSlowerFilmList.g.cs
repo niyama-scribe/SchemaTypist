@@ -10,20 +10,26 @@
 using System;
 using System.Collections.Generic;
 
+
+#nullable enable
+
+
 namespace SchemaTypist.Samples.Net6x.Postgres.Sakila.Generated.Domain.Public
 {
-	
 	public partial record NicerButSlowerFilmList
 	{
-		public string Actor { get; init; }
-		public string Category { get; init; }
-		public string Description { get; init; }
+		public string? Actor { get; init; }
+		public string? Category { get; init; }
+		public string? Description { get; init; }
 		public int? Fid { get; init; }
 		public short? Length { get; init; }
 		public decimal? Price { get; init; }
 		public Object Rating { get; init; }
-		public string Title { get; init; }
+		public string? Title { get; init; }
 	}
-	
-
 }
+
+
+#nullable restore
+
+

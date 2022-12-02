@@ -10,12 +10,15 @@
 using System;
 using System.Collections.Generic;
 
+
+#nullable enable
+
+
 namespace SchemaTypist.Samples.Net6x.Postgres.Sakila.Generated.Domain.Public
 {
-	
 	public partial record Film
 	{
-		public string Description { get; init; }
+		public string? Description { get; init; }
 		public int FilmId { get; init; }
 		public Object Fulltext { get; init; }
 		public short LanguageId { get; init; }
@@ -24,12 +27,15 @@ namespace SchemaTypist.Samples.Net6x.Postgres.Sakila.Generated.Domain.Public
 		public short? OriginalLanguageId { get; init; }
 		public Object Rating { get; init; }
 		public int? ReleaseYear { get; init; }
-		public short RentalDuration { get; init; }
-		public decimal RentalRate { get; init; }
-		public decimal ReplacementCost { get; init; }
+		public short RentalDuration { get; init; } = 3; 
+		public decimal RentalRate { get; init; } = (decimal) 4.99; 
+		public decimal ReplacementCost { get; init; } = (decimal) 19.99; 
 		public Object SpecialFeature { get; init; }
-		public string Title { get; init; }
+		public string Title { get; init; } = default!; 
 	}
-	
-
 }
+
+
+#nullable restore
+
+

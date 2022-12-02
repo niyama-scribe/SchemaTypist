@@ -16,14 +16,15 @@ using System.Collections.Generic;
 
 namespace SchemaTypist.Samples.Net6x.Postgres.Sakila.Generated.Domain.Public
 {
-	public partial record PaymentP200702
+	public partial record Defaulter
 	{
-		public decimal Amount { get; init; }
-		public short CustomerId { get; init; }
-		public DateTime PaymentDate { get; init; }
-		public int PaymentId { get; init; }
-		public int RentalId { get; init; }
-		public short StaffId { get; init; }
+		public string? BlankableCol { get; init; }
+		public DateTime DatetimeCol { get; init; }
+		public decimal DecimalCol { get; init; } = (decimal) 3.14; 
+		public int IntCol { get; init; } = 234; 
+		public string NonNullableCol { get; init; } = default!; 
+		public string? NullableCol { get; init; }
+		public string StringCol { get; init; } = "str"; 
 	}
 }
 

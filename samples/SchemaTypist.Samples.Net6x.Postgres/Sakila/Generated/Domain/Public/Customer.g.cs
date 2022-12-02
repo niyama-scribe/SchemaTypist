@@ -10,9 +10,12 @@
 using System;
 using System.Collections.Generic;
 
+
+#nullable enable
+
+
 namespace SchemaTypist.Samples.Net6x.Postgres.Sakila.Generated.Domain.Public
 {
-	
 	public partial record Customer
 	{
 		public int? Active { get; init; }
@@ -20,12 +23,15 @@ namespace SchemaTypist.Samples.Net6x.Postgres.Sakila.Generated.Domain.Public
 		public short AddressId { get; init; }
 		public DateTime CreateDate { get; init; }
 		public int CustomerId { get; init; }
-		public string Email { get; init; }
-		public string FirstName { get; init; }
-		public string LastName { get; init; }
+		public string? Email { get; init; }
+		public string FirstName { get; init; } = default!; 
+		public string LastName { get; init; } = default!; 
 		public DateTime? LastUpdate { get; init; }
 		public short StoreId { get; init; }
 	}
-	
-
 }
+
+
+#nullable restore
+
+

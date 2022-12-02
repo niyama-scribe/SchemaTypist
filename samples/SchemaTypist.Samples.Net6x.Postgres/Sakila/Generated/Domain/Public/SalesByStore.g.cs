@@ -10,15 +10,21 @@
 using System;
 using System.Collections.Generic;
 
+
+#nullable enable
+
+
 namespace SchemaTypist.Samples.Net6x.Postgres.Sakila.Generated.Domain.Public
 {
-	
 	public partial record SalesByStore
 	{
-		public string Manager { get; init; }
-		public string Store { get; init; }
+		public string? Manager { get; init; }
+		public string? Store { get; init; }
 		public decimal? TotalSale { get; init; }
 	}
-	
-
 }
+
+
+#nullable restore
+
+

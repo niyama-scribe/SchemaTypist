@@ -10,20 +10,26 @@
 using System;
 using System.Collections.Generic;
 
+
+#nullable enable
+
+
 namespace SchemaTypist.Samples.Net6x.Postgres.Sakila.Generated.Domain.Public
 {
-	
 	public partial record Address
 	{
-		public string Address0 { get; init; }
-		public string Address2 { get; init; }
+		public string Address0 { get; init; } = default!; 
+		public string? Address2 { get; init; }
 		public int AddressId { get; init; }
 		public short CityId { get; init; }
-		public string District { get; init; }
+		public string District { get; init; } = default!; 
 		public DateTime LastUpdate { get; init; }
-		public string Phone { get; init; }
-		public string PostalCode { get; init; }
+		public string Phone { get; init; } = default!; 
+		public string? PostalCode { get; init; }
 	}
-	
-
 }
+
+
+#nullable restore
+
+

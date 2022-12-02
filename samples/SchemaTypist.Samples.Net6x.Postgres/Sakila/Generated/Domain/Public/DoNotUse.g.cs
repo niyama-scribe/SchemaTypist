@@ -10,14 +10,20 @@
 using System;
 using System.Collections.Generic;
 
+
+#nullable enable
+
+
 namespace SchemaTypist.Samples.Net6x.Postgres.Sakila.Generated.Domain.Public
 {
-	
 	public partial record DoNotUse
 	{
-		public string FirstColumn { get; init; }
-		public string SecondColumn { get; init; }
+		public string? FirstColumn { get; init; }
+		public string? SecondColumn { get; init; }
 	}
-	
-
 }
+
+
+#nullable restore
+
+
