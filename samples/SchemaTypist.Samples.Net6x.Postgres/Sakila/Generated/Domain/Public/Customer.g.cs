@@ -10,9 +10,7 @@
 using System;
 using System.Collections.Generic;
 
-
 #nullable enable
-
 
 namespace SchemaTypist.Samples.Net6x.Postgres.Sakila.Generated.Domain.Public
 {
@@ -31,7 +29,5 @@ namespace SchemaTypist.Samples.Net6x.Postgres.Sakila.Generated.Domain.Public
 	}
 }
 
-
 #nullable restore
-
 

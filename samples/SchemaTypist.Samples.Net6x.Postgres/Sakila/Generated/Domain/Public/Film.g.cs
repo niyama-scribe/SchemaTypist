@@ -10,9 +10,7 @@
 using System;
 using System.Collections.Generic;
 
-
 #nullable enable
-
 
 namespace SchemaTypist.Samples.Net6x.Postgres.Sakila.Generated.Domain.Public
 {
@@ -20,22 +18,20 @@ namespace SchemaTypist.Samples.Net6x.Postgres.Sakila.Generated.Domain.Public
 	{
 		public string? Description { get; init; }
 		public int FilmId { get; init; }
-		public Object Fulltext { get; init; }
+		public object Fulltext { get; init; } = default!; 
 		public short LanguageId { get; init; }
 		public DateTime LastUpdate { get; init; }
 		public short? Length { get; init; }
 		public short? OriginalLanguageId { get; init; }
-		public Object Rating { get; init; }
+		public object? Rating { get; init; }
 		public int? ReleaseYear { get; init; }
 		public short RentalDuration { get; init; } = 3; 
 		public decimal RentalRate { get; init; } = (decimal) 4.99; 
 		public decimal ReplacementCost { get; init; } = (decimal) 19.99; 
-		public Object SpecialFeature { get; init; }
+		public object? SpecialFeature { get; init; }
 		public string Title { get; init; } = default!; 
 	}
 }
 
-
 #nullable restore
-
 
