@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using SchemaTypist.Core.Config;
 using SchemaTypist.Core.Language;
 using SchemaTypist.Core.Model;
@@ -51,13 +52,39 @@ namespace SchemaTypist.Core.SqlVendors
         {
             var sqlDialect = GetSqlDialect(config.Vendor);
             var dotNetDataType = sqlDialect.DetermineDotNetDataType(sqlDataType, isNullable);
-            return Languages.CSharp.HandleNullability(dotNetDataType, config);
+            return Languages.CSharp.HandleNullability(dotNetDataType, isNullable, config);
 
         }
 
         public (IDbConnection, Compiler) GetDbInterfaceProviders(CodeGenConfig config)
         {
             return GetSqlVendor(config.Vendor).GetDbInterfaceProviders(config);
+        }
+
+        public string DetermineDefaultValue(string columnDefault, string dotnetDataType, CodeGenConfig config)
+        {
+            if (string.IsNullOrEmpty(columnDefault)) return null;
+
+            var rawDefaultStr = GetSqlDialect(config.Vendor).DetermineDefaultValue(columnDefault);
+
+            if (string.IsNullOrEmpty(rawDefaultStr)) return null;
+            if (rawDefaultStr is "null") return rawDefaultStr;
+            
+            //Now represent literals as per mapped datatype
+            var coreDatatype = dotnetDataType.Replace("?", "").ToLower();
+
+            return coreDatatype switch
+            {
+                "char" => $"'{rawDefaultStr}'",
+                "string" => $"\"{rawDefaultStr}\"",
+                "double" or "short" or "int" or "long" => rawDefaultStr,
+                "decimal" => $"(decimal) {rawDefaultStr}",
+                "float" => $"{rawDefaultStr}f",
+                //"datetime" => $"DateTime.Parse(\"{rawDefaultStr}\")",
+
+                _ => null
+            };
+
         }
     }
 
@@ -67,6 +94,7 @@ namespace SchemaTypist.Core.SqlVendors
         string BuildQualifiedName(TabularStructure tableStructure, CodeGenConfig config);
         string DetermineDotNetDataType(string sqlDataType, bool isNullable, CodeGenConfig config);
         (IDbConnection, Compiler) GetDbInterfaceProviders(CodeGenConfig config);
+        string DetermineDefaultValue(string columnDefault, string mappedDotnetDatatype, CodeGenConfig config);
     }
 
 

@@ -21,6 +21,7 @@
 		<_SchemaTypist_User_Secrets_Id>_#NONE#_</_SchemaTypist_User_Secrets_Id>
 		<_SchemaTypist_StripPrefix>tbl_,t_,v_,vw_,udt_,sp_,sproc_</_SchemaTypist_StripPrefix>
 		<_SchemaTypist_StripSuffix>_#NONE#_</_SchemaTypist_StripSuffix>
+		<_SchemaTypist_UseNullableRefTypes>false</_SchemaTypist_UseNullableRefTypes>
 	</PropertyGroup>
 
 	

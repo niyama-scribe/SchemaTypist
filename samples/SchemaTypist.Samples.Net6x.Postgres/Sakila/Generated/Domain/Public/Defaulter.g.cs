@@ -14,11 +14,15 @@ using System.Collections.Generic;
 
 namespace SchemaTypist.Samples.Net6x.Postgres.Sakila.Generated.Domain.Public
 {
-	public partial record FilmActor
+	public partial record Defaulter
 	{
-		public short ActorId { get; init; }
-		public short FilmId { get; init; }
-		public DateTime LastUpdate { get; init; }
+		public string? BlankableCol { get; init; }
+		public DateTime DatetimeCol { get; init; }
+		public decimal DecimalCol { get; init; } = (decimal) 3.14; 
+		public int IntCol { get; init; } = 234; 
+		public string NonNullableCol { get; init; } = default!; 
+		public string? NullableCol { get; init; }
+		public string StringCol { get; init; } = "str"; 
 	}
 }
 

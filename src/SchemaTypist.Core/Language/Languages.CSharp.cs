@@ -1,8 +1,10 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using Microsoft.CSharp;
 using SchemaTypist.Core.Config;
 
 namespace SchemaTypist.Core.Language
@@ -11,6 +13,7 @@ namespace SchemaTypist.Core.Language
     {
         internal static class CSharp
         {
+            private static Assembly _mscorLib = Assembly.GetAssembly(typeof(int));
             public static ILanguage Language { get; } = new LanguageDetails();
             private class LanguageDetails : ILanguage
             {
@@ -50,20 +53,59 @@ namespace SchemaTypist.Core.Language
 
             }
 
-            public static string HandleNullability(string typeName, CodeGenConfig config)
+            public static string HandleNullability(string typeName, bool canBeSetToNull, CodeGenConfig config)
             {
-                if (string.IsNullOrWhiteSpace(typeName) || config == null || typeName.EndsWith("?")) return typeName;
-                if (!config.UseNullableRefTypes ) return typeName;
-                var type = GetTypeWithMatchingName(typeName);
-                return type is {IsValueType: false}
-                    ? $"{typeName}?"
-                    : typeName;
+                if (string.IsNullOrWhiteSpace(typeName) || config == null) return typeName;
+
+                if (!canBeSetToNull) return typeName; //If db column is not nullable, return mapped type.
+
+                var isReferenceType = IsReferenceType(typeName);
+                if (!isReferenceType) return typeName;  //If db column is nullable and mapped type is value type, return mapped type as we handle nullability implicitly.
+
+                //At this point, db column is nullable and mapped type is reference type.
+                //If not using nullable reference types, just return mapped type.
+                //If using nullable reference type, then return it as nullable.
+
+                return config.UseNullableRefTypes ? $"{typeName}?" : 
+                    typeName; 
+            }
+
+            public static bool IsNullable(string typeName) => (typeName ?? "").EndsWith("?");
+
+            public static bool IsReferenceType(string typeName)
+            {
+                if (string.IsNullOrEmpty(typeName)) return false;
+
+                var coreTypeName = typeName.Replace("?", "");
+                if (coreTypeName.ToLowerInvariant() == "object") return true;
+                //HACK:  checking for closing square brackets to determine if it is an array, need a better way of doing this
+                if (coreTypeName.EndsWith("]")) return true;
+                var type = GetTypeWithMatchingName(coreTypeName);
+                return type is {IsValueType: false, IsArray:false};
             }
 
             private static Type GetTypeWithMatchingName(string typeName)
             {
                 //Best effort to try and find the actual runtime type given the typeName.
-                foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
+
+                
+                using (var provider = new CSharpCodeProvider())
+                {
+                    foreach (var type in _mscorLib.DefinedTypes)
+                    {
+                        if (string.Equals(type.Namespace, "System"))
+                        {
+                            var typeRef = new CodeTypeReference(type);
+                            var csTypeName = provider.GetTypeOutput(typeRef);
+                            if (typeName.Equals(csTypeName))
+                            {
+                                return type;
+                            }
+                        }
+                    }
+                }
+
+                /*foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
                 {
                     try
                     {
@@ -79,7 +121,7 @@ namespace SchemaTypist.Core.Language
                     {
                         continue;
                     }
-                }
+                }*/
 
                 return null;
             }

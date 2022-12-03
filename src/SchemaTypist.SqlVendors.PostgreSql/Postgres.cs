@@ -229,7 +229,7 @@ namespace SchemaTypist.SqlVendors.PostgreSql
                     ("name", true) => "string",
                     ("char", false) => "char",
                     ("char", true) => "char?",
-                    _ => "Object",
+                    _ => "object",
                 };
                 return retVal;
             }
@@ -238,6 +238,21 @@ namespace SchemaTypist.SqlVendors.PostgreSql
             {
                 //Fully qualified name for tabular structures in pgsql is schema.tableName.  Cross-database references are not implemented
                 return $"{tabularStructure.SqlSchema}.{tabularStructure.SqlName}";
+            }
+
+            public string DetermineDefaultValue(string columnDefault)
+            {
+                if (columnDefault is null) return null; //No columnDefault has been set.
+                
+                //If string ends with ), then it is a sql function call, in which case ignore
+                if (columnDefault.EndsWith(")")) return null;
+
+
+                var cd = columnDefault.Split(new []{"::"}, StringSplitOptions.None)[0];
+                if (cd is "NULL") return "null"; //Default is to assign null to that column.
+                
+                //The rest are literals.  Replace single quotes if any.
+                return cd.Replace("'", "");
             }
         }
     }

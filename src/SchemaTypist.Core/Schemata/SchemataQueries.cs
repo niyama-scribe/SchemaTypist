@@ -23,7 +23,7 @@ namespace SchemaTypist.Core.Schemata
                 .Select("c.TABLE_CATALOG", "c.TABLE_SCHEMA", "c.TABLE_NAME",
                         "c.ORDINAL_POSITION", "c.COLUMN_NAME", "c.DATA_TYPE",
                         "c.CHARACTER_MAXIMUM_LENGTH", "c.NUMERIC_PRECISION", "c.NUMERIC_SCALE",
-                        "c.IS_NULLABLE")
+                        "c.IS_NULLABLE", "c.COLUMN_DEFAULT")
                 .From("INFORMATION_SCHEMA.COLUMNS as c")
                 .LeftJoin("INFORMATION_SCHEMA.TABLE_CONSTRAINTS as tc",
                     j => j

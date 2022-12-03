@@ -9,30 +9,18 @@
 
 using System;
 using System.Collections.Generic;
-
+{{ if config.use_nullable_ref_types }}
+#nullable enable
+{{ end }}
 namespace {{ path_namespace.entities_namespace }}
 {
-	{{ if config.create_record_entities && config.create_immutable_entities }}
-	public partial record {{ tabular_structure.name }}{{ config.entity_name_suffix }}
+	public partial{{ if config.create_record_entities }} record {{ else }} class {{ end }}{{ tabular_structure.name }}{{ config.entity_name_suffix }}
 	{
 		{{~ for col in tabular_structure.columns ~}}
-		public {{ col.data_type }} {{ col.name }} { get; init; }
+		public {{ col.data_type }} {{ col.name }} { get;{{ if config.create_immutable_entities }} init;{{ else }} set;{{ end }} }{{ if col.default_value }} = {{ col.default_value }}; {{ end }}
 		{{~ end ~}}
 	}
-	{{ else if config.create_immutable_entities  }}
-	public partial class {{ tabular_structure.name }}{{ config.entity_name_suffix }}
-	{
-		{{~ for col in tabular_structure.columns ~}}
-		public {{ col.data_type }} {{ col.name }} { get; init; }
-		{{~ end ~}}
-	}
-	{{ else }}
-	public partial class {{ tabular_structure.name }}{{ config.entity_name_suffix }}
-	{
-		{{~ for col in tabular_structure.columns ~}}
-		public {{ col.data_type }} {{ col.name }} { get; set; }
-		{{~ end ~}}
-	}
-	{{ end }}
-
 }
+{{ if config.use_nullable_ref_types }}
+#nullable restore
+{{ end }}

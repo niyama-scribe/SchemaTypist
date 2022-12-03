@@ -10,15 +10,17 @@
 using System;
 using System.Collections.Generic;
 
+#nullable enable
+
 namespace SchemaTypist.Samples.Net6x.Postgres.Sakila.Generated.Domain.Public
 {
-	
 	public partial record FilmCategory
 	{
 		public short CategoryId { get; init; }
 		public short FilmId { get; init; }
 		public DateTime LastUpdate { get; init; }
 	}
-	
-
 }
+
+#nullable restore
+

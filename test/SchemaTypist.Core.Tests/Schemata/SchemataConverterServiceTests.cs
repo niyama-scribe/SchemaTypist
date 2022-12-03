@@ -8,6 +8,7 @@ using AutoFixture;
 using AutoFixture.Xunit2;
 using Auzaar.AutoFixture;
 using FluentAssertions;
+using Moq;
 using SchemaTypist.Core.Config;
 using SchemaTypist.Core.Naming;
 using SchemaTypist.Core.Schemata;
@@ -44,6 +45,57 @@ namespace SchemaTypist.Core.Tests.Schemata
                 key.Should().NotContain("public"); 
                 val.SqlSchema.Should().NotBe("public");
             }
+        }
+
+        [Theory]
+        [AutoTestParamsInlineData("string", "null", true, "default!")]
+        [AutoTestParamsInlineData("string?", "null", true, null)]
+        [AutoTestParamsInlineData("string", "null", false, null)]
+        [AutoTestParamsInlineData("string?", "null", false, null)]
+        [AutoTestParamsInlineData("string", "", true, "default!")]
+        [AutoTestParamsInlineData("string?", "", true, null)]
+        [AutoTestParamsInlineData("string", "", false, null)]
+        [AutoTestParamsInlineData("string?", "", false, null)]
+        [AutoTestParamsInlineData("string", null, true, "default!")]
+        [AutoTestParamsInlineData("string?", null, true, null)]
+        [AutoTestParamsInlineData("string", null, false, null)]
+        [AutoTestParamsInlineData("string?", null, false, null)]
+        [AutoTestParamsInlineData("string", "\"abc\"", true, "\"abc\"")]
+        [AutoTestParamsInlineData("string?", "\"abc\"", true, "\"abc\"")]
+        [AutoTestParamsInlineData("string", "\"abc\"", false, "\"abc\"")]
+        [AutoTestParamsInlineData("string?", "\"abc\"", false, "\"abc\"")]
+
+        internal void Convert_OverridesDefaultValueWhenAppropriate(
+            string datatype, string columnDefault, bool useNullableRef, string expected,
+            [Frozen] Mock<ISqlVendorService> sqlVendorService,
+            SchemataConverterService sut)
+        {
+            //Arrange
+            var columnsList = new List<ColumnsDto>();
+            var fixture = new Fixture();
+            var columns = fixture.Build<ColumnsDto>().CreateMany();
+            columnsList.AddRange(columns);
+            
+            var cdc = fixture.Build<CodeGenConfig>()
+                .With(c => c.UseNullableRefTypes, useNullableRef)
+                .With(c => c.Include, "*")
+                .Create();
+
+            sqlVendorService.Setup(svs =>
+                    svs.DetermineDotNetDataType(It.IsAny<string>(), It.IsAny<bool>(), It.IsAny<CodeGenConfig>()))
+                .Returns(datatype);
+
+            sqlVendorService.Setup(svs =>
+                    svs.DetermineDefaultValue(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<CodeGenConfig>()))
+                .Returns(columnDefault);
+
+            
+            //Act
+            var tabStructures = sut.Convert(columnsList, cdc);
+
+            //Assert
+            tabStructures.SelectMany(tab => tab.Value.Columns).Select(c => c.DefaultValue).Should().AllBe(expected);
+
         }
     }
 }
