@@ -11,9 +11,10 @@ namespace SchemaTypist.MSBuild.CustomTasks
 {
     internal static class ConfigConverter
     {
-        public CodeGenConfig Convert(SchemaTypistGeneratorTask task)
+        public static CodeGenConfig Convert(SchemaTypistGeneratorTask task)
         {
-            CodeGenConfig config = new CodeGenConfig();
+            var config = new CodeGenConfig();
+            return config;
         }
     }
 }
