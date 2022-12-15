@@ -41,7 +41,9 @@ namespace SchemaTypist.Core.Tests.Language
         {
             //Arrange
             var f = new Fixture();
-            var config = f.Build<CodeGenConfig>().With(cgc => cgc.UseNullableRefTypes, useNullableRefType).Create();
+            var config = f.Build<CodeGenConfig>()
+                .With(cgc => cgc.TargetLanguageVersion, "Default")
+                .With(cgc => cgc.UseNullableRefTypes, useNullableRefType).Create();
 
             //Act
             var actual = Languages.CSharp.HandleNullability(typeName, canBeSetToNull, config);

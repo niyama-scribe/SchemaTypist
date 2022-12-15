@@ -66,7 +66,8 @@ namespace SchemaTypist.Core.Language
                 //If not using nullable reference types, just return mapped type.
                 //If using nullable reference type, then return it as nullable.
 
-                return config.UseNullableRefTypes ? $"{typeName}?" : 
+                return config.TargetLanguageVersion.ToLower() == "default" && config.UseNullableRefTypes 
+                    ? $"{typeName}?" : 
                     typeName; 
             }
 

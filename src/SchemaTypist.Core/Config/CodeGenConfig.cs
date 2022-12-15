@@ -22,9 +22,8 @@ namespace SchemaTypist.Core.Config
         //https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.csharp.languageversion?view=roslyn-dotnet-4.0.1
         //https://docs.microsoft.com/en-us/dotnet/standard/frameworks
         //https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/configure-language-version
-        //CSharp7_3 (net462, net47, net471, net472, netstandard1.x, netstandard2.0), CSharp8 (netstandard2.1), CSharp10 (net6.0)
-        //net48 will be CSharp7_3, netstandard2.1=CSharp8, net6.0 will be CSharp10
-        public string TargetLanguageVersion { get; set; } = "CSharp10";
+        //CSharp7_3 (net462, net47, net471, net472, net48, net481, netstandard1.x, netstandard2.0) or default (CSharp10 and above)
+        public string TargetLanguageVersion { get; set; } = "Default";
         public string RootOutputDirectory { get; set; } = _currDir;
         public string RootNamespace { get; set; } = "SchemaTypist.Generated"; //Should never be empty.
         public string OutputFileNameSuffix { get; set; } = "g";

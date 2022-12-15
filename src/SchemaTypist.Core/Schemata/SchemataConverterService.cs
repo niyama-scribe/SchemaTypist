@@ -94,9 +94,11 @@ namespace SchemaTypist.Core.Schemata
 
             if (defaultValue is null or "null")
             {
-                defaultValue = Languages.CSharp.IsReferenceType(columnMetadata.DataType) &&
+                defaultValue = config.TargetLanguageVersion.ToLower() == "default"  &&
+                               config.UseNullableRefTypes &&
+                               Languages.CSharp.IsReferenceType(columnMetadata.DataType) &&
                                !Languages.CSharp.IsNullable(columnMetadata.DataType)
-                               && config.UseNullableRefTypes
+                               
                     ? "default!"
                     : null;
             }

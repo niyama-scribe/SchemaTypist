@@ -197,9 +197,9 @@ namespace SchemaTypist.Cli
             [DefaultValue("")]
             public string StripSuffix { get; set; }
 
-            [Description("We support CSharp7_3, CSharp8 and CSharp10 (default).")]
+            [Description("This can be set to 'CSharp7_3' and 'Default'.  Default caters for CSharp10 and beyond.")]
             [CommandOption("--target-lang-version")]
-            [DefaultValue("CSharp10")]
+            [DefaultValue("Default")]
             public string TargetLanguageVersion { get; set; }
 
             [Description("Nullable ref types are supported.")]
@@ -207,6 +207,7 @@ namespace SchemaTypist.Cli
             [DefaultValue(false)]
             public bool UseNullableRefTypes { get; set; }
 
+            
         }
     }
 

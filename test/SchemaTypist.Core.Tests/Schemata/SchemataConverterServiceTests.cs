@@ -77,6 +77,7 @@ namespace SchemaTypist.Core.Tests.Schemata
             columnsList.AddRange(columns);
             
             var cdc = fixture.Build<CodeGenConfig>()
+                .With(cgc => cgc.TargetLanguageVersion, "Default")
                 .With(c => c.UseNullableRefTypes, useNullableRef)
                 .With(c => c.Include, "*")
                 .Create();

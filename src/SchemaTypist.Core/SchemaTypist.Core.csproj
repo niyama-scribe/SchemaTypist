@@ -19,7 +19,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<EmbeddedResource Include="@(None -&gt; WithMetadataValue('Extension', '.sbntxt'))" />
+		<EmbeddedResource Include="CSharp7_3.DapperInitialiser.sbntxt" />
+		<EmbeddedResource Include="CSharp7_3.Entities.sbntxt" />
+		<EmbeddedResource Include="CSharp7_3.Persistence.sbntxt" />
+		<EmbeddedResource Include="Default.DapperInitialiser.sbntxt" />
+		<EmbeddedResource Include="Default.Entities.sbntxt" />
+		<EmbeddedResource Include="Default.Persistence.sbntxt" />
 	</ItemGroup>
 
 	<ItemGroup>
