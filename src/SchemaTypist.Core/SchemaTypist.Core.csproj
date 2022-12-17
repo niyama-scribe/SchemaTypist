@@ -33,6 +33,7 @@
 
 	<ItemGroup>
 		<InternalsVisibleToSuffix Include=".Tests" />
+		<InternalsVisibleTo Include="DynamicProxyGenAssembly2" />
 		<InternalsVisibleTo Include="SchemaTypist.SqlVendors.MicrosoftSqlServer" />
 		<InternalsVisibleTo Include="SchemaTypist.SqlVendors.PostgreSql" />
 	</ItemGroup>

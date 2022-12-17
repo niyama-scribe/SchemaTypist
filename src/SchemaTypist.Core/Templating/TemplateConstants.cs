@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using SchemaTypist.Core.Config;
+﻿using SchemaTypist.Core.Config;
 
-namespace SchemaTypist.Core
+namespace SchemaTypist.Core.Templating
 {
     internal static class TemplateConstants
     {

@@ -8,6 +8,7 @@ using SchemaTypist.Core.Model;
 using SchemaTypist.Core.Naming;
 using SchemaTypist.Core.Schemata;
 using SchemaTypist.Core.SqlVendors;
+using SchemaTypist.Core.Templating;
 using SchemaTypist.Core.Utilities;
 
 namespace SchemaTypist.Core
@@ -24,6 +25,7 @@ namespace SchemaTypist.Core
             sc.AddSingleton<ISqlVendorService, SqlVendorService>();
             sc.AddSingleton<ISchemataExtractorService, SchemataExtractorService>();
             sc.AddSingleton<ISchemataConverterService, SchemataConverterService>();
+            sc.AddSingleton<ITemplateService, TemplateService>();
             sc.AddSingleton<ISchemaTypistService, SchemaTypistService>();
         }
 

@@ -7,73 +7,32 @@ using SchemaTypist.Core.Model;
 using SchemaTypist.Core.Naming;
 using SchemaTypist.Core.Schemata;
 using SchemaTypist.Core.SqlVendors;
+using SchemaTypist.Core.Templating;
 using SchemaTypist.Core.Utilities;
 using Scriban;
 using Scriban.Runtime;
 
 namespace SchemaTypist.Core
 {
-    public class SchemaTypistService : ISchemaTypistService
+    internal class SchemaTypistService : ISchemaTypistService
     {
-        private Template EntitiesTemplate;
-        private Template PersistenceTemplate;
-        private Template DapperInitialiserTemplate;
         private readonly IFileSystemWrapper _fileSystem;
         private readonly IPathNamespaceService _pathNamespaceService;
         private readonly ISchemataExtractorService _schemataExtractor;
         private readonly ISchemataConverterService _schemataConverter;
+        private readonly ITemplateService _templateService;
 
         public SchemaTypistService(IFileSystemWrapper fileSystem, 
             IPathNamespaceService pathNamespaceService,
             ISchemataExtractorService schemataExtractor, 
-            ISchemataConverterService schemataConverter)
+            ISchemataConverterService schemataConverter, 
+            ITemplateService templateService)
         {
             _fileSystem = fileSystem;
             _pathNamespaceService = pathNamespaceService;
             _schemataExtractor = schemataExtractor;
             _schemataConverter = schemataConverter;
-        }
-
-        internal Template GetTemplate(string templateFileName)
-        {
-            return Template.Parse(EmbeddedResource.GetContent(templateFileName), templateFileName);
-        }
-
-        internal void LoadTemplates(CodeGenConfig config)
-        {
-            var (entitiesTemplateName, persistenceTemplateName, dapperInitialiserTemplateName) =
-                TemplateConstants.GetTemplateFileNames(config);
-
-            EntitiesTemplate = GetTemplate(entitiesTemplateName);
-            PersistenceTemplate = GetTemplate(persistenceTemplateName);
-            DapperInitialiserTemplate = GetTemplate(dapperInitialiserTemplateName);
-
-            if (EntitiesTemplate.HasErrors)
-            {
-                foreach (var entitiesTemplateMessage in EntitiesTemplate.Messages)
-                {
-                    Console.WriteLine(entitiesTemplateMessage);
-                }
-            }
-        }
-
-        internal string GenerateEntity(TableStructureTemplateModel tableStructureModel)
-        {
-            //Generate entities
-            return EntitiesTemplate.Render(tableStructureModel);
-        }
-
-        internal string GeneratePersistence(PersistenceTemplateModel persistenceModel)
-        {
-            //Generate mappers
-            return PersistenceTemplate.Render(persistenceModel);
-        }
-
-        internal string GenerateDapperMapper(DapperInitialiserTemplateModel dapperInitialiserModel)
-        {
-            //Generate DapperMapper
-            return DapperInitialiserTemplate.Render(dapperInitialiserModel);
-
+            _templateService = templateService;
         }
 
         #region Public Methods
@@ -87,7 +46,7 @@ namespace SchemaTypist.Core
         public void Generate(TabularStructure tab, CodeGenConfig config)
         {
             //Resolve templates to use
-            LoadTemplates(config);
+            _templateService.LoadTemplates(config);
             
             var pathNamespace = _pathNamespaceService.Resolve(config, tab);
             
@@ -104,7 +63,7 @@ namespace SchemaTypist.Core
                 PathNamespace = pathNamespace
             };
 
-            var output = GenerateEntity(etm);
+            var output = _templateService.GenerateEntity(etm);
             _fileSystem.WriteAllText(pathNamespace.EntitiesFilePath, output);
 
             //Generate mapping and write to file
@@ -114,7 +73,7 @@ namespace SchemaTypist.Core
                 TabularStructure = tab,
                 PathNamespace = pathNamespace
             };
-            output = GeneratePersistence(ptm);
+            output = _templateService.GeneratePersistence(ptm);
             _fileSystem.WriteAllText(pathNamespace.PersistenceFilePath, output);
 
         }
@@ -133,7 +92,7 @@ namespace SchemaTypist.Core
                 }).ToList(),
                 PathNamespace = pathNamespace
             };
-            var dapperInitialiserOutput = GenerateDapperMapper(dapperInitialiserModel);
+            var dapperInitialiserOutput = _templateService.GenerateDapperMapper(dapperInitialiserModel);
 
             //Write to file
             _fileSystem.WriteAllText(pathNamespace.DapperInitialiserFilePath, dapperInitialiserOutput);
