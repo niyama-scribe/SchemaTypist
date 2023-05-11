@@ -20,7 +20,3 @@ public partial{{ if config.create_record_entities }} record {{ else }} class {{ 
 	public {{ col.data_type }} {{ col.name }} { get;{{ if config.create_immutable_entities }} init;{{ else }} set;{{ end }} }{{ if col.default_value }} = {{ col.default_value }}; {{ end }}
 	{{~ end ~}}
 }
-
-{{ if config.use_nullable_ref_types }}
-#nullable restore
-{{ end }}

@@ -85,10 +85,10 @@ public class TemplateServiceTests
         var root = syntaxTree.GetCompilationUnitRoot();
         var firstMember = root.Members[0] as NamespaceDeclarationSyntax;
         var firstClass = firstMember?.Members[0] as ClassDeclarationSyntax;
-        var constructor = firstClass.Members.FirstOrDefault(mds => mds.Kind() == SyntaxKind.ConstructorDeclaration)
+        var constructor = firstClass?.Members.FirstOrDefault(mds => mds.IsKind(SyntaxKind.ConstructorDeclaration))
             as ConstructorDeclarationSyntax;
         var innerClass = firstClass?
-            .Members.FirstOrDefault(mds => mds.Kind() == SyntaxKind.ClassDeclaration)
+            .Members.FirstOrDefault(mds => mds.IsKind(SyntaxKind.ClassDeclaration))
             as ClassDeclarationSyntax;
         
         
@@ -96,7 +96,7 @@ public class TemplateServiceTests
         firstMember.Should().NotBeNull();
         firstClass.Should().NotBeNull();
         constructor.Should().NotBeNull();
-        constructor?.Modifiers.Any(st => st.Kind() == SyntaxKind.PrivateKeyword);
+        constructor?.Modifiers.Should().Contain(st => st.IsKind(SyntaxKind.PrivateKeyword));
         innerClass.Should().NotBeNull();
         innerClass.Identifier.Text.Should().Be("Builder");
         
