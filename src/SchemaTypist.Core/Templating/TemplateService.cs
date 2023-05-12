@@ -10,6 +10,10 @@ namespace SchemaTypist.Core.Templating
     {
         private volatile int _isLoaded;
 
+        private Template EntitiesTemplate { get; set; }
+        private Template PersistenceTemplate { get; set; }
+        private Template DapperInitialiserTemplate { get; set; }
+
         public void LoadTemplates(CodeGenConfig config)
         {
             if (Interlocked.CompareExchange(ref _isLoaded, 1, 0) != 0) return;
@@ -19,7 +23,6 @@ namespace SchemaTypist.Core.Templating
             EntitiesTemplate = GetTemplate(entitiesTemplateName);
             PersistenceTemplate = GetTemplate(persistenceTemplateName);
             DapperInitialiserTemplate = GetTemplate(dapperInitialiserTemplateName);
-
         }
 
         public string GenerateEntity(EntitiesTemplateModel entitiesTemplateModel)
@@ -40,10 +43,6 @@ namespace SchemaTypist.Core.Templating
             return DapperInitialiserTemplate.Render(dapperInitialiserModel);
         }
 
-        private Template EntitiesTemplate { get; set; }
-        private Template PersistenceTemplate { get; set; }
-        private Template DapperInitialiserTemplate { get; set; }
-
 
         private void EnsureTemplatesAreLoaded()
         {
@@ -51,7 +50,7 @@ namespace SchemaTypist.Core.Templating
                 throw new InvalidOperationException($"Please call {nameof(LoadTemplates)} first.");
         }
 
-        
+
         private static Template GetTemplate(string templateFileName)
         {
             return Template.Parse(EmbeddedResource.GetContent(templateFileName), templateFileName);
