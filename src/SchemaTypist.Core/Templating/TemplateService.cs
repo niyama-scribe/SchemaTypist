@@ -8,7 +8,7 @@ namespace SchemaTypist.Core.Templating
 {
     internal class TemplateService : ITemplateService
     {
-        private volatile int _isLoaded = 0;
+        private volatile int _isLoaded;
 
         public void LoadTemplates(CodeGenConfig config)
         {
