@@ -14,12 +14,12 @@ namespace SchemaTypist.Samples.NetStandard20.Postgres.Postgres.Sakila.Generated.
 {
 	public partial class Defaulter
 	{
-	public string BlankableCol { get; set; }
-public DateTime DatetimeCol { get; set; }
-public decimal DecimalCol { get; set; } = (decimal) 3.14; 
-public int IntCol { get; set; } = 234; 
-public string NonNullableCol { get; set; }
-public string NullableCol { get; set; }
-public string StringCol { get; set; } = "str"; 
-	    }
+	        public string BlankableCol { get; set; }
+        public DateTime DatetimeCol { get; set; }
+        public decimal DecimalCol { get; set; } = (decimal) 3.14; 
+        public int IntCol { get; set; } = 234; 
+        public string NonNullableCol { get; set; }
+        public string NullableCol { get; set; }
+        public string StringCol { get; set; } = "str"; 
+}
 }
