@@ -28,5 +28,6 @@ namespace SchemaTypist.Samples.NetStandard20.Postgres.Postgres.Sakila.Generated.
     public decimal ReplacementCost { get; set; } = (decimal) 19.99; 
     public object SpecialFeature { get; set; }
     public string Title { get; set; }
-	    }
+
+    }
 }

@@ -22,5 +22,6 @@ namespace SchemaTypist.Samples.NetStandard20.Postgres.Postgres.Sakila.Generated.
     public decimal? Price { get; set; }
     public object Rating { get; set; }
     public string Title { get; set; }
-	    }
+
+    }
 }

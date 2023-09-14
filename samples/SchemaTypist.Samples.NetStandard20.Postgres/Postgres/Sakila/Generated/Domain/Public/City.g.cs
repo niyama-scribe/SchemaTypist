@@ -18,5 +18,6 @@ namespace SchemaTypist.Samples.NetStandard20.Postgres.Postgres.Sakila.Generated.
     public int CityId { get; set; }
     public short CountryId { get; set; }
     public DateTime LastUpdate { get; set; }
-	    }
+
+    }
 }

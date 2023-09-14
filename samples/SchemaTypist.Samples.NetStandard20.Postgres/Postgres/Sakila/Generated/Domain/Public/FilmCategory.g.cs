@@ -17,5 +17,6 @@ namespace SchemaTypist.Samples.NetStandard20.Postgres.Postgres.Sakila.Generated.
 	    public short CategoryId { get; set; }
     public short FilmId { get; set; }
     public DateTime LastUpdate { get; set; }
-	    }
+
+    }
 }

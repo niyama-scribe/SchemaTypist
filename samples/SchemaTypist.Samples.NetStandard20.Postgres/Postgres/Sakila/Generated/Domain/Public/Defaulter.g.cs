@@ -21,5 +21,6 @@ namespace SchemaTypist.Samples.NetStandard20.Postgres.Postgres.Sakila.Generated.
     public string NonNullableCol { get; set; }
     public string NullableCol { get; set; }
     public string StringCol { get; set; } = "str"; 
-	    }
+
+    }
 }

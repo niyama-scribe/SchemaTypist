@@ -23,5 +23,6 @@ namespace SchemaTypist.Samples.NetStandard20.Postgres.Postgres.Sakila.Generated.
     public string Phone { get; set; }
     public short? Sid { get; set; }
     public string ZipCode { get; set; }
-	    }
+
+    }
 }

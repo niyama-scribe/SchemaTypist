@@ -22,5 +22,6 @@ namespace SchemaTypist.Samples.NetStandard20.Postgres.Postgres.Sakila.Generated.
     public DateTime LastUpdate { get; set; }
     public string Phone { get; set; }
     public string PostalCode { get; set; }
-	    }
+
+    }
 }

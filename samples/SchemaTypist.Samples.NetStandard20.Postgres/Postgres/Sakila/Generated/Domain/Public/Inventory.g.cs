@@ -18,5 +18,6 @@ namespace SchemaTypist.Samples.NetStandard20.Postgres.Postgres.Sakila.Generated.
     public int InventoryId { get; set; }
     public DateTime LastUpdate { get; set; }
     public short StoreId { get; set; }
-	    }
+
+    }
 }

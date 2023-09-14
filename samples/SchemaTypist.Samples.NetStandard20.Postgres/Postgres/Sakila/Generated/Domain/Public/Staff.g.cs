@@ -25,5 +25,6 @@ namespace SchemaTypist.Samples.NetStandard20.Postgres.Postgres.Sakila.Generated.
     public int StaffId { get; set; }
     public short StoreId { get; set; }
     public string Username { get; set; }
-	    }
+
+    }
 }
