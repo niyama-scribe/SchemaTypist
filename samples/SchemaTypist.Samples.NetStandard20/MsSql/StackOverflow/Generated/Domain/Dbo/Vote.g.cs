@@ -14,7 +14,7 @@ namespace SchemaTypist.Samples.NetStandard20.MsSql.StackOverflow.Generated.Domai
 {
 	public partial class Vote
 	{
-	   private Vote()
+	    private Vote()
 		{
 		}
 		

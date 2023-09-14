@@ -14,7 +14,7 @@ namespace SchemaTypist.Samples.NetStandard20.MsSql.StackOverflow.Generated.Domai
 {
 	public partial class LinkType
 	{
-	   private LinkType()
+	    private LinkType()
 		{
 		}
 		

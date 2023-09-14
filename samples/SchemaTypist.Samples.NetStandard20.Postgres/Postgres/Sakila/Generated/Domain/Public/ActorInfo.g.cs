@@ -14,10 +14,6 @@ namespace SchemaTypist.Samples.NetStandard20.Postgres.Postgres.Sakila.Generated.
 {
 	public partial class ActorInfo
 	{
-	        public int? ActorId { get; set; }
-        public string FilmInfo { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-
+	public int? ActorId { get; set; }public string FilmInfo { get; set; }public string FirstName { get; set; }public string LastName { get; set; }
 	}
 }
