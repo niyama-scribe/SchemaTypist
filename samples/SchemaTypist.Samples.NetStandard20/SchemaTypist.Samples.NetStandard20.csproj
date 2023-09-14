@@ -33,6 +33,7 @@
 			<SchemaTypist_Include>*</SchemaTypist_Include>
 			<SchemaTypist_RootOutputDir>MsSql\StackOverflow\Generated</SchemaTypist_RootOutputDir>
 			<SchemaTypist_RootNamespace>SchemaTypist.Samples.NetStandard20</SchemaTypist_RootNamespace>
+			<SchemaTypist_TargetLanguageVersion>CSharp7_3</SchemaTypist_TargetLanguageVersion>
 		</PropertyGroup>
 	</Target>
 
