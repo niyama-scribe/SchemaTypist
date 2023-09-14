@@ -14,7 +14,8 @@ namespace SchemaTypist.Samples.NetStandard20.Postgres.Postgres.Sakila.Generated.
 {
 	public partial class Address
 	{
-	        public string Address0 { get; set; }
+	
+        public string Address0 { get; set; }
         public string Address2 { get; set; }
         public int AddressId { get; set; }
         public short CityId { get; set; }
@@ -22,5 +23,6 @@ namespace SchemaTypist.Samples.NetStandard20.Postgres.Postgres.Sakila.Generated.
         public DateTime LastUpdate { get; set; }
         public string Phone { get; set; }
         public string PostalCode { get; set; }
-}
+	    
+    }
 }

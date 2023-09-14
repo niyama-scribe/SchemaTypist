@@ -14,7 +14,9 @@ namespace SchemaTypist.Samples.NetStandard20.Postgres.Postgres.Sakila.Generated.
 {
 	public partial class SalesByFilmCategory
 	{
-	        public string Category { get; set; }
+	
+        public string Category { get; set; }
         public decimal? TotalSale { get; set; }
-}
+	    
+    }
 }

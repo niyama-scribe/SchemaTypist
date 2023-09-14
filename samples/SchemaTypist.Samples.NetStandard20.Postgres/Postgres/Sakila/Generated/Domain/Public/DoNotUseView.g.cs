@@ -14,7 +14,9 @@ namespace SchemaTypist.Samples.NetStandard20.Postgres.Postgres.Sakila.Generated.
 {
 	public partial class DoNotUseView
 	{
-	        public string FirstColumn { get; set; }
+	
+        public string FirstColumn { get; set; }
         public string SecondColumn { get; set; }
-}
+	    
+    }
 }

@@ -14,7 +14,8 @@ namespace SchemaTypist.Samples.NetStandard20.Postgres.Postgres.Sakila.Generated.
 {
 	public partial class Staff
 	{
-	        public bool Active { get; set; }
+	
+        public bool Active { get; set; }
         public short AddressId { get; set; }
         public string Email { get; set; }
         public string FirstName { get; set; }
@@ -25,5 +26,6 @@ namespace SchemaTypist.Samples.NetStandard20.Postgres.Postgres.Sakila.Generated.
         public int StaffId { get; set; }
         public short StoreId { get; set; }
         public string Username { get; set; }
-}
+	    
+    }
 }

@@ -14,8 +14,10 @@ namespace SchemaTypist.Samples.NetStandard20.Postgres.Postgres.Sakila.Generated.
 {
 	public partial class Language
 	{
-	        public int LanguageId { get; set; }
+	
+        public int LanguageId { get; set; }
         public DateTime LastUpdate { get; set; }
         public string Name { get; set; }
-}
+	    
+    }
 }
