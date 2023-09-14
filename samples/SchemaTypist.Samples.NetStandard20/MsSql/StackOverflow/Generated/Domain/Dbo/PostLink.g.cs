@@ -14,70 +14,70 @@ namespace SchemaTypist.Samples.NetStandard20.MsSql.StackOverflow.Generated.Domai
 {
 	public partial class PostLink
 	{
-	    
-	    	    private PostLink()
+	
+		private PostLink()
+		{
+		}
+		
+		public partial class Builder
+		{
+			public Builder()
+			{
+			}
+			
+    	private DateTime _setCreationDate;
+    	public Builder WithCreationDate(DateTime val)
+    	{
+    	    _setCreationDate = val;
+    	    return this;
+    	}
+    	private int _setId;
+    	public Builder WithId(int val)
+    	{
+    	    _setId = val;
+    	    return this;
+    	}
+    	private int _setLinkTypeId;
+    	public Builder WithLinkTypeId(int val)
+    	{
+    	    _setLinkTypeId = val;
+    	    return this;
+    	}
+    	private int _setPostId;
+    	public Builder WithPostId(int val)
+    	{
+    	    _setPostId = val;
+    	    return this;
+    	}
+    	private int _setRelatedPostId;
+    	public Builder WithRelatedPostId(int val)
+    	{
+    	    _setRelatedPostId = val;
+    	    return this;
+    	}
+	    	
+	    	public PostLink Build() 
+	    	{
+	    	    var retVal = new PostLink()
 	    	    {
-	    	    }
-	    	    
-	    	    public partial class Builder
-	    	    {
-	    	        public Builder()
-	    	        {
-	    	        }
-	    	        
-            private DateTime _setCreationDate;
-            public Builder WithCreationDate(DateTime val)
-            {
-                _setCreationDate = val;
-                return this;
-            }
-            private int _setId;
-            public Builder WithId(int val)
-            {
-                _setId = val;
-                return this;
-            }
-            private int _setLinkTypeId;
-            public Builder WithLinkTypeId(int val)
-            {
-                _setLinkTypeId = val;
-                return this;
-            }
-            private int _setPostId;
-            public Builder WithPostId(int val)
-            {
-                _setPostId = val;
-                return this;
-            }
-            private int _setRelatedPostId;
-            public Builder WithRelatedPostId(int val)
-            {
-                _setRelatedPostId = val;
-                return this;
-            }
-	                
-	                public PostLink Build() 
-	                {
-	                    var retVal = new PostLink()
-	                    {
-                        CreationDate = _setCreationDate,
-                        Id = _setId,
-                        LinkTypeId = _setLinkTypeId,
-                        PostId = _setPostId,
-                        RelatedPostId = _setRelatedPostId,
-	                    };
-	                    CustomizeBuild(retVal);
-	                    return retVal;
-	                }
-	                
-	                partial void CustomizeBuild(PostLink entity);
-	    	    }
-	    	    
-        public DateTime CreationDate { get; private set; }
-        public int Id { get; private set; }
-        public int LinkTypeId { get; private set; }
-        public int PostId { get; private set; }
-        public int RelatedPostId { get; private set; }
-	            		
+    	            CreationDate = _setCreationDate,
+    	            Id = _setId,
+    	            LinkTypeId = _setLinkTypeId,
+    	            PostId = _setPostId,
+    	            RelatedPostId = _setRelatedPostId,
+	    	    };
+	    	    CustomizeBuild(retVal);
+	    	    return retVal;
+	    	}
+	    	
+	    	partial void CustomizeBuild(PostLink entity);
+		}
+		
+    public DateTime CreationDate { get; private set; }
+    public int Id { get; private set; }
+    public int LinkTypeId { get; private set; }
+    public int PostId { get; private set; }
+    public int RelatedPostId { get; private set; }
+	    		
 	}
 }

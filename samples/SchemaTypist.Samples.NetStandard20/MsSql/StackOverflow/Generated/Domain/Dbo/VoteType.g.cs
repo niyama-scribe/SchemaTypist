@@ -14,46 +14,46 @@ namespace SchemaTypist.Samples.NetStandard20.MsSql.StackOverflow.Generated.Domai
 {
 	public partial class VoteType
 	{
-	    
-	    	    private VoteType()
+	
+		private VoteType()
+		{
+		}
+		
+		public partial class Builder
+		{
+			public Builder()
+			{
+			}
+			
+    	private int _setId;
+    	public Builder WithId(int val)
+    	{
+    	    _setId = val;
+    	    return this;
+    	}
+    	private string _setName;
+    	public Builder WithName(string val)
+    	{
+    	    _setName = val;
+    	    return this;
+    	}
+	    	
+	    	public VoteType Build() 
+	    	{
+	    	    var retVal = new VoteType()
 	    	    {
-	    	    }
-	    	    
-	    	    public partial class Builder
-	    	    {
-	    	        public Builder()
-	    	        {
-	    	        }
-	    	        
-            private int _setId;
-            public Builder WithId(int val)
-            {
-                _setId = val;
-                return this;
-            }
-            private string _setName;
-            public Builder WithName(string val)
-            {
-                _setName = val;
-                return this;
-            }
-	                
-	                public VoteType Build() 
-	                {
-	                    var retVal = new VoteType()
-	                    {
-                        Id = _setId,
-                        Name = _setName,
-	                    };
-	                    CustomizeBuild(retVal);
-	                    return retVal;
-	                }
-	                
-	                partial void CustomizeBuild(VoteType entity);
-	    	    }
-	    	    
-        public int Id { get; private set; }
-        public string Name { get; private set; }
-	            		
+    	            Id = _setId,
+    	            Name = _setName,
+	    	    };
+	    	    CustomizeBuild(retVal);
+	    	    return retVal;
+	    	}
+	    	
+	    	partial void CustomizeBuild(VoteType entity);
+		}
+		
+    public int Id { get; private set; }
+    public string Name { get; private set; }
+	    		
 	}
 }
