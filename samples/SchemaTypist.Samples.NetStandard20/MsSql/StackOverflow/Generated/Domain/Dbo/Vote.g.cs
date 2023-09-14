@@ -85,5 +85,5 @@ namespace SchemaTypist.Samples.NetStandard20.MsSql.StackOverflow.Generated.Domai
         public int? UserId { get; private set; }
         public int VoteTypeId { get; private set; }
 	    
-	}
+    }
 }

@@ -53,5 +53,5 @@ namespace SchemaTypist.Samples.NetStandard20.MsSql.StackOverflow.Generated.Domai
         public int Id { get; private set; }
         public string Type { get; private set; }
 	    
-	}
+    }
 }

@@ -93,5 +93,5 @@ namespace SchemaTypist.Samples.NetStandard20.MsSql.StackOverflow.Generated.Domai
         public string NullableCol { get; private set; }
         public string StringCol { get; private set; }
 	    
-	}
+    }
 }

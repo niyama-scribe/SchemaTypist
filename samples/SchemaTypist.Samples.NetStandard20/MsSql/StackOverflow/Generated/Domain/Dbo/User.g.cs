@@ -149,5 +149,5 @@ namespace SchemaTypist.Samples.NetStandard20.MsSql.StackOverflow.Generated.Domai
         public int View { get; private set; }
         public string WebsiteUrl { get; private set; }
 	    
-	}
+    }
 }

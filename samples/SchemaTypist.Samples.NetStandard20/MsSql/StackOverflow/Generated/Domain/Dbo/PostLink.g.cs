@@ -77,5 +77,5 @@ namespace SchemaTypist.Samples.NetStandard20.MsSql.StackOverflow.Generated.Domai
         public int PostId { get; private set; }
         public int RelatedPostId { get; private set; }
 	    
-	}
+    }
 }

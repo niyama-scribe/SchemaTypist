@@ -197,5 +197,5 @@ namespace SchemaTypist.Samples.NetStandard20.MsSql.StackOverflow.Generated.Domai
         public string Title { get; private set; }
         public int ViewCount { get; private set; }
 	    
-	}
+    }
 }
