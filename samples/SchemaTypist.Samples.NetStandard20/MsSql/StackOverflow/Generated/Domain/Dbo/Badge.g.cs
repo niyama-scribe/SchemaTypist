@@ -25,30 +25,30 @@ namespace SchemaTypist.Samples.NetStandard20.MsSql.StackOverflow.Generated.Domai
 			{
 			}
 			
-    	private DateTime _setDate;
-    	public Builder WithDate(DateTime val)
-    	{
-    	    _setDate = val;
-    	    return this;
-    	}
-    	private int _setId;
-    	public Builder WithId(int val)
-    	{
-    	    _setId = val;
-    	    return this;
-    	}
-    	private string _setName;
-    	public Builder WithName(string val)
-    	{
-    	    _setName = val;
-    	    return this;
-    	}
-    	private int _setUserId;
-    	public Builder WithUserId(int val)
-    	{
-    	    _setUserId = val;
-    	    return this;
-    	}
+            private DateTime _setDate;
+            public Builder WithDate(DateTime val)
+            {
+                _setDate = val;
+                return this;
+            }
+            private int _setId;
+            public Builder WithId(int val)
+            {
+                _setId = val;
+                return this;
+            }
+            private string _setName;
+            public Builder WithName(string val)
+            {
+                _setName = val;
+                return this;
+            }
+            private int _setUserId;
+            public Builder WithUserId(int val)
+            {
+                _setUserId = val;
+                return this;
+            }
 	    	
 	    	public Badge Build() 
 	    	{

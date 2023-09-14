@@ -25,48 +25,48 @@ namespace SchemaTypist.Samples.NetStandard20.MsSql.StackOverflow.Generated.Domai
 			{
 			}
 			
-    	private string _setBlankableCol;
-    	public Builder WithBlankableCol(string val)
-    	{
-    	    _setBlankableCol = val;
-    	    return this;
-    	}
-    	private DateTime _setDatetimeCol;
-    	public Builder WithDatetimeCol(DateTime val)
-    	{
-    	    _setDatetimeCol = val;
-    	    return this;
-    	}
-    	private decimal _setDecimalCol = (decimal) 3.14 ;
-    	public Builder WithDecimalCol(decimal val)
-    	{
-    	    _setDecimalCol = val;
-    	    return this;
-    	}
-    	private int _setIntCol = 234 ;
-    	public Builder WithIntCol(int val)
-    	{
-    	    _setIntCol = val;
-    	    return this;
-    	}
-    	private string _setNonNullableCol;
-    	public Builder WithNonNullableCol(string val)
-    	{
-    	    _setNonNullableCol = val;
-    	    return this;
-    	}
-    	private string _setNullableCol;
-    	public Builder WithNullableCol(string val)
-    	{
-    	    _setNullableCol = val;
-    	    return this;
-    	}
-    	private string _setStringCol = "str" ;
-    	public Builder WithStringCol(string val)
-    	{
-    	    _setStringCol = val;
-    	    return this;
-    	}
+            private string _setBlankableCol;
+            public Builder WithBlankableCol(string val)
+            {
+                _setBlankableCol = val;
+                return this;
+            }
+            private DateTime _setDatetimeCol;
+            public Builder WithDatetimeCol(DateTime val)
+            {
+                _setDatetimeCol = val;
+                return this;
+            }
+            private decimal _setDecimalCol = (decimal) 3.14 ;
+            public Builder WithDecimalCol(decimal val)
+            {
+                _setDecimalCol = val;
+                return this;
+            }
+            private int _setIntCol = 234 ;
+            public Builder WithIntCol(int val)
+            {
+                _setIntCol = val;
+                return this;
+            }
+            private string _setNonNullableCol;
+            public Builder WithNonNullableCol(string val)
+            {
+                _setNonNullableCol = val;
+                return this;
+            }
+            private string _setNullableCol;
+            public Builder WithNullableCol(string val)
+            {
+                _setNullableCol = val;
+                return this;
+            }
+            private string _setStringCol = "str" ;
+            public Builder WithStringCol(string val)
+            {
+                _setStringCol = val;
+                return this;
+            }
 	    	
 	    	public Defaulter Build() 
 	    	{

@@ -25,126 +25,126 @@ namespace SchemaTypist.Samples.NetStandard20.MsSql.StackOverflow.Generated.Domai
 			{
 			}
 			
-    	private int? _setAcceptedAnswerId;
-    	public Builder WithAcceptedAnswerId(int? val)
-    	{
-    	    _setAcceptedAnswerId = val;
-    	    return this;
-    	}
-    	private int? _setAnswerCount;
-    	public Builder WithAnswerCount(int? val)
-    	{
-    	    _setAnswerCount = val;
-    	    return this;
-    	}
-    	private string _setBody;
-    	public Builder WithBody(string val)
-    	{
-    	    _setBody = val;
-    	    return this;
-    	}
-    	private DateTime? _setClosedDate;
-    	public Builder WithClosedDate(DateTime? val)
-    	{
-    	    _setClosedDate = val;
-    	    return this;
-    	}
-    	private int? _setCommentCount;
-    	public Builder WithCommentCount(int? val)
-    	{
-    	    _setCommentCount = val;
-    	    return this;
-    	}
-    	private DateTime? _setCommunityOwnedDate;
-    	public Builder WithCommunityOwnedDate(DateTime? val)
-    	{
-    	    _setCommunityOwnedDate = val;
-    	    return this;
-    	}
-    	private DateTime _setCreationDate;
-    	public Builder WithCreationDate(DateTime val)
-    	{
-    	    _setCreationDate = val;
-    	    return this;
-    	}
-    	private int? _setFavoriteCount;
-    	public Builder WithFavoriteCount(int? val)
-    	{
-    	    _setFavoriteCount = val;
-    	    return this;
-    	}
-    	private int _setId;
-    	public Builder WithId(int val)
-    	{
-    	    _setId = val;
-    	    return this;
-    	}
-    	private DateTime? _setLastActivityDt;
-    	public Builder WithLastActivityDt(DateTime? val)
-    	{
-    	    _setLastActivityDt = val;
-    	    return this;
-    	}
-    	private DateTime? _setLastEditDate;
-    	public Builder WithLastEditDate(DateTime? val)
-    	{
-    	    _setLastEditDate = val;
-    	    return this;
-    	}
-    	private string _setLastEditorDisplayName;
-    	public Builder WithLastEditorDisplayName(string val)
-    	{
-    	    _setLastEditorDisplayName = val;
-    	    return this;
-    	}
-    	private int? _setLastEditorUserId;
-    	public Builder WithLastEditorUserId(int? val)
-    	{
-    	    _setLastEditorUserId = val;
-    	    return this;
-    	}
-    	private int? _setOwnerUserId;
-    	public Builder WithOwnerUserId(int? val)
-    	{
-    	    _setOwnerUserId = val;
-    	    return this;
-    	}
-    	private int? _setParentId;
-    	public Builder WithParentId(int? val)
-    	{
-    	    _setParentId = val;
-    	    return this;
-    	}
-    	private int _setPostTypeId;
-    	public Builder WithPostTypeId(int val)
-    	{
-    	    _setPostTypeId = val;
-    	    return this;
-    	}
-    	private int _setScore;
-    	public Builder WithScore(int val)
-    	{
-    	    _setScore = val;
-    	    return this;
-    	}
-    	private string _setTag;
-    	public Builder WithTag(string val)
-    	{
-    	    _setTag = val;
-    	    return this;
-    	}
-    	private string _setTitle;
-    	public Builder WithTitle(string val)
-    	{
-    	    _setTitle = val;
-    	    return this;
-    	}
-    	private int _setViewCount;
-    	public Builder WithViewCount(int val)
-    	{
-    	    _setViewCount = val;
-    	    return this;
-    	}
+            private int? _setAcceptedAnswerId;
+            public Builder WithAcceptedAnswerId(int? val)
+            {
+                _setAcceptedAnswerId = val;
+                return this;
+            }
+            private int? _setAnswerCount;
+            public Builder WithAnswerCount(int? val)
+            {
+                _setAnswerCount = val;
+                return this;
+            }
+            private string _setBody;
+            public Builder WithBody(string val)
+            {
+                _setBody = val;
+                return this;
+            }
+            private DateTime? _setClosedDate;
+            public Builder WithClosedDate(DateTime? val)
+            {
+                _setClosedDate = val;
+                return this;
+            }
+            private int? _setCommentCount;
+            public Builder WithCommentCount(int? val)
+            {
+                _setCommentCount = val;
+                return this;
+            }
+            private DateTime? _setCommunityOwnedDate;
+            public Builder WithCommunityOwnedDate(DateTime? val)
+            {
+                _setCommunityOwnedDate = val;
+                return this;
+            }
+            private DateTime _setCreationDate;
+            public Builder WithCreationDate(DateTime val)
+            {
+                _setCreationDate = val;
+                return this;
+            }
+            private int? _setFavoriteCount;
+            public Builder WithFavoriteCount(int? val)
+            {
+                _setFavoriteCount = val;
+                return this;
+            }
+            private int _setId;
+            public Builder WithId(int val)
+            {
+                _setId = val;
+                return this;
+            }
+            private DateTime? _setLastActivityDt;
+            public Builder WithLastActivityDt(DateTime? val)
+            {
+                _setLastActivityDt = val;
+                return this;
+            }
+            private DateTime? _setLastEditDate;
+            public Builder WithLastEditDate(DateTime? val)
+            {
+                _setLastEditDate = val;
+                return this;
+            }
+            private string _setLastEditorDisplayName;
+            public Builder WithLastEditorDisplayName(string val)
+            {
+                _setLastEditorDisplayName = val;
+                return this;
+            }
+            private int? _setLastEditorUserId;
+            public Builder WithLastEditorUserId(int? val)
+            {
+                _setLastEditorUserId = val;
+                return this;
+            }
+            private int? _setOwnerUserId;
+            public Builder WithOwnerUserId(int? val)
+            {
+                _setOwnerUserId = val;
+                return this;
+            }
+            private int? _setParentId;
+            public Builder WithParentId(int? val)
+            {
+                _setParentId = val;
+                return this;
+            }
+            private int _setPostTypeId;
+            public Builder WithPostTypeId(int val)
+            {
+                _setPostTypeId = val;
+                return this;
+            }
+            private int _setScore;
+            public Builder WithScore(int val)
+            {
+                _setScore = val;
+                return this;
+            }
+            private string _setTag;
+            public Builder WithTag(string val)
+            {
+                _setTag = val;
+                return this;
+            }
+            private string _setTitle;
+            public Builder WithTitle(string val)
+            {
+                _setTitle = val;
+                return this;
+            }
+            private int _setViewCount;
+            public Builder WithViewCount(int val)
+            {
+                _setViewCount = val;
+                return this;
+            }
 	    	
 	    	public VWPost Build() 
 	    	{

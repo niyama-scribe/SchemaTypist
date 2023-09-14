@@ -25,42 +25,42 @@ namespace SchemaTypist.Samples.NetStandard20.MsSql.StackOverflow.Generated.Domai
 			{
 			}
 			
-    	private int? _setBountyAmount;
-    	public Builder WithBountyAmount(int? val)
-    	{
-    	    _setBountyAmount = val;
-    	    return this;
-    	}
-    	private DateTime _setCreationDate;
-    	public Builder WithCreationDate(DateTime val)
-    	{
-    	    _setCreationDate = val;
-    	    return this;
-    	}
-    	private int _setId;
-    	public Builder WithId(int val)
-    	{
-    	    _setId = val;
-    	    return this;
-    	}
-    	private int _setPostId;
-    	public Builder WithPostId(int val)
-    	{
-    	    _setPostId = val;
-    	    return this;
-    	}
-    	private int? _setUserId;
-    	public Builder WithUserId(int? val)
-    	{
-    	    _setUserId = val;
-    	    return this;
-    	}
-    	private int _setVoteTypeId;
-    	public Builder WithVoteTypeId(int val)
-    	{
-    	    _setVoteTypeId = val;
-    	    return this;
-    	}
+            private int? _setBountyAmount;
+            public Builder WithBountyAmount(int? val)
+            {
+                _setBountyAmount = val;
+                return this;
+            }
+            private DateTime _setCreationDate;
+            public Builder WithCreationDate(DateTime val)
+            {
+                _setCreationDate = val;
+                return this;
+            }
+            private int _setId;
+            public Builder WithId(int val)
+            {
+                _setId = val;
+                return this;
+            }
+            private int _setPostId;
+            public Builder WithPostId(int val)
+            {
+                _setPostId = val;
+                return this;
+            }
+            private int? _setUserId;
+            public Builder WithUserId(int? val)
+            {
+                _setUserId = val;
+                return this;
+            }
+            private int _setVoteTypeId;
+            public Builder WithVoteTypeId(int val)
+            {
+                _setVoteTypeId = val;
+                return this;
+            }
 	    	
 	    	public Vote Build() 
 	    	{

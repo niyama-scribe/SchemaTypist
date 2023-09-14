@@ -25,42 +25,42 @@ namespace SchemaTypist.Samples.NetStandard20.MsSql.StackOverflow.Generated.Domai
 			{
 			}
 			
-    	private DateTime _setCreationDate;
-    	public Builder WithCreationDate(DateTime val)
-    	{
-    	    _setCreationDate = val;
-    	    return this;
-    	}
-    	private int _setId;
-    	public Builder WithId(int val)
-    	{
-    	    _setId = val;
-    	    return this;
-    	}
-    	private int _setPostId;
-    	public Builder WithPostId(int val)
-    	{
-    	    _setPostId = val;
-    	    return this;
-    	}
-    	private int? _setScore;
-    	public Builder WithScore(int? val)
-    	{
-    	    _setScore = val;
-    	    return this;
-    	}
-    	private string _setText;
-    	public Builder WithText(string val)
-    	{
-    	    _setText = val;
-    	    return this;
-    	}
-    	private int? _setUserId;
-    	public Builder WithUserId(int? val)
-    	{
-    	    _setUserId = val;
-    	    return this;
-    	}
+            private DateTime _setCreationDate;
+            public Builder WithCreationDate(DateTime val)
+            {
+                _setCreationDate = val;
+                return this;
+            }
+            private int _setId;
+            public Builder WithId(int val)
+            {
+                _setId = val;
+                return this;
+            }
+            private int _setPostId;
+            public Builder WithPostId(int val)
+            {
+                _setPostId = val;
+                return this;
+            }
+            private int? _setScore;
+            public Builder WithScore(int? val)
+            {
+                _setScore = val;
+                return this;
+            }
+            private string _setText;
+            public Builder WithText(string val)
+            {
+                _setText = val;
+                return this;
+            }
+            private int? _setUserId;
+            public Builder WithUserId(int? val)
+            {
+                _setUserId = val;
+                return this;
+            }
 	    	
 	    	public Comment Build() 
 	    	{

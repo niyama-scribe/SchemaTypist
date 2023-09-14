@@ -25,18 +25,18 @@ namespace SchemaTypist.Samples.NetStandard20.MsSql.StackOverflow.Generated.Domai
 			{
 			}
 			
-    	private int _setId;
-    	public Builder WithId(int val)
-    	{
-    	    _setId = val;
-    	    return this;
-    	}
-    	private string _setName;
-    	public Builder WithName(string val)
-    	{
-    	    _setName = val;
-    	    return this;
-    	}
+            private int _setId;
+            public Builder WithId(int val)
+            {
+                _setId = val;
+                return this;
+            }
+            private string _setName;
+            public Builder WithName(string val)
+            {
+                _setName = val;
+                return this;
+            }
 	    	
 	    	public VoteType Build() 
 	    	{

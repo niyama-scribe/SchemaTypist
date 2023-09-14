@@ -25,90 +25,90 @@ namespace SchemaTypist.Samples.NetStandard20.MsSql.StackOverflow.Generated.Domai
 			{
 			}
 			
-    	private string _setAboutMe;
-    	public Builder WithAboutMe(string val)
-    	{
-    	    _setAboutMe = val;
-    	    return this;
-    	}
-    	private int? _setAccountId;
-    	public Builder WithAccountId(int? val)
-    	{
-    	    _setAccountId = val;
-    	    return this;
-    	}
-    	private int? _setAge;
-    	public Builder WithAge(int? val)
-    	{
-    	    _setAge = val;
-    	    return this;
-    	}
-    	private DateTime _setCreationDate;
-    	public Builder WithCreationDate(DateTime val)
-    	{
-    	    _setCreationDate = val;
-    	    return this;
-    	}
-    	private string _setDisplayName;
-    	public Builder WithDisplayName(string val)
-    	{
-    	    _setDisplayName = val;
-    	    return this;
-    	}
-    	private int _setDownVote;
-    	public Builder WithDownVote(int val)
-    	{
-    	    _setDownVote = val;
-    	    return this;
-    	}
-    	private string _setEmailHash;
-    	public Builder WithEmailHash(string val)
-    	{
-    	    _setEmailHash = val;
-    	    return this;
-    	}
-    	private int _setId;
-    	public Builder WithId(int val)
-    	{
-    	    _setId = val;
-    	    return this;
-    	}
-    	private DateTime _setLastAccessDate;
-    	public Builder WithLastAccessDate(DateTime val)
-    	{
-    	    _setLastAccessDate = val;
-    	    return this;
-    	}
-    	private string _setLocation;
-    	public Builder WithLocation(string val)
-    	{
-    	    _setLocation = val;
-    	    return this;
-    	}
-    	private int _setReputation;
-    	public Builder WithReputation(int val)
-    	{
-    	    _setReputation = val;
-    	    return this;
-    	}
-    	private int _setUpVote;
-    	public Builder WithUpVote(int val)
-    	{
-    	    _setUpVote = val;
-    	    return this;
-    	}
-    	private int _setView;
-    	public Builder WithView(int val)
-    	{
-    	    _setView = val;
-    	    return this;
-    	}
-    	private string _setWebsiteUrl;
-    	public Builder WithWebsiteUrl(string val)
-    	{
-    	    _setWebsiteUrl = val;
-    	    return this;
-    	}
+            private string _setAboutMe;
+            public Builder WithAboutMe(string val)
+            {
+                _setAboutMe = val;
+                return this;
+            }
+            private int? _setAccountId;
+            public Builder WithAccountId(int? val)
+            {
+                _setAccountId = val;
+                return this;
+            }
+            private int? _setAge;
+            public Builder WithAge(int? val)
+            {
+                _setAge = val;
+                return this;
+            }
+            private DateTime _setCreationDate;
+            public Builder WithCreationDate(DateTime val)
+            {
+                _setCreationDate = val;
+                return this;
+            }
+            private string _setDisplayName;
+            public Builder WithDisplayName(string val)
+            {
+                _setDisplayName = val;
+                return this;
+            }
+            private int _setDownVote;
+            public Builder WithDownVote(int val)
+            {
+                _setDownVote = val;
+                return this;
+            }
+            private string _setEmailHash;
+            public Builder WithEmailHash(string val)
+            {
+                _setEmailHash = val;
+                return this;
+            }
+            private int _setId;
+            public Builder WithId(int val)
+            {
+                _setId = val;
+                return this;
+            }
+            private DateTime _setLastAccessDate;
+            public Builder WithLastAccessDate(DateTime val)
+            {
+                _setLastAccessDate = val;
+                return this;
+            }
+            private string _setLocation;
+            public Builder WithLocation(string val)
+            {
+                _setLocation = val;
+                return this;
+            }
+            private int _setReputation;
+            public Builder WithReputation(int val)
+            {
+                _setReputation = val;
+                return this;
+            }
+            private int _setUpVote;
+            public Builder WithUpVote(int val)
+            {
+                _setUpVote = val;
+                return this;
+            }
+            private int _setView;
+            public Builder WithView(int val)
+            {
+                _setView = val;
+                return this;
+            }
+            private string _setWebsiteUrl;
+            public Builder WithWebsiteUrl(string val)
+            {
+                _setWebsiteUrl = val;
+                return this;
+            }
 	    	
 	    	public User Build() 
 	    	{
