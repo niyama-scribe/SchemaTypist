@@ -14,8 +14,7 @@ namespace SchemaTypist.Samples.NetStandard20.Postgres.Postgres.Sakila.Generated.
 {
 	public partial class Defaulter
 	{
-	
-public string BlankableCol { get; set; }
+	public string BlankableCol { get; set; }
 public DateTime DatetimeCol { get; set; }
 public decimal DecimalCol { get; set; } = (decimal) 3.14; 
 public int IntCol { get; set; } = 234; 

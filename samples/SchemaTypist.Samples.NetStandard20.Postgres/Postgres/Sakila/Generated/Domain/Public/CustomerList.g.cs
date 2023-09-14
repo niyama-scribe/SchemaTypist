@@ -14,8 +14,7 @@ namespace SchemaTypist.Samples.NetStandard20.Postgres.Postgres.Sakila.Generated.
 {
 	public partial class CustomerList
 	{
-	
-public string Address { get; set; }
+	public string Address { get; set; }
 public string City { get; set; }
 public string Country { get; set; }
 public int? Id { get; set; }

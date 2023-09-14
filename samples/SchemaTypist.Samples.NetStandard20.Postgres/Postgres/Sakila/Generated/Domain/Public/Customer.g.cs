@@ -14,8 +14,7 @@ namespace SchemaTypist.Samples.NetStandard20.Postgres.Postgres.Sakila.Generated.
 {
 	public partial class Customer
 	{
-	
-public int? Active { get; set; }
+	public int? Active { get; set; }
 public bool Activebool { get; set; }
 public short AddressId { get; set; }
 public DateTime CreateDate { get; set; }
