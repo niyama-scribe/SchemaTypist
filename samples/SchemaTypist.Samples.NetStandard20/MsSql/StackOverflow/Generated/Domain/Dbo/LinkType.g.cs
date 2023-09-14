@@ -14,8 +14,7 @@ namespace SchemaTypist.Samples.NetStandard20.MsSql.StackOverflow.Generated.Domai
 {
 	public partial class LinkType
 	{
-	
-		private LinkType()
+	private LinkType()
 		{
 		}
 		
@@ -51,9 +50,7 @@ namespace SchemaTypist.Samples.NetStandard20.MsSql.StackOverflow.Generated.Domai
 	    	
 	    	partial void CustomizeBuild(LinkType entity);
 		}
-		
     public int Id { get; private set; }
     public string Type { get; private set; }
-	    		
-	}
+	    }
 }

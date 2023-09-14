@@ -14,8 +14,7 @@ namespace SchemaTypist.Samples.NetStandard20.MsSql.StackOverflow.Generated.Domai
 {
 	public partial class Vote
 	{
-	
-		private Vote()
+	private Vote()
 		{
 		}
 		
@@ -79,13 +78,11 @@ namespace SchemaTypist.Samples.NetStandard20.MsSql.StackOverflow.Generated.Domai
 	    	
 	    	partial void CustomizeBuild(Vote entity);
 		}
-		
     public int? BountyAmount { get; private set; }
     public DateTime CreationDate { get; private set; }
     public int Id { get; private set; }
     public int PostId { get; private set; }
     public int? UserId { get; private set; }
     public int VoteTypeId { get; private set; }
-	    		
-	}
+	    }
 }

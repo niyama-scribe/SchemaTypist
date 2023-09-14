@@ -14,8 +14,7 @@ namespace SchemaTypist.Samples.NetStandard20.MsSql.StackOverflow.Generated.Domai
 {
 	public partial class PostWithType
 	{
-	
-		private PostWithType()
+	private PostWithType()
 		{
 		}
 		
@@ -191,7 +190,6 @@ namespace SchemaTypist.Samples.NetStandard20.MsSql.StackOverflow.Generated.Domai
 	    	
 	    	partial void CustomizeBuild(PostWithType entity);
 		}
-		
     public int? AcceptedAnswerId { get; private set; }
     public int? AnswerCount { get; private set; }
     public string Body { get; private set; }
@@ -214,6 +212,5 @@ namespace SchemaTypist.Samples.NetStandard20.MsSql.StackOverflow.Generated.Domai
     public string Title { get; private set; }
     public string Type { get; private set; }
     public int ViewCount { get; private set; }
-	    		
-	}
+	    }
 }

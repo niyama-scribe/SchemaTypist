@@ -14,8 +14,7 @@ namespace SchemaTypist.Samples.NetStandard20.MsSql.StackOverflow.Generated.Domai
 {
 	public partial class VWPost
 	{
-	
-		private VWPost()
+	private VWPost()
 		{
 		}
 		
@@ -177,7 +176,6 @@ namespace SchemaTypist.Samples.NetStandard20.MsSql.StackOverflow.Generated.Domai
 	    	
 	    	partial void CustomizeBuild(VWPost entity);
 		}
-		
     public int? AcceptedAnswerId { get; private set; }
     public int? AnswerCount { get; private set; }
     public string Body { get; private set; }
@@ -198,6 +196,5 @@ namespace SchemaTypist.Samples.NetStandard20.MsSql.StackOverflow.Generated.Domai
     public string Tag { get; private set; }
     public string Title { get; private set; }
     public int ViewCount { get; private set; }
-	    		
-	}
+	    }
 }

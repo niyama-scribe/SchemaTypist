@@ -14,8 +14,7 @@ namespace SchemaTypist.Samples.NetStandard20.MsSql.StackOverflow.Generated.Domai
 {
 	public partial class Comment
 	{
-	
-		private Comment()
+	private Comment()
 		{
 		}
 		
@@ -79,13 +78,11 @@ namespace SchemaTypist.Samples.NetStandard20.MsSql.StackOverflow.Generated.Domai
 	    	
 	    	partial void CustomizeBuild(Comment entity);
 		}
-		
     public DateTime CreationDate { get; private set; }
     public int Id { get; private set; }
     public int PostId { get; private set; }
     public int? Score { get; private set; }
     public string Text { get; private set; }
     public int? UserId { get; private set; }
-	    		
-	}
+	    }
 }
