@@ -14,10 +14,10 @@ namespace SchemaTypist.Samples.NetStandard20.Postgres.Postgres.Sakila.Generated.
 {
 	public partial class City
 	{
-	    public string City0 { get; set; }
-    public int CityId { get; set; }
-    public short CountryId { get; set; }
-    public DateTime LastUpdate { get; set; }
+	        public string City0 { get; set; }
+        public int CityId { get; set; }
+        public short CountryId { get; set; }
+        public DateTime LastUpdate { get; set; }
 
 	}
 }
