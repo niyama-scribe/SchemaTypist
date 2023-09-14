@@ -14,10 +14,9 @@ namespace SchemaTypist.Samples.NetStandard20.Postgres.Postgres.Sakila.Generated.
 {
 	public partial class Category
 	{
-	    
-        public int CategoryId { get; set; }
+	        public int CategoryId { get; set; }
         public DateTime LastUpdate { get; set; }
         public string Name { get; set; }
-	    	    		
+
 	}
 }

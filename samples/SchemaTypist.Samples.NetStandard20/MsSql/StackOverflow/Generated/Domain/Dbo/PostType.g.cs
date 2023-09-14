@@ -14,7 +14,7 @@ namespace SchemaTypist.Samples.NetStandard20.MsSql.StackOverflow.Generated.Domai
 {
 	public partial class PostType
 	{
-	private PostType()
+	   private PostType()
 		{
 		}
 		
@@ -50,7 +50,8 @@ namespace SchemaTypist.Samples.NetStandard20.MsSql.StackOverflow.Generated.Domai
 	    	
 	    	partial void CustomizeBuild(PostType entity);
 		}
-    public int Id { get; private set; }
-    public string Type { get; private set; }
-	    }
+        public int Id { get; private set; }
+        public string Type { get; private set; }
+	    
+	}
 }

@@ -14,7 +14,7 @@ namespace SchemaTypist.Samples.NetStandard20.MsSql.StackOverflow.Generated.Domai
 {
 	public partial class User
 	{
-	private User()
+	   private User()
 		{
 		}
 		
@@ -134,19 +134,20 @@ namespace SchemaTypist.Samples.NetStandard20.MsSql.StackOverflow.Generated.Domai
 	    	
 	    	partial void CustomizeBuild(User entity);
 		}
-    public string AboutMe { get; private set; }
-    public int? AccountId { get; private set; }
-    public int? Age { get; private set; }
-    public DateTime CreationDate { get; private set; }
-    public string DisplayName { get; private set; }
-    public int DownVote { get; private set; }
-    public string EmailHash { get; private set; }
-    public int Id { get; private set; }
-    public DateTime LastAccessDate { get; private set; }
-    public string Location { get; private set; }
-    public int Reputation { get; private set; }
-    public int UpVote { get; private set; }
-    public int View { get; private set; }
-    public string WebsiteUrl { get; private set; }
-	    }
+        public string AboutMe { get; private set; }
+        public int? AccountId { get; private set; }
+        public int? Age { get; private set; }
+        public DateTime CreationDate { get; private set; }
+        public string DisplayName { get; private set; }
+        public int DownVote { get; private set; }
+        public string EmailHash { get; private set; }
+        public int Id { get; private set; }
+        public DateTime LastAccessDate { get; private set; }
+        public string Location { get; private set; }
+        public int Reputation { get; private set; }
+        public int UpVote { get; private set; }
+        public int View { get; private set; }
+        public string WebsiteUrl { get; private set; }
+	    
+	}
 }

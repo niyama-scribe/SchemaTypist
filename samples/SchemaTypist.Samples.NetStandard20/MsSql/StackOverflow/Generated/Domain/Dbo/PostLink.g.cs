@@ -14,7 +14,7 @@ namespace SchemaTypist.Samples.NetStandard20.MsSql.StackOverflow.Generated.Domai
 {
 	public partial class PostLink
 	{
-	private PostLink()
+	   private PostLink()
 		{
 		}
 		
@@ -71,10 +71,11 @@ namespace SchemaTypist.Samples.NetStandard20.MsSql.StackOverflow.Generated.Domai
 	    	
 	    	partial void CustomizeBuild(PostLink entity);
 		}
-    public DateTime CreationDate { get; private set; }
-    public int Id { get; private set; }
-    public int LinkTypeId { get; private set; }
-    public int PostId { get; private set; }
-    public int RelatedPostId { get; private set; }
-	    }
+        public DateTime CreationDate { get; private set; }
+        public int Id { get; private set; }
+        public int LinkTypeId { get; private set; }
+        public int PostId { get; private set; }
+        public int RelatedPostId { get; private set; }
+	    
+	}
 }

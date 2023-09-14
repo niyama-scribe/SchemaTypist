@@ -14,7 +14,7 @@ namespace SchemaTypist.Samples.NetStandard20.MsSql.StackOverflow.Generated.Domai
 {
 	public partial class Defaulter
 	{
-	private Defaulter()
+	   private Defaulter()
 		{
 		}
 		
@@ -85,12 +85,13 @@ namespace SchemaTypist.Samples.NetStandard20.MsSql.StackOverflow.Generated.Domai
 	    	
 	    	partial void CustomizeBuild(Defaulter entity);
 		}
-    public string BlankableCol { get; private set; }
-    public DateTime DatetimeCol { get; private set; }
-    public decimal DecimalCol { get; private set; }
-    public int IntCol { get; private set; }
-    public string NonNullableCol { get; private set; }
-    public string NullableCol { get; private set; }
-    public string StringCol { get; private set; }
-	    }
+        public string BlankableCol { get; private set; }
+        public DateTime DatetimeCol { get; private set; }
+        public decimal DecimalCol { get; private set; }
+        public int IntCol { get; private set; }
+        public string NonNullableCol { get; private set; }
+        public string NullableCol { get; private set; }
+        public string StringCol { get; private set; }
+	    
+	}
 }

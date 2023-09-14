@@ -14,8 +14,7 @@ namespace SchemaTypist.Samples.NetStandard20.Postgres.Postgres.Sakila.Generated.
 {
 	public partial class NicerButSlowerFilmList
 	{
-	    
-        public string Actor { get; set; }
+	        public string Actor { get; set; }
         public string Category { get; set; }
         public string Description { get; set; }
         public int? Fid { get; set; }
@@ -23,6 +22,6 @@ namespace SchemaTypist.Samples.NetStandard20.Postgres.Postgres.Sakila.Generated.
         public decimal? Price { get; set; }
         public object Rating { get; set; }
         public string Title { get; set; }
-	    	    		
+
 	}
 }

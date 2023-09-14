@@ -14,7 +14,7 @@ namespace SchemaTypist.Samples.NetStandard20.MsSql.StackOverflow.Generated.Domai
 {
 	public partial class Badge
 	{
-	private Badge()
+	   private Badge()
 		{
 		}
 		
@@ -64,9 +64,10 @@ namespace SchemaTypist.Samples.NetStandard20.MsSql.StackOverflow.Generated.Domai
 	    	
 	    	partial void CustomizeBuild(Badge entity);
 		}
-    public DateTime Date { get; private set; }
-    public int Id { get; private set; }
-    public string Name { get; private set; }
-    public int UserId { get; private set; }
-	    }
+        public DateTime Date { get; private set; }
+        public int Id { get; private set; }
+        public string Name { get; private set; }
+        public int UserId { get; private set; }
+	    
+	}
 }

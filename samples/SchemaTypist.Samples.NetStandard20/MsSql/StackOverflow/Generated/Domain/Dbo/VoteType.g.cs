@@ -14,7 +14,7 @@ namespace SchemaTypist.Samples.NetStandard20.MsSql.StackOverflow.Generated.Domai
 {
 	public partial class VoteType
 	{
-	private VoteType()
+	   private VoteType()
 		{
 		}
 		
@@ -50,7 +50,8 @@ namespace SchemaTypist.Samples.NetStandard20.MsSql.StackOverflow.Generated.Domai
 	    	
 	    	partial void CustomizeBuild(VoteType entity);
 		}
-    public int Id { get; private set; }
-    public string Name { get; private set; }
-	    }
+        public int Id { get; private set; }
+        public string Name { get; private set; }
+	    
+	}
 }
