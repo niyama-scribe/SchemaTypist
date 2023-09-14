@@ -37,6 +37,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchemaTypist.Samples.NetFra
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SchemaTypist.Samples.NetStandard20", "samples\SchemaTypist.Samples.NetStandard20\SchemaTypist.Samples.NetStandard20.csproj", "{241CB796-F294-4F1A-960A-81EE480D68B2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchemaTypist.Samples.NetStandard20.Postgres", "samples\SchemaTypist.Samples.NetStandard20.Postgres\SchemaTypist.Samples.NetStandard20.Postgres.csproj", "{0B9F2D55-4C69-4914-BD60-8265DAA74AA8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -100,6 +102,12 @@ Global
 		{241CB796-F294-4F1A-960A-81EE480D68B2}.Generate|Any CPU.Build.0 = Generate|Any CPU
 		{241CB796-F294-4F1A-960A-81EE480D68B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{241CB796-F294-4F1A-960A-81EE480D68B2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B9F2D55-4C69-4914-BD60-8265DAA74AA8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B9F2D55-4C69-4914-BD60-8265DAA74AA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B9F2D55-4C69-4914-BD60-8265DAA74AA8}.Generate|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B9F2D55-4C69-4914-BD60-8265DAA74AA8}.Generate|Any CPU.Build.0 = Debug|Any CPU
+		{0B9F2D55-4C69-4914-BD60-8265DAA74AA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B9F2D55-4C69-4914-BD60-8265DAA74AA8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -14,48 +14,48 @@ namespace {{ path_namespace.entities_namespace }}
 {
 	public partial class {{ tabular_structure.name }}{{ config.entity_name_suffix }}
 	{
-	    {{ if config.create_immutable_entities }}
-	    private {{ tabular_structure.name }}{{ config.entity_name_suffix }}()
-	    {
-	    }
-	    
-	    public partial class Builder
-	    {
-	        public Builder()
-	        {
-	        }
-	        
-	        {{~ for col in tabular_structure.columns ~}}
-            private {{ col.data_type }} _set{{ col.name }}{{ if col.default_value }} = {{ col.default_value }} {{ end }};
-            public Builder With{{ col.name }}({{ col.data_type }} val)
-            {
-                _set{{ col.name }} = val;
-                return this;
-            }
-            {{~ end ~}}
-            
-            public {{ tabular_structure.name }}{{ config.entity_name_suffix }} Build() 
-            {
-                var retVal = new {{ tabular_structure.name }}{{ config.entity_name_suffix }}()
-                {
-                    {{~ for col in tabular_structure.columns ~}}
-                        {{ col.name }} = _set{{ col.name }},
-                    {{~ end ~}}
-                };
-                CustomizeBuild(retVal);
-                return retVal;
-            }
-            
-            partial void CustomizeBuild({{ tabular_structure.name }}{{ config.entity_name_suffix }} entity);
-	    }
-	    
-	    {{~ for col in tabular_structure.columns ~}}
-        public {{ col.data_type }} {{ col.name }} { get; private set; }
-        {{~ end ~}}        
-        {{ else }}
-	    {{~ for col in tabular_structure.columns ~}}
-        public {{ col.data_type }} {{ col.name }} { get; set; }{{ if col.default_value }} = {{ col.default_value }}; {{ end }}
-        {{~ end ~}}
-	    {{ end }}		
+		{{ if config.create_immutable_entities }}
+		private {{ tabular_structure.name }}{{ config.entity_name_suffix }}()
+		{
+		}
+		
+		public partial class Builder
+		{
+			public Builder()
+			{
+			}
+			
+			{{~ for col in tabular_structure.columns ~}}
+    		private {{ col.data_type }} _set{{ col.name }}{{ if col.default_value }} = {{ col.default_value }} {{ end }};
+    		public Builder With{{ col.name }}({{ col.data_type }} val)
+    		{
+    		    _set{{ col.name }} = val;
+    		    return this;
+    		}
+    		{{~ end ~}}
+    		
+    		public {{ tabular_structure.name }}{{ config.entity_name_suffix }} Build() 
+    		{
+    		    var retVal = new {{ tabular_structure.name }}{{ config.entity_name_suffix }}()
+    		    {
+    		        {{~ for col in tabular_structure.columns ~}}
+    		            {{ col.name }} = _set{{ col.name }},
+    		        {{~ end ~}}
+    		    };
+    		    CustomizeBuild(retVal);
+    		    return retVal;
+    		}
+    		
+    		partial void CustomizeBuild({{ tabular_structure.name }}{{ config.entity_name_suffix }} entity);
+		}
+		
+		{{~ for col in tabular_structure.columns ~}}
+    	public {{ col.data_type }} {{ col.name }} { get; private set; }
+    	{{~ end ~}}        
+    	{{ else }}
+		{{~ for col in tabular_structure.columns ~}}
+    	public {{ col.data_type }} {{ col.name }} { get; set; }{{ if col.default_value }} = {{ col.default_value }}; {{ end }}
+    	{{~ end ~}}
+		{{ end }}		
 	}
 }
