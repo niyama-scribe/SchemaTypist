@@ -98,7 +98,6 @@ namespace SchemaTypist.Core.Tests.Language
         {
             //Arrange
             var fixture = new Fixture();
-            var proposedName = "tbl_SomeTableName";
             var config = fixture.Build<CodeGenConfig>()
                 .Without(cdc => cdc.NamingConflictResolutionSuffix)
                 .With(cdc => cdc.StripPrefix, stripPrefixes)
@@ -125,7 +124,6 @@ namespace SchemaTypist.Core.Tests.Language
         {
             //Arrange
             var fixture = new Fixture();
-            var proposedName = "tbl_SomeTableName";
             var config = fixture.Build<CodeGenConfig>()
                 .Without(cdc => cdc.NamingConflictResolutionSuffix)
                 .With(cdc => cdc.StripSuffix, stripSuffixes)
