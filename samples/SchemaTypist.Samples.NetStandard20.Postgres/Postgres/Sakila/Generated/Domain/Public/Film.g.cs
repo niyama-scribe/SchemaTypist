@@ -14,6 +14,6 @@ namespace SchemaTypist.Samples.NetStandard20.Postgres.Postgres.Sakila.Generated.
 {
 	public partial class Film
 	{
-	public string Description { get; set; }public int FilmId { get; set; }public object Fulltext { get; set; }public short LanguageId { get; set; }public DateTime LastUpdate { get; set; }public short? Length { get; set; }public short? OriginalLanguageId { get; set; }public object Rating { get; set; }public int? ReleaseYear { get; set; }public short RentalDuration { get; set; } = 3; public decimal RentalRate { get; set; } = (decimal) 4.99; public decimal ReplacementCost { get; set; } = (decimal) 19.99; public object SpecialFeature { get; set; }public string Title { get; set; }
+	        public string Description { get; set; }        public int FilmId { get; set; }        public object Fulltext { get; set; }        public short LanguageId { get; set; }        public DateTime LastUpdate { get; set; }        public short? Length { get; set; }        public short? OriginalLanguageId { get; set; }        public object Rating { get; set; }        public int? ReleaseYear { get; set; }        public short RentalDuration { get; set; } = 3;         public decimal RentalRate { get; set; } = (decimal) 4.99;         public decimal ReplacementCost { get; set; } = (decimal) 19.99;         public object SpecialFeature { get; set; }        public string Title { get; set; }
 	}
 }
