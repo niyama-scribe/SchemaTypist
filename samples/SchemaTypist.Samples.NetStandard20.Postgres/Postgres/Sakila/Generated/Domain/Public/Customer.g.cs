@@ -14,16 +14,16 @@ namespace SchemaTypist.Samples.NetStandard20.Postgres.Postgres.Sakila.Generated.
 {
 	public partial class Customer
 	{
-	        public int? Active { get; set; }
-        public bool Activebool { get; set; }
-        public short AddressId { get; set; }
-        public DateTime CreateDate { get; set; }
-        public int CustomerId { get; set; }
-        public string Email { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public DateTime? LastUpdate { get; set; }
-        public short StoreId { get; set; }
-
+	
+public int? Active { get; set; }
+public bool Activebool { get; set; }
+public short AddressId { get; set; }
+public DateTime CreateDate { get; set; }
+public int CustomerId { get; set; }
+public string Email { get; set; }
+public string FirstName { get; set; }
+public string LastName { get; set; }
+public DateTime? LastUpdate { get; set; }
+public short StoreId { get; set; }
 	}
 }

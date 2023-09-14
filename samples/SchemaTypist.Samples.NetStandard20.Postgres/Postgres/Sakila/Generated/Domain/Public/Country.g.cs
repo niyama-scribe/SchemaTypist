@@ -14,9 +14,9 @@ namespace SchemaTypist.Samples.NetStandard20.Postgres.Postgres.Sakila.Generated.
 {
 	public partial class Country
 	{
-	        public string Country0 { get; set; }
-        public int CountryId { get; set; }
-        public DateTime LastUpdate { get; set; }
-
+	
+public string Country0 { get; set; }
+public int CountryId { get; set; }
+public DateTime LastUpdate { get; set; }
 	}
 }

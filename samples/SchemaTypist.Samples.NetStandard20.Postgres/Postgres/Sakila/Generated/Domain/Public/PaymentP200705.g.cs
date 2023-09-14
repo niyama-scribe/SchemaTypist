@@ -14,12 +14,12 @@ namespace SchemaTypist.Samples.NetStandard20.Postgres.Postgres.Sakila.Generated.
 {
 	public partial class PaymentP200705
 	{
-	        public decimal Amount { get; set; }
-        public short CustomerId { get; set; }
-        public DateTime PaymentDate { get; set; }
-        public int PaymentId { get; set; }
-        public int RentalId { get; set; }
-        public short StaffId { get; set; }
-
+	
+public decimal Amount { get; set; }
+public short CustomerId { get; set; }
+public DateTime PaymentDate { get; set; }
+public int PaymentId { get; set; }
+public int RentalId { get; set; }
+public short StaffId { get; set; }
 	}
 }
