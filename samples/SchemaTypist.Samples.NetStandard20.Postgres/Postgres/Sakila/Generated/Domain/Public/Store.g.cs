@@ -14,9 +14,5 @@ namespace SchemaTypist.Samples.NetStandard20.Postgres.Postgres.Sakila.Generated.
 {
 	public partial class Store
 	{
-	    public short AddressId { get; set; }
-    public DateTime LastUpdate { get; set; }
-    public short ManagerStaffId { get; set; }
-    public int StoreId { get; set; }
-	}
+	        public short AddressId { get; set; }        public DateTime LastUpdate { get; set; }        public short ManagerStaffId { get; set; }        public int StoreId { get; set; }    	}
 }
