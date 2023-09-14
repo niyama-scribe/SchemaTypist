@@ -7,8 +7,8 @@
 
 	<ItemGroup>
 		<PackageReference Include="Npgsql" Version="6.0.0" />
-		<PackageReference Include="SchemaTypist" Version="0.7.0" />
-		<PackageReference Include="SchemaTypist.MSBuild" Version="0.8.0" />
+		<PackageReference Include="SchemaTypist" Version="0.8.1-alpha.0.8" />
+		<PackageReference Include="SchemaTypist.MSBuild" Version="0.8.1-alpha.0.8" />
 	</ItemGroup>
 
 	<Target Name="SetPostgresProps">
@@ -18,6 +18,7 @@
 			<SchemaTypist_Include>*.public.*</SchemaTypist_Include>
 			<SchemaTypist_RootOutputDir>Postgres\Sakila\Generated</SchemaTypist_RootOutputDir>
 			<SchemaTypist_RootNamespace>$(RootNamespace)</SchemaTypist_RootNamespace>
+			<SchemaTypist_TargetLanguageVersion>CSharp7_3</SchemaTypist_TargetLanguageVersion>
 		</PropertyGroup>
 	</Target>
 
