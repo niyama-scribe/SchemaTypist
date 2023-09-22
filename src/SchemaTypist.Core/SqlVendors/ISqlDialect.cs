@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Data;
+﻿using System.Data;
 using SchemaTypist.Core.Config;
 using SchemaTypist.Core.Language;
 using SchemaTypist.Core.Model;
+using SqlKata;
 using SqlKata.Compilers;
 
 namespace SchemaTypist.Core.SqlVendors
@@ -19,8 +19,22 @@ namespace SchemaTypist.Core.SqlVendors
     public interface ISqlVendor
     {
         SqlVendorType VendorType { get; }
+        ISqlDialect Dialect { get; }
+
+        IMetadataQueryBuilder MetadataQueryBuilder { get; }
 
         (IDbConnection, Compiler) GetDbInterfaceProviders(CodeGenConfig config);
-        ISqlDialect Dialect { get; }
+    }
+
+    /// <summary>
+    ///     Every SqlVendor should implement this interface.
+    ///     This interface defines the contract for asking questions regarding database metadata.
+    /// </summary>
+    public interface IMetadataQueryBuilder
+    {
+        Query BuildTablesQuery();
+        Query BuildRoutinesQuery();
+        Query BuildTableValuedParametersQuery();
+        Query BuildRoutinesReturnTypesQuery();
     }
 }

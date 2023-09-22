@@ -15,6 +15,7 @@ using SchemaTypist.Core.Config;
 using SchemaTypist.Core.Schemata;
 using SchemaTypist.Core.Schemata.Dto;
 using SchemaTypist.Core.SqlVendors;
+using SqlKata;
 using SqlKata.Compilers;
 using Xunit;
 
@@ -34,11 +35,11 @@ namespace SchemaTypist.Core.Tests.Schemata
             conn.SetupGet(c => c.State).Returns(ConnectionState.Open);
             
             //Act
-            var columns = sut.ExtractDbMetadata(cdc).GetAwaiter().GetResult();
+            var metadata = sut.ExtractDbMetadata(cdc).GetAwaiter().GetResult();
 
             //Assert
             conn.Verify();
-            columns.Should().BeEmpty();
+            metadata.TablesMetadata.Should().BeEmpty();
         }
 
         [Fact]
@@ -54,15 +55,35 @@ namespace SchemaTypist.Core.Tests.Schemata
             var sut = new SchemataExtractorService(sv.Object);
             
             sv.Setup(vendorSvc => vendorSvc.GetDbInterfaceProviders(cdc)).Returns((conn.Object, compiler));
+            sv.Setup(vendorSvc => vendorSvc.GetMetadataQueryBuilder(cdc))
+                .Returns(new FakeMetadataQueryBuilder());
             conn.Setup(c => c.CreateCommand()).Returns(cmd);
             conn.SetupGet(c => c.State).Returns(ConnectionState.Open);
 
             //Act
-            var columns = sut.ExtractDbMetadata(cdc).GetAwaiter().GetResult();
+            var metadata = sut.ExtractDbMetadata(cdc).GetAwaiter().GetResult();
 
             //Assert
             conn.Verify();
-            columns.Should().BeEmpty();
+            metadata.TablesMetadata.Should().BeEmpty();
+        }
+    }
+
+    internal class FakeMetadataQueryBuilder : AnsiSqlMetadataQueryBuilder
+    {
+        public override Query BuildRoutinesQuery()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override Query BuildTableValuedParametersQuery()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override Query BuildRoutinesReturnTypesQuery()
+        {
+            throw new NotImplementedException();
         }
     }
 

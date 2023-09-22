@@ -21,6 +21,7 @@ namespace SchemaTypist.SqlVendors.PostgreSql
         public SqlVendorType VendorType => SqlVendorType.PostgreSql;
 
         public ISqlDialect Dialect => new PostgresDialect();
+        public IMetadataQueryBuilder MetadataQueryBuilder => new MetadataQueryBuilder();
 
         private class PostgresDialect : ISqlDialect
         {

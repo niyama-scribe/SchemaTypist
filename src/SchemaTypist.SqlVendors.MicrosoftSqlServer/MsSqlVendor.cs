@@ -10,18 +10,22 @@ using SqlKata.Compilers;
 
 namespace SchemaTypist.SqlVendors.MicrosoftSqlServer
 {
-    [SqlVendorDefinition()]
+    [SqlVendorDefinition]
     public class MsSqlVendor : ISqlVendor
     {
-        public (IDbConnection, Compiler) GetDbInterfaceProviders(CodeGenConfig config) => (new SqlConnection(config.ConnectionString), new SqlServerCompiler());
-        public ISqlDialect Dialect => new MsSqlDialect();
-        public SqlVendorType VendorType => SqlVendorType.MicrosoftSqlServer;
+        public (IDbConnection, Compiler) GetDbInterfaceProviders(CodeGenConfig config)
+        {
+            return (new SqlConnection(config.ConnectionString), new SqlServerCompiler());
+        }
 
+        public ISqlDialect Dialect => new MsSqlDialect();
+        public IMetadataQueryBuilder MetadataQueryBuilder => new MetadataQueryBuilder();
+        public SqlVendorType VendorType => SqlVendorType.MicrosoftSqlServer;
 
 
         private class MsSqlDialect : ISqlDialect
         {
-            private static List<string> _keywords = new List<string>
+            private static readonly List<string> DefaultKeywords = new()
             {
                 "ADD",
                 "ALL",
@@ -210,7 +214,7 @@ namespace SchemaTypist.SqlVendors.MicrosoftSqlServer
                 "WRITETEXT"
             };
 
-            private static readonly List<string> _dataTypes = new List<string>
+            private static readonly List<string> DefaultDataTypes = new()
             {
                 "bigint",
                 "binary",
@@ -242,11 +246,10 @@ namespace SchemaTypist.SqlVendors.MicrosoftSqlServer
                 "varbinary",
                 "varchar",
                 "xml"
-
             };
 
-            public IEnumerable<string> Keywords => _keywords;
-            public IEnumerable<string> DataTypes => _dataTypes;
+            public IEnumerable<string> Keywords => DefaultKeywords;
+            public IEnumerable<string> DataTypes => DefaultDataTypes;
 
             public bool HasConflict(string proposedName)
             {
@@ -322,7 +325,7 @@ namespace SchemaTypist.SqlVendors.MicrosoftSqlServer
                     ("varchar", true) => "string",
                     ("xml", false) => "string",
                     ("xml", true) => "string",
-                    _ => "object",
+                    _ => "object"
                 };
                 return retVal;
             }
@@ -339,10 +342,7 @@ namespace SchemaTypist.SqlVendors.MicrosoftSqlServer
                 if (columnDefault == "(NULL)") return "null"; //Default is to assign null to that column.
                 //Strip all enclosing brackets.
                 var s = columnDefault;
-                while (s.StartsWith("(") && s.EndsWith(")"))
-                {
-                    s = s.Substring(1, s.Length - 2);
-                }
+                while (s.StartsWith("(") && s.EndsWith(")")) s = s.Substring(1, s.Length - 2);
 
                 //If string still ends with ), then it is a sql function call, in which case ignore
                 if (s.EndsWith(")")) return null;

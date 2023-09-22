@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using SchemaTypist.Core.Config;
 using SchemaTypist.Core.Model;
-using SchemaTypist.Core.Naming;
 using SchemaTypist.Core.Schemata;
-using SchemaTypist.Core.SqlVendors;
 using SchemaTypist.Core.Templating;
 using SchemaTypist.Core.Utilities;
-using Scriban;
-using Scriban.Runtime;
 
 namespace SchemaTypist.Core
 {
@@ -18,14 +13,14 @@ namespace SchemaTypist.Core
     {
         private readonly IFileSystemWrapper _fileSystem;
         private readonly IPathNamespaceService _pathNamespaceService;
-        private readonly ISchemataExtractorService _schemataExtractor;
         private readonly ISchemataConverterService _schemataConverter;
+        private readonly ISchemataExtractorService _schemataExtractor;
         private readonly ITemplateService _templateService;
 
-        public SchemaTypistService(IFileSystemWrapper fileSystem, 
+        public SchemaTypistService(IFileSystemWrapper fileSystem,
             IPathNamespaceService pathNamespaceService,
-            ISchemataExtractorService schemataExtractor, 
-            ISchemataConverterService schemataConverter, 
+            ISchemataExtractorService schemataExtractor,
+            ISchemataConverterService schemataConverter,
             ITemplateService templateService)
         {
             _fileSystem = fileSystem;
@@ -39,24 +34,25 @@ namespace SchemaTypist.Core
 
         public async Task<Dictionary<string, TabularStructure>> ExtractDbMetadata(CodeGenConfig config)
         {
-            var columnsDtos = await _schemataExtractor.ExtractDbMetadata(config);
+            var metadata = await _schemataExtractor.ExtractDbMetadata(config);
             //Convert to code generator model
-            return _schemataConverter.Convert(columnsDtos, config);
+            return _schemataConverter.Convert(metadata.TablesMetadata, config);
         }
+
         public void Generate(TabularStructure tab, CodeGenConfig config)
         {
             //Resolve templates to use
             _templateService.LoadTemplates(config);
-            
+
             var pathNamespace = _pathNamespaceService.Resolve(config, tab);
-            
+
             //Set up generation
             _pathNamespaceService.Prep(pathNamespace);
 
             //Generate model and mapping
-            
+
             //Generate model and write to file
-            var etm = new EntitiesTemplateModel()
+            var etm = new EntitiesTemplateModel
             {
                 Config = config,
                 TabularStructure = tab,
@@ -67,7 +63,7 @@ namespace SchemaTypist.Core
             _fileSystem.WriteAllText(pathNamespace.EntitiesFilePath, output);
 
             //Generate mapping and write to file
-            var ptm = new PersistenceTemplateModel()
+            var ptm = new PersistenceTemplateModel
             {
                 Config = config,
                 TabularStructure = tab,
@@ -75,16 +71,16 @@ namespace SchemaTypist.Core
             };
             output = _templateService.GeneratePersistence(ptm);
             _fileSystem.WriteAllText(pathNamespace.PersistenceFilePath, output);
-
         }
+
         public void GenerateDapperMapping(IEnumerable<TabularStructure> tableStructures, CodeGenConfig config)
         {
             var tabularStructures = tableStructures.ToList();
             var pathNamespace = _pathNamespaceService.Resolve(config, tabularStructures.First());
-            var dapperInitialiserModel = new DapperInitialiserTemplateModel()
+            var dapperInitialiserModel = new DapperInitialiserTemplateModel
             {
                 Config = config,
-                TemplateModels = tabularStructures.Select(s => new EntitiesTemplateModel()
+                TemplateModels = tabularStructures.Select(s => new EntitiesTemplateModel
                 {
                     Config = config,
                     PathNamespace = _pathNamespaceService.Resolve(config, s),
@@ -97,6 +93,7 @@ namespace SchemaTypist.Core
             //Write to file
             _fileSystem.WriteAllText(pathNamespace.DapperInitialiserFilePath, dapperInitialiserOutput);
         }
+
         public bool Validate(string connectionString)
         {
             //TODO:  You should be able to connect to the db.
@@ -105,7 +102,6 @@ namespace SchemaTypist.Core
         }
 
         #endregion
-
     }
 
     public interface ISchemaTypistService

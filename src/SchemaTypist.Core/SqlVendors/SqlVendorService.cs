@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Runtime.CompilerServices;
 using SchemaTypist.Core.Config;
 using SchemaTypist.Core.Language;
 using SchemaTypist.Core.Model;
@@ -14,27 +10,16 @@ namespace SchemaTypist.Core.SqlVendors
 {
     internal class SqlVendorService : ISqlVendorService
     {
-       private readonly Lazy<ISqlVendorPluginLoader> _pluginLoader;
+        private readonly Lazy<ISqlVendorPluginLoader> _pluginLoader;
 
-       public SqlVendorService(ISqlVendorPluginLoader pluginLoader)
-       {
-           _pluginLoader = new Lazy<ISqlVendorPluginLoader>(() =>
-           {
-               pluginLoader.LoadRegisteredVendors();
-               return pluginLoader;
-           });
-       }
-
-       private ISqlVendor GetSqlVendor(SqlVendorType vendorType)
-       {
-           return _pluginLoader.Value.GetSqlVendor(vendorType);
-       }
-
-
-       private ISqlDialect GetSqlDialect(SqlVendorType vendorType)
-       {
-           return GetSqlVendor(vendorType)?.Dialect;
-       }
+        public SqlVendorService(ISqlVendorPluginLoader pluginLoader)
+        {
+            _pluginLoader = new Lazy<ISqlVendorPluginLoader>(() =>
+            {
+                pluginLoader.LoadRegisteredVendors();
+                return pluginLoader;
+            });
+        }
 
         public string DisambiguateSqlIdentifier(string sqlIdentifier, CodeGenConfig config)
         {
@@ -53,7 +38,6 @@ namespace SchemaTypist.Core.SqlVendors
             var sqlDialect = GetSqlDialect(config.Vendor);
             var dotNetDataType = sqlDialect.DetermineDotNetDataType(sqlDataType, isNullable);
             return Languages.CSharp.HandleNullability(dotNetDataType, isNullable, config);
-
         }
 
         public (IDbConnection, Compiler) GetDbInterfaceProviders(CodeGenConfig config)
@@ -69,7 +53,7 @@ namespace SchemaTypist.Core.SqlVendors
 
             if (string.IsNullOrEmpty(rawDefaultStr)) return null;
             if (rawDefaultStr is "null") return rawDefaultStr;
-            
+
             //Now represent literals as per mapped datatype
             var coreDatatype = dotnetDataType.Replace("?", "").ToLower();
 
@@ -84,7 +68,22 @@ namespace SchemaTypist.Core.SqlVendors
 
                 _ => null
             };
+        }
 
+        public IMetadataQueryBuilder GetMetadataQueryBuilder(CodeGenConfig config)
+        {
+            return GetSqlVendor(config.Vendor).MetadataQueryBuilder;
+        }
+
+        private ISqlVendor GetSqlVendor(SqlVendorType vendorType)
+        {
+            return _pluginLoader.Value.GetSqlVendor(vendorType);
+        }
+
+
+        private ISqlDialect GetSqlDialect(SqlVendorType vendorType)
+        {
+            return GetSqlVendor(vendorType)?.Dialect;
         }
     }
 
@@ -95,7 +94,6 @@ namespace SchemaTypist.Core.SqlVendors
         string DetermineDotNetDataType(string sqlDataType, bool isNullable, CodeGenConfig config);
         (IDbConnection, Compiler) GetDbInterfaceProviders(CodeGenConfig config);
         string DetermineDefaultValue(string columnDefault, string mappedDotnetDatatype, CodeGenConfig config);
+        IMetadataQueryBuilder GetMetadataQueryBuilder(CodeGenConfig config);
     }
-
-
 }

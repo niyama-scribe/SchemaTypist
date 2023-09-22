@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using System.Data;
+using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Options;
 using SchemaTypist.Core.Config;
 using SchemaTypist.Core.Schemata.Dto;
 using SchemaTypist.Core.Schemata.Mapping;
@@ -16,6 +13,7 @@ namespace SchemaTypist.Core.Schemata
     internal class SchemataExtractorService : ISchemataExtractorService
     {
         private readonly ISqlVendorService _sqlVendor;
+
         static SchemataExtractorService()
         {
             DapperTypeMapping.Init();
@@ -26,16 +24,20 @@ namespace SchemaTypist.Core.Schemata
             _sqlVendor = sqlVendor;
         }
 
-        public async Task<IEnumerable<ColumnsDto>> ExtractDbMetadata(CodeGenConfig config)
+        public async Task<SchemataMetadata> ExtractDbMetadata(CodeGenConfig config)
         {
-            var metadataQueries = new SchemataQueries(config);
+            var metadataQueryBuilder = _sqlVendor.GetMetadataQueryBuilder(config);
             var (connection, compiler) = GetDbSpecificLibraries(config);
             var db = new QueryFactory(connection, compiler);
-            var q = metadataQueries.InspectTables();
-            // var sql = compiler.Compile(q).RawSql;
-            // Console.WriteLine(sql);
-            var ts = await db.GetAsync<ColumnsDto>(q);
-            return ts;
+            var tablesInspectionQuery = metadataQueryBuilder.BuildTablesQuery();
+            //var routinesInspectionQuery = metadataQueryBuilder.BuildRoutinesInspectionQuery();
+            //var routinesTableValuedParametersInspectionQuery =
+            //    metadataQueryBuilder.BuildRoutinesTableValuedParametersInspectionQuery();
+            //var routinesReturnTypesInspectionQuery = metadataQueryBuilder.BuildRoutinesReturnTypesInspectionQuery();
+            return new SchemataMetadata
+            {
+                TablesMetadata = (await db.GetAsync<ColumnsDto>(tablesInspectionQuery)).ToList()
+            };
         }
 
         private (IDbConnection, Compiler) GetDbSpecificLibraries(CodeGenConfig config)
@@ -46,6 +48,6 @@ namespace SchemaTypist.Core.Schemata
 
     public interface ISchemataExtractorService
     {
-        Task<IEnumerable<ColumnsDto>> ExtractDbMetadata(CodeGenConfig config);
+        Task<SchemataMetadata> ExtractDbMetadata(CodeGenConfig config);
     }
 }
