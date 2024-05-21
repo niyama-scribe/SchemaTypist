@@ -5,7 +5,7 @@ SchemaTypist enables type-safe database interactions using Dapper and SqlKata, b
 ![Nuget](https://img.shields.io/nuget/v/SchemaTypist?color=blue&label=SchemaTypist&logo=Nuget&style=plastic)
 ![Nuget](https://img.shields.io/nuget/v/SchemaTypist.Cli?color=blue&label=SchemaTypist.Cli&logo=Nuget&style=plastic)
 ![Nuget](https://img.shields.io/nuget/v/SchemaTypist.MSBuild?color=blue&label=SchemaTypist.MSBuild&logo=Nuget&style=plastic)
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/niyama-scribe/SchemaTypist/Build%20&%20Test?style=plastic)
+![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/niyama-scribe/SchemaTypist/build.yaml?branch=main&style=plastic)
 
 
 ## How does it work?
