@@ -4,7 +4,7 @@ using SchemaTypist.Samples.Net6x.Postgres.Sakila;
 using SchemaTypist.Samples.Net6x.Postgres.Sakila.Generated.Domain.Public;
 
 Console.WriteLine("Hello, World!");
-var fr = new FilmRepository("Server=127.0.0.1;Port=5432;Database=postgres;User Id=postgres;Password=N3v3r!nPr0d;");
+var fr = new FilmRepository("Server=127.0.0.1;Port=5432;Database=postgres;User Id=postgres;Password=N3v3r1nPr0d;");
 
 var films = await fr.GetRentedFilmsByReturnDate(DateTime.Parse("31 May 2005"));
 foreach (var film in films)
