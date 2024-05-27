@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <Import Project="..\..\..\..\..\nuget\packages\SchemaTypist.MSBuild.0.9.3\build\SchemaTypist.MSBuild.props" Condition="Exists('..\..\..\..\..\nuget\packages\SchemaTypist.MSBuild.0.9.3\build\SchemaTypist.MSBuild.props')" />
+    <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+    <PropertyGroup>
+        <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+        <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+        <ProjectGuid>{5E48AF54-6F8F-41E7-96C8-F07AE21E5BF8}</ProjectGuid>
+        <OutputType>Exe</OutputType>
+        <AppDesignerFolder>Properties</AppDesignerFolder>
+        <RootNamespace>SchemaTypist.Samples.Postgres.NetFramework</RootNamespace>
+        <AssemblyName>SchemaTypist.Samples.Postgres.NetFramework</AssemblyName>
+        <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+        <FileAlignment>512</FileAlignment>
+        <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+        <PlatformTarget>AnyCPU</PlatformTarget>
+        <DebugSymbols>true</DebugSymbols>
+        <DebugType>full</DebugType>
+        <Optimize>false</Optimize>
+        <OutputPath>bin\Debug\</OutputPath>
+        <DefineConstants>DEBUG;TRACE</DefineConstants>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+        <PlatformTarget>AnyCPU</PlatformTarget>
+        <DebugType>pdbonly</DebugType>
+        <Optimize>true</Optimize>
+        <OutputPath>bin\Release\</OutputPath>
+        <DefineConstants>TRACE</DefineConstants>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Generate|AnyCPU' ">
+      <OutputPath>bin\Generate\</OutputPath>
+    </PropertyGroup>
+    <ItemGroup>
+        <Reference Include="Dapper, Version=1.50.5.0, Culture=neutral, processorArchitecture=MSIL">
+          <HintPath>..\..\..\..\..\nuget\packages\Dapper.1.50.5\lib\net451\Dapper.dll</HintPath>
+        </Reference>
+        <Reference Include="Humanizer, Version=2.8.0.0, Culture=neutral, PublicKeyToken=979442b78dfc278e, processorArchitecture=MSIL">
+          <HintPath>..\..\..\..\..\nuget\packages\Humanizer.Core.2.8.26\lib\netstandard2.0\Humanizer.dll</HintPath>
+        </Reference>
+        <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+          <HintPath>..\..\..\..\..\nuget\packages\Microsoft.Bcl.AsyncInterfaces.8.0.0\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+        </Reference>
+        <Reference Include="Microsoft.Bcl.HashCode, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+          <HintPath>..\..\..\..\..\nuget\packages\Microsoft.Bcl.HashCode.1.1.1\lib\net461\Microsoft.Bcl.HashCode.dll</HintPath>
+        </Reference>
+        <Reference Include="Microsoft.CSharp" />
+        <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=8.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+          <HintPath>..\..\..\..\..\nuget\packages\Microsoft.Extensions.DependencyInjection.Abstractions.8.0.0\lib\net462\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+        </Reference>
+        <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=8.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+          <HintPath>..\..\..\..\..\nuget\packages\Microsoft.Extensions.Logging.Abstractions.8.0.0\lib\net462\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+        </Reference>
+        <Reference Include="mscorlib" />
+        <Reference Include="Npgsql, Version=8.0.3.0, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL">
+          <HintPath>..\..\..\..\..\nuget\packages\Npgsql.8.0.3\lib\netstandard2.0\Npgsql.dll</HintPath>
+        </Reference>
+        <Reference Include="SchemaTypist, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+          <HintPath>..\..\..\..\..\nuget\packages\SchemaTypist.0.9.3\lib\netstandard2.0\SchemaTypist.dll</HintPath>
+        </Reference>
+        <Reference Include="SchemaTypist.MSBuild, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+          <HintPath>..\..\..\..\..\nuget\packages\SchemaTypist.MSBuild.0.9.3\lib\netstandard2.0\SchemaTypist.MSBuild.dll</HintPath>
+        </Reference>
+        <Reference Include="SqlKata, Version=2.3.7.0, Culture=neutral, processorArchitecture=MSIL">
+          <HintPath>..\..\..\..\..\nuget\packages\SqlKata.2.3.7\lib\netstandard2.0\SqlKata.dll</HintPath>
+        </Reference>
+        <Reference Include="SqlKata.Execution, Version=2.3.7.0, Culture=neutral, processorArchitecture=MSIL">
+          <HintPath>..\..\..\..\..\nuget\packages\SqlKata.Execution.2.3.7\lib\netstandard2.0\SqlKata.Execution.dll</HintPath>
+        </Reference>
+        <Reference Include="System" />
+        <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+          <HintPath>..\..\..\..\..\nuget\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Collections.Immutable, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <HintPath>..\..\..\..\..\nuget\packages\System.Collections.Immutable.8.0.0\lib\net462\System.Collections.Immutable.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Core" />
+        <Reference Include="System.Data" />
+        <Reference Include="System.Diagnostics.DiagnosticSource, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+          <HintPath>..\..\..\..\..\nuget\packages\System.Diagnostics.DiagnosticSource.8.0.0\lib\net462\System.Diagnostics.DiagnosticSource.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+          <HintPath>..\..\..\..\..\nuget\packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Numerics" />
+        <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <HintPath>..\..\..\..\..\nuget\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <HintPath>..\..\..\..\..\nuget\packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Text.Encodings.Web, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+          <HintPath>..\..\..\..\..\nuget\packages\System.Text.Encodings.Web.8.0.0\lib\net462\System.Text.Encodings.Web.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Text.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+          <HintPath>..\..\..\..\..\nuget\packages\System.Text.Json.8.0.0\lib\net462\System.Text.Json.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Threading.Channels, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+          <HintPath>..\..\..\..\..\nuget\packages\System.Threading.Channels.8.0.0\lib\net462\System.Threading.Channels.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+          <HintPath>..\..\..\..\..\nuget\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Xml" />
+        <Reference Include="System.Xml.Linq" />
+    </ItemGroup>
+    <ItemGroup>
+        <Compile Include="ActorRepository.cs" />
+        <Compile Include="FilmRepository.cs" />
+        <Compile Include="PostgresRepository.cs" />
+        <Compile Include="Postgres\**\*" />
+        <Compile Include="Program.cs" />
+        <Compile Include="Properties\AssemblyInfo.cs" />
+    </ItemGroup>
+    <ItemGroup>
+      <None Include="App.config" />
+      <None Include="packages.config" />
+    </ItemGroup>
+    <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+    <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+      <PropertyGroup>
+        <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105.The missing file is {0}.</ErrorText>
+      </PropertyGroup>
+      <Error Condition="!Exists('..\..\..\..\..\nuget\packages\SchemaTypist.MSBuild.0.9.3\build\SchemaTypist.MSBuild.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\..\..\nuget\packages\SchemaTypist.MSBuild.0.9.3\build\SchemaTypist.MSBuild.props'))" />
+      <Error Condition="!Exists('..\..\..\..\..\nuget\packages\SchemaTypist.MSBuild.0.9.3\build\SchemaTypist.MSBuild.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\..\..\nuget\packages\SchemaTypist.MSBuild.0.9.3\build\SchemaTypist.MSBuild.targets'))" />
+    </Target>
+    <Import Project="..\..\..\..\..\nuget\packages\SchemaTypist.MSBuild.0.9.3\build\SchemaTypist.MSBuild.targets" Condition="Exists('..\..\..\..\..\nuget\packages\SchemaTypist.MSBuild.0.9.3\build\SchemaTypist.MSBuild.targets')" />
+    <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+         Other similar extension points exist, see Microsoft.Common.targets.
+    <Target Name="BeforeBuild">
+    </Target>
+    <Target Name="AfterBuild">
+    </Target>
+    -->
+
+    <Target Name="SetPostgresProps">
+        <PropertyGroup>
+            <SchemaTypist_ConnectionString>%22Server=127.0.0.1;Port=5432;Database=postgres;User Id=postgres;Password=N3v3r1nPr0d;%22</SchemaTypist_ConnectionString>
+            <SchemaTypist_Vendor>PostgreSql</SchemaTypist_Vendor>
+            <SchemaTypist_Include>*.public.*</SchemaTypist_Include>
+            <SchemaTypist_RootOutputDir>Postgres\Sakila\Generated</SchemaTypist_RootOutputDir>
+            <SchemaTypist_RootNamespace>$(RootNamespace)</SchemaTypist_RootNamespace>
+            <SchemaTypist_TargetLanguageVersion>CSharp7_3</SchemaTypist_TargetLanguageVersion>
+            <SchemaTypist_Generate Condition="$(Configuration) == 'Generate'">true</SchemaTypist_Generate>
+        </PropertyGroup>
+    </Target>
+
+    <Target Name="GeneratePostgres" DependsOnTargets="SetPostgresProps" BeforeTargets="PrepareForBuild">
+        <CallTarget Targets="SchemaTypist_DoGenerate" />
+    </Target>
+
+</Project>

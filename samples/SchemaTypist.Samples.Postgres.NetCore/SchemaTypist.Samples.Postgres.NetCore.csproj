@@ -1,0 +1,43 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <Configurations>Debug;Release;Generate</Configurations>
+        <UserSecretsId>d0c6a6a9-e917-4e64-a268-283f78b19d5a</UserSecretsId>
+    </PropertyGroup>
+
+   <ItemGroup>
+        <PackageReference Include="Dapper" Version="2.0.123" />
+        <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="8.0.0" />
+        <PackageReference Include="Npgsql" Version="8.0.3" />
+        <PackageReference Include="SchemaTypist" Version="0.8.0" />
+        <PackageReference Include="SchemaTypist.MSBuild" Version="0.8.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Folder Include="Sakila\Generated\" />
+    </ItemGroup>
+
+    <PropertyGroup>
+        <!-- <SchemaTypist_ConnectionString>%22Server=127.0.0.1;Port=5432;Database=postgres;User Id=postgres;Password=N3v3r!nPr0d;%22</SchemaTypist_ConnectionString> -->
+        <SchemaTypist_User_Secrets_Id>$(UserSecretsId)</SchemaTypist_User_Secrets_Id>
+        <SchemaTypist_Vendor>PostgreSql</SchemaTypist_Vendor>
+        <SchemaTypist_Include>*.public.*</SchemaTypist_Include>
+        <SchemaTypist_RootOutputDir>Sakila\Generated</SchemaTypist_RootOutputDir>
+        <SchemaTypist_EntitiesOutputDir>Domain</SchemaTypist_EntitiesOutputDir>
+        <SchemaTypist_PersistenceOutputDir>Persistence</SchemaTypist_PersistenceOutputDir>
+        <SchemaTypist_RootNamespace>SchemaTypist.Samples.Postgres.NetCore</SchemaTypist_RootNamespace>
+        <SchemaTypist_CreateImmutableEntities>true</SchemaTypist_CreateImmutableEntities>
+        <SchemaTypist_CreateRecordEntities>true</SchemaTypist_CreateRecordEntities>
+        <SchemaTypist_Generate Condition="$(Configuration) == 'Generate'">true</SchemaTypist_Generate>
+        <SchemaTypist_UseNullableRefTypes>true</SchemaTypist_UseNullableRefTypes>
+    </PropertyGroup>
+
+    <Target Name="MyGenerator" BeforeTargets="PrepareForBuild" Condition="$(Configuration) == 'Generate'">
+        <CallTarget Targets="SchemaTypist_DoGenerate" />
+    </Target>
+
+</Project>

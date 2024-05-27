@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Configurations>Debug;Release;Generate</Configurations>
+    <Platforms>AnyCPU</Platforms>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="SchemaTypist" Version="0.9.3" />
+    <PackageReference Include="SchemaTypist.MSBuild" Version="0.9.3" />
+  </ItemGroup>
+
+  <Target Name="SetMsSqlProps">
+    <PropertyGroup>
+      <SchemaTypist_ConnectionString>%22server=localhost;user id=sa;password=N3v3r!nPr0d;Database=StackOverflow%22</SchemaTypist_ConnectionString>
+      <SchemaTypist_Vendor>MicrosoftSqlServer</SchemaTypist_Vendor>
+      <SchemaTypist_Include>*</SchemaTypist_Include>
+      <SchemaTypist_RootOutputDir>Generated\StackOverflow</SchemaTypist_RootOutputDir>
+      <SchemaTypist_RootNamespace>SchemaTypist.Samples.MsSql</SchemaTypist_RootNamespace>
+      <SchemaTypist_TargetLanguageVersion>CSharp7_3</SchemaTypist_TargetLanguageVersion>
+      <SchemaTypist_CreateImmutableEntities>true</SchemaTypist_CreateImmutableEntities>
+      <SchemaTypist_Generate Condition="$(Configuration) == 'Generate'">true</SchemaTypist_Generate>
+    </PropertyGroup>
+  </Target>
+
+  <Target Name="GenerateMsSql" DependsOnTargets="SetMsSqlProps" BeforeTargets="PrepareForBuild" Condition="$(Configuration) == 'Generate'">
+    <CallTarget Targets="SchemaTypist_DoGenerate" />
+  </Target>
+
+</Project>
