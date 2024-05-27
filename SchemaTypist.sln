@@ -39,6 +39,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchemaTypist.Samples.NetSta
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchemaTypist.Samples.Postgres.NetCore", "samples\SchemaTypist.Samples.Postgres.NetCore\SchemaTypist.Samples.Postgres.NetCore.csproj", "{5FEE8723-1BA4-4045-856E-E7C87ECF7E7A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchemaTypist.Samples.Postgres.NetFramework", "samples\SchemaTypist.Samples.Postgres.NetFramework\SchemaTypist.Samples.Postgres.NetFramework.csproj", "{5E48AF54-6F8F-41E7-96C8-F07AE21E5BF8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -106,6 +108,12 @@ Global
 		{5FEE8723-1BA4-4045-856E-E7C87ECF7E7A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5FEE8723-1BA4-4045-856E-E7C87ECF7E7A}.Generate|Any CPU.ActiveCfg = Generate|Any CPU
 		{5FEE8723-1BA4-4045-856E-E7C87ECF7E7A}.Generate|Any CPU.Build.0 = Generate|Any CPU
+		{5E48AF54-6F8F-41E7-96C8-F07AE21E5BF8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E48AF54-6F8F-41E7-96C8-F07AE21E5BF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E48AF54-6F8F-41E7-96C8-F07AE21E5BF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E48AF54-6F8F-41E7-96C8-F07AE21E5BF8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E48AF54-6F8F-41E7-96C8-F07AE21E5BF8}.Generate|Any CPU.ActiveCfg = Generate|Any CPU
+		{5E48AF54-6F8F-41E7-96C8-F07AE21E5BF8}.Generate|Any CPU.Build.0 = Generate|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

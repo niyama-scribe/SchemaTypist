@@ -6,7 +6,8 @@
       "samples\\SchemaTypist.Samples.NetFramework.MsSqlServer\\SchemaTypist.Samples.NetFramework.MsSqlServer.csproj",
       "samples\\SchemaTypist.Samples.NetStandard20.Postgres\\SchemaTypist.Samples.NetStandard20.Postgres.csproj",
       "samples\\SchemaTypist.Samples.NetStandard20\\SchemaTypist.Samples.NetStandard20.csproj",
-      "samples\\SchemaTypist.Samples.Postgres.NetCore\\SchemaTypist.Samples.Postgres.NetCore.csproj"
+      "samples\\SchemaTypist.Samples.Postgres.NetCore\\SchemaTypist.Samples.Postgres.NetCore.csproj",
+      "samples\\SchemaTypist.Samples.Postgres.NetFramework\\SchemaTypist.Samples.Postgres.NetFramework.csproj"
     ]
   }
 }
