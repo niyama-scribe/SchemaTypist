@@ -92,7 +92,7 @@ namespace SchemaTypist.Core.Schemata
              *            Initialize property to "default!"
              */
 
-            if (defaultValue is null or "null")
+            if ((defaultValue is null or "null") || (!config.UseSqlDefaultValue))
             {
                 defaultValue = config.TargetLanguageVersion.ToLower() == "default"  &&
                                config.UseNullableRefTypes &&

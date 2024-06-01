@@ -55,6 +55,7 @@ namespace SchemaTypist.Cli
             config.StripSuffix = settings.StripSuffix ?? config.StripSuffix;
             config.TargetLanguageVersion = settings.TargetLanguageVersion ?? config.TargetLanguageVersion;
             config.UseNullableRefTypes = settings.UseNullableRefTypes;
+            config.UseSqlDefaultValue = settings.UseSqlDefaultValue;
             
             if ((!string.IsNullOrWhiteSpace(settings.DatabaseVendor))
                 && Enum.TryParse<SqlVendorType>(settings.DatabaseVendor, out var vendor)) 
@@ -206,6 +207,11 @@ namespace SchemaTypist.Cli
             [CommandOption("--use-nullable-ref-types")]
             [DefaultValue(false)]
             public bool UseNullableRefTypes { get; set; }
+            
+            [Description("Should properties be auto-initialized with default values defined in DDL?")]
+            [CommandOption("--use-sql-default-value")]
+            [DefaultValue(true)]
+            public bool UseSqlDefaultValue { get; set; }
 
             
         }
