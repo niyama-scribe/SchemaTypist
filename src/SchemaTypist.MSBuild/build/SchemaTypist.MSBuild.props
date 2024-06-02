@@ -23,6 +23,7 @@
 		<_SchemaTypist_StripSuffix>_#NONE#_</_SchemaTypist_StripSuffix>
 		<_SchemaTypist_UseNullableRefTypes>false</_SchemaTypist_UseNullableRefTypes>
 		<_SchemaTypist_TargetLanguageVersion>Default</_SchemaTypist_TargetLanguageVersion>
+		<_SchemaTypist_UseSqlDefaultValue>true</_SchemaTypist_UseSqlDefaultValue>
 	</PropertyGroup>
 
 	

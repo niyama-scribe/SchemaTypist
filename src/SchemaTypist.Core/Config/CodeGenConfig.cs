@@ -48,7 +48,7 @@ namespace SchemaTypist.Core.Config
         public string StripPrefix { get; set; }
 
         public string StripSuffix { get; set; }
-
+        public bool UseSqlDefaultValue { get; set; } = true;
     }
 
     public enum SqlVendorType
