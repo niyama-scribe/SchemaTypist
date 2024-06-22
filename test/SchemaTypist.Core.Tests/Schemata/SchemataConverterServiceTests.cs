@@ -48,25 +48,42 @@ namespace SchemaTypist.Core.Tests.Schemata
         }
 
         [Theory]
-        [AutoTestParamsInlineData("string", "null", true, "default!")]
-        [AutoTestParamsInlineData("string?", "null", true, null)]
-        [AutoTestParamsInlineData("string", "null", false, null)]
-        [AutoTestParamsInlineData("string?", "null", false, null)]
-        [AutoTestParamsInlineData("string", "", true, "default!")]
-        [AutoTestParamsInlineData("string?", "", true, null)]
-        [AutoTestParamsInlineData("string", "", false, null)]
-        [AutoTestParamsInlineData("string?", "", false, null)]
-        [AutoTestParamsInlineData("string", null, true, "default!")]
-        [AutoTestParamsInlineData("string?", null, true, null)]
-        [AutoTestParamsInlineData("string", null, false, null)]
-        [AutoTestParamsInlineData("string?", null, false, null)]
-        [AutoTestParamsInlineData("string", "\"abc\"", true, "\"abc\"")]
-        [AutoTestParamsInlineData("string?", "\"abc\"", true, "\"abc\"")]
-        [AutoTestParamsInlineData("string", "\"abc\"", false, "\"abc\"")]
-        [AutoTestParamsInlineData("string?", "\"abc\"", false, "\"abc\"")]
+        [AutoTestParamsInlineData("string", "null", true, true, "default!")]
+        [AutoTestParamsInlineData("string?", "null", true, true, null)]
+        [AutoTestParamsInlineData("string", "null", true, false, null)]
+        [AutoTestParamsInlineData("string?", "null", true, false, null)]
+        [AutoTestParamsInlineData("string", "", true, true, "default!")]
+        [AutoTestParamsInlineData("string?", "", true, true, null)]
+        [AutoTestParamsInlineData("string", "", true, false, null)]
+        [AutoTestParamsInlineData("string?", "", true, false, null)]
+        [AutoTestParamsInlineData("string", null, true, true, "default!")]
+        [AutoTestParamsInlineData("string?", null, true, true, null)]
+        [AutoTestParamsInlineData("string", null, true, false, null)]
+        [AutoTestParamsInlineData("string?", null, true, false, null)]
+        [AutoTestParamsInlineData("string", "\"abc\"", true, true, "\"abc\"")]
+        [AutoTestParamsInlineData("string?", "\"abc\"", true, true, "\"abc\"")]
+        [AutoTestParamsInlineData("string", "\"abc\"", true, false, "\"abc\"")]
+        [AutoTestParamsInlineData("string?", "\"abc\"", true, false, "\"abc\"")]
+        
+        [AutoTestParamsInlineData("string", "null", false, true, "default!")]
+        [AutoTestParamsInlineData("string?", "null", false, true, null)]
+        [AutoTestParamsInlineData("string", "null", false, false, null)]
+        [AutoTestParamsInlineData("string?", "null", false, false, null)]
+        [AutoTestParamsInlineData("string", "", false, true, "default!")]
+        [AutoTestParamsInlineData("string?", "", false, true, null)]
+        [AutoTestParamsInlineData("string", "", false, false, null)]
+        [AutoTestParamsInlineData("string?", "", false, false, null)]
+        [AutoTestParamsInlineData("string", null, false, true, "default!")]
+        [AutoTestParamsInlineData("string?", null, false, true, null)]
+        [AutoTestParamsInlineData("string", null, false, false, null)]
+        [AutoTestParamsInlineData("string?", null, false, false, null)]
+        [AutoTestParamsInlineData("string", "\"abc\"", false, true, "default!")]
+        [AutoTestParamsInlineData("string?", "\"abc\"", false, true, null)]
+        [AutoTestParamsInlineData("string", "\"abc\"", false, false, null)]
+        [AutoTestParamsInlineData("string?", "\"abc\"", false, false, null)]
 
         internal void Convert_OverridesDefaultValueWhenAppropriate(
-            string datatype, string columnDefault, bool useNullableRef, string expected,
+            string datatype, string columnDefault, bool useSqlDefaultValue, bool useNullableRef, string expected,
             [Frozen] Mock<ISqlVendorService> sqlVendorService,
             SchemataConverterService sut)
         {
@@ -79,6 +96,7 @@ namespace SchemaTypist.Core.Tests.Schemata
             var cdc = fixture.Build<CodeGenConfig>()
                 .With(cgc => cgc.TargetLanguageVersion, "Default")
                 .With(c => c.UseNullableRefTypes, useNullableRef)
+                .With(c => c.UseSqlDefaultValue, useSqlDefaultValue)
                 .With(c => c.Include, "*")
                 .Create();
 

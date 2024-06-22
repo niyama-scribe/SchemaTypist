@@ -75,7 +75,9 @@ namespace SchemaTypist.Core.Schemata
 
         private void UpdateDefaultValue(ColumnMetadata columnMetadata, string columnDefault, CodeGenConfig config)
         {
-            var defaultValue = _sqlVendor.DetermineDefaultValue(columnDefault, columnMetadata.DataType, config);
+            var defaultValue = config.UseSqlDefaultValue ? 
+                _sqlVendor.DetermineDefaultValue(columnDefault, columnMetadata.DataType, config) : null;
+            
 
             //Default value can be null, "null", blank or non-null-literal-value
             if (string.IsNullOrWhiteSpace(defaultValue)) defaultValue = null;

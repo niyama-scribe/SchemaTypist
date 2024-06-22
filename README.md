@@ -5,12 +5,19 @@ SchemaTypist enables type-safe database interactions using Dapper and SqlKata, b
 ![Nuget](https://img.shields.io/nuget/v/SchemaTypist?color=blue&label=SchemaTypist&logo=Nuget&style=plastic)
 ![Nuget](https://img.shields.io/nuget/v/SchemaTypist.Cli?color=blue&label=SchemaTypist.Cli&logo=Nuget&style=plastic)
 ![Nuget](https://img.shields.io/nuget/v/SchemaTypist.MSBuild?color=blue&label=SchemaTypist.MSBuild&logo=Nuget&style=plastic)
-![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/niyama-scribe/SchemaTypist/build.yaml?branch=main)
+![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/niyama-scribe/SchemaTypist/build.yaml?branch=main&style=plastic)
 
 
 ## How does it work?
 
 At its core, SchemaTypist provides a highly configurable, dotnet CLI tool called `schematypist-cli`.  The CLI tool inspects schemata exposed by your database and generates metadata mapping as C# code, which you can then use to interact with the database.
+
+## Can you show me?
+
+Here's a demo
+
+![Here's a recorded demo](/docs/assets/SchemaTypistLiveSample.gif)
+
 
 ## Where do I start?
 
@@ -63,9 +70,8 @@ At its core, SchemaTypist provides a highly configurable, dotnet CLI tool called
          }
      }
    ```
-
    For more examples, please look in the samples folder.
-
+   
 ## Features
  - Can use secrets for connection string instead of storing it in plain text in your csproj file.
  - Supports the following RDBMS Providers:
@@ -74,7 +80,7 @@ At its core, SchemaTypist provides a highly configurable, dotnet CLI tool called
    *  Potentially supports any RDBMS that is compliant with SQL-99 standard (i.e. exposes INFORMATION_SCHEMA views).
  - Generated code is compatible with:
    *  .NET Standard 2.0 (.NET Framework 4.6.1 and above) - CSharp 7.3
-   *  .NET 6.0 - CSharp 10
+   *  .NET 8.0 - CSharp 12
  - Include and exclude regexes to include/exclude database objects respectively.
  - Supports immutable objects and supports records.
  - Class and property names follow database object names, but are cleansed to fit C# naming conventions:
