@@ -8,6 +8,7 @@
 //------------------------------------------------------------------------------
 
 using Dapper;
+using SchemaTypist.Dml;
 
 namespace {{ path_namespace.dapper_initialiser_namespace }};
 
@@ -23,7 +24,11 @@ internal static partial class DapperTypeMapping
 		SqlMapper.SetTypeMap(typeof({{ model.path_namespace.entities_namespace }}.{{ model.tabular_structure.name }}{{ config.entity_name_suffix }}), {{ model.path_namespace.persistence_namespace }}.{{ model.tabular_structure.name }}{{ config.mapper_name_suffix }}.QueryResults.GetTypeMap());
 		{{~ end ~}}
 		
-		AfterInit();
+		{{~ for model in template_models ~}}
+        DmlMapper.SetDmlArgsGenerator<{{ model.path_namespace.entities_namespace }}.{{ model.tabular_structure.name }}{{ config.entity_name_suffix }}>({{ model.path_namespace.persistence_namespace }}.{{ model.tabular_structure.name }}{{ config.mapper_name_suffix }}.DmlArgsGenerator);
+        {{~ end ~}}
+        
+        AfterInit();
 	}
 
 	static partial void AfterInit();

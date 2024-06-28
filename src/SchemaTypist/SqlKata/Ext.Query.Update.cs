@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using SchemaTypist.DatabaseMetadata;
+using SchemaTypist.Dml;
 using SqlKata;
 
 namespace SchemaTypist.SqlKata
@@ -15,6 +16,12 @@ namespace SchemaTypist.SqlKata
         public static Query AsUpdate(this Query q, IEnumerable<KeyValuePair<ColumnDefinition, object>> values)
         {
             return q.AsUpdate(values.Select(kvp => new KeyValuePair<string, object>(kvp.Key.ColumnName__, kvp.Value)));
+        }
+
+        public static Query Update<TEntity>(this Query q, TEntity entity)
+        {
+            DmlQueryBuilder.BuildForUpdate(q, entity);
+            return q;
         }
 
         public static Query AsIncrement(this Query q, ColumnDefinition column, int value = 1)

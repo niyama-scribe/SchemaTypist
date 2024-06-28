@@ -5,9 +5,10 @@ namespace SchemaTypist.DatabaseMetadata
     public partial class ColumnDefinition
     {
         private readonly AliasableColumnDefinition _aliasable;
-        public ColumnDefinition(string columnName, TabularDefinition belongsTo)
+        public ColumnDefinition(string columnName, TabularDefinition belongsTo, ColumnMetadata metadata = null)
         {
             if (string.IsNullOrEmpty(columnName)) throw new ArgumentNullException(nameof(columnName));
+            Metadata = metadata;
 
             _aliasable = new AliasableColumnDefinition(columnName, belongsTo);
         }
@@ -28,7 +29,8 @@ namespace SchemaTypist.DatabaseMetadata
         internal string QualifiedName__ => _aliasable.QualifiedName__;
         internal string Declaration__ => AliasableDefaults.Declare(_aliasable);
         internal string Usage__ => AliasableDefaults.Use(_aliasable);
-
+        internal ColumnMetadata Metadata { get; }
+        
         private class AliasableColumnDefinition : IAliasable
         {
             public string ColumnName__ { get; }
